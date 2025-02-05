@@ -1,0 +1,12 @@
+h1:T10_diagnostics Assessing LINE
+h2:T10_basics Basic code
+h3:adding-a-new-column-with-the-residuals Adding a new column with the residuals
+h3:code-for-plotting-the-residuals Code for plotting the residuals
+h2:checking-line Checking LINE
+h3:T10.Linearity Checking Linearity
+h3:T10.Variance Checking Equal Variance/homoscadisity
+h4:residual-vs-fits-plots-for-equal-variance-checks Residual vs fits plots for equal variance checks
+h4:statistical-tests-for-non-equal-variance Statistical Tests for non-equal variance
+h3:T10.Normality Checking Normality
+h3:checking-independence Checking Independence
+

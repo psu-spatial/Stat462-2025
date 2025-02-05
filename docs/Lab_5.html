@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Lab 5A | STAT462 Lab Book 2024</title>
+<meta name="author" content="Dr Helen Greatrex">
+<meta name="description" content="Aim Welcome to lab 5. This is worth 4% (40 points), alongside 60 for Lab 5B next week (you can drop them together or neither) By the end of this lab, you will be able to: Look in more detail at...">
+<meta name="generator" content="bookdown 0.37 with bs4_book()">
+<meta property="og:title" content="Lab 5A | STAT462 Lab Book 2024">
+<meta property="og:type" content="book">
+<meta property="og:description" content="Aim Welcome to lab 5. This is worth 4% (40 points), alongside 60 for Lab 5B next week (you can drop them together or neither) By the end of this lab, you will be able to: Look in more detail at...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Lab 5A | STAT462 Lab Book 2024">
+<meta name="twitter:description" content="Aim Welcome to lab 5. This is worth 4% (40 points), alongside 60 for Lab 5B next week (you can drop them together or neither) By the end of this lab, you will be able to: Look in more detail at...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.1/transition.js"></script><script src="libs/bs3compat-0.6.1/tabs.js"></script><script src="libs/bs3compat-0.6.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<link href="libs/vembedr-0.1.5/css/vembedr.css" rel="stylesheet">
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><script src="libs/plotly-binding-4.10.3/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script><link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">STAT462 Lab Book 2024</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Welcome to STAT-462!</a></li>
+<li><a class="" href="FAQ.html">Course FAQ</a></li>
+<li><a class="" href="WhatIsR.html">What are R and R-Studio?</a></li>
+<li><a class="" href="Setup_Desktop.html">Installing R/R-Studio</a></li>
+<li><a class="" href="Setup_UpdateDesktop.html">Updating R/R-Studio</a></li>
+<li><a class="" href="Setup_Online.html">Posit Cloud Online</a></li>
+<li class="book-part">.</li>
+<li class="book-part">LAB INSTRUCTIONS</li>
+<li><a class="" href="Help.html">HELP!</a></li>
+<li><a class="" href="Lab_1.html">Lab 1</a></li>
+<li><a class="" href="Lab_2.html">Lab 2</a></li>
+<li><a class="" href="Lab_3.html">Lab 3</a></li>
+<li><a class="" href="Lab_4.html">Lab 4</a></li>
+<li><a class="active" href="Lab_5.html">Lab 5A</a></li>
+<li><a class="" href="Lab_5B.html">Lab 5B</a></li>
+<li><a class="" href="lab-6.html">Lab 6</a></li>
+<li><a class="" href="final-project.html">Final Project</a></li>
+<li><a class="" href="final-project-example-movie-ratings.html">FINAL PROJECT EXAMPLE: Movie Ratings</a></li>
+<li class="book-part">.</li>
+<li class="book-part">TUTORIALS</li>
+<li><a class="" href="T1_Projects.html"><span class="header-section-number">1</span> Projects/Starting a lab</a></li>
+<li><a class="" href="T2_Libraries.html"><span class="header-section-number">2</span> Libraries/Packages</a></li>
+<li><a class="" href="T3_Markdown.html"><span class="header-section-number">3</span> R-Markdown</a></li>
+<li><a class="" href="T4_ReadingData.html"><span class="header-section-number">4</span> Reading in data</a></li>
+<li><a class="" href="probability-distributions.html"><span class="header-section-number">5</span> Probability distributions</a></li>
+<li><a class="" href="T6_plots.html"><span class="header-section-number">6</span> Plots</a></li>
+<li><a class="" href="correlation.html"><span class="header-section-number">7</span> Correlation</a></li>
+<li><a class="" href="T8_regression.html"><span class="header-section-number">8</span> Regression</a></li>
+<li><a class="" href="T9_wrangling.html"><span class="header-section-number">9</span> Data Wrangling</a></li>
+<li><a class="" href="T10_diagnostics.html"><span class="header-section-number">10</span> Assessing LINE</a></li>
+<li><a class="" href="outliers-high-leverage-influential-points.html"><span class="header-section-number">11</span> Outliers, high leverage &amp; influential points</a></li>
+<li><a class="" href="confidence-and-prediction-intervals.html"><span class="header-section-number">12</span> Confidence and Prediction Intervals</a></li>
+<li><a class="" href="S.Tutorial_Transformations.html"><span class="header-section-number">13</span> Transformations</a></li>
+<li><a class="" href="S.Tutorial_GLM.html"><span class="header-section-number">14</span> GLM - Logistic Regression</a></li>
+<li><a class="" href="basic-model-comparisons.html"><span class="header-section-number">15</span> Basic model comparisons</a></li>
+<li><a class="" href="multiple-regression-model-fitting-1.html"><span class="header-section-number">16</span> Multiple regression &amp; model fitting</a></li>
+<li><a class="" href="finding-the-optimal-model.html"><span class="header-section-number">17</span> Finding the “optimal model”</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="Lab_5" class="section level1 unnumbered">
+<h1>Lab 5A<a class="anchor" aria-label="anchor" href="#Lab_5"><i class="fas fa-link"></i></a>
+</h1>
+<div id="aim-4" class="section level2 unnumbered">
+<h2>Aim<a class="anchor" aria-label="anchor" href="#aim-4"><i class="fas fa-link"></i></a>
+</h2>
+<p>Welcome to lab 5. This is worth 4% (40 points), alongside 60 for Lab 5B next week (you can drop them together or neither)</p>
+<p>By the end of this lab, you will be able to:</p>
+<ol style="list-style-type: decimal">
+<li>Look in more detail at YAML themes.</li>
+<li>Understand &amp; use regression diagnostics to assess LINE</li>
+</ol>
+<p>This is a ONE WEEK LAB. You need to finish writing up by next Tuesday (23:59pm) e.g. just before Lab 5B starts.</p>
+<p><br></p>
+<div id="need-help-1" class="section level3" number="0.3.2">
+<h3>
+<span class="header-section-number">0.3.2</span> Need help?<a class="anchor" aria-label="anchor" href="#need-help-1"><i class="fas fa-link"></i></a>
+</h3>
+<p>REMEMBER THAT EVERY TIME YOU RE-OPEN R-STUDIO YOU NEED TO RE-RUN <strong>ALL</strong> YOUR CODE CHUNKS. The easiest way to do this is to press the “Run All” button (see the Run menu at the top right of your script)</p>
+<p><strong>Code won’t knit? Struggling? Have a question? See the help page here: <a href="Help.html#Help">Help!</a></strong></p>
+<p>The maximum time this lab should take is about 4-5 hrs of your time.</p>
+<p><br></p>
+<hr>
+</div>
+</div>
+<div id="set-up-dont-skip-3" class="section level2 unnumbered">
+<h2>1. Set up (DON’T SKIP)<a class="anchor" aria-label="anchor" href="#set-up-dont-skip-3"><i class="fas fa-link"></i></a>
+</h2>
+<p><br></p>
+<div id="step-1.1-create-a-project-for-lab-5" class="section level3 unnumbered">
+<h3>
+<strong>[Step 1.1] Create a project for Lab 5</strong><a class="anchor" aria-label="anchor" href="#step-1.1-create-a-project-for-lab-5"><i class="fas fa-link"></i></a>
+</h3>
+<p>** YOU WILL BE CONTINUING IN THE SAME PROJECT NEXT WEEK **</p>
+<ul>
+<li><p>If you are using the POSIT Cloud (AKA R-Studio online), log-in and make a new project using <a href="T1_Projects.html#T1_ProjectsCloud">Tutorial 1B</a></p></li>
+<li><p>If you are using R-Studio on your own computer/laptop, log in and make a new project using <a href="T1_Projects.html#T1_ProjectsCloud">T1_ProjectsDesktop</a>. To open/re-open your project, look in the STAT462/Lab5 folder on your computer and double click the .RProj file (I often rename it something like OPENTHIS.RProj)</p></li>
+</ul>
+<p><br><br></p>
+</div>
+<div id="step-1.2-create-a-markdown-edit-yaml" class="section level3 unnumbered">
+<h3>
+<strong>[Step 1.2] Create a markdown &amp; edit YAML</strong><a class="anchor" aria-label="anchor" href="#step-1.2-create-a-markdown-edit-yaml"><i class="fas fa-link"></i></a>
+</h3>
+<p>This week you will be creating your own reports from scratch rather than using a custom template. This gives you a load more options.</p>
+<ul>
+<li>Go to the File menu and click New File/R-Markdown (same as before)</li>
+</ul>
+<p><br></p>
+<ul>
+<li>
+<p>But this time, DON’T GO TO THE TEMPLATE MENU. Simply add the title and your name, then press OK.</p>
+<div class="float">
+<img src="index_images/im_05MarkdownScratch.png" style="width:70.0%" alt="Make a new markdown file from scratch"><div class="figcaption">Make a new markdown file from scratch</div>
+</div>
+</li>
+<li>
+<p>This will create a document that looks like this. Just so you can see the subheading structure, change line 12 so it reads <code># R Markdown</code> (e.g. remove one of the hashtags)</p>
+<div class="float">
+<img src="index_images/im_05MarkdownScratchOutput.png" style="width:70.0%" alt="Output of the markdown document"><div class="figcaption">Output of the markdown document</div>
+</div>
+</li>
+<li><p>Press knit, then save as your Lab 5 report. You must save your lab report as STAT-462_Lab5_EMAILID.Rmd** (e.g.STAT-462_Lab5_hlg5155.Rmd). You might need to press knit twice.</p></li>
+<li><p>When it knits, you should see a html document explaining about the cars dataset (we’ll remove this text in a bit). If you changed line 12, you can see that <u><em>R-Markdown</em></u> comes up as a Header-1 (a chapter title), whereas <u><em>Including Plots</em></u> appears as a header-2 (sub-heading title).</p></li>
+</ul>
+<p><br></p>
+<ul>
+<li><p>Now we are going to edit the options available in the YAML code at the top to create our own themes/tables of contents etc. <strong>But BE CAREFUL -This is much easier to do in source mode and it’s space sensitive and case sensitive.</strong></p></li>
+<li><p><em>Very carefully</em>, delete line 5: <code>output: html_document</code> then add in EXACTLY this text (e.g. copy/paste and make sure you use the same spacing)</p></li>
+</ul>
+<pre><code>---
+output:
+  html_document:
+    toc: true
+    toc_depth: 4
+    toc_float: 
+      collapsed: false
+    theme: default
+---</code></pre>
+<ul>
+<li>
+<p>Press knit again and see what changes. I have added in some options about a table of contents.</p>
+<p><br></p>
+</li>
+<li>
+<p>Edit your YAML code to change the theme to any one of these (your choice) and press knit again. <a href="https://rstudio4edu.github.io/rstudio4edu-book/rmd-themes.html" class="uri">https://rstudio4edu.github.io/rstudio4edu-book/rmd-themes.html</a></p>
+<p><br></p>
+</li>
+<li><p>I also want you edit your YAML code to turn on section numbering, using this tutorial - <a href="https://bookdown.org/yihui/rmarkdown/html-document.html" class="uri">https://bookdown.org/yihui/rmarkdown/html-document.html</a> or type<br><code><a href="https://pkgs.rstudio.com/rmarkdown/reference/html_document.html">?html_document</a></code> into the console. Press knit and make sure it all works. You’re welcome to add other options that interest you.<br><br></p></li>
+</ul>
+<p><br><br></p>
+</div>
+<div id="step-1.3-document-options-libraries" class="section level3 unnumbered">
+<h3>
+<strong>[Step 1.3] Document options &amp; libraries</strong><a class="anchor" aria-label="anchor" href="#step-1.3-document-options-libraries"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>Now, let’s edit the first code chunk below the YAML code, which allows us to set the visualization options for your report. At the moment, it says</li>
+</ul>
+<pre><code>knitr::opts_chunk$set(echo = TRUE)</code></pre>
+<ul>
+<li><p>Add in warning=FALSE and message=FALSE to suppress errors. Hint, Lab 4 and <a href="T3_Markdown.html#T3_CodeChunkWholeDoc">Tutorial3,Markdown options</a>.</p></li>
+<li><p>Finally, as you can see, the basic R-Markdown document includes a load of ‘friendly welcome text’ explaining what a markdown document is. We don’t need this. So delete EVERYTHING below your first code chunk.</p></li>
+<li>
+<p>Create a header-1 chapter called “Set-Up”.</p>
+<ul>
+<li>E.g. in the text, write the word Set-Up, then using visual mode, change it to ‘header 1’ (or in source mode, write <code># Set-Up)</code>
+</li>
+</ul>
+</li>
+</ul>
+<p><br></p>
+<ul>
+<li>Add a new code chunk and use this code to load the following libraries. If some don’t exist on your computer or on the cloud, use <a href="T2_Libraries.html#T2_Libraries">Tutorial 2</a> to install/download them first from the app-store.<br>
+</li>
+</ul>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://tidyverse.tidyverse.org">"tidyverse"</a></span><span class="op">)</span> <span class="co"># Lots of data processing commands</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://yihui.org/knitr/">"knitr"</a></span><span class="op">)</span>     <span class="co"># Helps make good output files</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org">"ggplot2"</a></span><span class="op">)</span>   <span class="co"># Output plots</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://github.com/hrbrmstr/hrbrthemes">"hrbrthemes"</a></span><span class="op">)</span> <span class="co"># ggplot options</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/rstudio/rmarkdown">"rmarkdown"</a></span><span class="op">)</span> <span class="co"># Helps make good output files</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://lattice.r-forge.r-project.org/">"lattice"</a></span><span class="op">)</span>   <span class="co"># Makes nice plots</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"RColorBrewer"</span><span class="op">)</span> <span class="co"># Makes nice color-scales</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://docs.ropensci.org/skimr/">"skimr"</a></span><span class="op">)</span>     <span class="co"># Summary statistics</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/statmanrobin/Stat2Data">"Stat2Data"</a></span><span class="op">)</span> <span class="co"># Regression specific commands</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/taiyun/corrplot">"corrplot"</a></span><span class="op">)</span>  <span class="co"># correlation plots</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://ggobi.github.io/ggally/">"GGally"</a></span><span class="op">)</span>    <span class="co"># correlation plots</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://rpkgs.datanovia.com/ggpubr/">"ggpubr"</a></span><span class="op">)</span>    <span class="co"># QQplots</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://olsrr.rsquaredacademy.com/">"olsrr"</a></span><span class="op">)</span>     <span class="co"># Regression specific commands</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://plotly-r.com">"plotly"</a></span><span class="op">)</span>    <span class="co"># Interactive plots</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://readxl.tidyverse.org">"readxl"</a></span><span class="op">)</span>    <span class="co"># Read from excel files</span></span></code></pre></div>
+<ul>
+<li>To make sure they loaded OK, run the code chunk TWICE. The second time any welcome text will disappear unless there are errors.</li>
+</ul>
+<p><br><br></p>
+</div>
+<div id="step-1.4-check-progress" class="section level3 unnumbered">
+<h3>
+<strong>[Step 1.4] Check Progress</strong><a class="anchor" aria-label="anchor" href="#step-1.4-check-progress"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>OK - so by now, you should be in your project, you have created your lab report, the YAML code works and your libraries work. Press knit and check it all works. If not, STOP, go back and redo the tutorials or talk to Dr G.</li>
+</ul>
+<p><br><br></p>
+<hr>
+</div>
+</div>
+<div id="challenge---regression-diagnostics" class="section level2 unnumbered">
+<h2>2. Challenge - Regression diagnostics<a class="anchor" aria-label="anchor" href="#challenge---regression-diagnostics"><i class="fas fa-link"></i></a>
+</h2>
+<div id="step-2.1-line" class="section level3 unnumbered">
+<h3>
+<strong>[Step 2.1] LINE</strong><a class="anchor" aria-label="anchor" href="#step-2.1-line"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>Create a level 1 heading called LINE assumptions. From your notes and the online textbook (<a href="https://online.stat.psu.edu/stat501/lesson/4/4.1" class="uri">https://online.stat.psu.edu/stat501/lesson/4/4.1</a>), explain in your report what the LINE assumptions are for linear regression.</li>
+</ul>
+<p><br><br></p>
+</div>
+<div id="step-2.2-create-datasets" class="section level3 unnumbered">
+<h3>
+<strong>[Step 2.2] Create Datasets</strong><a class="anchor" aria-label="anchor" href="#step-2.2-create-datasets"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>
+<p>Go to <a href="https://stephenturner.github.io/drawmydata/" class="uri">https://stephenturner.github.io/drawmydata/</a>. You are going to create and save 3 datasets into your Lab 5 folder. Each should have <em>at minimum</em> 30 points.</p>
+<ul>
+<li>A dataset that meets all the assumptions of simple linear regression</li>
+<li>A dataset that breaks the assumption of linearity</li>
+<li>A dataset that breaks the assumption of equal variance/heteroskadisity</li>
+</ul>
+</li>
+</ul>
+<p><br></p>
+<ul>
+<li>I strongly suggest opening the datasets in Excel first adding a new row at the top and adding in column names (<a href="https://support.microsoft.com/en-us/office/insert-or-delete-rows-and-columns-6f40e6e4-85af-45e0-b39d-65dd504a3246">Tutorial here</a>). I also suggest naming your files sensible things so you don’t go insane.</li>
+</ul>
+<p><br></p>
+<ul>
+<li>Read the three files into R and assign to sensible variable names.</li>
+</ul>
+<p><br></p>
+</div>
+<div id="step-2.3-examine-scatterplots" class="section level3 unnumbered">
+<h3>
+<strong>[Step 2.3] Examine scatterplots</strong><a class="anchor" aria-label="anchor" href="#step-2.3-examine-scatterplots"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>Create a professional scatterplot of each of your three datasets. I suggest using this code for convenience - <a href="https://psu-spatial.github.io/Stat462-2024/T6_plots.html#T6_PlotGGPlot" class="uri">https://psu-spatial.github.io/Stat462-2024/T6_plots.html#T6_PlotGGPlot</a>
+</li>
+</ul>
+<p><br></p>
+<ul>
+<li>Below each one, explain why you think it does/doesn’t meet the linearity and equal variance LINE assumptions. See here for example wording - <a href="https://online.stat.psu.edu/stat501/lesson/4/4.7" class="uri">https://online.stat.psu.edu/stat501/lesson/4/4.7</a>
+</li>
+</ul>
+<p><br><br></p>
+</div>
+<div id="step-2.4-create-a-regression-model" class="section level3 unnumbered">
+<h3>
+<strong>[Step 2.4] Create a regression model</strong><a class="anchor" aria-label="anchor" href="#step-2.4-create-a-regression-model"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>For each dataset, create a linear regression model, making sure that your response (y-axis) and predictor are the correct way around [Tutorial here]<a href="https://psu-spatial.github.io/Stat462-2024/T8_regression.html" class="uri">https://psu-spatial.github.io/Stat462-2024/T8_regression.html</a>). You do not need to write out the equation, but check against your scatterplot to make sure it all makes sense.</li>
+</ul>
+<p><br><br></p>
+</div>
+<div id="step-2.5-residual-vs-fits" class="section level3 unnumbered">
+<h3>
+<strong>[Step 2.5] Residual vs fits</strong><a class="anchor" aria-label="anchor" href="#step-2.5-residual-vs-fits"><i class="fas fa-link"></i></a>
+</h3>
+<p>As you will see in future labs, it’s sometimes not very easy to see things like linearity and heteroscadisity by eye. Looking at plots of the residuals can help with this. This type of plot is also useful in identifying outliers, something we will do in Lab 6.</p>
+<ul>
+<li><p>Create a sub-heading called regression diagnostics.</p></li>
+<li><p>Create a sub-sub-heading called residuals vs fits (e.g. header 3)</p></li>
+<li><p>Read <a href="https://online.stat.psu.edu/stat501/lesson/4/4.2" class="uri">https://online.stat.psu.edu/stat501/lesson/4/4.2</a> and <a href="https://online.stat.psu.edu/stat501/lesson/4/4.4" class="uri">https://online.stat.psu.edu/stat501/lesson/4/4.4</a>.</p></li>
+<li><p>Then read through Tutorial 10 (menu on left), up to the end of equal variance to make standardised “Residual vs Fits” plots of your three datasets.</p></li>
+<li>
+<p>Underneath your plots and referring to the textbook reading, write at least 150 words (total) explaining in your own words</p>
+<ul>
+<li>What a residual vs fits plot is,</li>
+<li>Why it’s useful compared to just looking at the scatterplot.<br>
+</li>
+<li>Referring to your plots to explain how each of your three datasets does/doesn’t meet the LINE assumptions of linearity and equal variance.</li>
+</ul>
+</li>
+<li><p>For each of your three models, conduct a F-test for heteroscadisity (see tutorial 10). In the text, explain in general what your H0 and H1 are, and interpret the results of the three tests (e.g. what’s the test statistic, what’s the p-value, and does it suggest equal variances or not)</p></li>
+</ul>
+<p><br><br></p>
+</div>
+<div id="step-2.6-residual-normal-analysis" class="section level3 unnumbered">
+<h3>
+<strong>[Step 2.6] Residual normal analysis</strong><a class="anchor" aria-label="anchor" href="#step-2.6-residual-normal-analysis"><i class="fas fa-link"></i></a>
+</h3>
+<p>We also need to assess whether your residuals are normally distributed. For this, we have another set of diagnostic tools.</p>
+<ul>
+<li><p>Create a sub-sub heading called Residual Normality</p></li>
+<li><p>Read <a href="https://online.stat.psu.edu/stat501/lesson/4/4.6" class="uri">https://online.stat.psu.edu/stat501/lesson/4/4.6</a> and tutorial 10 (<a href="https://psu-spatial.github.io/Stat462-2024/T10_diagnostics.html" class="uri">https://psu-spatial.github.io/Stat462-2024/T10_diagnostics.html</a>) continued</p></li>
+<li><p>Use tutorial 10 to create residual histograms and residual QQ plots for each of your three datasets.</p></li>
+<li><p>Underneath your plots and referring to the textbook reading, write at least 100 words (total) explaining in your own words</p></li>
+<li><p>What the residual histograms and residual QQplots are showing you,</p></li>
+<li><p>Why it’s useful compared to just looking at the scatterplot.<br></p></li>
+<li><p>Referring to your plots to explain how each of your three datasets does/doesn’t meet the LINE assumptions of normality.</p></li>
+<li><p>For each of your three models, run the ols_test_normality() command to do all the normality datasets. What do they suggest? Hint - see here for the interpretation. <a href="https://www.statology.org/shapiro-wilk-test-r/" class="uri">https://www.statology.org/shapiro-wilk-test-r/</a>. and <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3693611/" class="uri">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3693611/</a></p></li>
+<li><p>Use google and the resources provided to explain the difference between the tests that your code outputs.</p></li>
+</ul>
+<p><br><br></p>
+</div>
+</div>
+<div id="submitting-your-lab-3" class="section level2 unnumbered">
+<h2>3. Submitting your Lab<a class="anchor" aria-label="anchor" href="#submitting-your-lab-3"><i class="fas fa-link"></i></a>
+</h2>
+<p>Remember to save your work throughout and to spell check your writing (next to the save button). Now, press the knit button again. If you have not made any mistakes in the code then R should create a html file in your lab 4 folder which includes your answers.</p>
+<p><strong>For R desktop users:</strong></p>
+<ul>
+<li><p>If you look at your lab 5 folder ON YOUR COMPUTER, you should see your html and Rm there - complete with a very recent time-stamp.</p></li>
+<li><p>In that folder, double click on the html file. This will open it in your web-browser.<br>
+CHECK THAT THIS IS WHAT YOU WANT TO SUBMIT.</p></li>
+<li><p>Now go to Canvas and submit BOTH your html and your .Rmd file in Lab 5.</p></li>
+</ul>
+<p><br></p>
+<p><strong>If you are on posit cloud,</strong></p>
+<ul>
+<li><p>go to the files tab, then click the check box by your html file. Click the “more” blue cogwheel in the file quadrant menu options, then click export. This will download the file</p></li>
+<li><p>Uncheck the box and check the box by your .Rmd file. Click the “more” blue cogwheel in the file quadrant menu options, then click export. This will download the file.</p></li>
+<li><p>Now go to Canvas and submit BOTH your html and your .Rmd file in Lab 5.</p></li>
+</ul>
+<p>Congrats! You are done.</p>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="Lab_4.html">Lab 4</a></div>
+<div class="next"><a href="Lab_5B.html">Lab 5B</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#Lab_5">Lab 5A</a></li>
+<li>
+<a class="nav-link" href="#aim-4">Aim</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#need-help-1"><span class="header-section-number">0.3.2</span> Need help?</a></li></ul>
+</li>
+<li>
+<a class="nav-link" href="#set-up-dont-skip-3">1. Set up (DON’T SKIP)</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#step-1.1-create-a-project-for-lab-5">[Step 1.1] Create a project for Lab 5</a></li>
+<li><a class="nav-link" href="#step-1.2-create-a-markdown-edit-yaml">[Step 1.2] Create a markdown &amp; edit YAML</a></li>
+<li><a class="nav-link" href="#step-1.3-document-options-libraries">[Step 1.3] Document options &amp; libraries</a></li>
+<li><a class="nav-link" href="#step-1.4-check-progress">[Step 1.4] Check Progress</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#challenge---regression-diagnostics">2. Challenge - Regression diagnostics</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#step-2.1-line">[Step 2.1] LINE</a></li>
+<li><a class="nav-link" href="#step-2.2-create-datasets">[Step 2.2] Create Datasets</a></li>
+<li><a class="nav-link" href="#step-2.3-examine-scatterplots">[Step 2.3] Examine scatterplots</a></li>
+<li><a class="nav-link" href="#step-2.4-create-a-regression-model">[Step 2.4] Create a regression model</a></li>
+<li><a class="nav-link" href="#step-2.5-residual-vs-fits">[Step 2.5] Residual vs fits</a></li>
+<li><a class="nav-link" href="#step-2.6-residual-normal-analysis">[Step 2.6] Residual normal analysis</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#submitting-your-lab-3">3. Submitting your Lab</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>STAT462 Lab Book 2024</strong>" was written by Dr Helen Greatrex. It was last built on 2024-04-25.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

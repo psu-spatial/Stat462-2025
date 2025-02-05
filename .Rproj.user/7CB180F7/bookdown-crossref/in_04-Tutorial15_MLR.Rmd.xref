@@ -1,0 +1,14 @@
+h1:basic-model-comparisons Basic model comparisons
+h3:is-the-model-appropriate-line-influential-outliers Is the model appropriate? LINE & influential outliers
+h3:coefficient-of-determination-r2 Coefficient of Determination 
+h4:standard-r2 Standard 
+h4:adjusted-r2 Adjusted 
+h4:where-to-find-them Where to find them
+h3:mse-rmse-root-mean-squared-error MSE, RMSE, (root) mean squared error
+h4:rmse RMSE
+h3:information-criteria-aic Information criteria: AIC
+h1:multiple-regression-model-fitting Multiple regression & model fitting
+h2:mlr MLR
+h1:finding-the-optimal-model Finding the 
+h2:best-subsets Best subsets
+

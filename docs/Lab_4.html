@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Lab 4 | STAT462 Lab Book 2024</title>
+<meta name="author" content="Dr Helen Greatrex">
+<meta name="description" content="Aim Welcome to lab 4. This is worth 10% (100 points) and you can drop your lowest lab out of six. By the end of this week’s lab, you will be able to: Make your own .RmD report. Feel comfortable...">
+<meta name="generator" content="bookdown 0.37 with bs4_book()">
+<meta property="og:title" content="Lab 4 | STAT462 Lab Book 2024">
+<meta property="og:type" content="book">
+<meta property="og:description" content="Aim Welcome to lab 4. This is worth 10% (100 points) and you can drop your lowest lab out of six. By the end of this week’s lab, you will be able to: Make your own .RmD report. Feel comfortable...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Lab 4 | STAT462 Lab Book 2024">
+<meta name="twitter:description" content="Aim Welcome to lab 4. This is worth 10% (100 points) and you can drop your lowest lab out of six. By the end of this week’s lab, you will be able to: Make your own .RmD report. Feel comfortable...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.1/transition.js"></script><script src="libs/bs3compat-0.6.1/tabs.js"></script><script src="libs/bs3compat-0.6.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<link href="libs/vembedr-0.1.5/css/vembedr.css" rel="stylesheet">
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><script src="libs/plotly-binding-4.10.3/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script><link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">STAT462 Lab Book 2024</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Welcome to STAT-462!</a></li>
+<li><a class="" href="FAQ.html">Course FAQ</a></li>
+<li><a class="" href="WhatIsR.html">What are R and R-Studio?</a></li>
+<li><a class="" href="Setup_Desktop.html">Installing R/R-Studio</a></li>
+<li><a class="" href="Setup_UpdateDesktop.html">Updating R/R-Studio</a></li>
+<li><a class="" href="Setup_Online.html">Posit Cloud Online</a></li>
+<li class="book-part">.</li>
+<li class="book-part">LAB INSTRUCTIONS</li>
+<li><a class="" href="Help.html">HELP!</a></li>
+<li><a class="" href="Lab_1.html">Lab 1</a></li>
+<li><a class="" href="Lab_2.html">Lab 2</a></li>
+<li><a class="" href="Lab_3.html">Lab 3</a></li>
+<li><a class="active" href="Lab_4.html">Lab 4</a></li>
+<li><a class="" href="Lab_5.html">Lab 5A</a></li>
+<li><a class="" href="Lab_5B.html">Lab 5B</a></li>
+<li><a class="" href="lab-6.html">Lab 6</a></li>
+<li><a class="" href="final-project.html">Final Project</a></li>
+<li><a class="" href="final-project-example-movie-ratings.html">FINAL PROJECT EXAMPLE: Movie Ratings</a></li>
+<li class="book-part">.</li>
+<li class="book-part">TUTORIALS</li>
+<li><a class="" href="T1_Projects.html"><span class="header-section-number">1</span> Projects/Starting a lab</a></li>
+<li><a class="" href="T2_Libraries.html"><span class="header-section-number">2</span> Libraries/Packages</a></li>
+<li><a class="" href="T3_Markdown.html"><span class="header-section-number">3</span> R-Markdown</a></li>
+<li><a class="" href="T4_ReadingData.html"><span class="header-section-number">4</span> Reading in data</a></li>
+<li><a class="" href="probability-distributions.html"><span class="header-section-number">5</span> Probability distributions</a></li>
+<li><a class="" href="T6_plots.html"><span class="header-section-number">6</span> Plots</a></li>
+<li><a class="" href="correlation.html"><span class="header-section-number">7</span> Correlation</a></li>
+<li><a class="" href="T8_regression.html"><span class="header-section-number">8</span> Regression</a></li>
+<li><a class="" href="T9_wrangling.html"><span class="header-section-number">9</span> Data Wrangling</a></li>
+<li><a class="" href="T10_diagnostics.html"><span class="header-section-number">10</span> Assessing LINE</a></li>
+<li><a class="" href="outliers-high-leverage-influential-points.html"><span class="header-section-number">11</span> Outliers, high leverage &amp; influential points</a></li>
+<li><a class="" href="confidence-and-prediction-intervals.html"><span class="header-section-number">12</span> Confidence and Prediction Intervals</a></li>
+<li><a class="" href="S.Tutorial_Transformations.html"><span class="header-section-number">13</span> Transformations</a></li>
+<li><a class="" href="S.Tutorial_GLM.html"><span class="header-section-number">14</span> GLM - Logistic Regression</a></li>
+<li><a class="" href="basic-model-comparisons.html"><span class="header-section-number">15</span> Basic model comparisons</a></li>
+<li><a class="" href="multiple-regression-model-fitting-1.html"><span class="header-section-number">16</span> Multiple regression &amp; model fitting</a></li>
+<li><a class="" href="finding-the-optimal-model.html"><span class="header-section-number">17</span> Finding the “optimal model”</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="Lab_4" class="section level1 unnumbered">
+<h1>Lab 4<a class="anchor" aria-label="anchor" href="#Lab_4"><i class="fas fa-link"></i></a>
+</h1>
+<div id="aim-3" class="section level2 unnumbered">
+<h2>Aim<a class="anchor" aria-label="anchor" href="#aim-3"><i class="fas fa-link"></i></a>
+</h2>
+<p>Welcome to lab 4. This is worth 10% (100 points) and you can drop your lowest lab out of six.</p>
+<p>By the end of this week’s lab, you will be able to:</p>
+<ol style="list-style-type: decimal">
+<li>Make your own .RmD report.</li>
+<li>Feel comfortable reading in and filtering data</li>
+<li>Feel comfortable with the core regression commands.</li>
+<li>Understand in-text math equations, inline code and hidden code chunks</li>
+</ol>
+<p>This is a TWO WEEK LAB. You only have two lab sessions (today and next week) working on this during class. You need to finish writing up by the following Tuesday (23:59pm) e.g. just before Lab 4 starts.</p>
+<p><br></p>
+<div id="need-help" class="section level3" number="0.3.1">
+<h3>
+<span class="header-section-number">0.3.1</span> Need help?<a class="anchor" aria-label="anchor" href="#need-help"><i class="fas fa-link"></i></a>
+</h3>
+<p>REMEMBER THAT EVERY TIME YOU RE-OPEN R-STUDIO YOU NEED TO RE-RUN <strong>ALL</strong> YOUR CODE CHUNKS. The easiest way to do this is to press the “Run All” button (see the Run menu at the top right of your script)</p>
+<p><strong>Code won’t knit? Struggling? Have a question? See the help page here: <a href="Help.html#Help">Help!</a></strong></p>
+<p>The maximum time this lab should take is about 9-10 hrs of your time (e.g 4-5 hrs each week).</p>
+<p><br></p>
+<hr>
+</div>
+</div>
+<div id="set-up-dont-skip-2" class="section level2 unnumbered">
+<h2>1. Set up (DON’T SKIP)<a class="anchor" aria-label="anchor" href="#set-up-dont-skip-2"><i class="fas fa-link"></i></a>
+</h2>
+<p><br></p>
+<div id="step-1.1-create-a-project-for-lab-4" class="section level3 unnumbered">
+<h3>
+<strong>[Step 1.1] Create a project for Lab 4</strong><a class="anchor" aria-label="anchor" href="#step-1.1-create-a-project-for-lab-4"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li><p>If you are using the POSIT Cloud (AKA R-Studio online), log-in and make a new project for lab 3 using <a href="T1_Projects.html#T1_ProjectsCloud">Tutorial 1B</a></p></li>
+<li><p>If you are using R-Studio on your own computer/laptop, log in and make a new project for lab 3 using <a href="T1_Projects.html#T1_ProjectsCloud">T1_ProjectsDesktop</a>. To open/re-open your project, look in the STAT462/Lab3 folder on your computer and double click the .RProj file (I often rename it something like OPENTHIS.RProj)</p></li>
+</ul>
+<p><br><br></p>
+</div>
+<div id="step-1.2-create-your-own-lab-report-new" class="section level3 unnumbered">
+<h3>
+<strong>[Step 1.2] Create your own lab report (NEW)</strong><a class="anchor" aria-label="anchor" href="#step-1.2-create-your-own-lab-report-new"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>
+<p>This week you will be creating your own reports using the tutorial below, rather than downloading my template from canvas:</p>
+<ul>
+<li><p>You can choose whether you want an rmdformats templates or to make/tweak your own (the tutorial link gives both options).</p></li>
+<li><p>You must have a floating table of contents.</p></li>
+<li><p>You must save your lab report as STAT-462_Lab4_EMAILID.Rmd** (e.g.STAT-462_Lab4_hlg5155.Rmd)</p></li>
+</ul>
+</li>
+<li><p>Follow this tutorial to do this: <a href="T3_Markdown.html#T3_YAML">T3_Templates</a></p></li>
+</ul>
+<p><br><br></p>
+</div>
+<div id="step-1.3-add-libraries" class="section level3 unnumbered">
+<h3>
+<strong>[Step 1.3] Add libraries</strong><a class="anchor" aria-label="anchor" href="#step-1.3-add-libraries"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>Create a header-1 chapter called “Set-Up”.
+<ul>
+<li>
+<p>E.g. in the text, write the word Set-Up, then using visual mode, change it to ‘header 1’ (or in source mode, write <code># Set-Up)</code></p>
+<p><br></p>
+</li>
+</ul>
+</li>
+<li>Add a new code chunk and use this code to load the following libraries. <br><br><ul>
+<li><p>If some don’t exist on your computer or on the cloud, use <a href="T2_Libraries.html#T2_Libraries">Tutorial 2</a> to install/download them first from the app-store.<br></p></li>
+<li><p>To make sure they loaded OK, run the code chunk TWICE. The second time any welcome text will disappear unless there are errors.</p></li>
+</ul>
+</li>
+</ul>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rpkgs.datanovia.com/ggpubr/">ggpubr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggobi.github.io/ggally/">GGally</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/skimr/">skimr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://plotly-r.com">plotly</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://olsrr.rsquaredacademy.com/">olsrr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">yarrr</span><span class="op">)</span></span></code></pre></div>
+<p><br><br></p>
+</div>
+<div id="step-1.4-check-progress-knit" class="section level3 unnumbered">
+<h3>
+<strong>[Step 1.4] Check Progress &amp; knit</strong><a class="anchor" aria-label="anchor" href="#step-1.4-check-progress-knit"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li><p>You should have something like this. E.g. you are in your project, you have created your lab report and changed the author name. If you are stuck, either go back and redo the tutorials or talk to Dr G.</p></li>
+<li><p>Press knit and check it all works. You might need to install some packages.</p></li>
+</ul>
+<div class="figure" style="text-align: center">
+<img src="index_images/im_Lab02_SetUp.png" alt="*Your screen should look like this*" width="90%"><p class="caption">
+(#fig:im_Lab03_SetUp)<em>Your screen should look like this</em>
+</p>
+</div>
+<p><br></p>
+<hr>
+</div>
+</div>
+<div id="challenge---data-wrangling" class="section level2 unnumbered">
+<h2>2. Challenge - Data wrangling<a class="anchor" aria-label="anchor" href="#challenge---data-wrangling"><i class="fas fa-link"></i></a>
+</h2>
+<p>You are being graded in part for your style and clarity of your write up. In part this is so that it’s easier for me to grade. But by the end of the semester, I want you automatically writing reports you could show off to future employers during an interview.</p>
+<p>So… from now onward, even if I don’t explicitly ask:<br><br></p>
+<ul>
+<li><p>Include your code and write up your answers as full sentences below your code.<br><br></p></li>
+<li><p>Include units and write up your results clearly, explaining your thinking. This is not a writing course and I am not grading you on grammar, but use the spell checker by the save button..</p></li>
+<li>
+<p>For each step, make a new ‘level-2’ sub-heading. This will make the table of contents look nice.</p>
+<ul>
+<li><p>In visual model you can type Step 2.1, then click on it and press Header 2.</p></li>
+<li>
+<p>In source mode you would type this, leaving a space after the ##.</p>
+<pre><code>  ## Step 2.1</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<p><em>*Note, you can type the numbers and don’t need to get R to auto-number sections,.</em></p>
+<p><br></p>
+<div id="step-2-pirates" class="section level3 unnumbered">
+<h3>
+<strong>[Step 2]: Pirates</strong><a class="anchor" aria-label="anchor" href="#step-2-pirates"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>Create a new level-1 heading called Pirate analysis</li>
+</ul>
+<p><br></p>
+</div>
+<div id="step-2.1-pirates-data" class="section level3 unnumbered">
+<h3>
+<strong>[Step 2.1]: Pirates data</strong><a class="anchor" aria-label="anchor" href="#step-2.1-pirates-data"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>Load the <code>pirates</code> dataset from the <code>yarrr</code> package. (<a href="T4_ReadingData.html#T4_loaddata">Tutorial 4.3, built in data</a>).</li>
+</ul>
+<p><br></p>
+</div>
+<div id="step-2.2-select-values" class="section level3 unnumbered">
+<h3>
+<strong>[Step 2.2]: Select values</strong><a class="anchor" aria-label="anchor" href="#step-2.2-select-values"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>Select the value of the pirates dataset for the 15th row and 4th column (I need to see the R code!). Write your answer as a full sentence below your r-code. Hint (<a href="T9_wrangling.html#WrangleBasics">Tutorial9,Wrangle basics</a>).</li>
+</ul>
+<p><br></p>
+</div>
+<div id="step-2.3-filtering-data" class="section level3 unnumbered">
+<h3>
+<strong>[Step 2.3]: Filtering data</strong><a class="anchor" aria-label="anchor" href="#step-2.3-filtering-data"><i class="fas fa-link"></i></a>
+</h3>
+<p>Hint, (<a href="T9_wrangling.html#WrangleFilter">Tutorial9,Wrangle basics</a>)</p>
+<ul>
+<li>Filter the full pirates data so that it just includes pirates with more than 3 parrots and save to a new variable called <code>pirateparrots</code>.</li>
+</ul>
+<p><br></p>
+<ul>
+<li>
+<p>Using the <code>table</code>, <code>summary</code>, or <code>groupby</code> command on <code>pirateparrots</code>, work out the average number of tattoos of pirates with more than 3 parrots. Don’t overthink this.<br>
+Write your answer as a full sentence below your r-code.</p>
+<p><br></p>
+</li>
+</ul>
+</div>
+<div id="step-2.4-advanced-filtering" class="section level3 unnumbered">
+<h3>
+<strong>[Step 2.4]: Advanced Filtering</strong><a class="anchor" aria-label="anchor" href="#step-2.4-advanced-filtering"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>
+<p>Use similar techniques to work out how many pirates that are</p>
+<ul>
+<li>
+<p><u><em>3+ parrot owning,</em></u> <u><em>male</em></u> <u><em>AND ALSO have more than 3 tattoos.</em></u></p>
+<p><br></p>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div id="step-2.5-removing-data" class="section level3 unnumbered">
+<h3>
+<strong>[Step 2.5]: Removing data</strong><a class="anchor" aria-label="anchor" href="#step-2.5-removing-data"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>Remove the 17th row from the main pirates dataset and overwrite (e.g. save the result to a variable called pirates)</li>
+</ul>
+<p><br></p>
+</div>
+<div id="step-2.6-combining-skills" class="section level3 unnumbered">
+<h3>
+<strong>[Step 2.6]: Combining skills</strong><a class="anchor" aria-label="anchor" href="#step-2.6-combining-skills"><i class="fas fa-link"></i></a>
+</h3>
+<p>Hint, (<a href="T9_wrangling.html#Missing">Tutorial9,Missing data</a>)</p>
+<ul>
+<li>In the main pirates dataset, remove the row containing the tallest pirate (let’s say the data was entered incorrectly) and overwrite.<br><br>
+</li>
+<li>Now, replace the height of the shortest pirate with NA (let’s say the data was entered incorrectly) and overwrite.<br><br>
+</li>
+<li>Now, use <code>complete.cases</code> to remove any rows where the pirate height is missing (e.g. any rows where the height is NA)</li>
+</ul>
+<hr>
+<p><br><br></p>
+</div>
+</div>
+<div id="challenge---mystery-data" class="section level2 unnumbered">
+<h2>3. Challenge - Mystery data<a class="anchor" aria-label="anchor" href="#challenge---mystery-data"><i class="fas fa-link"></i></a>
+</h2>
+<p><br></p>
+<ul>
+<li>Create a new level-1 heading called Mystery Data</li>
+</ul>
+<p><br></p>
+<ul>
+<li>Download the mystery dataset from canvas and put it into your lab 4 folder.</li>
+</ul>
+<p><br></p>
+<ul>
+<li>Read it into R and calculate the correlation coefficient between the variables X and Y.</li>
+</ul>
+<p><br></p>
+<ul>
+<li>Create a linear regression model between the variables X and Y.</li>
+</ul>
+<p><br></p>
+<ul>
+<li>
+<p>Write out the model equation using equation format (hint - create the equation here - <a href="https://latexeditor.lagrida.com/" class="uri">https://latexeditor.lagrida.com/</a> , then you can put it into the text of your REPORT (not a code chunk) using double dollar signs. More in this tutorial (<a href="T3_Markdown.html#T3_MathsEquations">Tutorial3,Equations</a>).</p>
+<pre><code>$$
+YOUR EQUATION 
+$$   </code></pre>
+<p>More tutorials here: <a href="https://rmd4sci.njtierney.com/math" class="uri">https://rmd4sci.njtierney.com/math</a><br></p>
+</li>
+</ul>
+<p><br></p>
+<ul>
+<li>
+<p>Explain why your linear model and correlation coefficient are vastly inappropriate!</p>
+<p>[4% total mark]</p>
+<p><strong>Please work with me and don’t cheat with this question!<br>
+Don’t tell other students the answer or even hint. or it loses the learning objective.</strong> <strong>They can still get an A* and get it wrong.</strong></p>
+</li>
+</ul>
+<hr>
+<p><br><br></p>
+</div>
+<div id="challenge---regression" class="section level2 unnumbered">
+<h2>4. Challenge - Regression<a class="anchor" aria-label="anchor" href="#challenge---regression"><i class="fas fa-link"></i></a>
+</h2>
+<div id="style" class="section level3 unnumbered">
+<h3>Style<a class="anchor" aria-label="anchor" href="#style"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li><p>Same as above, please write your answers as full sentences referring to your code.</p></li>
+<li>
+<p>When I say a ‘professional’ plot, I mean that your axes are labelled including units and that it looks like something you might want to include in a thesis, or a report to the community group.</p>
+<ul>
+<li>You have so many easy plot options, choose one that’s more fun than just “plot”. I often recommend the interactive plotly: (<a href="#id_#T6_ScatterPlotly">Plotly</a>)</li>
+</ul>
+</li>
+</ul>
+<p><br></p>
+</div>
+<div id="the-problem---read-carefully" class="section level3 unnumbered">
+<h3>The problem - read carefully<a class="anchor" aria-label="anchor" href="#the-problem---read-carefully"><i class="fas fa-link"></i></a>
+</h3>
+<p><u><strong>Public safety spending</strong></u></p>
+<p><em>Suburban towns often spend a large fraction of their municipal budgets on public safety services (police, fire, and ambulance). A taxpayers’ group felt that tiny towns were likely to spend large amounts per person because they have such small financial bases. The group obtained data on the per-capita (per-person) spending on public safety for 29 suburban towns in a metropolitan area, as well as the population of each town in units of 1000 people.</em></p>
+<p><em>They sent you the data in the file <code>expenditure.xslx</code>, which you can get from Canvas.</em></p>
+<p><br></p>
+</div>
+<div id="step-4.1-get-the-data" class="section level3 unnumbered">
+<h3>
+<strong>[Step 4.1]:</strong> Get the data<a class="anchor" aria-label="anchor" href="#step-4.1-get-the-data"><i class="fas fa-link"></i></a>
+</h3>
+<p>BEFORE you read a file into R, it is good to look at column names. It’s very frustrating in R to type column names with spaces or special characters. It makes it especially hard to refer to a column/variable by name, e.g. <code>table$columnname</code>won’t work.</p>
+<p>You <em>can</em> change this in R using the <code><a href="https://rdrr.io/r/base/names.html">names()</a></code> command. But it’s much easier to fix the issue in advance. So..<br><br></p>
+<ul>
+<li>Download <em><code>expenditure.xslx</code></em> data from canvas and put it into your lab 4 folder.
+<ul>
+<li>If you are using posit cloud, do the steps below before uploading it.<br>
+</li>
+</ul>
+</li>
+<li>Open <code>expenditure.xlsx</code> in <u><strong>Excel</strong></u> and take a look!<br><br>
+</li>
+<li>Rename the column titles so that no column names contains spaces/special characters &amp; check you are happy with the data.<br><br>
+</li>
+<li>Save and close, making sure that you save it to an .xlsx format.<br><br>
+</li>
+<li>If you are on the posit cloud, now you can upload to your Lab 4 project.</li>
+</ul>
+<p><br></p>
+<ul>
+<li>Create a new level-1 heading called Public Safety</li>
+</ul>
+<p><br></p>
+<ul>
+<li>Load the data into R (<a href="T4_ReadingData.html#T4_readxl">Tutorial 4.2</a>)</li>
+</ul>
+<p><br></p>
+<ul>
+<li>In full sentences, summarize what the aim of the study is (see above), the unit of analysis, the response and predictor variables and what the taxpayer’s group expects the results to be. In your summary, <em>assuming the taxpayer’s group is correct</em>, write your prediction about whether the slope of Simple Linear regression model between your response and predictor should be negative or positive.</li>
+</ul>
+<p><br><br></p>
+</div>
+<div id="step-4.2-stacked-commands" class="section level3 unnumbered">
+<h3>
+<strong>[Step 4.2]:</strong> Stacked commands<a class="anchor" aria-label="anchor" href="#step-4.2-stacked-commands"><i class="fas fa-link"></i></a>
+</h3>
+<p><em>We often need to apply more than one command at once. Rather than saving the result each time and applying the next command, we can stack them together. For example, here I find the length of the longest word in the group of words</em></p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># this is the same as </span></span>
+<span><span class="va">longestwordlength</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nchar.html">nchar</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"hello"</span>,<span class="st">"cat"</span>,<span class="st">"ice-cream"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">longestwordlength</span></span></code></pre></div>
+<pre><code>## [1] 9</code></pre>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># this is the same as these commands</span></span>
+<span><span class="co"># where c means "stick words together"</span></span>
+<span><span class="va">mydata</span>            <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"hello"</span>,<span class="st">"cat"</span>,<span class="st">"ice-cream"</span><span class="op">)</span></span>
+<span><span class="va">allwordlengths</span>    <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nchar.html">nchar</a></span><span class="op">(</span><span class="va">mydata</span><span class="op">)</span></span>
+<span><span class="va">longestwordlength</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">allwordlengths</span><span class="op">)</span></span></code></pre></div>
+<ul>
+<li>Create a code chunk and calculate
+<ul>
+<li>The mean population of the sampled towns, rounded to three decimal places (hint, mean and round commands - remember you might need na.rm=TRYE)</li>
+<li>The total number of towns in the sample (hint unique and length commands)</li>
+</ul>
+</li>
+</ul>
+<p><br><br></p>
+</div>
+<div id="step-4.3-inline-code-commands" class="section level3 unnumbered">
+<h3>
+<strong>[Step 4.3]:</strong> Inline code commands<a class="anchor" aria-label="anchor" href="#step-4.3-inline-code-commands"><i class="fas fa-link"></i></a>
+</h3>
+<p>We will now learn how to hide code chunks and to automatically put the answer in your write-up.</p>
+<ul>
+<li><p>First, edit the code chunk options to hide the chunk when you press knit using include/echo = FALSE See (<a href="T3_CodeChunkOptions">Tutorial 3, Code chunk options</a>).</p></li>
+<li><p>Use inline code to write a sentence in your report telling me the number of towns in the sample and the average population of the sampled towns. See (<a href="T3_InlineCode">Tutorial 3, Inline Code</a>). THIS IS EASIER IN SOURCE MODE.</p></li>
+</ul>
+<p>Note, if you use inline code in the future, remember to use things like ‘round’ so that your text contains an appropriate number of decimal places.</p>
+<p><br><br></p>
+</div>
+<div id="step-4.4-scatterplots" class="section level3 unnumbered">
+<h3>
+<strong>[Step 4.4]:</strong> Scatterplots<a class="anchor" aria-label="anchor" href="#step-4.4-scatterplots"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>Make a ‘professional looking scatter-plot<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Read the style guide at the top of challenge 4&lt;/p&gt;"><sup>2</sup></a>’ of your response and predictor WITHOUT a line of best fit. Describe it fully in the text, referring to form, direction, and strength of the association, along with the presence of any outliers.</li>
+</ul>
+<p><br><br></p>
+</div>
+<div id="step-4.5-regression-model" class="section level3 unnumbered">
+<h3>
+<strong>[Step 4.5]:</strong> Regression model<a class="anchor" aria-label="anchor" href="#step-4.5-regression-model"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>Using the data as-is, fit a regression model to the data using <code>lm</code> and save it as a variable called <code>model1</code>.</li>
+</ul>
+<p><br></p>
+<ul>
+<li>Summarise the the model fit using OLSRR</li>
+</ul>
+<p><br></p>
+<ul>
+<li>
+<p>In the text of your report, write formally write the model equation. (hint - create the equation here - <a href="https://latexeditor.lagrida.com/" class="uri">https://latexeditor.lagrida.com/</a> , then you can put it into the text of your REPORT (not a code chunk) using double dollar signs.</p>
+<pre><code>$$
+YOUR EQUATION 
+$$   </code></pre>
+<p>More tutorials here: <a href="https://rmd4sci.njtierney.com/math" class="uri">https://rmd4sci.njtierney.com/math</a><br></p>
+<p><br></p>
+</li>
+<li>
+<p>Create a new version of the scatterplot containing your line of best fit.</p>
+<p><br></p>
+</li>
+<li><p>Describe the slope and intercept within the context of the data for your community group. Explain if the slope in the output confirms the opinion of the community group?<br>
+Explain why this initial regression might be misleading.</p></li>
+</ul>
+<p><br><br></p>
+</div>
+<div id="step-4.6-outliers" class="section level3 unnumbered">
+<h3>
+<strong>[Step 4.6]:</strong> Outliers<a class="anchor" aria-label="anchor" href="#step-4.6-outliers"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>
+<p>Remove the outlier in the same way you did in challenge 2.</p>
+<p><br></p>
+</li>
+<li><p>Repeat the linear regression and scatter-plot with the new data and save it as a variable called <code>model2</code>. Explain to the community group how this has changed your assessment of the relationship between the variables.</p></li>
+</ul>
+<p><br><br><br></p>
+</div>
+<div id="step-4.7-correlation-coefficient" class="section level3 unnumbered">
+<h3>
+<strong>[Step 4.7]:</strong> Correlation coefficient<a class="anchor" aria-label="anchor" href="#step-4.7-correlation-coefficient"><i class="fas fa-link"></i></a>
+</h3>
+<p>Normally, to calculate the correlation coefficient between two variables, we use the <code><a href="https://rdrr.io/r/stats/cor.html">cor()</a></code> command or we could look at the output from <code><a href="https://olsrr.rsquaredacademy.com/reference/ols_regress.html">ols_regress()</a></code>. Let’s imagine that these have mysteriously broken.</p>
+<ul>
+<li>From only the information provided in the command <code>summary(model2)</code>, show how you can quickly calculate the correlation coefficient and show it’s the same as the output from the model summary.
+<ul>
+<li><em>[HINT - HOMEWORK 5 &amp; the Least squares derivation, just watch the video..]</em></li>
+<li>You can use code chunks to work out the number, but explain what you are doing in the text.</li>
+</ul>
+</li>
+</ul>
+<p><br><br></p>
+</div>
+<div id="step-4.8-coefficient-of-variation" class="section level3 unnumbered">
+<h3>
+<strong>[Step 4.8]:</strong> Coefficient of variation<a class="anchor" aria-label="anchor" href="#step-4.8-coefficient-of-variation"><i class="fas fa-link"></i></a>
+</h3>
+<p>This will be discussed in the lectures on Friday &amp; next week, or see <a href="https://online.stat.psu.edu/stat501/lesson/1/1.5" class="uri">https://online.stat.psu.edu/stat501/lesson/1/1.5</a> , and <a href="https://online.stat.psu.edu/stat501/lesson/2/2.4" class="uri">https://online.stat.psu.edu/stat501/lesson/2/2.4</a></p>
+<ul>
+<li><p>Look at the ANOVA table (middle part of <code>ols_regress(model2)</code> or make a new code chunk and add <code>anova(model2)</code>).<br><br></p></li>
+<li>
+<p>Using the information provided there, calculate the coefficient of variation (lecture next week)</p>
+<p><br></p>
+</li>
+<li><p>Explain where you can check your result in the OLSRR summary and the classic summary. E.g. upload two screenshots where you circle the result.</p></li>
+</ul>
+<p><br><br></p>
+</div>
+<div id="step-4.9-slope-test" class="section level3 unnumbered">
+<h3>
+<strong>[Step 4.9]:</strong> Slope test<a class="anchor" aria-label="anchor" href="#step-4.9-slope-test"><i class="fas fa-link"></i></a>
+</h3>
+<p>This will be discussed in the lectures next week, or see <a href="https://online.stat.psu.edu/stat501/lesson/2/2.1" class="uri">https://online.stat.psu.edu/stat501/lesson/2/2.1</a></p>
+<ul>
+<li>
+<p>Fully write out a hypothesis test to assess of the slope is significantly different to 1.1.</p>
+<p><br></p>
+</li>
+<li><p>Show all your workings and professionally format any equations.<br><br></p></li>
+<li><p>For half marks, you can test if the slope is different to 0.</p></li>
+</ul>
+<p><br><br></p>
+</div>
+</div>
+<div id="submitting-your-lab-2" class="section level2 unnumbered">
+<h2>5. Submitting your Lab<a class="anchor" aria-label="anchor" href="#submitting-your-lab-2"><i class="fas fa-link"></i></a>
+</h2>
+<p>Remember to save your work throughout and to spell check your writing (next to the save button). Now, press the knit button again. If you have not made any mistakes in the code then R should create a html file in your lab 4 folder which includes your answers.</p>
+<p><strong>For R desktop users:</strong></p>
+<ul>
+<li><p>If you look at your lab 4 folder ON YOUR COMPUTER, you should see your html and Rm there - complete with a very recent time-stamp.</p></li>
+<li><p>In that folder, double click on the html file. This will open it in your web-browser.<br>
+CHECK THAT THIS IS WHAT YOU WANT TO SUBMIT.</p></li>
+<li><p>Now go to Canvas and submit BOTH your html and your .Rmd file in Lab 4.</p></li>
+</ul>
+<p><br></p>
+<p><strong>If you are on posit cloud,</strong></p>
+<ul>
+<li><p>go to the files tab, then click the check box by your html file. Click the “more” blue cogwheel in the file quadrant menu options, then click export. This will download the file</p></li>
+<li><p>Uncheck the box and check the box by your .Rmd file. Click the “more” blue cogwheel in the file quadrant menu options, then click export. This will download the file.</p></li>
+<li><p>Now go to Canvas and submit BOTH your html and your .Rmd file in Lab 4.</p></li>
+</ul>
+<p>Congrats! You are done.</p>
+
+</div>
+</div>
+
+  <div class="chapter-nav">
+<div class="prev"><a href="Lab_3.html">Lab 3</a></div>
+<div class="next"><a href="Lab_5.html">Lab 5A</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#Lab_4">Lab 4</a></li>
+<li>
+<a class="nav-link" href="#aim-3">Aim</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#need-help"><span class="header-section-number">0.3.1</span> Need help?</a></li></ul>
+</li>
+<li>
+<a class="nav-link" href="#set-up-dont-skip-2">1. Set up (DON’T SKIP)</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#step-1.1-create-a-project-for-lab-4">[Step 1.1] Create a project for Lab 4</a></li>
+<li><a class="nav-link" href="#step-1.2-create-your-own-lab-report-new">[Step 1.2] Create your own lab report (NEW)</a></li>
+<li><a class="nav-link" href="#step-1.3-add-libraries">[Step 1.3] Add libraries</a></li>
+<li><a class="nav-link" href="#step-1.4-check-progress-knit">[Step 1.4] Check Progress &amp; knit</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#challenge---data-wrangling">2. Challenge - Data wrangling</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#step-2-pirates">[Step 2]: Pirates</a></li>
+<li><a class="nav-link" href="#step-2.1-pirates-data">[Step 2.1]: Pirates data</a></li>
+<li><a class="nav-link" href="#step-2.2-select-values">[Step 2.2]: Select values</a></li>
+<li><a class="nav-link" href="#step-2.3-filtering-data">[Step 2.3]: Filtering data</a></li>
+<li><a class="nav-link" href="#step-2.4-advanced-filtering">[Step 2.4]: Advanced Filtering</a></li>
+<li><a class="nav-link" href="#step-2.5-removing-data">[Step 2.5]: Removing data</a></li>
+<li><a class="nav-link" href="#step-2.6-combining-skills">[Step 2.6]: Combining skills</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#challenge---mystery-data">3. Challenge - Mystery data</a></li>
+<li>
+<a class="nav-link" href="#challenge---regression">4. Challenge - Regression</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#style">Style</a></li>
+<li><a class="nav-link" href="#the-problem---read-carefully">The problem - read carefully</a></li>
+<li><a class="nav-link" href="#step-4.1-get-the-data">[Step 4.1]: Get the data</a></li>
+<li><a class="nav-link" href="#step-4.2-stacked-commands">[Step 4.2]: Stacked commands</a></li>
+<li><a class="nav-link" href="#step-4.3-inline-code-commands">[Step 4.3]: Inline code commands</a></li>
+<li><a class="nav-link" href="#step-4.4-scatterplots">[Step 4.4]: Scatterplots</a></li>
+<li><a class="nav-link" href="#step-4.5-regression-model">[Step 4.5]: Regression model</a></li>
+<li><a class="nav-link" href="#step-4.6-outliers">[Step 4.6]: Outliers</a></li>
+<li><a class="nav-link" href="#step-4.7-correlation-coefficient">[Step 4.7]: Correlation coefficient</a></li>
+<li><a class="nav-link" href="#step-4.8-coefficient-of-variation">[Step 4.8]: Coefficient of variation</a></li>
+<li><a class="nav-link" href="#step-4.9-slope-test">[Step 4.9]: Slope test</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#submitting-your-lab-2">5. Submitting your Lab</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>STAT462 Lab Book 2024</strong>" was written by Dr Helen Greatrex. It was last built on 2024-04-25.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+h1:final-project-example-movie-ratings FINAL PROJECT EXAMPLE: Movie Ratings
+h2:introduction Introduction
+h2:exploratory-data-analysis Exploratory data analysis
+h3:data-wrangling Data wrangling
+h3:response-variable-analysis Response Variable Analysis
+h3:correlation-matrix Correlation Matrix
+h2:single-predictor-models Single Predictor models
+h3:model-1a-theatersopenweek Model 1a: TheatersOpenWeek
+h4:line-assumptions-check LINE assumptions check
+h4:transformations Transformations
+h4:model-1b-logdomestic_gross Model 1B, Log(Domestic_Gross)
+h5:line-assessment LINE assessment
+h5:check-for-influential-outliers Check for Influential Outliers
+h3:model-2-boaverageopenweek Model 2: BOAverageOpenWeek
+h4:line-assumptions-check-1 LINE assumptions check
+h4:model-2b-log-log-transformation Model 2B, Log-Log transformation
+h5:line-assessment-1 LINE assessment
+h5:check-for-influential-outliers-1 Check for Influential Outliers
+h3:model-comparison Model comparison
+h2:multiple-regression Multiple regression
+h3:best-subsets-model-selection Best Subsets model selection
+h3:final-model Final model
+h4:line-assessment-2 LINE assessment
+h4:check-for-influential-outliers-2 Check for Influential Outliers
+h2:studio-questions Studio questions
+h4:show-your-final-model-is-more-skillful-than-the-other-models-you-made 1. Show your final model is more skillful than the other models you made
+h4:conduct-a-partial-f-test-to-assess-if-your-final-model-is-significantly-better-than-your-best-single-variable-model 2. Conduct a partial F test to assess if your final model is significantly better than your best  model
+h4:in-your-final-model-which-predictors-have-the-highest-effect-size-and-significance 3. In your final model, which predictors have the highest effect size and significance?
+h4:we-have-a-new-film-that-has-been-released-what-does-your-model-suggest-its-gross-domestic-profit-will-be-what-is-the-95-uncertainty-interval-on-your-estimate 4. We have a new film that has been released, what does your model suggest its gross domestic profit will be? What is the 95% uncertainty interval on your estimate
+

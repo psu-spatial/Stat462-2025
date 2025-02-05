@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 4 Creating a Markdown document | STAT462 Lab Book 2024</title>
+<meta name="author" content="Dr Helen Greatrex">
+<meta name="description" content="Remind yourself of what Rmarkdown is here https://rmarkdown.rstudio.com, or via this short video    4.1   4.2 Markdown basics For Lab 1, we will be using a custom template that I made using the...">
+<meta name="generator" content="bookdown 0.37 with bs4_book()">
+<meta property="og:title" content="Chapter 4 Creating a Markdown document | STAT462 Lab Book 2024">
+<meta property="og:type" content="book">
+<meta property="og:description" content="Remind yourself of what Rmarkdown is here https://rmarkdown.rstudio.com, or via this short video    4.1   4.2 Markdown basics For Lab 1, we will be using a custom template that I made using the...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 4 Creating a Markdown document | STAT462 Lab Book 2024">
+<meta name="twitter:description" content="Remind yourself of what Rmarkdown is here https://rmarkdown.rstudio.com, or via this short video    4.1   4.2 Markdown basics For Lab 1, we will be using a custom template that I made using the...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.1/transition.js"></script><script src="libs/bs3compat-0.6.1/tabs.js"></script><script src="libs/bs3compat-0.6.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<link href="libs/vembedr-0.1.5/css/vembedr.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">STAT462 Lab Book 2024</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Welcome to STAT-462!</a></li>
+<li><a class="" href="FAQ.html">Course FAQ</a></li>
+<li><a class="" href="WhatIsR.html">What are R and R-Studio?</a></li>
+<li class="book-part">.</li>
+<li class="book-part">Lab instructions</li>
+<li><a class="" href="Lab_1.html">Lab 1</a></li>
+<li class="book-part">~</li>
+<li class="book-part">Getting Started</li>
+<li><a class="" href="Setup_Desktop.html">Installing R/R-Studio on your computer for the first time</a></li>
+<li><a class="" href="Setup_UpdateDesktop.html">UPDATING R/R-Studio</a></li>
+<li><a class="" href="Setup_Online.html">Using R Online</a></li>
+<li class="book-part">.</li>
+<li class="book-part">Tutorials</li>
+<li><a class="" href="T1_Projects.html"><span class="header-section-number">1</span> Projects/Starting a lab</a></li>
+<li><a class="" href="T2_Libraries.html"><span class="header-section-number">2</span> Libraries/Packages</a></li>
+<li><a class="" href="T3_Markdown.html"><span class="header-section-number">3</span> R-Markdown templates</a></li>
+<li><a class="active" href="creating-a-markdown-document.html"><span class="header-section-number">4</span> Creating a Markdown document</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="creating-a-markdown-document" class="section level1" number="4">
+<h1>
+<span class="header-section-number">4</span> Creating a Markdown document<a class="anchor" aria-label="anchor" href="#creating-a-markdown-document"><i class="fas fa-link"></i></a>
+</h1>
+<p>Remind yourself of what Rmarkdown is here <a href="https://rmarkdown.rstudio.com" class="uri">https://rmarkdown.rstudio.com</a>, or via this short video</p>
+<div class="vembedr">
+<div>
+<iframe class="vimeo-embed" src="https://player.vimeo.com/video/178485416" width="533" height="300" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" data-external="1"></iframe>
+</div>
+</div>
+<div id="section" class="section level2" number="4.1">
+<h2>
+<span class="header-section-number">4.1</span> <br><a class="anchor" aria-label="anchor" href="#section"><i class="fas fa-link"></i></a>
+</h2>
+</div>
+<div id="markdown-basics" class="section level2" number="4.2">
+<h2>
+<span class="header-section-number">4.2</span> Markdown basics<a class="anchor" aria-label="anchor" href="#markdown-basics"><i class="fas fa-link"></i></a>
+</h2>
+<p>For Lab 1, we will be using a custom template that I made using the package <code>rmdformats</code>.</p>
+<p>You should have downloaded and renamed the lab script from Canvas (see lab 1). You should also be running your project. Click the .RmD file name to open.</p>
+<p><br> A new file should appear on your screen:</p>
+<div class="inline-figure"><img src="index_images/im_T3_Markdown.png" width="80%" style="display: block; margin: auto;"></div>
+<p>We have some space for text (white), some space for code (grey), and a space at the top of the file where we can add information about themes/styles etc called “YAML”.</p>
+</div>
+<div id="section-1" class="section level2" number="4.3">
+<h2>
+<span class="header-section-number">4.3</span> <br><a class="anchor" aria-label="anchor" href="#section-1"><i class="fas fa-link"></i></a>
+</h2>
+</div>
+<div id="three-important-buttons---read-this" class="section level2" number="4.4">
+<h2>
+<span class="header-section-number">4.4</span> THREE IMPORTANT BUTTONS - READ THIS<a class="anchor" aria-label="anchor" href="#three-important-buttons---read-this"><i class="fas fa-link"></i></a>
+</h2>
+<div id="visual-mode" class="section level3" number="4.4.1">
+<h3>
+<span class="header-section-number">4.4.1</span> Visual mode<a class="anchor" aria-label="anchor" href="#visual-mode"><i class="fas fa-link"></i></a>
+</h3>
+<p>It is MUCH easier to edit markdown documents in the new visual mode. Essentially instead of having to remember text short cuts like * for bold, you can edit the text part as though you were using a word processor. NOTE HEADERS where it says “Normal”, this allows you to make auto tables of contents.</p>
+<div class="inline-figure"><img src="https://quarto.org/docs/get-started/hello/images/rstudio-source-visual.png"></div>
+<div id="inserting-imagestables-and-formatting" class="section level4" number="4.4.1.1">
+<h4>
+<span class="header-section-number">4.4.1.1</span> Inserting images/tables and formatting<a class="anchor" aria-label="anchor" href="#inserting-imagestables-and-formatting"><i class="fas fa-link"></i></a>
+</h4>
+<p>In visual mode, look at the menu at the top. It’s very easy to insert images, tables and other formatting. Pay special attention to the Normal/Heading 1/Heading 2 buttons..</p>
+</div>
+</div>
+</div>
+<div id="section-2" class="section level2" number="4.5">
+<h2>
+<span class="header-section-number">4.5</span> <br><a class="anchor" aria-label="anchor" href="#section-2"><i class="fas fa-link"></i></a>
+</h2>
+<div id="code-chunks" class="section level3" number="4.5.1">
+<h3>
+<span class="header-section-number">4.5.1</span> Code chunks<a class="anchor" aria-label="anchor" href="#code-chunks"><i class="fas fa-link"></i></a>
+</h3>
+<p>Code chunks are mini consoles where you can run R commands. We will talk more about them in the next tutorial.</p>
+<div class="inline-figure"><img src="index_images/im_T3_CodeChunkCreate.png" width="1062" style="display: block; margin: auto;"></div>
+<p>On the top right there are a suite of buttons for adding a new code chunk, running code etc. The green one adds a new code chunk. To run an individual code chunk you will press the green arrow on its top right e.g.</p>
+<p><img src="index_images/im_T3_RunCodeChunk.png" width="774" style="display: block; margin: auto;"><br>
+—————————————————————————–</p>
+</div>
+<div id="knitting" class="section level3" number="4.5.2">
+<h3>
+<span class="header-section-number">4.5.2</span> Knitting<a class="anchor" aria-label="anchor" href="#knitting"><i class="fas fa-link"></i></a>
+</h3>
+<div class="inline-figure"><img src="index_images/im_T3_knit.png" width="1070" style="display: block; margin: auto;"></div>
+<p>The file on your screen isn’t the finished article. To see how it will look as a final version, we need to “knit” it. Go to the top of the .Rmd file, find the <code>knit</code> button. Press it (you might have to first save your script if you haven’t already, then press it again)</p>
+<p>You should see that the Markdown tab “builds” your document and you get an output as a website. The html should also be saved into your project folder.</p>
+<p><strong>Yours will not knit if you haven’t yet installed the rmdformats package</strong></p>
+<p>For example, here is a file with markdown and knitted output.</p>
+<div class="inline-figure"><img src="index_images/im_T3_AllMarkdownElements.png" width="1652" style="display: block; margin: auto;"></div>
+<p><br><br></p>
+
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="T3_Markdown.html"><span class="header-section-number">3</span> R-Markdown templates</a></div>
+<div class="empty"></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#creating-a-markdown-document"><span class="header-section-number">4</span> Creating a Markdown document</a></li>
+<li><a class="nav-link" href="#section"><span class="header-section-number">4.1</span></a></li>
+<li><a class="nav-link" href="#markdown-basics"><span class="header-section-number">4.2</span> Markdown basics</a></li>
+<li><a class="nav-link" href="#section-1"><span class="header-section-number">4.3</span></a></li>
+<li>
+<a class="nav-link" href="#three-important-buttons---read-this"><span class="header-section-number">4.4</span> THREE IMPORTANT BUTTONS - READ THIS</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#visual-mode"><span class="header-section-number">4.4.1</span> Visual mode</a></li></ul>
+</li>
+<li>
+<a class="nav-link" href="#section-2"><span class="header-section-number">4.5</span></a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#code-chunks"><span class="header-section-number">4.5.1</span> Code chunks</a></li>
+<li><a class="nav-link" href="#knitting"><span class="header-section-number">4.5.2</span> Knitting</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>STAT462 Lab Book 2024</strong>" was written by Dr Helen Greatrex. It was last built on 2024-01-17.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>

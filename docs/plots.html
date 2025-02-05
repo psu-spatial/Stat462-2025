@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 6 Plots | STAT462 Lab Book 2024</title>
+<meta name="author" content="Dr Helen Greatrex">
+<meta name="description" content="Plots are designed to do two things, allow you to see something in the data that you couldn’t see in the numbers, plus communicate output in a compelling way. Going beyond the basics or knowing...">
+<meta name="generator" content="bookdown 0.37 with bs4_book()">
+<meta property="og:title" content="Chapter 6 Plots | STAT462 Lab Book 2024">
+<meta property="og:type" content="book">
+<meta property="og:description" content="Plots are designed to do two things, allow you to see something in the data that you couldn’t see in the numbers, plus communicate output in a compelling way. Going beyond the basics or knowing...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 6 Plots | STAT462 Lab Book 2024">
+<meta name="twitter:description" content="Plots are designed to do two things, allow you to see something in the data that you couldn’t see in the numbers, plus communicate output in a compelling way. Going beyond the basics or knowing...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.1/transition.js"></script><script src="libs/bs3compat-0.6.1/tabs.js"></script><script src="libs/bs3compat-0.6.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<link href="libs/vembedr-0.1.5/css/vembedr.css" rel="stylesheet">
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><script src="libs/plotly-binding-4.10.3/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script><link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">STAT462 Lab Book 2024</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Welcome to STAT-462!</a></li>
+<li><a class="" href="FAQ.html">Course FAQ</a></li>
+<li><a class="" href="WhatIsR.html">What are R and R-Studio?</a></li>
+<li class="book-part">.</li>
+<li class="book-part">Getting Started</li>
+<li><a class="" href="Setup_Desktop.html">Installing R/R-Studio on your computer for the first time</a></li>
+<li><a class="" href="Setup_UpdateDesktop.html">UPDATING R/R-Studio</a></li>
+<li><a class="" href="Setup_Online.html">Using R Online</a></li>
+<li class="book-part">.</li>
+<li class="book-part">Lab instructions</li>
+<li><a class="" href="Lab_1.html">Lab 1</a></li>
+<li><a class="" href="Lab_2.html">Lab 2</a></li>
+<li><a class="" href="Lab_3.html">Lab 3</a></li>
+<li class="book-part">.</li>
+<li class="book-part">Tutorials</li>
+<li><a class="" href="T1_Projects.html"><span class="header-section-number">1</span> Projects/Starting a lab</a></li>
+<li><a class="" href="T2_Libraries.html"><span class="header-section-number">2</span> Libraries/Packages</a></li>
+<li><a class="" href="T3_Markdown.html"><span class="header-section-number">3</span> R-Markdown</a></li>
+<li><a class="" href="T4_ReadingData.html"><span class="header-section-number">4</span> Reading in data</a></li>
+<li><a class="" href="probability-distributions.html"><span class="header-section-number">5</span> Probability distributions</a></li>
+<li><a class="active" href="plots.html"><span class="header-section-number">6</span> Plots</a></li>
+<li><a class="" href="correlation.html"><span class="header-section-number">7</span> Correlation</a></li>
+<li><a class="" href="T8_regression.html"><span class="header-section-number">8</span> Regression</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="plots" class="section level1" number="6">
+<h1>
+<span class="header-section-number">6</span> Plots<a class="anchor" aria-label="anchor" href="#plots"><i class="fas fa-link"></i></a>
+</h1>
+<p>Plots are designed to do two things, allow you to see something in the data that you couldn’t see in the numbers, plus communicate output in a compelling way.</p>
+<p>Going beyond the basics or knowing the limitations of a plot will help you do this, so in these examples I have provided a range of complexity. You will see tutorials for all the plots I mention in this section. If in doubt, try the ggstatsplot versions.</p>
+<p><br></p>
+<div id="what-to-choose" class="section level3" number="6.0.1">
+<h3>
+<span class="header-section-number">6.0.1</span> What to choose?<a class="anchor" aria-label="anchor" href="#what-to-choose"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li><p>If you are looking at a single variable, try histograms, boxplots and violin plots</p></li>
+<li><p>If you think your histogram changes by some category, try grouped boxplots and grouped violin plots (easy violin plot here)</p></li>
+<li><p>If you think your histogram changes numerically, try ridgeline plots</p></li>
+<li><p>If you are comparing two variables, try scatterplots and correlation plots.</p></li>
+</ul>
+<p><br></p>
+</div>
+<div id="where-to-find-worked-examples" class="section level3" number="6.0.2">
+<h3>
+<span class="header-section-number">6.0.2</span> Where to find worked examples<a class="anchor" aria-label="anchor" href="#where-to-find-worked-examples"><i class="fas fa-link"></i></a>
+</h3>
+<p>There are three places I visit constantly:</p>
+<ul>
+<li><a href="https://www.r-graph-gallery.com/" class="uri">https://www.r-graph-gallery.com/</a></li>
+<li><a href="https://indrajeetpatil.github.io/ggstatsplot/" class="uri">https://indrajeetpatil.github.io/ggstatsplot/</a></li>
+<li><a href="https://r-charts.com/distribution/" class="uri">https://r-charts.com/distribution/</a></li>
+<li><a href="https://flowingdata.com/" class="uri">https://flowingdata.com/</a></li>
+</ul>
+<p>For plots, we have <em>many</em> choices. We can use what is built into R, or.. use the ggplot system where you add on layers to your plot using the + symbol, or use specialist packages such as ggstatplot or beeswarm.</p>
+<p>If you are new to data visualisation, read these two articles</p>
+<ul>
+<li><a href="https://flowingdata.com/2014/10/23/moving-past-default-charts/" class="uri">https://flowingdata.com/2014/10/23/moving-past-default-charts/</a></li>
+<li><a href="https://flowingdata.com/2012/05/15/how-to-visualize-and-compare-distributions/" class="uri">https://flowingdata.com/2012/05/15/how-to-visualize-and-compare-distributions/</a></li>
+</ul>
+<p><br></p>
+</div>
+<div id="plot-gallery" class="section level2" number="6.1">
+<h2>
+<span class="header-section-number">6.1</span> Plot gallery<a class="anchor" aria-label="anchor" href="#plot-gallery"><i class="fas fa-link"></i></a>
+</h2>
+<p><br><br></p>
+<div id="scatterplots-1" class="section level3" number="6.1.1">
+<h3>
+<span class="header-section-number">6.1.1</span> Scatterplots<a class="anchor" aria-label="anchor" href="#scatterplots-1"><i class="fas fa-link"></i></a>
+</h3>
+<div id="built-in-plot-command" class="section level4" number="6.1.1.1">
+<h4>
+<span class="header-section-number">6.1.1.1</span> Built in plot command<a class="anchor" aria-label="anchor" href="#built-in-plot-command"><i class="fas fa-link"></i></a>
+</h4>
+<p>Here is the absolute basic scatterplot. This should not be the one you submit in your reports (e.g. either choose a more professional one or adjust the options below)</p>
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># you can either do plot(x, y)</span></span>
+<span><span class="co"># OR (recommended), use the ~ to say plot(y~x) </span></span>
+<span><span class="co"># e.g. y depends on x</span></span>
+<span></span>
+<span><span class="va">HousesNY</span><span class="op">$</span><span class="va">Beds</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">HousesNY</span><span class="op">$</span><span class="va">Beds</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">HousesNY</span><span class="op">$</span><span class="va">Price</span> <span class="op">~</span> <span class="va">HousesNY</span><span class="op">$</span><span class="va">Beds</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="in_04-Tutorial6_Plots_files/figure-html/unnamed-chunk-1-1.png" width="672"></div>
+<p>See below for how to add a line of best fit.</p>
+<p>There are many things we can change, see the help file for the <code>par</code> command for more.</p>
+<p>For example, here is an ugly plot showing as many as I can think!</p>
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">HousesNY</span><span class="op">$</span><span class="va">Price</span> <span class="op">~</span> <span class="va">HousesNY</span><span class="op">$</span><span class="va">Beds</span>,</span>
+<span>     xlim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">7</span><span class="op">)</span>, <span class="co">#xlimits</span></span>
+<span>     ylim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">40</span>,<span class="fl">220</span><span class="op">)</span>, <span class="co">#ylimits</span></span>
+<span>     xlab<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"Beds"</span>,cex<span class="op">=</span><span class="fl">.8</span>,col<span class="op">=</span><span class="st">"red"</span>,font<span class="op">=</span><span class="fl">2</span><span class="op">)</span>, <span class="co"># play with x-label</span></span>
+<span>     ylab<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"Price"</span>,cex<span class="op">=</span><span class="fl">1.2</span>,col<span class="op">=</span><span class="st">"blue"</span>,font<span class="op">=</span><span class="fl">3</span><span class="op">)</span>, <span class="co"># play with x-label</span></span>
+<span>     main<span class="op">=</span><span class="st">"Ugly feature plot"</span>,</span>
+<span>     cex<span class="op">=</span><span class="fl">1.2</span>, <span class="co">#point size</span></span>
+<span>     pch<span class="op">=</span><span class="fl">16</span>, <span class="co"># symbol shape (try plot(1:24,1:24,pch=1:24 to see them all))</span></span>
+<span>     tcl<span class="op">=</span><span class="op">-</span><span class="fl">.25</span>, <span class="co"># smaller tick marks</span></span>
+<span>     mgp<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1.75</span>,<span class="fl">.5</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="co"># move the x/y labels around</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/grid.html">grid</a></span><span class="op">(</span><span class="op">)</span> <span class="co">#  add a grid</span></span>
+<span></span>
+<span><span class="co"># lines means "add points on top"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">HousesNY</span><span class="op">$</span><span class="va">Price</span> <span class="op">~</span> <span class="va">HousesNY</span><span class="op">$</span><span class="va">Beds</span>, </span>
+<span>     type<span class="op">=</span><span class="st">"p"</span>, <span class="co"># p for points, "l" for lines, "o" for both, "h for bars</span></span>
+<span>     xlim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">7</span><span class="op">)</span>, <span class="co">#xlimits</span></span>
+<span>     ylim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">40</span>,<span class="fl">220</span><span class="op">)</span>, <span class="co">#ylimits</span></span>
+<span>     col<span class="op">=</span><span class="st">"yellow"</span>,</span>
+<span>     cex<span class="op">=</span><span class="fl">.5</span>, <span class="co">#point size</span></span>
+<span>     pch<span class="op">=</span><span class="fl">4</span><span class="op">)</span> <span class="co"># move the x/y labels around</span></span></code></pre></div>
+<div class="inline-figure"><img src="in_04-Tutorial6_Plots_files/figure-html/unnamed-chunk-2-1.png" width="672"></div>
+</div>
+<div id="adding-a-lione-of-best-fit" class="section level4" number="6.1.1.2">
+<h4>
+<span class="header-section-number">6.1.1.2</span> adding a lione of best fit<a class="anchor" aria-label="anchor" href="#adding-a-lione-of-best-fit"><i class="fas fa-link"></i></a>
+</h4>
+<p>To add a line, you can use the abline command IN THE SAME CODE CHUNK. For example</p>
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">HousesNY</span><span class="op">$</span><span class="va">Price</span> <span class="op">~</span> <span class="va">HousesNY</span><span class="op">$</span><span class="va">Beds</span>,</span>
+<span>     xlim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">7</span><span class="op">)</span>, <span class="co">#xlimits</span></span>
+<span>     ylim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">40</span>,<span class="fl">220</span><span class="op">)</span>, <span class="co">#ylimits</span></span>
+<span>     xlab<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"Beds"</span>,cex<span class="op">=</span><span class="fl">.8</span>,col<span class="op">=</span><span class="st">"red"</span>,font<span class="op">=</span><span class="fl">2</span><span class="op">)</span>, <span class="co"># play with x-label</span></span>
+<span>     ylab<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"Price"</span>,cex<span class="op">=</span><span class="fl">1.2</span>,col<span class="op">=</span><span class="st">"blue"</span>,font<span class="op">=</span><span class="fl">3</span><span class="op">)</span>, <span class="co"># play with x-label</span></span>
+<span>     main<span class="op">=</span><span class="st">""</span>, <span class="co"># no title</span></span>
+<span>     cex<span class="op">=</span><span class="fl">1.2</span>, <span class="co">#point size</span></span>
+<span>     pch<span class="op">=</span><span class="fl">16</span>, <span class="co"># symbol shape (try plot(1:24,1:24,pch=1:24 to see them all))</span></span>
+<span>     tcl<span class="op">=</span><span class="op">-</span><span class="fl">.25</span>, <span class="co"># smaller tick marks</span></span>
+<span>     mgp<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1.75</span>,<span class="fl">.5</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="co"># move the x/y labels around</span></span>
+<span></span>
+<span><span class="co"># add vertical line at 3.5</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span>v<span class="op">=</span><span class="fl">5.5</span>,col<span class="op">=</span><span class="st">"red"</span><span class="op">)</span></span>
+<span><span class="co"># add horizontal line at the mean of price</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span>h<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">HousesNY</span><span class="op">$</span><span class="va">Price</span><span class="op">)</span><span class="op">)</span> </span>
+<span><span class="co"># add line of best fit</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">HousesNY</span><span class="op">$</span><span class="va">Price</span> <span class="op">~</span> <span class="va">HousesNY</span><span class="op">$</span><span class="va">Beds</span><span class="op">)</span>,col<span class="op">=</span><span class="st">"blue"</span>,lty<span class="op">=</span><span class="st">"dotted"</span>,lwd<span class="op">=</span><span class="fl">3</span><span class="op">)</span> </span></code></pre></div>
+<div class="inline-figure"><img src="in_04-Tutorial6_Plots_files/figure-html/unnamed-chunk-3-1.png" width="672"></div>
+</div>
+<div id="ggplot" class="section level4" number="6.1.1.3">
+<h4>
+<span class="header-section-number">6.1.1.3</span> ggplot<a class="anchor" aria-label="anchor" href="#ggplot"><i class="fas fa-link"></i></a>
+</h4>
+<p>GGPlot also has basic and advanced options, but you need to install/run the ggplot2 package. From the basics:</p>
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="co">#</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">HousesNY</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Beds</span>, y<span class="op">=</span><span class="va">Price</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="in_04-Tutorial6_Plots_files/figure-html/unnamed-chunk-4-1.png" width="672"></div>
+<p>To more advanced:</p>
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://github.com/hrbrmstr/hrbrthemes">hrbrthemes</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># use options!</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">HousesNY</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Beds</span>, y<span class="op">=</span><span class="va">Price</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span></span>
+<span>        color<span class="op">=</span><span class="st">"black"</span>,</span>
+<span>        fill<span class="op">=</span><span class="st">"#69b3a2"</span>,</span>
+<span>        shape<span class="op">=</span><span class="fl">22</span>,</span>
+<span>        alpha<span class="op">=</span><span class="fl">0.5</span>,</span>
+<span>        size<span class="op">=</span><span class="fl">6</span>,</span>
+<span>        stroke <span class="op">=</span> <span class="fl">1</span></span>
+<span>        <span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum.html">theme_ipsum</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="in_04-Tutorial6_Plots_files/figure-html/unnamed-chunk-5-1.png" width="672"></div>
+<p>Adding a line of best fit is also easy, but fits less easily with R’s modelling commands:</p>
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Library</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://github.com/hrbrmstr/hrbrthemes">hrbrthemes</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Create dummy data</span></span>
+<span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  cond <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"condition_1"</span>, <span class="st">"condition_2"</span><span class="op">)</span>, each<span class="op">=</span><span class="fl">10</span><span class="op">)</span>, </span>
+<span>  my_x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">100</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span>,sd<span class="op">=</span><span class="fl">9</span><span class="op">)</span>, </span>
+<span>  my_y <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">100</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span>,sd<span class="op">=</span><span class="fl">16</span><span class="op">)</span> </span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Basic scatter plot.</span></span>
+<span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">my_x</span>, y<span class="op">=</span><span class="va">my_y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span> color<span class="op">=</span><span class="st">"#69b3a2"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum.html">theme_ipsum</a></span><span class="op">(</span><span class="op">)</span></span>
+<span> </span>
+<span><span class="co"># with linear trend</span></span>
+<span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">my_x</span>, y<span class="op">=</span><span class="va">my_y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method<span class="op">=</span><span class="va">lm</span> , color<span class="op">=</span><span class="st">"red"</span>, se<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum.html">theme_ipsum</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># linear trend + confidence interval</span></span>
+<span><span class="va">p3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">my_x</span>, y<span class="op">=</span><span class="va">my_y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method<span class="op">=</span><span class="va">lm</span> , color<span class="op">=</span><span class="st">"red"</span>, fill<span class="op">=</span><span class="st">"#69b3a2"</span>, se<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum.html">theme_ipsum</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">p1</span></span></code></pre></div>
+<div class="inline-figure"><img src="in_04-Tutorial6_Plots_files/figure-html/unnamed-chunk-6-1.png" width="672"></div>
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">p2</span></span></code></pre></div>
+<div class="inline-figure"><img src="in_04-Tutorial6_Plots_files/figure-html/unnamed-chunk-6-2.png" width="672"></div>
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">p3</span></span></code></pre></div>
+<div class="inline-figure"><img src="in_04-Tutorial6_Plots_files/figure-html/unnamed-chunk-6-3.png" width="672"></div>
+</div>
+<div id="interactive" class="section level4" number="6.1.1.4">
+<h4>
+<span class="header-section-number">6.1.1.4</span> Interactive!<a class="anchor" aria-label="anchor" href="#interactive"><i class="fas fa-link"></i></a>
+</h4>
+<p>Or using the plotly library to make your plots interactive (really useful, try zooming in or clicking on a few points)</p>
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># create the plot, save it as "p" rather than print immediately</span></span>
+<span><span class="va">myplot</span> <span class="op">&lt;-</span>   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">HousesNY</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Beds</span>, y<span class="op">=</span><span class="va">Price</span>, label<span class="op">=</span><span class="va">Baths</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>            <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>alpha<span class="op">=</span><span class="fl">.5</span><span class="op">)</span> <span class="op">+</span></span>
+<span>            <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>            </span>
+<span><span class="co"># and plot interactively</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/plotly/man/ggplotly.html">ggplotly</a></span><span class="op">(</span><span class="va">myplot</span><span class="op">)</span></span></code></pre></div>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-551216ac6fc05ae82cd4" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-551216ac6fc05ae82cd4">{"x":{"data":[{"x":[3,6,4,3,3,2,2,4,4,3,3,3,3,4,3,3,4,3,4,3,4,4,5,4,3,2,3,3,4,3,3,3,3,3,3,2,3,3,3,4,2,4,4,4,4,3,4,3,4,4,5,4,3],"y":[57.600000000000001,120,150,143,92.5,50,89,140,197.5,125.09999999999999,175,60,138.5,160,63.5,107,185,82.700000000000003,75,118,87.5,67.5,105,114,100.5,78,99,144,179,110,175,100,53,92,127,120.5,72,95,38.5,139,75,174,119,89,75.099999999999994,92.5,141,82,162,195,190,115,87],"text":["Beds: 3<br />Price:  57.6<br />Baths: 2.0","Beds: 6<br />Price: 120.0<br />Baths: 2.0","Beds: 4<br />Price: 150.0<br />Baths: 2.0","Beds: 3<br />Price: 143.0<br />Baths: 2.0","Beds: 3<br />Price:  92.5<br />Baths: 1.0","Beds: 2<br />Price:  50.0<br />Baths: 1.0","Beds: 2<br />Price:  89.0<br />Baths: 2.0","Beds: 4<br />Price: 140.0<br />Baths: 3.0","Beds: 4<br />Price: 197.5<br />Baths: 2.5","Beds: 3<br />Price: 125.1<br />Baths: 2.0","Beds: 3<br />Price: 175.0<br />Baths: 2.0","Beds: 3<br />Price:  60.0<br />Baths: 1.0","Beds: 3<br />Price: 138.5<br />Baths: 2.0","Beds: 4<br />Price: 160.0<br />Baths: 2.0","Beds: 3<br />Price:  63.5<br />Baths: 2.0","Beds: 3<br />Price: 107.0<br />Baths: 1.0","Beds: 4<br />Price: 185.0<br />Baths: 3.5","Beds: 3<br />Price:  82.7<br />Baths: 1.0","Beds: 4<br />Price:  75.0<br />Baths: 2.0","Beds: 3<br />Price: 118.0<br />Baths: 1.0","Beds: 4<br />Price:  87.5<br />Baths: 2.0","Beds: 4<br />Price:  67.5<br />Baths: 1.0","Beds: 5<br />Price: 105.0<br />Baths: 2.0","Beds: 4<br />Price: 114.0<br />Baths: 2.0","Beds: 3<br />Price: 100.5<br />Baths: 2.0","Beds: 2<br />Price:  78.0<br />Baths: 1.0","Beds: 3<br />Price:  99.0<br />Baths: 1.0","Beds: 3<br />Price: 144.0<br />Baths: 1.5","Beds: 4<br />Price: 179.0<br />Baths: 2.0","Beds: 3<br />Price: 110.0<br />Baths: 1.5","Beds: 3<br />Price: 175.0<br />Baths: 2.0","Beds: 3<br />Price: 100.0<br />Baths: 2.0","Beds: 3<br />Price:  53.0<br />Baths: 1.0","Beds: 3<br />Price:  92.0<br />Baths: 2.0","Beds: 3<br />Price: 127.0<br />Baths: 2.0","Beds: 2<br />Price: 120.5<br />Baths: 2.0","Beds: 3<br />Price:  72.0<br />Baths: 2.0","Beds: 3<br />Price:  95.0<br />Baths: 2.0","Beds: 3<br />Price:  38.5<br />Baths: 1.0","Beds: 4<br />Price: 139.0<br />Baths: 2.0","Beds: 2<br />Price:  75.0<br />Baths: 2.0","Beds: 4<br />Price: 174.0<br />Baths: 3.0","Beds: 4<br />Price: 119.0<br />Baths: 2.0","Beds: 4<br />Price:  89.0<br />Baths: 1.0","Beds: 4<br />Price:  75.1<br />Baths: 2.0","Beds: 3<br />Price:  92.5<br />Baths: 2.0","Beds: 4<br />Price: 141.0<br />Baths: 1.0","Beds: 3<br />Price:  82.0<br />Baths: 3.0","Beds: 4<br />Price: 162.0<br />Baths: 1.5","Beds: 4<br />Price: 195.0<br />Baths: 3.0","Beds: 5<br />Price: 190.0<br />Baths: 3.5","Beds: 4<br />Price: 115.0<br />Baths: 2.0","Beds: 3<br />Price:  87.0<br />Baths: 1.5"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,0,0,1)","opacity":0.5,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)"}},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":26.228310502283108,"r":7.3059360730593621,"b":40.182648401826498,"l":43.105022831050235},"plot_bgcolor":"rgba(255,255,255,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[1.8,6.2000000000000002],"tickmode":"array","ticktext":["2","3","4","5","6"],"tickvals":[2,3,4,5,6],"categoryorder":"array","categoryarray":["2","3","4","5","6"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":true,"linecolor":"rgba(0,0,0,1)","linewidth":0.66417600664176002,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"y","title":{"text":"Beds","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[30.550000000000001,205.44999999999999],"tickmode":"array","ticktext":["50","100","150","200"],"tickvals":[50,100,150,200],"categoryorder":"array","categoryarray":["50","100","150","200"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":true,"linecolor":"rgba(0,0,0,1)","linewidth":0.66417600664176002,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"x","title":{"text":"Price","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"12fb561a7bb21":{"x":{},"y":{},"label":{},"type":"scatter"}},"cur_data":"12fb561a7bb21","visdat":{"12fb561a7bb21":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script><p>It’s also very easy to add in color to see another variable. For example</p>
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># create the plot, save it as "p" rather than print immediately</span></span>
+<span><span class="va">myplot</span> <span class="op">&lt;-</span>   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">HousesNY</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Beds</span>, y<span class="op">=</span><span class="va">Price</span>,color<span class="op">=</span><span class="va">Baths</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>            <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>alpha<span class="op">=</span><span class="fl">.5</span><span class="op">)</span> <span class="op">+</span></span>
+<span>            <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span></span>
+<span>            <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_gradient.html">scale_color_gradient</a></span><span class="op">(</span>low<span class="op">=</span><span class="st">"blue"</span>, high<span class="op">=</span><span class="st">"red"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># and plot interactively</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/plotly/man/ggplotly.html">ggplotly</a></span><span class="op">(</span><span class="va">myplot</span><span class="op">)</span></span></code></pre></div>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-abe055109619f0b9d56a" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-abe055109619f0b9d56a">{"x":{"data":[{"x":[3,6,4,3,3,2,2,4,4,3,3,3,3,4,3,3,4,3,4,3,4,4,5,4,3,2,3,3,4,3,3,3,3,3,3,2,3,3,3,4,2,4,4,4,4,3,4,3,4,4,5,4,3],"y":[57.600000000000001,120,150,143,92.5,50,89,140,197.5,125.09999999999999,175,60,138.5,160,63.5,107,185,82.700000000000003,75,118,87.5,67.5,105,114,100.5,78,99,144,179,110,175,100,53,92,127,120.5,72,95,38.5,139,75,174,119,89,75.099999999999994,92.5,141,82,162,195,190,115,87],"text":["Beds: 3<br />Price:  57.6<br />Baths: 2.0","Beds: 6<br />Price: 120.0<br />Baths: 2.0","Beds: 4<br />Price: 150.0<br />Baths: 2.0","Beds: 3<br />Price: 143.0<br />Baths: 2.0","Beds: 3<br />Price:  92.5<br />Baths: 1.0","Beds: 2<br />Price:  50.0<br />Baths: 1.0","Beds: 2<br />Price:  89.0<br />Baths: 2.0","Beds: 4<br />Price: 140.0<br />Baths: 3.0","Beds: 4<br />Price: 197.5<br />Baths: 2.5","Beds: 3<br />Price: 125.1<br />Baths: 2.0","Beds: 3<br />Price: 175.0<br />Baths: 2.0","Beds: 3<br />Price:  60.0<br />Baths: 1.0","Beds: 3<br />Price: 138.5<br />Baths: 2.0","Beds: 4<br />Price: 160.0<br />Baths: 2.0","Beds: 3<br />Price:  63.5<br />Baths: 2.0","Beds: 3<br />Price: 107.0<br />Baths: 1.0","Beds: 4<br />Price: 185.0<br />Baths: 3.5","Beds: 3<br />Price:  82.7<br />Baths: 1.0","Beds: 4<br />Price:  75.0<br />Baths: 2.0","Beds: 3<br />Price: 118.0<br />Baths: 1.0","Beds: 4<br />Price:  87.5<br />Baths: 2.0","Beds: 4<br />Price:  67.5<br />Baths: 1.0","Beds: 5<br />Price: 105.0<br />Baths: 2.0","Beds: 4<br />Price: 114.0<br />Baths: 2.0","Beds: 3<br />Price: 100.5<br />Baths: 2.0","Beds: 2<br />Price:  78.0<br />Baths: 1.0","Beds: 3<br />Price:  99.0<br />Baths: 1.0","Beds: 3<br />Price: 144.0<br />Baths: 1.5","Beds: 4<br />Price: 179.0<br />Baths: 2.0","Beds: 3<br />Price: 110.0<br />Baths: 1.5","Beds: 3<br />Price: 175.0<br />Baths: 2.0","Beds: 3<br />Price: 100.0<br />Baths: 2.0","Beds: 3<br />Price:  53.0<br />Baths: 1.0","Beds: 3<br />Price:  92.0<br />Baths: 2.0","Beds: 3<br />Price: 127.0<br />Baths: 2.0","Beds: 2<br />Price: 120.5<br />Baths: 2.0","Beds: 3<br />Price:  72.0<br />Baths: 2.0","Beds: 3<br />Price:  95.0<br />Baths: 2.0","Beds: 3<br />Price:  38.5<br />Baths: 1.0","Beds: 4<br />Price: 139.0<br />Baths: 2.0","Beds: 2<br />Price:  75.0<br />Baths: 2.0","Beds: 4<br />Price: 174.0<br />Baths: 3.0","Beds: 4<br />Price: 119.0<br />Baths: 2.0","Beds: 4<br />Price:  89.0<br />Baths: 1.0","Beds: 4<br />Price:  75.1<br />Baths: 2.0","Beds: 3<br />Price:  92.5<br />Baths: 2.0","Beds: 4<br />Price: 141.0<br />Baths: 1.0","Beds: 3<br />Price:  82.0<br />Baths: 3.0","Beds: 4<br />Price: 162.0<br />Baths: 1.5","Beds: 4<br />Price: 195.0<br />Baths: 3.0","Beds: 5<br />Price: 190.0<br />Baths: 3.5","Beds: 4<br />Price: 115.0<br />Baths: 2.0","Beds: 3<br />Price:  87.0<br />Baths: 1.5"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":["rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(0,0,255,1)","rgba(0,0,255,1)","rgba(186,0,159,1)","rgba(237,0,68,1)","rgba(215,0,114,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(0,0,255,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(0,0,255,1)","rgba(255,0,0,1)","rgba(0,0,255,1)","rgba(186,0,159,1)","rgba(0,0,255,1)","rgba(186,0,159,1)","rgba(0,0,255,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(0,0,255,1)","rgba(0,0,255,1)","rgba(141,0,206,1)","rgba(186,0,159,1)","rgba(141,0,206,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(0,0,255,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(0,0,255,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(237,0,68,1)","rgba(186,0,159,1)","rgba(0,0,255,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(0,0,255,1)","rgba(237,0,68,1)","rgba(141,0,206,1)","rgba(237,0,68,1)","rgba(255,0,0,1)","rgba(186,0,159,1)","rgba(141,0,206,1)"],"opacity":0.5,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":["rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(0,0,255,1)","rgba(0,0,255,1)","rgba(186,0,159,1)","rgba(237,0,68,1)","rgba(215,0,114,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(0,0,255,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(0,0,255,1)","rgba(255,0,0,1)","rgba(0,0,255,1)","rgba(186,0,159,1)","rgba(0,0,255,1)","rgba(186,0,159,1)","rgba(0,0,255,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(0,0,255,1)","rgba(0,0,255,1)","rgba(141,0,206,1)","rgba(186,0,159,1)","rgba(141,0,206,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(0,0,255,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(0,0,255,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(237,0,68,1)","rgba(186,0,159,1)","rgba(0,0,255,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(0,0,255,1)","rgba(237,0,68,1)","rgba(141,0,206,1)","rgba(237,0,68,1)","rgba(255,0,0,1)","rgba(186,0,159,1)","rgba(141,0,206,1)"]}},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2],"y":[50],"name":"99_6ccb91eea3e6eb102a64eebb95be0905","type":"scatter","mode":"markers","opacity":0,"hoverinfo":"skip","showlegend":false,"marker":{"color":[0,1],"colorscale":[[0,"#0000FF"],[0.0033444816053512126,"#0F00FE"],[0.0066889632107023367,"#1900FD"],[0.01003344481605355,"#2000FD"],[0.013377926421404673,"#2600FC"],[0.016722408026755887,"#2B00FB"],[0.02006688963210701,"#2F00FA"],[0.023411371237458223,"#3300F9"],[0.026755852842809347,"#3700F8"],[0.03010033444816056,"#3A00F8"],[0.033444816053511683,"#3E00F7"],[0.036789297658862893,"#4100F6"],[0.04013377926421402,"#4400F5"],[0.04347826086956523,"#4600F4"],[0.046822742474916357,"#4900F3"],[0.050167224080267567,"#4B00F3"],[0.053511705685618693,"#4E00F2"],[0.056856187290969903,"#5000F1"],[0.06020066889632103,"#5200F0"],[0.06354515050167224,"#5400EF"],[0.066889632107023367,"#5600EF"],[0.070234113712374577,"#5800EE"],[0.073578595317725787,"#5A00ED"],[0.076923076923076913,"#5C00EC"],[0.08026755852842804,"#5E00EB"],[0.08361204013377925,"#6000EB"],[0.08695652173913046,"#6200EA"],[0.090301003344481587,"#6300E9"],[0.093645484949832797,"#6500E8"],[0.096989966555183924,"#6700E7"],[0.10033444816053513,"#6800E6"],[0.10367892976588626,"#6A00E6"],[0.10702341137123747,"#6B00E5"],[0.1103678929765886,"#6D00E4"],[0.11371237458193981,"#6E00E3"],[0.11705685618729093,"#7000E2"],[0.12040133779264214,"#7100E2"],[0.12374581939799327,"#7200E1"],[0.12709030100334448,"#7400E0"],[0.1304347826086957,"#7500DF"],[0.13377926421404682,"#7600DE"],[0.13712374581939796,"#7800DE"],[0.14046822742474915,"#7900DD"],[0.14381270903010038,"#7A00DC"],[0.14715719063545149,"#7B00DB"],[0.15050167224080263,"#7D00DA"],[0.15384615384615383,"#7E00DA"],[0.15719063545150505,"#7F00D9"],[0.16053511705685616,"#8000D8"],[0.16387959866220739,"#8100D7"],[0.1672240802675585,"#8200D6"],[0.17056856187290972,"#8400D5"],[0.17391304347826084,"#8500D5"],[0.17725752508361206,"#8600D4"],[0.18060200668896317,"#8700D3"],[0.1839464882943144,"#8800D2"],[0.18729096989966551,"#8900D1"],[0.19063545150501673,"#8A00D1"],[0.19397993311036785,"#8B00D0"],[0.19732441471571907,"#8C00CF"],[0.20066889632107027,"#8D00CE"],[0.20401337792642141,"#8E00CD"],[0.20735785953177252,"#8F00CD"],[0.21070234113712374,"#9000CC"],[0.21404682274247494,"#9100CB"],[0.21739130434782608,"#9200CA"],[0.22073578595317719,"#9300CA"],[0.22408026755852842,"#9400C9"],[0.22742474916387961,"#9400C8"],[0.23076923076923075,"#9500C7"],[0.23411371237458187,"#9600C6"],[0.23745819397993309,"#9700C6"],[0.24080267558528429,"#9800C5"],[0.24414715719063543,"#9900C4"],[0.24749163879598654,"#9A00C3"],[0.25083612040133774,"#9B00C2"],[0.25418060200668896,"#9B00C2"],[0.25752508361204018,"#9C00C1"],[0.2608695652173913,"#9D00C0"],[0.26421404682274241,"#9E00BF"],[0.26755852842809363,"#9F00BE"],[0.27090301003344486,"#9F00BE"],[0.27424749163879597,"#A000BD"],[0.27759197324414708,"#A100BC"],[0.28093645484949831,"#A200BB"],[0.28428093645484953,"#A300BA"],[0.28762541806020064,"#A300BA"],[0.29096989966555176,"#A400B9"],[0.29431438127090298,"#A500B8"],[0.2976588628762542,"#A600B7"],[0.30100334448160532,"#A600B7"],[0.30434782608695643,"#A700B6"],[0.30769230769230765,"#A800B5"],[0.31103678929765888,"#A800B4"],[0.31438127090300999,"#A900B3"],[0.3177257525083611,"#AA00B3"],[0.32107023411371233,"#AB00B2"],[0.32441471571906355,"#AB00B1"],[0.32775919732441477,"#AC00B0"],[0.33110367892976589,"#AD00AF"],[0.334448160535117,"#AD00AF"],[0.33779264214046822,"#AE00AE"],[0.34113712374581945,"#AF00AD"],[0.34448160535117056,"#AF00AC"],[0.34782608695652167,"#B000AC"],[0.3511705685618729,"#B100AB"],[0.35451505016722412,"#B100AA"],[0.35785953177257523,"#B200A9"],[0.36120401337792635,"#B300A8"],[0.36454849498327757,"#B300A8"],[0.3678929765886288,"#B400A7"],[0.37123745819397991,"#B400A6"],[0.37458193979933102,"#B500A5"],[0.37792642140468224,"#B600A5"],[0.38127090301003347,"#B600A4"],[0.38461538461538458,"#B700A3"],[0.38795986622073569,"#B700A2"],[0.39130434782608692,"#B800A1"],[0.39464882943143814,"#B900A1"],[0.39799331103678937,"#B900A0"],[0.40133779264214053,"#BA009F"],[0.40468227424749159,"#BA009E"],[0.40802675585284282,"#BB009E"],[0.41137123745819404,"#BC009D"],[0.41471571906354504,"#BC009C"],[0.41806020066889626,"#BD009B"],[0.42140468227424749,"#BD009B"],[0.42474916387959849,"#BE009A"],[0.42809364548494988,"#BE0099"],[0.43143812709030094,"#BF0098"],[0.43478260869565216,"#BF0097"],[0.43812709030100339,"#C00097"],[0.44147157190635439,"#C10096"],[0.44481605351170578,"#C10095"],[0.44816053511705684,"#C20094"],[0.45150501672240806,"#C20094"],[0.45484949832775923,"#C30093"],[0.45819397993311028,"#C30092"],[0.46153846153846151,"#C40091"],[0.46488294314381273,"#C40091"],[0.46822742474916373,"#C50090"],[0.47157190635451512,"#C5008F"],[0.47491638795986618,"#C6008E"],[0.47826086956521741,"#C6008D"],[0.48160535117056857,"#C7008D"],[0.48494983277591963,"#C7008C"],[0.48829431438127086,"#C8008B"],[0.49163879598662208,"#C8008A"],[0.49498327759197308,"#C9008A"],[0.49832775919732447,"#C90089"],[0.50167224080267547,"#CA0088"],[0.50501672240802675,"#CA0087"],[0.50836120401337792,"#CB0087"],[0.51170568561872898,"#CB0086"],[0.51505016722408037,"#CC0085"],[0.51839464882943143,"#CC0084"],[0.52173913043478259,"#CD0084"],[0.52508361204013387,"#CD0083"],[0.52842809364548482,"#CE0082"],[0.5317725752508361,"#CE0081"],[0.53511705685618727,"#CE0080"],[0.53846153846153832,"#CF0080"],[0.54180602006688972,"#CF007F"],[0.54515050167224077,"#D0007E"],[0.54849498327759194,"#D0007D"],[0.55183946488294322,"#D1007D"],[0.55518394648829417,"#D1007C"],[0.55852842809364545,"#D2007B"],[0.56187290969899661,"#D2007A"],[0.56521739130434767,"#D3007A"],[0.56856187290969906,"#D30079"],[0.57190635451505012,"#D30078"],[0.57525083612040129,"#D40077"],[0.57859531772575257,"#D40077"],[0.58193979933110351,"#D50076"],[0.5852842809364549,"#D50075"],[0.58862876254180596,"#D60074"],[0.59197324414715724,"#D60074"],[0.59531772575250841,"#D60073"],[0.59866220735785947,"#D70072"],[0.60200668896321063,"#D70071"],[0.60535117056856191,"#D80071"],[0.60869565217391286,"#D80070"],[0.61204013377926425,"#D8006F"],[0.61538461538461531,"#D9006E"],[0.61872909698996659,"#D9006E"],[0.62207357859531776,"#DA006D"],[0.62541806020066881,"#DA006C"],[0.62876254180601998,"#DA006B"],[0.63210702341137126,"#DB006A"],[0.63545150501672221,"#DB006A"],[0.6387959866220736,"#DC0069"],[0.64214046822742465,"#DC0068"],[0.64548494983277593,"#DC0067"],[0.6488294314381271,"#DD0067"],[0.65217391304347816,"#DD0066"],[0.65551839464882955,"#DE0065"],[0.65886287625418061,"#DE0064"],[0.66220735785953178,"#DE0064"],[0.66555183946488294,"#DF0063"],[0.668896321070234,"#DF0062"],[0.67224080267558528,"#E00061"],[0.67558528428093645,"#E00061"],[0.67892976588628751,"#E00060"],[0.6822742474916389,"#E1005F"],[0.68561872909698995,"#E1005E"],[0.68896321070234112,"#E1005E"],[0.69230769230769229,"#E2005D"],[0.69565217391304335,"#E2005C"],[0.69899665551839463,"#E3005B"],[0.7023411371237458,"#E3005B"],[0.70568561872909685,"#E3005A"],[0.70903010033444824,"#E40059"],[0.7123745819397993,"#E40058"],[0.71571906354515047,"#E40057"],[0.71906354515050164,"#E50057"],[0.72240802675585269,"#E50056"],[0.72575250836120409,"#E50055"],[0.72909698996655514,"#E60054"],[0.73244147157190631,"#E60054"],[0.73578595317725759,"#E60053"],[0.73913043478260865,"#E70052"],[0.74247491638795982,"#E70051"],[0.74581939799331098,"#E80050"],[0.74916387959866204,"#E80050"],[0.75250836120401343,"#E8004F"],[0.75585284280936449,"#E9004E"],[0.75919732441471566,"#E9004D"],[0.76254180602006694,"#E9004D"],[0.76588628762541799,"#EA004C"],[0.76923076923076916,"#EA004B"],[0.77257525083612033,"#EA004A"],[0.77591973244147139,"#EB0049"],[0.77926421404682278,"#EB0049"],[0.78260869565217384,"#EB0048"],[0.785953177257525,"#EC0047"],[0.78929765886287628,"#EC0046"],[0.79264214046822734,"#EC0046"],[0.79598662207357873,"#ED0045"],[0.79933110367892968,"#ED0044"],[0.80267558528428096,"#ED0043"],[0.80602006688963213,"#EE0042"],[0.80936454849498318,"#EE0042"],[0.81270903010033435,"#EE0041"],[0.81605351170568563,"#EF0040"],[0.8193979933110368,"#EF003F"],[0.82274247491638786,"#EF003E"],[0.82608695652173902,"#F0003D"],[0.8294314381270903,"#F0003D"],[0.83277591973244147,"#F0003C"],[0.83612040133779253,"#F0003B"],[0.8394648829431437,"#F1003A"],[0.84280936454849498,"#F10039"],[0.84615384615384615,"#F10038"],[0.8494983277591972,"#F20038"],[0.85284280936454837,"#F20037"],[0.85618729096989965,"#F20036"],[0.85953177257525082,"#F30035"],[0.8628762541806021,"#F30034"],[0.86622073578595304,"#F30033"],[0.86956521739130432,"#F40032"],[0.87290969899665549,"#F40032"],[0.87625418060200677,"#F40031"],[0.87959866220735772,"#F50030"],[0.882943143812709,"#F5002F"],[0.88628762541806017,"#F5002E"],[0.88963210702341144,"#F5002D"],[0.89297658862876239,"#F6002C"],[0.89632107023411367,"#F6002B"],[0.89966555183946484,"#F6002A"],[0.90301003344481612,"#F70029"],[0.90635451505016706,"#F70028"],[0.90969899665551834,"#F70027"],[0.91304347826086951,"#F80026"],[0.91638795986622079,"#F80025"],[0.91973244147157174,"#F80024"],[0.92307692307692302,"#F80023"],[0.92642140468227419,"#F90022"],[0.92976588628762546,"#F90021"],[0.93311036789297663,"#F90020"],[0.93645484949832769,"#FA001F"],[0.93979933110367886,"#FA001E"],[0.94314381270903014,"#FA001D"],[0.94648829431438131,"#FA001B"],[0.94983277591973236,"#FB001A"],[0.95317725752508353,"#FB0019"],[0.95652173913043481,"#FB0018"],[0.95986622073578598,"#FC0016"],[0.96321070234113704,"#FC0015"],[0.96655518394648821,"#FC0013"],[0.96989966555183948,"#FC0012"],[0.97324414715719065,"#FD0010"],[0.97658862876254171,"#FD000F"],[0.97993311036789288,"#FD000D"],[0.98327759197324416,"#FE000B"],[0.98662207357859533,"#FE0008"],[0.98996655518394638,"#FE0006"],[0.99331103678929755,"#FE0004"],[0.99665551839464883,"#FF0002"],[1,"#FF0000"]],"colorbar":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"thickness":23.039999999999996,"title":"Baths","titlefont":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"tickmode":"array","ticktext":["1.0","1.5","2.0","2.5","3.0","3.5"],"tickvals":[0,0.20000000000000001,0.40000000000000002,0.59999999999999998,0.80000000000000004,1],"tickfont":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"ticklen":2,"len":0.5}},"xaxis":"x","yaxis":"y","frame":null}],"layout":{"margin":{"t":26.228310502283108,"r":7.3059360730593621,"b":40.182648401826498,"l":43.105022831050235},"plot_bgcolor":"rgba(255,255,255,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[1.8,6.2000000000000002],"tickmode":"array","ticktext":["2","3","4","5","6"],"tickvals":[2,3,4,5,6],"categoryorder":"array","categoryarray":["2","3","4","5","6"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":true,"linecolor":"rgba(0,0,0,1)","linewidth":0.66417600664176002,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"y","title":{"text":"Beds","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[30.550000000000001,205.44999999999999],"tickmode":"array","ticktext":["50","100","150","200"],"tickvals":[50,100,150,200],"categoryorder":"array","categoryarray":["50","100","150","200"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":true,"linecolor":"rgba(0,0,0,1)","linewidth":0.66417600664176002,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"x","title":{"text":"Price","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"12fb5576960ab":{"x":{},"y":{},"colour":{},"type":"scatter"}},"cur_data":"12fb5576960ab","visdat":{"12fb5576960ab":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script><p>Many more interactive options in this tutorial: <a href="https://plotly.com/r/line-and-scatter/" class="uri">https://plotly.com/r/line-and-scatter/</a></p>
+</div>
+</div>
+<div id="histograms-1" class="section level3" number="6.1.2">
+<h3>
+<span class="header-section-number">6.1.2</span> Histograms<a class="anchor" aria-label="anchor" href="#histograms-1"><i class="fas fa-link"></i></a>
+</h3>
+<p>Especially just looking at a single response variable, it’s useful to look immediately at the distribution itself. Histograms are great for this, although you must be careful that the bin size doesn’t impact your perception of results. Adding in a boxplot is often useful</p>
+<div id="basics" class="section level4" number="6.1.2.1">
+<h4>
+<span class="header-section-number">6.1.2.1</span> Basics<a class="anchor" aria-label="anchor" href="#basics"><i class="fas fa-link"></i></a>
+</h4>
+<p>Here is the absolute basic histogram</p>
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">HousesNY</span><span class="op">$</span><span class="va">Price</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="in_04-Tutorial6_Plots_files/figure-html/unnamed-chunk-9-1.png" width="672"></div>
+<p>Or changing the bin size</p>
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">HousesNY</span><span class="op">$</span><span class="va">Price</span>,br<span class="op">=</span><span class="fl">40</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="in_04-Tutorial6_Plots_files/figure-html/unnamed-chunk-10-1.png" width="672"></div>
+<p>In GGPlot 2, it’s also easy. Remember to install the ggplot2 package.</p>
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">HousesNY</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Price</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>bins<span class="op">=</span><span class="fl">20</span><span class="op">)</span> </span></code></pre></div>
+<div class="inline-figure"><img src="in_04-Tutorial6_Plots_files/figure-html/unnamed-chunk-11-1.png" width="672"></div>
+</div>
+<div id="adding-a-boxplot-and-histogram" class="section level4" number="6.1.2.2">
+<h4>
+<span class="header-section-number">6.1.2.2</span> Adding a boxplot and histogram<a class="anchor" aria-label="anchor" href="#adding-a-boxplot-and-histogram"><i class="fas fa-link"></i></a>
+</h4>
+<p>Often, a boxplot AND a histogram is useful as it allows you to see a sense of the data shape and its underlying symmetry. For example, in base R</p>
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Layout to split the screen</span></span>
+<span><span class="fu">graphics</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/graphics/layout.html">layout</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span>,<span class="fl">2</span>,<span class="fl">1</span>, byrow<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>,  </span>
+<span>       height <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">7</span><span class="op">)</span><span class="op">)</span></span>
+<span> </span>
+<span><span class="co"># Draw the boxplot and the histogram </span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mar<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">3.1</span>, <span class="fl">.5</span>, <span class="fl">2.1</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">data_to_plot</span> <span class="op">&lt;-</span> <span class="va">HousesNY</span><span class="op">$</span><span class="va">Price</span></span>
+<span></span>
+<span><span class="va">rangeplot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/pretty.html">pretty</a></span><span class="op">(</span><span class="va">data_to_plot</span>,<span class="fl">10</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html">boxplot</a></span><span class="op">(</span><span class="va">data_to_plot</span>,col <span class="op">=</span> <span class="st">"light blue"</span>,</span>
+<span>        border <span class="op">=</span> <span class="st">"dark blue"</span>,xaxt<span class="op">=</span><span class="st">"n"</span>,frame<span class="op">=</span><span class="cn">FALSE</span>,xlim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.75</span>,<span class="fl">1.25</span><span class="op">)</span>,</span>
+<span>        horizontal <span class="op">=</span> <span class="cn">TRUE</span>,notch <span class="op">=</span> <span class="cn">TRUE</span>,ylim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">rangeplot</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">rangeplot</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mar<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">3.1</span>, <span class="fl">.5</span>, <span class="fl">2.1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">data_to_plot</span> , breaks<span class="op">=</span><span class="fl">20</span> , </span>
+<span>     col<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/grDevices/gray.html">grey</a></span><span class="op">(</span><span class="fl">0.3</span><span class="op">)</span> , border<span class="op">=</span><span class="cn">F</span> , </span>
+<span>     tcl<span class="op">=</span><span class="op">-</span><span class="fl">.25</span>,mgp<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1.75</span>,<span class="fl">.5</span>,<span class="fl">0</span><span class="op">)</span>,</span>
+<span>     main<span class="op">=</span><span class="st">""</span> , xlab<span class="op">=</span><span class="st">"Price of houses in Canton NY"</span>, </span>
+<span>     xlim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">rangeplot</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">rangeplot</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/box.html">box</a></span><span class="op">(</span><span class="op">)</span>;<span class="fu"><a href="https://rdrr.io/r/graphics/grid.html">grid</a></span><span class="op">(</span><span class="op">)</span>;</span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">data_to_plot</span> , breaks<span class="op">=</span><span class="fl">20</span> , add<span class="op">=</span><span class="cn">TRUE</span>,</span>
+<span>     col<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/grDevices/gray.html">grey</a></span><span class="op">(</span><span class="fl">0.3</span><span class="op">)</span> , border<span class="op">=</span><span class="cn">F</span> , axis<span class="op">=</span><span class="cn">FALSE</span>,</span>
+<span>     xlim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">rangeplot</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">rangeplot</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="in_04-Tutorial6_Plots_files/figure-html/unnamed-chunk-12-1.png" width="672"></div>
+<p>And the same with ggplot2:</p>
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/daattali/ggExtra">ggExtra</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">HousesNY</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Price</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span>, alpha <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>bins<span class="op">=</span><span class="fl">20</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span>na.rm<span class="op">=</span><span class="cn">T</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/ggExtra/man/ggMarginal.html">ggMarginal</a></span><span class="op">(</span><span class="va">p</span>, type<span class="op">=</span><span class="st">"boxplot"</span>, margins <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="in_04-Tutorial6_Plots_files/figure-html/unnamed-chunk-13-1.png" width="672"></div>
+<p>I also love the ggstatplot version</p>
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span></span>
+<span><span class="co">## plot</span></span>
+<span><span class="fu"><a href="https://indrajeetpatil.github.io/ggstatsplot/reference/gghistostats.html">gghistostats</a></span><span class="op">(</span></span>
+<span>  data       <span class="op">=</span> <span class="va">HousesNY</span>, <span class="co">## dataframe from which variable is to be taken</span></span>
+<span>  x          <span class="op">=</span> <span class="va">Price</span>, <span class="co">## numeric variable whose distribution is of interest</span></span>
+<span>  title      <span class="op">=</span> <span class="st">"Price of sampled houses in Canton NY"</span>, <span class="co">## title for the plot</span></span>
+<span>  caption    <span class="op">=</span> <span class="st">"Source: Zillow"</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"parametric"</span>,</span>
+<span>  xlab <span class="op">=</span> <span class="cn">NULL</span>,subtitle<span class="op">=</span><span class="cn">FALSE</span>,</span>
+<span>  <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  binwidth   <span class="op">=</span> <span class="fl">8</span><span class="op">)</span> <span class="co">## binwidth value (experiment)</span></span></code></pre></div>
+<div class="inline-figure"><img src="in_04-Tutorial6_Plots_files/figure-html/unnamed-chunk-14-1.png" width="672"></div>
+<p>Or their version that includes a lot of associated statistics. You can turn many of these on and off</p>
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## plot</span></span>
+<span><span class="fu"><a href="https://indrajeetpatil.github.io/ggstatsplot/reference/gghistostats.html">gghistostats</a></span><span class="op">(</span></span>
+<span>  data       <span class="op">=</span> <span class="va">HousesNY</span>, <span class="co">## dataframe from which variable is to be taken</span></span>
+<span>  x          <span class="op">=</span> <span class="va">Price</span>, <span class="co">## numeric variable whose distribution is of interest</span></span>
+<span>  title      <span class="op">=</span> <span class="st">"Price of sampled houses in Canton NY"</span>, <span class="co">## title for the plot</span></span>
+<span>  caption    <span class="op">=</span> <span class="st">"Source: Zillow"</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"parametric"</span>,</span>
+<span>  xlab <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  binwidth   <span class="op">=</span> <span class="fl">8</span><span class="op">)</span> <span class="co">## binwidth value (experiment)</span></span></code></pre></div>
+<div class="inline-figure"><img src="in_04-Tutorial6_Plots_files/figure-html/unnamed-chunk-15-1.png" width="672"></div>
+</div>
+<div id="adding-a-density-function" class="section level4" number="6.1.2.3">
+<h4>
+<span class="header-section-number">6.1.2.3</span> Adding a density function<a class="anchor" aria-label="anchor" href="#adding-a-density-function"><i class="fas fa-link"></i></a>
+</h4>
+<p>Sometimes seeing a smoothed line helps draw the eye to distributions</p>
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">HousesNY</span><span class="op">$</span><span class="va">Price</span>, prob <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>     main <span class="op">=</span> <span class="st">"Canton Prices with density curve"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/density.html">density</a></span><span class="op">(</span><span class="va">HousesNY</span><span class="op">$</span><span class="va">Price</span><span class="op">)</span>, col <span class="op">=</span> <span class="fl">4</span>, lwd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/box.html">box</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="in_04-Tutorial6_Plots_files/figure-html/unnamed-chunk-16-1.png" width="672"></div>
+</div>
+<div id="adding-a-distribution" class="section level4" number="6.1.2.4">
+<h4>
+<span class="header-section-number">6.1.2.4</span> Adding a distribution<a class="anchor" aria-label="anchor" href="#adding-a-distribution"><i class="fas fa-link"></i></a>
+</h4>
+<p>Let’s say you want to make plots similar to the ones in the lectures where there is your chosen distribution on top.</p>
+<p>If you know the distribution, you can simply add it on top as a line</p>
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mysample</span> <span class="op">&lt;-</span> <span class="va">HousesNY</span><span class="op">$</span><span class="va">Price</span></span>
+<span></span>
+<span><span class="va">plotmin</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">mysample</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">mysample</span><span class="op">)</span><span class="op">*</span><span class="fl">3</span></span>
+<span><span class="va">plotmax</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">mysample</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">mysample</span><span class="op">)</span><span class="op">*</span><span class="fl">3</span></span>
+<span></span>
+<span><span class="co"># Points for the normal equation line</span></span>
+<span><span class="va">NormCurve_x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="va">plotmin</span>,<span class="va">plotmax</span>, length <span class="op">=</span> <span class="fl">40</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Normal curve calculation for each point</span></span>
+<span><span class="va">NormCurve_y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">dnorm</a></span><span class="op">(</span><span class="va">NormCurve_x</span>, mean <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">mysample</span><span class="op">)</span>, sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">mysample</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># make sure this is density not raw frequency</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">mysample</span> , breaks<span class="op">=</span><span class="fl">20</span> , freq<span class="op">=</span><span class="cn">FALSE</span>,</span>
+<span>     col<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/grDevices/gray.html">grey</a></span><span class="op">(</span><span class="fl">0.5</span><span class="op">)</span> , border<span class="op">=</span><span class="cn">F</span> , </span>
+<span>     xlim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">plotmin</span>,<span class="va">plotmax</span><span class="op">)</span>,</span>
+<span>     tcl<span class="op">=</span><span class="op">-</span><span class="fl">.25</span>,mgp<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1.75</span>,<span class="fl">.5</span>,<span class="fl">0</span><span class="op">)</span>,</span>
+<span>     main<span class="op">=</span><span class="st">""</span> , xlab<span class="op">=</span><span class="st">"Price of houses in Canton NY"</span><span class="op">)</span></span>
+<span><span class="co"># add the normal curve (THIS NEEDS TO BE IN THE SAME CODE CHUNK)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">NormCurve_x</span>, <span class="va">NormCurve_y</span>, col <span class="op">=</span> <span class="fl">2</span>, lwd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/box.html">box</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="in_04-Tutorial6_Plots_files/figure-html/unnamed-chunk-17-1.png" width="672"></div>
+<p>We could plot any old curve this way, it doesn’t have to be “fit” to our data. For example here is a random gamma function</p>
+<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mysample</span> <span class="op">&lt;-</span> <span class="va">HousesNY</span><span class="op">$</span><span class="va">Price</span></span>
+<span></span>
+<span><span class="co"># Points for the normal equation line</span></span>
+<span><span class="va">GammaCurve_x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="va">plotmin</span>,<span class="va">plotmax</span>, length <span class="op">=</span> <span class="fl">60</span><span class="op">)</span></span>
+<span><span class="va">GammaCurve_y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/GammaDist.html">dgamma</a></span><span class="op">(</span><span class="va">GammaCurve_x</span>,shape <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># make sure this is density not raw frequency</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">mysample</span> , breaks<span class="op">=</span><span class="fl">20</span> , freq<span class="op">=</span><span class="cn">FALSE</span>,</span>
+<span>     col<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/grDevices/gray.html">grey</a></span><span class="op">(</span><span class="fl">0.5</span><span class="op">)</span> , border<span class="op">=</span><span class="cn">F</span> , </span>
+<span>     xlim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">plotmin</span>,<span class="va">plotmax</span><span class="op">)</span>,</span>
+<span>     tcl<span class="op">=</span><span class="op">-</span><span class="fl">.25</span>,mgp<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1.75</span>,<span class="fl">.5</span>,<span class="fl">0</span><span class="op">)</span>,</span>
+<span>     main<span class="op">=</span><span class="st">""</span> , xlab<span class="op">=</span><span class="st">"Price of houses in Canton NY"</span><span class="op">)</span></span>
+<span><span class="co"># add the normal curve (THIS NEEDS TO BE IN THE SAME CODE CHUNK)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">GammaCurve_x</span>, <span class="va">GammaCurve_y</span>, col <span class="op">=</span> <span class="fl">2</span>, lwd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/box.html">box</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="in_04-Tutorial6_Plots_files/figure-html/unnamed-chunk-18-1.png" width="672"></div>
+</div>
+<div id="comparing-groups" class="section level4" number="6.1.2.5">
+<h4>
+<span class="header-section-number">6.1.2.5</span> Comparing groups<a class="anchor" aria-label="anchor" href="#comparing-groups"><i class="fas fa-link"></i></a>
+</h4>
+<p>Or you can easily compare two datasets, tutorial for this plot here: <a href="https://www.r-graph-gallery.com/histogram_several_group.html" class="uri">https://www.r-graph-gallery.com/histogram_several_group.html</a></p>
+<p><br><br></p>
+</div>
+</div>
+<div id="T6_boxplots" class="section level3" number="6.1.3">
+<h3>
+<span class="header-section-number">6.1.3</span> Boxplots<a class="anchor" aria-label="anchor" href="#T6_boxplots"><i class="fas fa-link"></i></a>
+</h3>
+<p>Boxplots have been around over 40 years! See their history and evolution here: <a href="http://vita.had.co.nz/papers/boxplots.pdf" class="uri">http://vita.had.co.nz/papers/boxplots.pdf</a></p>
+<p>In terms of your reports, you need to think of 3 things: - Why you are making the plot (quick look vs publication worthy final graphic) - What aspects of the data do you want to highlight (lots of data, comparing groups, weird distributions..) - What are your final requirements and personal style (colorblind friendly, you’re drawn to a certain type of plot..)</p>
+<p>So for boxplots.. they are especially good at allowing you to compare different groups of things or to look for multiple groups in a single response variable. Here is a beautiful example made by Marcus Beckman on dissertation lengths.</p>
+<p><a href="https://beckmw.wordpress.com/2014/07/15/average-dissertation-and-thesis-length-take-two/%20and%20code%20here:%20https://github.com/fawda123/diss_proc">https://beckmw.wordpress.com/2014/07/15/average-dissertation-and-thesis-length-take-two/ and code here: https://github.com/fawda123/diss_proc</a> )</p>
+<p>If there are only one or two variables, I often jump to the violin or histogram plots as they show more detail.</p>
+<p>So.. how to make these yourselves. You have a range of options!</p>
+<div id="basics-single-boxplot" class="section level4" number="6.1.3.1">
+<h4>
+<span class="header-section-number">6.1.3.1</span> Basics (single boxplot)<a class="anchor" aria-label="anchor" href="#basics-single-boxplot"><i class="fas fa-link"></i></a>
+</h4>
+<p>Here is the most basic boxplot you can make. I often start with this for my own use when exploring the data, then later decide which plots to “make pretty”.</p>
+<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html">boxplot</a></span><span class="op">(</span><span class="va">HousesNY</span><span class="op">$</span><span class="va">Price</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="in_04-Tutorial6_Plots_files/figure-html/unnamed-chunk-19-1.png" width="672"></div>
+<p>We can make better boxplots in base R (e.g. using no special packages/libraries). See this tutorial for all the details: <a href="https://www.datamentor.io/r-programming/box-plot/" class="uri">https://www.datamentor.io/r-programming/box-plot/</a> which goes through exactly what each line means.</p>
+<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># one big command on separate lines</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html">boxplot</a></span><span class="op">(</span><span class="va">HousesNY</span><span class="op">$</span><span class="va">Price</span>,</span>
+<span>        main <span class="op">=</span> <span class="st">"House prices of Canton NY sample"</span>,</span>
+<span>        xlab <span class="op">=</span> <span class="st">"Price (Thousand USD)"</span>,</span>
+<span>        col <span class="op">=</span> <span class="st">"light blue"</span>,</span>
+<span>        border <span class="op">=</span> <span class="st">"dark blue"</span>,</span>
+<span>        horizontal <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>        notch <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="in_04-Tutorial6_Plots_files/figure-html/unnamed-chunk-20-1.png" width="672"></div>
+<p>There are specific plotting packages, the most famous being ggplot2 (there are data camp courses on it). The absolute basics. Here x is blank because we just want to look at the price column alone.</p>
+<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">HousesNY</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span><span class="st">""</span>, y <span class="op">=</span> <span class="va">Price</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>    <span class="co">## this loads the data</span></span>
+<span>   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span>                            <span class="co">## and we choose a boxplot</span></span></code></pre></div>
+<div class="inline-figure"><img src="in_04-Tutorial6_Plots_files/figure-html/unnamed-chunk-21-1.png" width="672"></div>
+<p>Note for now, think of the %&gt;% symbol and + symbol also as “one command on multiple lines..”. They allow you to build up layers of the plot. Data camp has more on this.</p>
+<p>But with these we can easily do more sophisticated things. For example, here’s how to see the underlying data, which allows us to see something of the background distribution</p>
+<p><a href="https://r-charts.com/distribution/box-plot-jitter-ggplot2/" class="uri">https://r-charts.com/distribution/box-plot-jitter-ggplot2/</a></p>
+<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Basic box plot</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">HousesNY</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">""</span>, y <span class="op">=</span> <span class="va">Price</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html">geom_jitter</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="in_04-Tutorial6_Plots_files/figure-html/unnamed-chunk-22-1.png" width="672"></div>
+</div>
+<div id="comparing-groups-1" class="section level4" number="6.1.3.2">
+<h4>
+<span class="header-section-number">6.1.3.2</span> Comparing groups<a class="anchor" aria-label="anchor" href="#comparing-groups-1"><i class="fas fa-link"></i></a>
+</h4>
+<p>The basic code to see a boxplot split by group, in this case the price per number of beds:</p>
+<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html">boxplot</a></span><span class="op">(</span><span class="va">HousesNY</span><span class="op">$</span><span class="va">Price</span> <span class="op">~</span> <span class="va">HousesNY</span><span class="op">$</span><span class="va">Beds</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="in_04-Tutorial6_Plots_files/figure-html/unnamed-chunk-23-1.png" width="672"></div>
+<p>The advantage of this is that you can be sure that you really did plot your columns of choice (e.g. you didn’t mistakenly label anything). Note, if you use a comma, rather than the “~” symbol, you will make one for each column - which is normally not useful!</p>
+<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html">boxplot</a></span><span class="op">(</span><span class="va">HousesNY</span><span class="op">$</span><span class="va">Price</span>,  <span class="va">HousesNY</span><span class="op">$</span><span class="va">Beds</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="in_04-Tutorial6_Plots_files/figure-html/unnamed-chunk-24-1.png" width="672"></div>
+<p><br></p>
+<p>In GGplot comparing different groups:</p>
+<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Libraries</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://github.com/hrbrmstr/hrbrthemes">hrbrthemes</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://sjmgarnier.github.io/viridis/">viridis</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># tell R that the beds column is categorical</span></span>
+<span><span class="va">HousesNY</span><span class="op">$</span><span class="va">Beds</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">HousesNY</span><span class="op">$</span><span class="va">Beds</span>,</span>
+<span>                     levels<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">HousesNY</span><span class="op">$</span><span class="va">Beds</span><span class="op">)</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">HousesNY</span><span class="op">$</span><span class="va">Beds</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Plot</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">HousesNY</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Beds</span>, y<span class="op">=</span><span class="va">Price</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> </span></code></pre></div>
+<div class="inline-figure"><img src="in_04-Tutorial6_Plots_files/figure-html/unnamed-chunk-25-1.png" width="672"></div>
+<p>Or getting more complex</p>
+<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Libraries</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://github.com/hrbrmstr/hrbrthemes">hrbrthemes</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://sjmgarnier.github.io/viridis/">viridis</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># tell R that the beds column is categorical</span></span>
+<span><span class="co"># I already did this in the table section</span></span>
+<span><span class="co">#HousesNY$Beds &lt;- as.factor(HousesNY$Beds)</span></span>
+<span></span>
+<span><span class="co"># Plot</span></span>
+<span><span class="va">HousesNY</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Beds</span>, y<span class="op">=</span><span class="va">Price</span>, fill<span class="op">=</span><span class="va">Beds</span><span class="op">)</span> <span class="op">)</span><span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://sjmgarnier.github.io/viridis/reference/scale_viridis.html">scale_fill_viridis</a></span><span class="op">(</span>discrete <span class="op">=</span> <span class="cn">TRUE</span>, alpha<span class="op">=</span><span class="fl">0.6</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html">geom_jitter</a></span><span class="op">(</span>color<span class="op">=</span><span class="st">"black"</span>, size<span class="op">=</span><span class="fl">0.5</span>, alpha<span class="op">=</span><span class="fl">0.8</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">""</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"Beds"</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="in_04-Tutorial6_Plots_files/figure-html/unnamed-chunk-26-1.png" width="672"></div>
+<p>or dotplots..</p>
+<div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">HousesNY</span>,  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Beds</span>, y<span class="op">=</span><span class="va">Price</span>, fill<span class="op">=</span><span class="va">Beds</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_dotplot.html">geom_dotplot</a></span><span class="op">(</span>binaxis <span class="op">=</span> <span class="st">"y"</span>, stackdir <span class="op">=</span> <span class="st">"center"</span>, dotsize <span class="op">=</span> <span class="fl">0.5</span>,binwidth<span class="op">=</span><span class="fl">7</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="in_04-Tutorial6_Plots_files/figure-html/unnamed-chunk-27-1.png" width="672"></div>
+<p>There are MANY more options, plus code here: <a href="https://www.r-graph-gallery.com/boxplot.html" class="uri">https://www.r-graph-gallery.com/boxplot.html</a></p>
+<p>and a delightful tutorial here: <a href="https://www.r-bloggers.com/2021/11/how-to-make-stunning-boxplots-in-r-a-complete-guide-with-ggplot2/" class="uri">https://www.r-bloggers.com/2021/11/how-to-make-stunning-boxplots-in-r-a-complete-guide-with-ggplot2/</a></p>
+</div>
+<div id="sophisticated" class="section level4" number="6.1.3.3">
+<h4>
+<span class="header-section-number">6.1.3.3</span> Sophisticated<a class="anchor" aria-label="anchor" href="#sophisticated"><i class="fas fa-link"></i></a>
+</h4>
+<p>Finally, we <em>can</em> get super fancy in base R - it’s often a good way to learn how to code. I like this example because it shows many different aspects/useful commands in R programming. <a href="http://www.opiniomics.org/beautiful-boxplots-in-base-r/" class="uri">http://www.opiniomics.org/beautiful-boxplots-in-base-r/</a></p>
+<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">RColorBrewer</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># create colours and colour matrix (for points)</span></span>
+<span><span class="va">m</span>     <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">HousesNY</span><span class="op">$</span><span class="va">Price</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">col_main</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/colorRamp.html">colorRampPalette</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html">brewer.pal</a></span><span class="op">(</span><span class="fl">12</span>, <span class="st">"Set3"</span><span class="op">)</span>, alpha<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">col_transp</span> <span class="op">&lt;-</span> <span class="fu">colorspace</span><span class="fu">::</span><span class="fu"><a href="https://colorspace.R-Forge.R-project.org/reference/adjust_transparency.html">adjust_transparency</a></span><span class="op">(</span><span class="va">col_main</span>, alpha <span class="op">=</span> <span class="fl">.3</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">colsm</span>   <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">col_main</span>, each<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span><span class="op">)</span>, ncol<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">colsm_tr</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">col_transp</span>, each<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span><span class="op">)</span>, ncol<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="co"># create some random data for jitter</span></span>
+<span><span class="va">r</span> <span class="op">&lt;-</span>  <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span><span class="op">)</span>, nrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span>, ncol<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="fl">2</span><span class="op">)</span> <span class="op">-</span> <span class="fl">0.25</span></span>
+<span></span>
+<span><span class="co"># get the greys (stolen from https://github.com/zonination/perceptions/blob/master/percept.R)</span></span>
+<span><span class="va">palette</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html">brewer.pal</a></span><span class="op">(</span><span class="st">"Greys"</span>, n<span class="op">=</span><span class="fl">9</span><span class="op">)</span></span>
+<span><span class="va">color.background</span> <span class="op">=</span> <span class="va">palette</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></span>
+<span><span class="va">color.grid.major</span> <span class="op">=</span> <span class="va">palette</span><span class="op">[</span><span class="fl">5</span><span class="op">]</span></span>
+<span></span>
+<span><span class="co"># set graphical area</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>bty<span class="op">=</span><span class="st">"n"</span>, bg<span class="op">=</span><span class="va">palette</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, mar<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>,<span class="fl">8</span>,<span class="fl">3</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># plot initial boxplot</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html">boxplot</a></span><span class="op">(</span><span class="va">m</span><span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/col.html">col</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span>, horizontal<span class="op">=</span><span class="cn">TRUE</span>, outline<span class="op">=</span><span class="cn">FALSE</span>, lty<span class="op">=</span><span class="fl">1</span>, </span>
+<span>        staplewex<span class="op">=</span><span class="fl">0</span>, boxwex<span class="op">=</span><span class="fl">0.8</span>, boxlwd<span class="op">=</span><span class="fl">1</span>, medlwd<span class="op">=</span><span class="fl">1</span>, </span>
+<span>        col<span class="op">=</span><span class="va">colsm_tr</span>, xaxt<span class="op">=</span><span class="st">"n"</span>, yaxt<span class="op">=</span><span class="st">"n"</span>,xlab<span class="op">=</span><span class="st">""</span>,ylab<span class="op">=</span><span class="st">""</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># plot gridlines</span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/pretty.html">pretty</a></span><span class="op">(</span><span class="va">m</span>,<span class="fl">10</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">i</span>,<span class="va">i</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">20</span><span class="op">)</span>, col<span class="op">=</span><span class="va">palette</span><span class="op">[</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="co"># plot points</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/points.html">points</a></span><span class="op">(</span><span class="va">m</span>, <span class="fu"><a href="https://rdrr.io/r/base/col.html">col</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span><span class="op">+</span><span class="va">r</span>, col<span class="op">=</span><span class="va">colsm</span>, pch<span class="op">=</span><span class="fl">16</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># overlay boxplot</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html">boxplot</a></span><span class="op">(</span><span class="va">m</span><span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/col.html">col</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span>, horizontal<span class="op">=</span><span class="cn">TRUE</span>, outline<span class="op">=</span><span class="cn">FALSE</span>, lty<span class="op">=</span><span class="fl">1</span>, </span>
+<span>        staplewex<span class="op">=</span><span class="fl">0</span>, boxwex<span class="op">=</span><span class="fl">0.8</span>, boxlwd<span class="op">=</span><span class="fl">1</span>, medlwd<span class="op">=</span><span class="fl">1</span>, col<span class="op">=</span><span class="va">colsm_tr</span>, </span>
+<span>        add<span class="op">=</span><span class="cn">TRUE</span>, xaxt<span class="op">=</span><span class="st">"n"</span>, yaxt<span class="op">=</span><span class="st">"n"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># add axes and title</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span><span class="op">(</span>side<span class="op">=</span><span class="fl">1</span>, at<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/pretty.html">pretty</a></span><span class="op">(</span><span class="va">m</span>,<span class="fl">10</span><span class="op">)</span>, col.axis<span class="op">=</span><span class="va">palette</span><span class="op">[</span><span class="fl">7</span><span class="op">]</span>, </span>
+<span>     cex.axis<span class="op">=</span><span class="fl">0.8</span>, lty<span class="op">=</span><span class="fl">0</span>, tick<span class="op">=</span><span class="cn">NA</span>, line<span class="op">=</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span><span class="op">(</span>side<span class="op">=</span><span class="fl">1</span>, at<span class="op">=</span><span class="fl">50</span>, labels<span class="op">=</span><span class="st">"Price (Thousand USD)"</span>, </span>
+<span>     lty<span class="op">=</span><span class="fl">0</span>, tick<span class="op">=</span><span class="cn">NA</span>, col.axis<span class="op">=</span><span class="va">palette</span><span class="op">[</span><span class="fl">7</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span><span class="op">(</span>side<span class="op">=</span><span class="fl">2</span>, at<span class="op">=</span><span class="fl">1</span>, col.axis<span class="op">=</span><span class="va">palette</span><span class="op">[</span><span class="fl">7</span><span class="op">]</span>, cex.axis<span class="op">=</span><span class="fl">0.8</span>, </span>
+<span>     lty<span class="op">=</span><span class="fl">0</span>, tick<span class="op">=</span><span class="cn">NA</span>, labels<span class="op">=</span><span class="st">"Sample 1"</span>, las<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span><span class="op">(</span>side<span class="op">=</span><span class="fl">2</span>, at<span class="op">=</span><span class="fl">17</span><span class="op">/</span><span class="fl">2</span>, labels<span class="op">=</span><span class="st">"Phrase"</span>, col.axis<span class="op">=</span><span class="va">palette</span><span class="op">[</span><span class="fl">7</span><span class="op">]</span>, </span>
+<span>     lty<span class="op">=</span><span class="fl">0</span>, tick<span class="op">=</span><span class="cn">NA</span>, las<span class="op">=</span><span class="fl">3</span>, line<span class="op">=</span><span class="fl">6</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/title.html">title</a></span><span class="op">(</span><span class="st">"House Prices in Canton NY"</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="in_04-Tutorial6_Plots_files/figure-html/unnamed-chunk-28-1.png" width="672"></div>
+<p>Or if you wish to do the rainbow many group boxplot at the beginning, the code is here : <a href="https://github.com/fawda123/diss_proc/blob/master/diss_plot.R" class="uri">https://github.com/fawda123/diss_proc/blob/master/diss_plot.R</a></p>
+<p><br><br></p>
+</div>
+</div>
+<div id="violin-plots" class="section level3" number="6.1.4">
+<h3>
+<span class="header-section-number">6.1.4</span> Violin plots<a class="anchor" aria-label="anchor" href="#violin-plots"><i class="fas fa-link"></i></a>
+</h3>
+<p>Violin plots combine the simplicity of a boxplot with a sense of the underlying distribution. This is useful when you want a sense of both the symmetry of the data and the underlying distribution. Highly recommended! For a single variable, consider a box-plot-with-histogram (see below).</p>
+<p>There are MANY on R graph gallery with code you can copy/edit: <a href="https://www.r-graph-gallery.com/violin.html" class="uri">https://www.r-graph-gallery.com/violin.html</a></p>
+<p>For example, for our data:</p>
+<div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># fill=name allow to automatically dedicate a color for each group</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">HousesNY</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Beds</span>, y<span class="op">=</span><span class="va">Price</span>, fill<span class="op">=</span><span class="va">Beds</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_violin.html">geom_violin</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="in_04-Tutorial6_Plots_files/figure-html/unnamed-chunk-29-1.png" width="672"></div>
+<p>There’s also a <em>beautiful</em> package called <code>ggstatsplot</code> which allows a lot of detail (<a href="https://indrajeetpatil.github.io/ggstatsplot/" class="uri">https://indrajeetpatil.github.io/ggstatsplot/</a>)</p>
+<p>For example, I love the plot below because it shows how much data in each group.</p>
+<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># you might need to first install this.</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># i'm changing the middle mean point to be dark blue</span></span>
+<span></span>
+<span><span class="fu"><a href="https://indrajeetpatil.github.io/ggstatsplot/reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">HousesNY</span>,x <span class="op">=</span> <span class="va">Beds</span>,y <span class="op">=</span> <span class="va">Price</span>, </span>
+<span>               centrality.point.args<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"darkblue"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="in_04-Tutorial6_Plots_files/figure-html/unnamed-chunk-30-1.png" width="672"></div>
+<p>Or we can customise it even more using this tutorial to get results like this (<a href="https://www.r-graph-gallery.com/web-violinplot-with-ggstatsplot.html" class="uri">https://www.r-graph-gallery.com/web-violinplot-with-ggstatsplot.html</a>)</p>
+<p><br><br></p>
+</div>
+<div id="ridgeline-plots" class="section level3" number="6.1.5">
+<h3>
+<span class="header-section-number">6.1.5</span> Ridgeline plots<a class="anchor" aria-label="anchor" href="#ridgeline-plots"><i class="fas fa-link"></i></a>
+</h3>
+<p>These are another way of looking at histograms for different groups. They work especially when your grouping data is ORDINAL (has some inherent order). So bedrooms would be a good example</p>
+<p>Two great pages here:</p>
+<ul>
+<li><p><a href="https://www.data-to-viz.com/graph/ridgeline.html" class="uri">https://www.data-to-viz.com/graph/ridgeline.html</a></p></li>
+<li><p><a href="https://r-charts.com/distribution/ggridges/" class="uri">https://r-charts.com/distribution/ggridges/</a></p></li>
+</ul>
+<p>We can use histograms or smoothed density lines <a href="https://www.data-to-viz.com/graph/ridgeline.html" class="uri">https://www.data-to-viz.com/graph/ridgeline.html</a></p>
+<div class="sourceCode" id="cb76"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://wilkelab.org/ggridges/">ggridges</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">HousesNY</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">Beds</span>, x<span class="op">=</span><span class="va">Price</span>,  fill<span class="op">=</span><span class="va">Beds</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://wilkelab.org/ggridges/reference/geom_density_ridges.html">geom_density_ridges</a></span><span class="op">(</span>alpha<span class="op">=</span><span class="fl">0.6</span>, stat<span class="op">=</span><span class="st">"binline"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://sjmgarnier.github.io/viridis/reference/scale_viridis.html">scale_fill_viridis</a></span><span class="op">(</span>discrete<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://sjmgarnier.github.io/viridis/reference/scale_viridis.html">scale_color_viridis</a></span><span class="op">(</span>discrete<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum.html">theme_ipsum</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>      legend.position<span class="op">=</span><span class="st">"none"</span>,</span>
+<span>      panel.spacing <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html">unit</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="st">"lines"</span><span class="op">)</span>,</span>
+<span>      strip.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span>
+<span>    <span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">""</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Number of Bedrooms"</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="in_04-Tutorial6_Plots_files/figure-html/unnamed-chunk-31-1.png" width="672"></div>
+<p>All of these are from <a href="https://r-charts.com/distribution/ggridges/" class="uri">https://r-charts.com/distribution/ggridges/</a></p>
+<div class="sourceCode" id="cb77"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://wilkelab.org/ggridges/">ggridges</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">HousesNY</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Price</span>, y <span class="op">=</span> <span class="va">Beds</span>, fill <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html">stat</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://wilkelab.org/ggridges/reference/geom_ridgeline_gradient.html">geom_density_ridges_gradient</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_c</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Depth"</span>, option <span class="op">=</span> <span class="st">"C"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html">coord_cartesian</a></span><span class="op">(</span>clip <span class="op">=</span> <span class="st">"off"</span><span class="op">)</span> <span class="op">+</span> <span class="co"># To avoid cut off</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="in_04-Tutorial6_Plots_files/figure-html/unnamed-chunk-32-1.png" width="672"></div>
+<p>We can also make the colours more meaningful, for example adding quantiles to show the median and interquartile range</p>
+<div class="sourceCode" id="cb78"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">HousesNY</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Price</span>, y <span class="op">=</span> <span class="va">Beds</span>, fill <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html">stat</a></span><span class="op">(</span><span class="va">quantile</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://wilkelab.org/ggridges/reference/stat_density_ridges.html">stat_density_ridges</a></span><span class="op">(</span>quantile_lines <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>                      calc_ecdf <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>                      geom <span class="op">=</span> <span class="st">"density_ridges_gradient"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_fill_brewer</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="in_04-Tutorial6_Plots_files/figure-html/unnamed-chunk-33-1.png" width="672"></div>
+<p>or highlighting tails</p>
+<div class="sourceCode" id="cb79"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">HousesNY</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Price</span>, y <span class="op">=</span> <span class="va">Beds</span>, fill <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html">stat</a></span><span class="op">(</span><span class="va">quantile</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://wilkelab.org/ggridges/reference/stat_density_ridges.html">stat_density_ridges</a></span><span class="op">(</span>quantile_lines <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>                      calc_ecdf <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>                      geom <span class="op">=</span> <span class="st">"density_ridges_gradient"</span>,</span>
+<span>                      quantiles <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.95</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Proportion"</span>, </span>
+<span>                    values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#E2FFF2"</span>, <span class="st">"white"</span>, <span class="st">"#B0E0E6"</span><span class="op">)</span>,</span>
+<span>                    labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"(0, 5%]"</span>, <span class="st">"(5%, 95%]"</span>, <span class="st">"(95%, 1]"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="in_04-Tutorial6_Plots_files/figure-html/unnamed-chunk-34-1.png" width="672"></div>
+</div>
+<div id="beeswarm-plots" class="section level3" number="6.1.6">
+<h3>
+<span class="header-section-number">6.1.6</span> Beeswarm plots<a class="anchor" aria-label="anchor" href="#beeswarm-plots"><i class="fas fa-link"></i></a>
+</h3>
+<p>These are cool. As described here:</p>
+<p><a href="https://www.rhoworld.com/i-swarm-you-swarm-we-all-swarm-for-beeswarm-plots-0/#:~:text=What%20is%20a%20beeswarm%20plot%3F&amp;text=A%20beeswarm%20plot%20improves%20upon,bees%20buzzing%20about%20their%20hive">https://www.rhoworld.com/i-swarm-you-swarm-we-all-swarm-for-beeswarm-plots-0/#:~:text=What%20is%20a%20beeswarm%20plot%3F&amp;text=A%20beeswarm%20plot%20improves%20upon,bees%20buzzing%20about%20their%20hive.</a></p>
+<p>“But what is a beeswarm plot? … A beeswarm plot improves upon the random jittering approach to move data points the minimum distance away from one another to avoid overlays. The result is a plot where you can see each distinct data point, like so: It looks a bit like a friendly swarm of bees buzzing about their hive.”</p>
+<p>It’s often used for professional visualisation, see here for many examples: <a href="https://flowingdata.com/charttype/beeswarm" class="uri">https://flowingdata.com/charttype/beeswarm</a></p>
+<p>Especially for the first, you can see the distribution clearly, also with the amount of data. With the second, you can see the mitigating impact of a second variable.</p>
+<p>To make easy ones you can install a new packages “beeswarm”</p>
+<div class="sourceCode" id="cb80"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/aroneklund/beeswarm">"beeswarm"</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/beeswarm/man/beeswarm.html">beeswarm</a></span><span class="op">(</span><span class="va">HousesNY</span><span class="op">$</span><span class="va">Price</span>,</span>
+<span>         vertical <span class="op">=</span> <span class="cn">FALSE</span>, method <span class="op">=</span> <span class="st">"hex"</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="in_04-Tutorial6_Plots_files/figure-html/unnamed-chunk-35-1.png" width="672"></div>
+<p>This is a little boring for my 58 data points! (although perhaps it does show that 58 points is barely a big enough sample to know an underlying model..)</p>
+
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="probability-distributions.html"><span class="header-section-number">5</span> Probability distributions</a></div>
+<div class="next"><a href="correlation.html"><span class="header-section-number">7</span> Correlation</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li>
+<a class="nav-link" href="#plots"><span class="header-section-number">6</span> Plots</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#what-to-choose"><span class="header-section-number">6.0.1</span> What to choose?</a></li>
+<li><a class="nav-link" href="#where-to-find-worked-examples"><span class="header-section-number">6.0.2</span> Where to find worked examples</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#plot-gallery"><span class="header-section-number">6.1</span> Plot gallery</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#scatterplots-1"><span class="header-section-number">6.1.1</span> Scatterplots</a></li>
+<li><a class="nav-link" href="#histograms-1"><span class="header-section-number">6.1.2</span> Histograms</a></li>
+<li><a class="nav-link" href="#T6_boxplots"><span class="header-section-number">6.1.3</span> Boxplots</a></li>
+<li><a class="nav-link" href="#violin-plots"><span class="header-section-number">6.1.4</span> Violin plots</a></li>
+<li><a class="nav-link" href="#ridgeline-plots"><span class="header-section-number">6.1.5</span> Ridgeline plots</a></li>
+<li><a class="nav-link" href="#beeswarm-plots"><span class="header-section-number">6.1.6</span> Beeswarm plots</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>STAT462 Lab Book 2024</strong>" was written by Dr Helen Greatrex. It was last built on 2024-01-31.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

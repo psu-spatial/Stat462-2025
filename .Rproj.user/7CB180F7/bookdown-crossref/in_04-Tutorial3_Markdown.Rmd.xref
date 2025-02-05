@@ -1,0 +1,24 @@
+h1:T3_Markdown R-Markdown
+h2:T31_Whatisit What is markdown?
+h2:T32_MarkdownImportant Important things to know
+h3:T32A_visualmode Visual mode
+h3:T32B_formatting Inserting images/tables and formatting
+h3:T32D_CodeChunks Code chunks
+h3:T32E_Knitting Knitting
+h2:T3_YAML YAML Code and templates
+h2:T3_MathsEquations Writing Maths equations in R-Markdown
+h3:double-dollar-signs Double dollar signs
+h3:single-dollar-signs Single dollar signs
+h3:S.Tutorial.4C.2 Using Equatiomatic
+h4:installing-it Installing it
+h4:using-it Using it
+h2:T3_CodeChunkOptions Code Chunk options
+h3:creating-them-in-source-mode Creating them in Source mode
+h3:creating-them-in-view-mode Creating them in View mode
+h3:T3_CodeChunkWholeDoc Setting the default for the whole document
+h3:common-options Common options
+h2:inline-code Inline Code
+h4:code-chunks Code chunks
+h4:vs-inline-code .. vs Inline Code
+h3:tips-for-adding-inline-code Tips for adding inline code
+

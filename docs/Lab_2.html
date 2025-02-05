@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Lab 2 | STAT462 Lab Book 2024</title>
+  <meta name="description" content="This is the R-based lab book for Penn State STAT-462 on applied regression analysis. To see the accompnying textbook, go to https://online.stat.psu.edu/stat462" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Lab 2 | STAT462 Lab Book 2024" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is the R-based lab book for Penn State STAT-462 on applied regression analysis. To see the accompnying textbook, go to https://online.stat.psu.edu/stat462" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lab 2 | STAT462 Lab Book 2024" />
+  
+  <meta name="twitter:description" content="This is the R-based lab book for Penn State STAT-462 on applied regression analysis. To see the accompnying textbook, go to https://online.stat.psu.edu/stat462" />
+  
+
+<meta name="author" content="Dr Helen Greatrex" />
+
+
+<meta name="date" content="2025-02-05" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="Help.html"/>
+<link rel="next" href="T1_Projects.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/vembedr-0.1.5/css/vembedr.css" rel="stylesheet" />
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.4/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome to STAT-462!</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#Home_UsefulLinks"><i class="fa fa-check"></i>Useful Links</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#Home_howtouse"><i class="fa fa-check"></i>How to use this website</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="FAQ.html"><a href="FAQ.html"><i class="fa fa-check"></i>Course FAQ</a>
+<ul>
+<li class="chapter" data-level="" data-path="FAQ.html"><a href="FAQ.html#FAQ-1"><i class="fa fa-check"></i>What files should I submit?</a></li>
+<li class="chapter" data-level="" data-path="FAQ.html"><a href="FAQ.html#FAQ-2"><i class="fa fa-check"></i>My report won’t knit!</a></li>
+<li class="chapter" data-level="" data-path="FAQ.html"><a href="FAQ.html#FAQ-3"><i class="fa fa-check"></i>How am I graded?</a></li>
+<li class="chapter" data-level="" data-path="FAQ.html"><a href="FAQ.html#FAQ-4"><i class="fa fa-check"></i>I’m late! What’s the late policy?</a></li>
+<li class="chapter" data-level="" data-path="FAQ.html"><a href="FAQ.html#FAQ-5"><i class="fa fa-check"></i>Can I work with friends? What counts as cheating?</a></li>
+<li class="chapter" data-level="" data-path="FAQ.html"><a href="FAQ.html#FAQ-6"><i class="fa fa-check"></i>How can I use chatGPT safely?</a>
+<ul>
+<li class="chapter" data-level="" data-path="FAQ.html"><a href="FAQ.html#what-would-sam-do"><i class="fa fa-check"></i><u><strong>What would Sam do?</strong></u></a></li>
+<li class="chapter" data-level="" data-path="FAQ.html"><a href="FAQ.html#example-conversation"><i class="fa fa-check"></i><u><strong>Example conversation</strong></u></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="WhatIsR.html"><a href="WhatIsR.html"><i class="fa fa-check"></i>What are R and R-Studio?</a>
+<ul>
+<li class="chapter" data-level="" data-path="WhatIsR.html"><a href="WhatIsR.html#WhatisRitself"><i class="fa fa-check"></i>1. What is R?</a></li>
+<li class="chapter" data-level="" data-path="WhatIsR.html"><a href="WhatIsR.html#WhatisRstudio"><i class="fa fa-check"></i>2. What is R-Studio/POSIT?</a></li>
+<li class="chapter" data-level="" data-path="WhatIsR.html"><a href="WhatIsR.html#WhatisMarkdown"><i class="fa fa-check"></i>3. What is R-Markdown?</a>
+<ul>
+<li class="chapter" data-level="" data-path="WhatIsR.html"><a href="WhatIsR.html#some-examples"><i class="fa fa-check"></i>Some examples?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="Setup_Desktop.html"><a href="Setup_Desktop.html"><i class="fa fa-check"></i>Installing R/R-Studio</a>
+<ul>
+<li class="chapter" data-level="" data-path="Setup_Desktop.html"><a href="Setup_Desktop.html#Setup_DesktopVideo"><i class="fa fa-check"></i>Video instructions</a></li>
+<li class="chapter" data-level="0.1" data-path="Setup_Desktop.html"><a href="Setup_Desktop.html#written-instructions"><i class="fa fa-check"></i><b>0.1</b> Written Instructions</a>
+<ul>
+<li class="chapter" data-level="" data-path="Setup_Desktop.html"><a href="Setup_Desktop.html#Setup_R"><i class="fa fa-check"></i>1. Installing R.</a></li>
+<li class="chapter" data-level="" data-path="Setup_Desktop.html"><a href="Setup_Desktop.html#Setup_RStudio"><i class="fa fa-check"></i>2. Installing R studio</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="Setup_UpdateDesktop.html"><a href="Setup_UpdateDesktop.html"><i class="fa fa-check"></i>Updating R/R-Studio</a>
+<ul>
+<li class="chapter" data-level="" data-path="Setup_UpdateDesktop.html"><a href="Setup_UpdateDesktop.html#Setup_UpdateExceptions"><i class="fa fa-check"></i>Exceptions</a></li>
+<li class="chapter" data-level="" data-path="Setup_UpdateDesktop.html"><a href="Setup_UpdateDesktop.html#Setup_WhyUpdate"><i class="fa fa-check"></i>Why update R and R-Studio? I took a course using them last semester</a></li>
+<li class="chapter" data-level="" data-path="Setup_UpdateDesktop.html"><a href="Setup_UpdateDesktop.html#Setup_UpdateHow"><i class="fa fa-check"></i>How to update?</a>
+<ul>
+<li class="chapter" data-level="0.1.1" data-path="Setup_UpdateDesktop.html"><a href="Setup_UpdateDesktop.html#then-update-your-packages."><i class="fa fa-check"></i><b>0.1.1</b> Then update your packages.</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="Setup_Online.html"><a href="Setup_Online.html"><i class="fa fa-check"></i>Posit Cloud Online</a>
+<ul>
+<li class="chapter" data-level="" data-path="Setup_Online.html"><a href="Setup_Online.html#PositCloud"><i class="fa fa-check"></i>Posit/R-Studio Cloud Website</a>
+<ul>
+<li class="chapter" data-level="0.1.2" data-path="Setup_Online.html"><a href="Setup_Online.html#what-if-i-run-out-of-free-time"><i class="fa fa-check"></i><b>0.1.2</b> What if I run out of free time?</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b><span style="color: white;">.</span></b></span></li>
+<li class="part"><span><b><strong>LAB INSTRUCTIONS</strong></b></span></li>
+<li class="chapter" data-level="" data-path="Help.html"><a href="Help.html"><i class="fa fa-check"></i>HELP!</a>
+<ul>
+<li class="chapter" data-level="" data-path="Help.html"><a href="Help.html#Help-Github"><i class="fa fa-check"></i>Github help portal</a></li>
+<li class="chapter" data-level="" data-path="Help.html"><a href="Help.html#Help-Noknit"><i class="fa fa-check"></i>My report won’t knit!</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html"><i class="fa fa-check"></i>Lab 2</a>
+<ul>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#aim"><i class="fa fa-check"></i>Aim</a></li>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#set-up-dont-skip"><i class="fa fa-check"></i>1. Set up (DON’T SKIP)</a>
+<ul>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#create-a-project-for-lab-2"><i class="fa fa-check"></i><strong>[1.1] Create a project for Lab 2</strong></a></li>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#download-the-lab-report-template"><i class="fa fa-check"></i><strong>[1.2] Download the lab report template</strong></a></li>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#edit-the-yaml-code"><i class="fa fa-check"></i><strong>[1.3] Edit the yaml code</strong></a></li>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#check-progress-knit"><i class="fa fa-check"></i><strong>[1.4] Check Progress &amp; knit</strong></a></li>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#optional-setup-task"><i class="fa fa-check"></i><strong>[1.5] OPTIONAL Setup task</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#getting-help"><i class="fa fa-check"></i>2. Getting help</a>
+<ul>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#set-up-your-github-account"><i class="fa fa-check"></i><strong>[2.1] Set up your Github Account</strong></a></li>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#create-your-first-help-post"><i class="fa fa-check"></i><strong>[2.2] Create your first ‘help’ post</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#commands-and-data.frames-spreadsheets"><i class="fa fa-check"></i>3. Commands and data.frames (spreadsheets)</a></li>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#penguin-data-analysis"><i class="fa fa-check"></i>4. Penguin data analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#optional-but-recommended---data-camp"><i class="fa fa-check"></i><strong>[4.1] Optional but recommended - data camp</strong></a></li>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#add-to-your-packages"><i class="fa fa-check"></i><strong>[4.2] Add to your packages</strong></a></li>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#load-the-data"><i class="fa fa-check"></i><strong>[4.3] Load the data</strong></a></li>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#read-the-helpfile"><i class="fa fa-check"></i><strong>[4.4] Read the helpfile</strong></a></li>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#summarize-what-the-data-is-about."><i class="fa fa-check"></i><strong>[4.5] Summarize what the data is about.</strong></a></li>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#print-some-of-the-data"><i class="fa fa-check"></i><strong>[4.6] Print some of the data</strong></a></li>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#create-summary-statistics"><i class="fa fa-check"></i><strong>[4.7] Create summary statistics</strong></a></li>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#assess-how-much-data-there-is"><i class="fa fa-check"></i><strong>[4.8] Assess how much data there is</strong></a></li>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#describe-any-missing-data"><i class="fa fa-check"></i><strong>[4.9] Describe any missing data</strong></a></li>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#make-frequency-tables"><i class="fa fa-check"></i><strong>[4.10] Make frequency tables</strong></a></li>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#histograms"><i class="fa fa-check"></i><strong>[4.11] Histograms</strong></a></li>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#scatterplots"><i class="fa fa-check"></i><strong>[4.12] Scatterplots</strong></a></li>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#correlations"><i class="fa fa-check"></i><strong>[4.13] Correlations</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#submitting-your-lab"><i class="fa fa-check"></i>5. Submitting your Lab</a></li>
+</ul></li>
+<li class="part"><span><b><span style="color: white;">.</span></b></span></li>
+<li class="part"><span><b><strong>TUTORIALS</strong></b></span></li>
+<li class="chapter" data-level="1" data-path="T1_Projects.html"><a href="T1_Projects.html"><i class="fa fa-check"></i><b>1</b> Projects/Starting a lab</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="T1_Projects.html"><a href="T1_Projects.html#T1_ProjectsCloud"><i class="fa fa-check"></i><b>1.1</b> Projects using posit Cloud</a></li>
+<li class="chapter" data-level="1.2" data-path="T1_Projects.html"><a href="T1_Projects.html#T1_ProjectsDesktop"><i class="fa fa-check"></i><b>1.2</b> Projects on your desktop</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="T1_Projects.html"><a href="T1_Projects.html#how-to-check-you-are-running-your-project"><i class="fa fa-check"></i><b>1.2.1</b> How to check you are running your project</a></li>
+<li class="chapter" data-level="1.2.2" data-path="T1_Projects.html"><a href="T1_Projects.html#returning-to-your-lab-project"><i class="fa fa-check"></i><b>1.2.2</b> Returning to your lab project</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="T2_Libraries.html"><a href="T2_Libraries.html"><i class="fa fa-check"></i><b>2</b> Libraries/Packages</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="T2_Libraries.html"><a href="T2_Libraries.html#T2_Libraries_about"><i class="fa fa-check"></i><b>2.1</b> What are packages?</a></li>
+<li class="chapter" data-level="2.2" data-path="T2_Libraries.html"><a href="T2_Libraries.html#seeing-what-packages-you-already-have"><i class="fa fa-check"></i><b>2.2</b> Seeing what packages you already have</a></li>
+<li class="chapter" data-level="2.3" data-path="T2_Libraries.html"><a href="T2_Libraries.html#the-app-storegetting-new-packages"><i class="fa fa-check"></i><b>2.3</b> The app store/getting new packages</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="T2_Libraries.html"><a href="T2_Libraries.html#manually-click"><i class="fa fa-check"></i><b>2.3.1</b> Manually click</a></li>
+<li class="chapter" data-level="2.3.2" data-path="T2_Libraries.html"><a href="T2_Libraries.html#little-yellow-banner"><i class="fa fa-check"></i><b>2.3.2</b> Little yellow banner</a></li>
+<li class="chapter" data-level="2.3.3" data-path="T2_Libraries.html"><a href="T2_Libraries.html#problem-solving"><i class="fa fa-check"></i><b>2.3.3</b> Problem solving</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="T2_Libraries.html"><a href="T2_Libraries.html#usingloading-a-package-you-own"><i class="fa fa-check"></i><b>2.4</b> Using/Loading a package you ‘own’</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="T2_Libraries.html"><a href="T2_Libraries.html#using-a-single-command-from-a-package"><i class="fa fa-check"></i><b>2.4.1</b> Using a single command from a package</a></li>
+<li class="chapter" data-level="2.4.2" data-path="T2_Libraries.html"><a href="T2_Libraries.html#problem-solving-1"><i class="fa fa-check"></i><b>2.4.2</b> Problem Solving</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="T3_Markdown.html"><a href="T3_Markdown.html"><i class="fa fa-check"></i><b>3</b> R-Markdown</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="T3_Markdown.html"><a href="T3_Markdown.html#T31_Whatisit"><i class="fa fa-check"></i><b>3.1</b> What is markdown?</a></li>
+<li class="chapter" data-level="3.2" data-path="T3_Markdown.html"><a href="T3_Markdown.html#T32_MarkdownImportant"><i class="fa fa-check"></i><b>3.2</b> Important things to know</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="T3_Markdown.html"><a href="T3_Markdown.html#T32A_visualmode"><i class="fa fa-check"></i><b>3.2.1</b> Visual mode</a></li>
+<li class="chapter" data-level="3.2.2" data-path="T3_Markdown.html"><a href="T3_Markdown.html#T32B_formatting"><i class="fa fa-check"></i><b>3.2.2</b> Inserting images/tables and formatting</a></li>
+<li class="chapter" data-level="3.2.3" data-path="T3_Markdown.html"><a href="T3_Markdown.html#T32D_CodeChunks"><i class="fa fa-check"></i><b>3.2.3</b> Code chunks</a></li>
+<li class="chapter" data-level="3.2.4" data-path="T3_Markdown.html"><a href="T3_Markdown.html#T32E_Knitting"><i class="fa fa-check"></i><b>3.2.4</b> Knitting</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="T3_Markdown.html"><a href="T3_Markdown.html#T3_YAML"><i class="fa fa-check"></i><b>3.3</b> YAML Code and templates</a></li>
+<li class="chapter" data-level="3.4" data-path="T3_Markdown.html"><a href="T3_Markdown.html#T3_MathsEquations"><i class="fa fa-check"></i><b>3.4</b> Writing Maths equations in R-Markdown</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="T3_Markdown.html"><a href="T3_Markdown.html#double-dollar-signs"><i class="fa fa-check"></i><b>3.4.1</b> Double dollar signs</a></li>
+<li class="chapter" data-level="3.4.2" data-path="T3_Markdown.html"><a href="T3_Markdown.html#single-dollar-signs"><i class="fa fa-check"></i><b>3.4.2</b> Single dollar signs</a></li>
+<li class="chapter" data-level="3.4.3" data-path="T3_Markdown.html"><a href="T3_Markdown.html#S.Tutorial.4C.2"><i class="fa fa-check"></i><b>3.4.3</b> Using Equatiomatic</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="T3_Markdown.html"><a href="T3_Markdown.html#T3_CodeChunkOptions"><i class="fa fa-check"></i><b>3.5</b> Code Chunk options</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="T3_Markdown.html"><a href="T3_Markdown.html#creating-them-in-source-mode"><i class="fa fa-check"></i><b>3.5.1</b> Creating them in Source mode</a></li>
+<li class="chapter" data-level="3.5.2" data-path="T3_Markdown.html"><a href="T3_Markdown.html#creating-them-in-view-mode"><i class="fa fa-check"></i><b>3.5.2</b> Creating them in View mode</a></li>
+<li class="chapter" data-level="3.5.3" data-path="T3_Markdown.html"><a href="T3_Markdown.html#T3_CodeChunkWholeDoc"><i class="fa fa-check"></i><b>3.5.3</b> Setting the default for the whole document</a></li>
+<li class="chapter" data-level="3.5.4" data-path="T3_Markdown.html"><a href="T3_Markdown.html#common-options"><i class="fa fa-check"></i><b>3.5.4</b> Common options</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="T3_Markdown.html"><a href="T3_Markdown.html#inline-code"><i class="fa fa-check"></i><b>3.6</b> Inline Code</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="T3_Markdown.html"><a href="T3_Markdown.html#tips-for-adding-inline-code"><i class="fa fa-check"></i><b>3.6.1</b> Tips for adding inline code</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="T4_ReadingData.html"><a href="T4_ReadingData.html"><i class="fa fa-check"></i><b>4</b> Reading in data</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="T4_ReadingData.html"><a href="T4_ReadingData.html#dont-use-fileimport-or-drag-in-data"><i class="fa fa-check"></i><b>4.1</b> DON’T USE ‘FILE/IMPORT’ OR DRAG IN DATA</a></li>
+<li class="chapter" data-level="4.2" data-path="T4_ReadingData.html"><a href="T4_ReadingData.html#remember-to-use-projects"><i class="fa fa-check"></i><b>4.2</b> REMEMBER TO USE PROJECTS</a></li>
+<li class="chapter" data-level="4.3" data-path="T4_ReadingData.html"><a href="T4_ReadingData.html#reading-in-csv-files"><i class="fa fa-check"></i><b>4.3</b> Reading in csv files</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="T4_ReadingData.html"><a href="T4_ReadingData.html#i-got-an-error"><i class="fa fa-check"></i><b>4.3.1</b> I got an error</a></li>
+<li class="chapter" data-level="4.3.2" data-path="T4_ReadingData.html"><a href="T4_ReadingData.html#my-data-doesnt-have-column-names"><i class="fa fa-check"></i><b>4.3.2</b> My data doesn’t have column names</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="T4_ReadingData.html"><a href="T4_ReadingData.html#T4_readxl"><i class="fa fa-check"></i><b>4.4</b> Reading in excel files</a></li>
+<li class="chapter" data-level="4.5" data-path="T4_ReadingData.html"><a href="T4_ReadingData.html#T4_loaddata"><i class="fa fa-check"></i><b>4.5</b> Loading built-in data</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="probability-distributions.html"><a href="probability-distributions.html"><i class="fa fa-check"></i><b>5</b> Probability distributions</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="probability-distributions.html"><a href="probability-distributions.html#what-are-they-full-info"><i class="fa fa-check"></i><b>5.1</b> What are they? Full info</a></li>
+<li class="chapter" data-level="5.2" data-path="probability-distributions.html"><a href="probability-distributions.html#T5_NormalDist"><i class="fa fa-check"></i><b>5.2</b> The normal distribution</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="probability-distributions.html"><a href="probability-distributions.html#help-file"><i class="fa fa-check"></i><b>5.2.1</b> Help file</a></li>
+<li class="chapter" data-level="5.2.2" data-path="probability-distributions.html"><a href="probability-distributions.html#generate-a-random-sample"><i class="fa fa-check"></i><b>5.2.2</b> Generate a random sample</a></li>
+<li class="chapter" data-level="5.2.3" data-path="probability-distributions.html"><a href="probability-distributions.html#calculate-probability-when-given-a-z-score"><i class="fa fa-check"></i><b>5.2.3</b> Calculate probability when given a z-score</a></li>
+<li class="chapter" data-level="5.2.4" data-path="probability-distributions.html"><a href="probability-distributions.html#calculate-z-score-when-given-a-probability"><i class="fa fa-check"></i><b>5.2.4</b> Calculate z-score when given a probability</a></li>
+<li class="chapter" data-level="5.2.5" data-path="probability-distributions.html"><a href="probability-distributions.html#testing-normality"><i class="fa fa-check"></i><b>5.2.5</b> Testing normality</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="probability-distributions.html"><a href="probability-distributions.html#TDist"><i class="fa fa-check"></i><b>5.3</b> T-distribution</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="probability-distributions.html"><a href="probability-distributions.html#calculate-a-probability-given-a-t-statistic"><i class="fa fa-check"></i><b>5.3.1</b> Calculate a probability given a T-Statistic</a></li>
+<li class="chapter" data-level="5.3.2" data-path="probability-distributions.html"><a href="probability-distributions.html#calculate-a-t-statistic-for-a-given-probability"><i class="fa fa-check"></i><b>5.3.2</b> Calculate a T-Statistic for a given probability</a></li>
+<li class="chapter" data-level="5.3.3" data-path="probability-distributions.html"><a href="probability-distributions.html#one-sided-t-test"><i class="fa fa-check"></i><b>5.3.3</b> One sided T-test</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="probability-distributions.html"><a href="probability-distributions.html#others"><i class="fa fa-check"></i><b>5.4</b> Others?</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="T6_plots.html"><a href="T6_plots.html"><i class="fa fa-check"></i><b>6</b> Plots</a>
+<ul>
+<li class="chapter" data-level="6.0.1" data-path="T6_plots.html"><a href="T6_plots.html#what-to-choose"><i class="fa fa-check"></i><b>6.0.1</b> What to choose?</a></li>
+<li class="chapter" data-level="6.0.2" data-path="T6_plots.html"><a href="T6_plots.html#where-to-find-worked-examples"><i class="fa fa-check"></i><b>6.0.2</b> Where to find worked examples</a></li>
+<li class="chapter" data-level="6.1" data-path="T6_plots.html"><a href="T6_plots.html#example-dataset"><i class="fa fa-check"></i><b>6.1</b> Example dataset</a></li>
+<li class="chapter" data-level="6.2" data-path="T6_plots.html"><a href="T6_plots.html#T6_PlotsScatter"><i class="fa fa-check"></i><b>6.2</b> Scatterplots</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="T6_plots.html"><a href="T6_plots.html#basic-plot-no-line-of-best-fit"><i class="fa fa-check"></i><b>6.2.1</b> Basic plot (no line of best fit)</a></li>
+<li class="chapter" data-level="6.2.2" data-path="T6_plots.html"><a href="T6_plots.html#basic-plot-with-a-line-of-best-fit"><i class="fa fa-check"></i><b>6.2.2</b> Basic plot WITH a line of best fit</a></li>
+<li class="chapter" data-level="6.2.3" data-path="T6_plots.html"><a href="T6_plots.html#ggplot2-scatterplots"><i class="fa fa-check"></i><b>6.2.3</b> GGplot2 scatterplots</a></li>
+<li class="chapter" data-level="6.2.4" data-path="T6_plots.html"><a href="T6_plots.html#T6_PlotGGPlot"><i class="fa fa-check"></i><b>6.2.4</b> GGplot2 adding a line of best fit.</a></li>
+<li class="chapter" data-level="6.2.5" data-path="T6_plots.html"><a href="T6_plots.html#ggplot2-adding-a-line-of-best-fit-and-confidence-intervals"><i class="fa fa-check"></i><b>6.2.5</b> GGplot2 adding a line of best fit and confidence intervals</a></li>
+<li class="chapter" data-level="6.2.6" data-path="T6_plots.html"><a href="T6_plots.html#T6_ScatterPlotly"><i class="fa fa-check"></i><b>6.2.6</b> Plotly Interactive scatterplots!</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="T6_plots.html"><a href="T6_plots.html#histograms-1"><i class="fa fa-check"></i><b>6.3</b> Histograms</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="T6_plots.html"><a href="T6_plots.html#basics"><i class="fa fa-check"></i><b>6.3.1</b> Basics</a></li>
+<li class="chapter" data-level="6.3.2" data-path="T6_plots.html"><a href="T6_plots.html#ggplot2-histograms"><i class="fa fa-check"></i><b>6.3.2</b> ggplot2 histograms</a></li>
+<li class="chapter" data-level="6.3.3" data-path="T6_plots.html"><a href="T6_plots.html#ggstatsplot-histograms"><i class="fa fa-check"></i><b>6.3.3</b> ggstatsplot histograms</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="T6_plots.html"><a href="T6_plots.html#T6_boxplots"><i class="fa fa-check"></i><b>6.4</b> Boxplots</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="T6_plots.html"><a href="T6_plots.html#basics-single-boxplot"><i class="fa fa-check"></i><b>6.4.1</b> Basics (single boxplot)</a></li>
+<li class="chapter" data-level="6.4.2" data-path="T6_plots.html"><a href="T6_plots.html#comparing-groups"><i class="fa fa-check"></i><b>6.4.2</b> Comparing groups</a></li>
+<li class="chapter" data-level="6.4.3" data-path="T6_plots.html"><a href="T6_plots.html#sophisticated"><i class="fa fa-check"></i><b>6.4.3</b> Sophisticated</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="T6_plots.html"><a href="T6_plots.html#violin-plots"><i class="fa fa-check"></i><b>6.5</b> Violin plots</a></li>
+<li class="chapter" data-level="6.6" data-path="T6_plots.html"><a href="T6_plots.html#ridgeline-plots"><i class="fa fa-check"></i><b>6.6</b> Ridgeline plots</a></li>
+<li class="chapter" data-level="6.7" data-path="T6_plots.html"><a href="T6_plots.html#beeswarm-plots"><i class="fa fa-check"></i><b>6.7</b> Beeswarm plots</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="correlation.html"><a href="correlation.html"><i class="fa fa-check"></i><b>7</b> Correlation</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="correlation.html"><a href="correlation.html#basics-1"><i class="fa fa-check"></i><b>7.1</b> Basics</a></li>
+<li class="chapter" data-level="7.2" data-path="correlation.html"><a href="correlation.html#covariancecorrelation-matrix-plots"><i class="fa fa-check"></i><b>7.2</b> Covariance/Correlation matrix plots</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="T8_regression.html"><a href="T8_regression.html"><i class="fa fa-check"></i><b>8</b> Regression</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="T8_regression.html"><a href="T8_regression.html#T8_lmbasics"><i class="fa fa-check"></i><b>8.1</b> “Standard” regression output</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="T8_regression.html"><a href="T8_regression.html#printing-out-the-equation"><i class="fa fa-check"></i><b>8.1.1</b> Printing out the equation</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="T8_regression.html"><a href="T8_regression.html#better-olsrr-regression-output"><i class="fa fa-check"></i><b>8.2</b> “Better” OLSRR regression output</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="T8_regression.html"><a href="T8_regression.html#errors"><i class="fa fa-check"></i><b>8.2.1</b> Errors</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="T9_wrangling.html"><a href="T9_wrangling.html"><i class="fa fa-check"></i><b>9</b> Data Wrangling</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="T9_wrangling.html"><a href="T9_wrangling.html#example-datasets"><i class="fa fa-check"></i><b>9.1</b> Example datasets</a></li>
+<li class="chapter" data-level="9.2" data-path="T9_wrangling.html"><a href="T9_wrangling.html#T9_basics"><i class="fa fa-check"></i><b>9.2</b> Looking at the data itself</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="T9_wrangling.html"><a href="T9_wrangling.html#example"><i class="fa fa-check"></i><b>9.2.1</b> Example</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="T9_wrangling.html"><a href="T9_wrangling.html#summary-statistics"><i class="fa fa-check"></i><b>9.3</b> Summary statistics</a></li>
+<li class="chapter" data-level="9.4" data-path="T9_wrangling.html"><a href="T9_wrangling.html#Missing"><i class="fa fa-check"></i><b>9.4</b> Removing missing values</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="T9_wrangling.html"><a href="T9_wrangling.html#na.omit"><i class="fa fa-check"></i><b>9.4.1</b> na.omit</a></li>
+<li class="chapter" data-level="9.4.2" data-path="T9_wrangling.html"><a href="T9_wrangling.html#missing-values-in-single-columns-complete.cases"><i class="fa fa-check"></i><b>9.4.2</b> Missing values in single columns, complete.cases</a></li>
+<li class="chapter" data-level="9.4.3" data-path="T9_wrangling.html"><a href="T9_wrangling.html#turning-values-into-na"><i class="fa fa-check"></i><b>9.4.3</b> Turning values into NA</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="T9_wrangling.html"><a href="T9_wrangling.html#ignoring-missing-data-in-commands"><i class="fa fa-check"></i><b>9.5</b> Ignoring missing data in commands</a></li>
+<li class="chapter" data-level="9.6" data-path="T9_wrangling.html"><a href="T9_wrangling.html#making-frequency-tables"><i class="fa fa-check"></i><b>9.6</b> Making frequency tables</a></li>
+<li class="chapter" data-level="9.7" data-path="T9_wrangling.html"><a href="T9_wrangling.html#WrangleBasics"><i class="fa fa-check"></i><b>9.7</b> Wrangling basics</a>
+<ul>
+<li class="chapter" data-level="9.7.1" data-path="T9_wrangling.html"><a href="T9_wrangling.html#selecting-a-specific-column"><i class="fa fa-check"></i><b>9.7.1</b> Selecting a specific column</a></li>
+<li class="chapter" data-level="9.7.2" data-path="T9_wrangling.html"><a href="T9_wrangling.html#choosing-values-from-rows-and-columns"><i class="fa fa-check"></i><b>9.7.2</b> Choosing values from rows and columns</a></li>
+<li class="chapter" data-level="9.7.3" data-path="T9_wrangling.html"><a href="T9_wrangling.html#deleting-rows"><i class="fa fa-check"></i><b>9.7.3</b> Deleting rows</a></li>
+</ul></li>
+<li class="chapter" data-level="9.8" data-path="T9_wrangling.html"><a href="T9_wrangling.html#WrangleFilter"><i class="fa fa-check"></i><b>9.8</b> Filtering</a>
+<ul>
+<li class="chapter" data-level="9.8.1" data-path="T9_wrangling.html"><a href="T9_wrangling.html#the-which-command-approach"><i class="fa fa-check"></i><b>9.8.1</b> The which command approach</a></li>
+<li class="chapter" data-level="9.8.2" data-path="T9_wrangling.html"><a href="T9_wrangling.html#the-dplyr-filter-command-tidyverse"><i class="fa fa-check"></i><b>9.8.2</b> The dplyr filter command (tidyverse)</a></li>
+<li class="chapter" data-level="9.8.3" data-path="T9_wrangling.html"><a href="T9_wrangling.html#group_by-command-statistics-per-group"><i class="fa fa-check"></i><b>9.8.3</b> “Group_by” command: statistics per group</a></li>
+</ul></li>
+<li class="chapter" data-level="9.9" data-path="T9_wrangling.html"><a href="T9_wrangling.html#sorting-data"><i class="fa fa-check"></i><b>9.9</b> Sorting data</a>
+<ul>
+<li class="chapter" data-level="9.9.1" data-path="T9_wrangling.html"><a href="T9_wrangling.html#the-dplyr-arrange-command-tidyverse"><i class="fa fa-check"></i><b>9.9.1</b> The dplyr arrange command (tidyverse)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="T10_diagnostics.html"><a href="T10_diagnostics.html"><i class="fa fa-check"></i><b>10</b> Assessing LINE</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="T10_diagnostics.html"><a href="T10_diagnostics.html#T10_basics"><i class="fa fa-check"></i><b>10.1</b> Basic code</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="T10_diagnostics.html"><a href="T10_diagnostics.html#adding-a-new-column-with-the-residuals"><i class="fa fa-check"></i><b>10.1.1</b> Adding a new column with the residuals</a></li>
+<li class="chapter" data-level="10.1.2" data-path="T10_diagnostics.html"><a href="T10_diagnostics.html#code-for-plotting-the-residuals"><i class="fa fa-check"></i><b>10.1.2</b> Code for plotting the residuals</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="T10_diagnostics.html"><a href="T10_diagnostics.html#checking-line"><i class="fa fa-check"></i><b>10.2</b> Checking LINE</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="T10_diagnostics.html"><a href="T10_diagnostics.html#T10.Linearity"><i class="fa fa-check"></i><b>10.2.1</b> Checking Linearity</a></li>
+<li class="chapter" data-level="10.2.2" data-path="T10_diagnostics.html"><a href="T10_diagnostics.html#T10.Variance"><i class="fa fa-check"></i><b>10.2.2</b> Checking Equal Variance/homoscadisity</a></li>
+<li class="chapter" data-level="10.2.3" data-path="T10_diagnostics.html"><a href="T10_diagnostics.html#T10.Normality"><i class="fa fa-check"></i><b>10.2.3</b> Checking Normality</a></li>
+<li class="chapter" data-level="10.2.4" data-path="T10_diagnostics.html"><a href="T10_diagnostics.html#checking-independence"><i class="fa fa-check"></i><b>10.2.4</b> Checking Independence</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="outliers-high-leverage-influential-points.html"><a href="outliers-high-leverage-influential-points.html"><i class="fa fa-check"></i><b>11</b> Outliers, high leverage &amp; influential points</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="outliers-high-leverage-influential-points.html"><a href="outliers-high-leverage-influential-points.html#what-are-they"><i class="fa fa-check"></i><b>11.1</b> What are they</a>
+<ul>
+<li class="chapter" data-level="" data-path="outliers-high-leverage-influential-points.html"><a href="outliers-high-leverage-influential-points.html#an-outlier"><i class="fa fa-check"></i>An “outlier”</a></li>
+<li class="chapter" data-level="" data-path="outliers-high-leverage-influential-points.html"><a href="outliers-high-leverage-influential-points.html#a-high-leverage-point"><i class="fa fa-check"></i>A high leverage point</a></li>
+<li class="chapter" data-level="" data-path="outliers-high-leverage-influential-points.html"><a href="outliers-high-leverage-influential-points.html#an-influential-point"><i class="fa fa-check"></i>An influential point</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="outliers-high-leverage-influential-points.html"><a href="outliers-high-leverage-influential-points.html#how-to-find-them"><i class="fa fa-check"></i><b>11.2</b> How to find them</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="outliers-high-leverage-influential-points.html"><a href="outliers-high-leverage-influential-points.html#residual-vs-leverage-plots"><i class="fa fa-check"></i><b>11.2.1</b> Residual vs leverage plots</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="outliers-high-leverage-influential-points.html"><a href="outliers-high-leverage-influential-points.html#examples"><i class="fa fa-check"></i><b>11.3</b> Examples</a>
+<ul>
+<li class="chapter" data-level="" data-path="outliers-high-leverage-influential-points.html"><a href="outliers-high-leverage-influential-points.html#no-outliers-influential-or-high-leverage-points"><i class="fa fa-check"></i>No outliers, influential or high leverage points</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="outliers-high-leverage-influential-points.html"><a href="outliers-high-leverage-influential-points.html#how-to-find-them-1"><i class="fa fa-check"></i><b>11.4</b> How to find them</a>
+<ul>
+<li class="chapter" data-level="11.4.1" data-path="outliers-high-leverage-influential-points.html"><a href="outliers-high-leverage-influential-points.html#assessing-outliers-via-visual-inspection"><i class="fa fa-check"></i><b>11.4.1</b> Assessing outliers via visual inspection</a></li>
+<li class="chapter" data-level="" data-path="outliers-high-leverage-influential-points.html"><a href="outliers-high-leverage-influential-points.html#no-outliers-influential-or-high-leverage-points-1"><i class="fa fa-check"></i>No outliers, influential or high leverage points</a></li>
+<li class="chapter" data-level="" data-path="outliers-high-leverage-influential-points.html"><a href="outliers-high-leverage-influential-points.html#an-outlier-with-no-leverage"><i class="fa fa-check"></i>An outlier with no leverage</a></li>
+<li class="chapter" data-level="" data-path="outliers-high-leverage-influential-points.html"><a href="outliers-high-leverage-influential-points.html#a-high-leverage-point-that-isnt-an-outlier"><i class="fa fa-check"></i>A high leverage point that isn’t an outlier</a></li>
+<li class="chapter" data-level="" data-path="outliers-high-leverage-influential-points.html"><a href="outliers-high-leverage-influential-points.html#an-influential-high-leverage-outlier"><i class="fa fa-check"></i>An influential high leverage outlier</a></li>
+<li class="chapter" data-level="11.4.2" data-path="outliers-high-leverage-influential-points.html"><a href="outliers-high-leverage-influential-points.html#detecting-outliers-via-plots"><i class="fa fa-check"></i><b>11.4.2</b> Detecting outliers via plots</a></li>
+<li class="chapter" data-level="11.4.3" data-path="outliers-high-leverage-influential-points.html"><a href="outliers-high-leverage-influential-points.html#detecting-influential-points"><i class="fa fa-check"></i><b>11.4.3</b> Detecting influential points</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="confidence-and-prediction-intervals.html"><a href="confidence-and-prediction-intervals.html"><i class="fa fa-check"></i><b>12</b> Confidence and Prediction Intervals</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="confidence-and-prediction-intervals.html"><a href="confidence-and-prediction-intervals.html#what-are-they-1"><i class="fa fa-check"></i><b>12.1</b> What are they?</a></li>
+<li class="chapter" data-level="12.2" data-path="confidence-and-prediction-intervals.html"><a href="confidence-and-prediction-intervals.html#calculating-a-confidence-interval"><i class="fa fa-check"></i><b>12.2</b> Calculating a confidence interval</a></li>
+<li class="chapter" data-level="12.3" data-path="confidence-and-prediction-intervals.html"><a href="confidence-and-prediction-intervals.html#calculating-a-prediction-interval"><i class="fa fa-check"></i><b>12.3</b> Calculating a prediction interval</a></li>
+<li class="chapter" data-level="12.4" data-path="confidence-and-prediction-intervals.html"><a href="confidence-and-prediction-intervals.html#help-my-code-doesnt-work"><i class="fa fa-check"></i><b>12.4</b> HELP! MY CODE DOESN’T WORK</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="confidence-and-prediction-intervals.html"><a href="confidence-and-prediction-intervals.html#predictormodel-name-spelt-wrong"><i class="fa fa-check"></i><b>12.4.1</b> Predictor/model name spelt wrong</a></li>
+<li class="chapter" data-level="12.4.2" data-path="confidence-and-prediction-intervals.html"><a href="confidence-and-prediction-intervals.html#your-original-lm-command"><i class="fa fa-check"></i><b>12.4.2</b> Your original lm command</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="S.Tutorial_Transformations.html"><a href="S.Tutorial_Transformations.html"><i class="fa fa-check"></i><b>13</b> Transformations</a></li>
+<li class="chapter" data-level="14" data-path="S.Tutorial_GLM.html"><a href="S.Tutorial_GLM.html"><i class="fa fa-check"></i><b>14</b> GLM - Logistic Regression</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="S.Tutorial_GLM.html"><a href="S.Tutorial_GLM.html#great-r-tutorial"><i class="fa fa-check"></i><b>14.1</b> Great R Tutorial</a></li>
+<li class="chapter" data-level="14.2" data-path="S.Tutorial_GLM.html"><a href="S.Tutorial_GLM.html#setting-up-the-dataexample"><i class="fa fa-check"></i><b>14.2</b> Setting up the data/example</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="S.Tutorial_GLM.html"><a href="S.Tutorial_GLM.html#setting-up-categorical-columns"><i class="fa fa-check"></i><b>14.2.1</b> Setting up categorical columns</a></li>
+<li class="chapter" data-level="14.2.2" data-path="S.Tutorial_GLM.html"><a href="S.Tutorial_GLM.html#filtering-data-exploratory-plots"><i class="fa fa-check"></i><b>14.2.2</b> Filtering data &amp; exploratory plots</a></li>
+<li class="chapter" data-level="14.2.3" data-path="S.Tutorial_GLM.html"><a href="S.Tutorial_GLM.html#fiting-a-logistic-model"><i class="fa fa-check"></i><b>14.2.3</b> Fiting a logistic model</a></li>
+<li class="chapter" data-level="14.2.4" data-path="S.Tutorial_GLM.html"><a href="S.Tutorial_GLM.html#model-summary"><i class="fa fa-check"></i><b>14.2.4</b> Model summary</a></li>
+<li class="chapter" data-level="14.2.5" data-path="S.Tutorial_GLM.html"><a href="S.Tutorial_GLM.html#predicting-new-values-and-visualising-results"><i class="fa fa-check"></i><b>14.2.5</b> Predicting new values and visualising results</a></li>
+<li class="chapter" data-level="14.2.6" data-path="S.Tutorial_GLM.html"><a href="S.Tutorial_GLM.html#wald-test-for-significance"><i class="fa fa-check"></i><b>14.2.6</b> Wald test for significance</a></li>
+<li class="chapter" data-level="14.2.7" data-path="S.Tutorial_GLM.html"><a href="S.Tutorial_GLM.html#goodness-of-fit"><i class="fa fa-check"></i><b>14.2.7</b> Goodness of fit</a></li>
+<li class="chapter" data-level="14.2.8" data-path="S.Tutorial_GLM.html"><a href="S.Tutorial_GLM.html#assessing-model-residuals"><i class="fa fa-check"></i><b>14.2.8</b> Assessing model residuals</a></li>
+<li class="chapter" data-level="14.2.9" data-path="S.Tutorial_GLM.html"><a href="S.Tutorial_GLM.html#interactions-with-other-predictors"><i class="fa fa-check"></i><b>14.2.9</b> Interactions with other predictors</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="basic-model-comparisons.html"><a href="basic-model-comparisons.html"><i class="fa fa-check"></i><b>15</b> Basic model comparisons</a>
+<ul>
+<li class="chapter" data-level="" data-path="basic-model-comparisons.html"><a href="basic-model-comparisons.html#is-the-model-appropriate-line-influential-outliers"><i class="fa fa-check"></i>Is the model appropriate? LINE &amp; influential outliers</a></li>
+<li class="chapter" data-level="" data-path="basic-model-comparisons.html"><a href="basic-model-comparisons.html#coefficient-of-determination-r2"><i class="fa fa-check"></i>Coefficient of Determination <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="" data-path="basic-model-comparisons.html"><a href="basic-model-comparisons.html#mse-rmse-root-mean-squared-error"><i class="fa fa-check"></i>MSE, RMSE, (root) mean squared error</a></li>
+<li class="chapter" data-level="" data-path="basic-model-comparisons.html"><a href="basic-model-comparisons.html#information-criteria-aic"><i class="fa fa-check"></i>Information criteria: AIC</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="multiple-regression-model-fitting.html"><a href="multiple-regression-model-fitting.html"><i class="fa fa-check"></i><b>16</b> Multiple regression &amp; model fitting</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="multiple-regression-model-fitting.html"><a href="multiple-regression-model-fitting.html#mlr"><i class="fa fa-check"></i><b>16.1</b> MLR</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="finding-the-optimal-model.html"><a href="finding-the-optimal-model.html"><i class="fa fa-check"></i><b>17</b> Finding the “optimal model”</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="finding-the-optimal-model.html"><a href="finding-the-optimal-model.html#best-subsets"><i class="fa fa-check"></i><b>17.1</b> Best subsets</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">STAT462 Lab Book 2024</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="Lab_2" class="section level1 unnumbered hasAnchor">
+<h1>Lab 2<a href="Lab_2.html#Lab_2" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="aim" class="section level2 unnumbered hasAnchor">
+<h2>Aim<a href="Lab_2.html#aim" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Welcome to lab 2. This is worth 10% (100 points) and you can drop your lowest lab out of six. The aim of the lab is to continue getting used to some basic exploratory data analysis, including</p>
+<ul>
+<li><p>Getting help</p></li>
+<li><p>Reading in data</p></li>
+<li><p>Dealing with missing data</p></li>
+<li><p>Making nice plots &amp; summary statistics</p></li>
+</ul>
+<p>This is a ONE WEEK LAB. You only have one lab session (today) working on this during class, then 10 days to finish up and write up. The maximum time it should take is about 4-5 hrs of your time. <u><strong>If you are stuck, ask for help</strong></u>.</p>
+<p><br></p>
+<hr />
+</div>
+<div id="set-up-dont-skip" class="section level2 unnumbered hasAnchor">
+<h2>1. Set up (DON’T SKIP)<a href="Lab_2.html#set-up-dont-skip" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><br></p>
+<div id="create-a-project-for-lab-2" class="section level3 unnumbered hasAnchor">
+<h3><strong>[1.1] Create a project for Lab 2</strong><a href="Lab_2.html#create-a-project-for-lab-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>If you are using the POSIT Cloud (AKA R-Studio online),</p>
+<ul>
+<li>Log in and make a new project for lab 2 using <a href="T1_Projects.html#T1_ProjectsCloud">Tutorial 1B</a></li>
+</ul></li>
+<li><p>If you are using R-Studio on your own computer/laptop</p>
+<ul>
+<li>Log in and make a new project for lab 2 using <a href="T1_Projects.html#T1_ProjectsCloud">T1_ProjectsDesktop</a></li>
+<li>To open/re-open your project, look in the STAT462/Lab2 folder on your computer and double click the .RProj file (I often rename it something like OPENTHIS.RProj)</li>
+</ul></li>
+</ul>
+<p><br></p>
+</div>
+<div id="download-the-lab-report-template" class="section level3 unnumbered hasAnchor">
+<h3><strong>[1.2] Download the lab report template</strong><a href="Lab_2.html#download-the-lab-report-template" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>Go to the Canvas assignment page and, download <code>Lab2_Template.RmD</code>,</p></li>
+<li><p>DON’T FORGET THIS STEP! <br> <strong>RENAME THE FILE TO <code>Lab2_Email_ID.RmD</code> (e.g. for me, <code>Lab2_hlg5155.RmD</code>)</strong> <br> You do this by right clicking on the file on your computer and selecting rename.</p></li>
+<li><p>Now place the file in your Lab 2 folder</p>
+<ul>
+<li><p>For desktop users, do this outside R. E.g. go to your downloads folder and move the file to the Lab 2 folder on your computer.<br />
+</p></li>
+<li><p>On Posit Cloud, open your project, then look for the upload button in the Files tab.</p>
+<details>
+<summary>
+<p><span style="color: #1388aa;">Expand to see where the button is</span></p>
+</summary>
+<p><img src="index_images/im_Lab02_Upload.png" /></p>
+<p><br></p>
+</details></li>
+</ul></li>
+</ul>
+<p><br></p>
+</div>
+<div id="edit-the-yaml-code" class="section level3 unnumbered hasAnchor">
+<h3><strong>[1.3] Edit the yaml code</strong><a href="Lab_2.html#edit-the-yaml-code" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Inside R-studio, open your lab 2 project (if it’s not already open), then click Lab2_Email_ID.RmD to open it.<br />
+</li>
+<li>Change the author name at the top to your email ID.</li>
+</ul>
+<p><br></p>
+</div>
+<div id="check-progress-knit" class="section level3 unnumbered hasAnchor">
+<h3><strong>[1.4] Check Progress &amp; knit</strong><a href="Lab_2.html#check-progress-knit" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>You should have something like this
+<ul>
+<li>e.g. you are in your project, you have downloaded/renamed your lab report and changed the author name. If you are stuck, either go back and redo the tutorials or talk to Dr G.</li>
+</ul></li>
+<li>Press knit and check it all works. You might need to install some packages.</li>
+</ul>
+<div class="figure" style="text-align: center">
+<img src="index_images/im_Lab02_SetUp.png" alt="*Your screen should look like this*" width="90%" />
+<p class="caption">
+(#fig:im_Lab02_SetUp)<em>Your screen should look like this</em>
+</p>
+</div>
+<hr />
+<p><br></p>
+</div>
+<div id="optional-setup-task" class="section level3 unnumbered hasAnchor">
+<h3><strong>[1.5] OPTIONAL Setup task</strong><a href="Lab_2.html#optional-setup-task" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If you like my black background or want to change how your code looks as you type, go to the tools menu at the VERY TOP OF THE ENTIRE SCREEN, then click the last option, Global Options. Inside, click appearance.</p>
+<p><br><br></p>
+<hr />
+</div>
+</div>
+<div id="getting-help" class="section level2 unnumbered hasAnchor">
+<h2>2. Getting help<a href="Lab_2.html#getting-help" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>There are 60 of you and one of me. So we space where you can ask for help, I can answer a question once and you will all be able to see it.</p>
+<p>We will do this using the ‘github’ help discussion boards, as they are then linked to the course Lab book and are designed for code. Github is a free online system designed for sharing and collaborating on computer code. It is widely used in the professional world</p>
+<p><br></p>
+<div id="set-up-your-github-account" class="section level3 unnumbered hasAnchor">
+<h3><strong>[2.1] Set up your Github Account</strong><a href="Lab_2.html#set-up-your-github-account" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>Go to <a href="https://github.com/" class="uri">https://github.com/</a> and either make an account or log in. Use any email address.</p></li>
+<li><p>Click on the top right to go to your profile, then click edit and add in a few details about yourself or a photo (employers see this, think of it like claiming your LinkedIn page).</p></li>
+</ul>
+<details>
+<summary>
+<span style="color: #1388aa;">Expand to see me do this</span>
+</summary>
+   <video width="600" controls>
+   <source src="./index_videos/vid_Lab2_GithubSignup.mp4" type="video/mp4">
+    Your browser does not support mp4 videos.
+   </video>
+<p><br></p>
+</details>
+<ul>
+<li>Now, under <u>QUESTION 1</u> in your lab report, add the web address of your github profile as a clickable link (hint, remember <a href="T3_Markdown.html#T32A_visualmode">Visual Mode</a> to help you make links).</li>
+</ul>
+<p><br></p>
+</div>
+<div id="create-your-first-help-post" class="section level3 unnumbered hasAnchor">
+<h3><strong>[2.2] Create your first ‘help’ post</strong><a href="Lab_2.html#create-your-first-help-post" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Now go here - <a href="https://github.com/psu-spatial/Stat462-2024/issues" class="uri">https://github.com/psu-spatial/Stat462-2024/issues</a> ``{=html}</li>
+<li>On the right, there is a button called “create an issue”. This is what you will click if you have a real question/issue.<br />
+</li>
+<li>For now, we will make a test issue. Click “create a new issue”, say hello and attach a screenshot of your code (any screenshot is fine).<br />
+</li>
+<li>You do not have to add anything into your lab report because I can see your test post.</li>
+</ul>
+<p><br><br></p>
+<hr />
+</div>
+</div>
+<div id="commands-and-data.frames-spreadsheets" class="section level2 unnumbered hasAnchor">
+<h2>3. Commands and data.frames (spreadsheets)<a href="Lab_2.html#commands-and-data.frames-spreadsheets" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Please simply read this section before moving on. It will help later on, so please don’t skip. These are the top six things you need to remember to make R easy:</p>
+<p><br></p>
+<p><u><strong>One: The structure of an R Command/Function</strong></u></p>
+<p>Commands, also called functions, in R - always have the same structure.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="Lab_2.html#cb1-1" tabindex="-1"></a>VARIABLE <span class="ot">&lt;-</span> <span class="fu">COMMAND</span>(variable_you_apply_it_to, options)</span>
+<span id="cb1-2"><a href="Lab_2.html#cb1-2" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="Lab_2.html#cb1-3" tabindex="-1"></a><span class="co">#e.g.</span></span>
+<span id="cb1-4"><a href="Lab_2.html#cb1-4" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="Lab_2.html#cb1-5" tabindex="-1"></a>ans <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb1-6"><a href="Lab_2.html#cb1-6" tabindex="-1"></a>ans</span></code></pre></div>
+<ul>
+<li><p>A command/function ALWAYS has parentheses/brackets ( ) after it, even if they are empty. This is how I know it’s a command</p></li>
+<li><p>Inside the command, there is first the thing you want to apply it to, then any options.</p></li>
+<li><p>And you save your answer using the little arrow <code>&lt;-</code></p></li>
+</ul>
+<p>In my second example, the command is <code>mean</code>, I am applying it to the numbers <code>1,2,3,4</code> and I have added in a final option <code>na.rm=TRUE</code> (ignore missing values), then saved the result to a variable called <code>ans</code>.</p>
+<p><br><br></p>
+<p><u><strong>Two: To print a variable onto the screen or into your report, you can simply type its name</strong></u></p>
+<ul>
+<li><p>In the example above, I added ans, so that it would print the result.</p></li>
+<li><p>You don’t <em>need</em> commands like <code>paste()</code>, <code>paste0()</code> or <code>print()</code>, although they can come in handy in more complex cases.</p></li>
+</ul>
+<p><br><br></p>
+<p><u><strong>Three: You can see the help file for ANY command or inbuilt dataset by typing</strong><br><strong><code>?commandname</code> into the console</strong></u></p>
+<p>For example, try typing <code>?mean</code> into the <u>console</u>. I don’t recommend typing this into a code chunk as it can confuse the computer when you press knit.</p>
+<p><strong>Hints for reading help pages.</strong></p>
+<ul>
+<li><p>First, READ THE TITLE (its the shortest way to see what the command does).</p></li>
+<li><p>You can see the package the command is from at the <u>very</u> top,</p></li>
+<li><p>Then what options are available then some details.</p></li>
+<li><p>At the bottom of every help file is a worked example you can copy/paste into the console.</p></li>
+</ul>
+<p><br><br></p>
+<p><u><strong>Four: You must run the library code chunk at the top for most commands to work.</strong></u></p>
+<p>AKA, you must open instagram by clicking its button, before you are able to make an instagram post or check your feed.</p>
+<ol style="list-style-type: decimal">
+<li>You must also run the library code chunk at the top every time you restart R, just like when you restart your phone, you have to reopen all the apps you are using</li>
+</ol>
+<p><br><br></p>
+<p><strong>Five: Within a table, you can select columns using the dollar sign</strong></p>
+<p>e.g. TableName$ColumnName (and it should autocomplete as you type the $)</p>
+<ul>
+<li><p>For example, <code>new_ans &lt;- mean(mytable$columnA)</code></p></li>
+<li><p>will take the mean of column A and save the result to a variable called <code>new_ans</code>.</p></li>
+</ul>
+<p><br><br></p>
+<p><strong>Six: You can also select within a table/object using SQUARE BRACKETS</strong></p>
+<p>e.g. <code>TableName[ Row(s) , Column(s)]</code></p>
+<ul>
+<li>For example to select the second row and Columns 1-3 of my table, it would be<br />
+<code>mytable[2,1:3]</code></li>
+<li>We will do more of this in future labs.</li>
+</ul>
+<p><br><br></p>
+<hr />
+</div>
+<div id="penguin-data-analysis" class="section level2 unnumbered hasAnchor">
+<h2>4. Penguin data analysis<a href="Lab_2.html#penguin-data-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Essentially, we are now going to do the starwars analysis from Lab 1, but a bit slower and with more guidance. For those who enjoy R, it’s also a way to explore ggstatsplot and other graphics packages.</p>
+<p><br></p>
+<div id="optional-but-recommended---data-camp" class="section level3 unnumbered hasAnchor">
+<h3><strong>[4.1] Optional but recommended - data camp</strong><a href="Lab_2.html#optional-but-recommended---data-camp" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If you are new to R, consider doing this chapter in data camp - <a href="https://campus.datacamp.com/courses/free-introduction-to-r/chapter-5-data-frames" class="uri">https://campus.datacamp.com/courses/free-introduction-to-r/chapter-5-data-frames</a>.</p>
+<p>It will count for your participation..</p>
+<p><br></p>
+</div>
+<div id="add-to-your-packages" class="section level3 unnumbered hasAnchor">
+<h3><strong>[4.2] Add to your packages</strong><a href="Lab_2.html#add-to-your-packages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Today we will be using commands from several packages.</p>
+<ul>
+<li><p>In your lab report, find the library code chunk near the top (the one with all the library commands).</p></li>
+<li><p>Add these libraries. Remember to run the code chunk! <a href="https://www.pipinghotdata.com/posts/2020-09-07-introducing-the-rstudio-ide-and-r-markdown/gifs/run-chunk.gif">(pressing the green arrow, or go to the run button on the top right and press Run All</a>)</p></li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="Lab_2.html#cb2-1" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
+<span id="cb2-2"><a href="Lab_2.html#cb2-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb2-3"><a href="Lab_2.html#cb2-3" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb2-4"><a href="Lab_2.html#cb2-4" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span></code></pre></div>
+<ul>
+<li>If you get an error saying it doesn’t know about the libraries/packages, you might have to first <u>install</u>/download them from the app store (see <a href="#id_#T2_Libraries">The library tutorial</a> )</li>
+</ul>
+<p><br></p>
+</div>
+<div id="load-the-data" class="section level3 unnumbered hasAnchor">
+<h3><strong>[4.3] Load the data</strong><a href="Lab_2.html#load-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We’re going to work with a table of data that’s already pre-loaded into R inside the <code>palmerpenguins</code> package.</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Make sure you have first run the library code chunk above without error, or nothing below will work. Or go to the run button at the top and click run all.</strong> <br></p></li>
+<li><p>In the Penguins section, create a new code chunk. To do this CLICK THE LITTLE GREEN BUTTON (Top Right) and choose the R option.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="Lab_2.html#cb3-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;penguins&quot;</span>)</span></code></pre></div></li>
+<li><p>Load the data by entering and running this command. It will create what’s called a data ‘promise’ . In fact it will load two datasets, but we can ignore the raw penguin data.<br />
+<br></p></li>
+<li><p>Now let’s look at the data itself. If you look in the environment tab, you will see a new variable called <code>penguins</code>.</p>
+<ul>
+<li><p>Click on it’s NAME to see the spreadsheet/table itself and familiarise yourself with the rows and columns.</p>
+<p><br></p></li>
+<li><p>We could have also looked at the data by either by typing its name into the console, or opening the tab IN THE CONSOLE using the command <code>View(penguins)</code><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p></li>
+</ul></li>
+</ol>
+<p><br></p>
+</div>
+<div id="read-the-helpfile" class="section level3 unnumbered hasAnchor">
+<h3><strong>[4.4] Read the helpfile</strong><a href="Lab_2.html#read-the-helpfile" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For in-built datasets in R, there is a helpfile, similar to the one for each command. We want to look at this.</p>
+<ol style="list-style-type: decimal">
+<li><p>Type <code>?penguins</code> into the CONSOLE. This will bring up the help file. Alternatively go to the help tab (next to packages) and search for penguins.<br />
+<br></p></li>
+<li><p>Using the advice in section 3, skim read the help file.</p></li>
+</ol>
+<p><br><br></p>
+</div>
+<div id="summarize-what-the-data-is-about." class="section level3 unnumbered hasAnchor">
+<h3><strong>[4.5] Summarize what the data is about.</strong><a href="Lab_2.html#summarize-what-the-data-is-about." class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>In your report, briefly describe the data to someone who wishes to understand what the dataset shows.</strong></p>
+<p>This description should be based on what you saw in the help file and dataset and include at minimum:</p>
+<ul>
+<li>The object of Analysis</li>
+<li>A <u><em>reasonable</em></u> population you would be happy to apply this dataset to*</li>
+<li>Variables and units - you are allowed to copy these names/units from the <strong>help file</strong></li>
+</ul>
+<p><em>*Imagine you are giving this analysis to a newspaper editor who wishes to twist your words. What population do you think this sample could safely represent? All penguins in all time and space?</em></p>
+<p><br></p>
+</div>
+<div id="print-some-of-the-data" class="section level3 unnumbered hasAnchor">
+<h3><strong>[4.6] Print some of the data</strong><a href="Lab_2.html#print-some-of-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The report reader will only be able to access what we see when pressing knit. So although you can see all the data, they won’t be able to. Equally, we don’t want to overwhelm your report reader by printing ALL the data by typing its name</p>
+<ol style="list-style-type: decimal">
+<li><p>Instead, we will print out the first few lines so that the reader can get a sense of what is going on.</p>
+<p><br></p></li>
+<li><p>To do do, create a new code chunk then use the command <code>head(penguins)</code> to show the first few lines.</p></li>
+</ol>
+<p><br></p>
+</div>
+<div id="create-summary-statistics" class="section level3 unnumbered hasAnchor">
+<h3><strong>[4.7] Create summary statistics</strong><a href="Lab_2.html#create-summary-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s use R to look at the summary statistics.</p>
+<p>Leave a blank line and create a new code chunk containing the following code. The skim command comes from the skimr package. If it can’t find it, you might need to install the package or load it using your library code chunk <br></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="Lab_2.html#cb4-1" tabindex="-1"></a><span class="fu">skim</span>(penguins)</span></code></pre></div>
+<p>This command compiles the summary statistics for the penguin dataset - sometimes its easier to view this if you press the knit button and look at the html pop-up.</p>
+<p>You can also use the summary() command to achieve a similar result.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="Lab_2.html#cb5-1" tabindex="-1"></a><span class="fu">summary</span>(penguins)</span></code></pre></div>
+<ol style="list-style-type: decimal">
+<li>Choose which one of these you wish to include in your report. Make sure it runs - and press knit to make sure there are no errors so far (I compulsively click knit about every 2 minutes)</li>
+</ol>
+<p><br><br></p>
+</div>
+<div id="assess-how-much-data-there-is" class="section level3 unnumbered hasAnchor">
+<h3><strong>[4.8] Assess how much data there is</strong><a href="Lab_2.html#assess-how-much-data-there-is" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Its often useful to add how many objects there are in our sample and to check what variables they are (and if they match the help file..). To do this, I find the commands <code>dim()</code> , <code>ncol()</code> and <code>nrow()</code> useful, along with <code>names()</code>. <br></p>
+<ol style="list-style-type: decimal">
+<li>Make a new code chunk and apply each these commands to the penguin dataset (e.g. <code>dim(penguins)</code> ).</li>
+<li>In the text below your code chunk, explain what each of the commands is showing.</li>
+</ol>
+<p><br><br></p>
+</div>
+<div id="describe-any-missing-data" class="section level3 unnumbered hasAnchor">
+<h3><strong>[4.9] Describe any missing data</strong><a href="Lab_2.html#describe-any-missing-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Missing data is denoted in R as “NA”. You can see this by looking at the data itself and also via looking at the output of your skim/summary command above. This section is so you add notes to remind yourself of what is missing so that you don’t forget later.</p>
+<ol style="list-style-type: decimal">
+<li><p>In your report, write a short description of how much data (if any) is missing.</p>
+<ul>
+<li>For example, are there entire rows missing? Certain columns?<br />
+Are there some columns where there’s not really much data? <br></li>
+</ul></li>
+<li><p>Imagine you were about to use this for modelling. Write whether you are happy this is sufficient data, or whether there are an worries.</p></li>
+</ol>
+<p>In lab 3, we will look at how to ignore/remove this missing data.</p>
+<p><br><br></p>
+</div>
+<div id="make-frequency-tables" class="section level3 unnumbered hasAnchor">
+<h3><strong>[4.10] Make frequency tables</strong><a href="Lab_2.html#make-frequency-tables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This is often a useful way of summarising categorical data<br><br></p>
+<ol style="list-style-type: decimal">
+<li><p>First, make a frequency table of how many penguins were observed in 2008. <br></p>
+<ul>
+<li><p>To do this, create a new code chunk and apply the <code>table()</code> command to the year column of the penguin data.</p>
+<ul>
+<li><p><em>Hint 1: As I discuss in section 3, to choose a column, use the $ sign e.g. tablename$columnname</em></p></li>
+<li><p><em>Hint 2, R IS CASE SENSITIVE!</em></p></li>
+<li><p><em>Hint 3, for more help: <a href="https://www.statology.org/table-function-in-r/" class="uri">https://www.statology.org/table-function-in-r/</a></em></p>
+<p><br></p></li>
+</ul></li>
+</ul></li>
+<li><p><u>Bonus</u>, in a new code chunk, see if you can extend the table command to work out how many penguins were observed in 2008 on Biscoe Island. (e.g. a two-way table). You don’t need any fancy commands, the table command will do it if you edit the options.<br />
+</p></li>
+</ol>
+<p><br><br></p>
+</div>
+<div id="histograms" class="section level3 unnumbered hasAnchor">
+<h3><strong>[4.11] Histograms</strong><a href="Lab_2.html#histograms" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The summary functions above let us talk about our numeric data pretty effectively. Let’s look at some professional plots to go with that analysis.</p>
+<p>First, histograms are key for taking a quick look at data distributions. We will look at a few different methods of making them:</p>
+<p><br></p>
+<div id="a.-the-base-r-histogram-hist." class="section level4 hasAnchor" number="0.1.2.1">
+<h4><span class="header-section-number">0.1.2.1</span> <span class="unnumbered"><u><strong>A. The ‘base R’ histogram, <code>hist()</code>.</strong></u></span><a href="Lab_2.html#a.-the-base-r-histogram-hist." class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>This is quick and easy, unless you want it to look good! This is the basic code</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="Lab_2.html#cb6-1" tabindex="-1"></a><span class="fu">hist</span>(penguins<span class="sc">$</span>body_mass_g)</span></code></pre></div>
+<p>And here are two tutorials I like. ChatGPT will be able to give you even more options for making your ‘base-R’ histogram look good.</p>
+<ul>
+<li><p><a href="https://www.datacamp.com/tutorial/make-histogram-basic-r" class="uri">https://www.datacamp.com/tutorial/make-histogram-basic-r</a> and</p></li>
+<li><p><a href="https://rstudio-pubs-static.s3.amazonaws.com/7953_4e3efd5b9415444ca065b1167862c349.html" class="uri">https://rstudio-pubs-static.s3.amazonaws.com/7953_4e3efd5b9415444ca065b1167862c349.html</a>.</p></li>
+<li><p>Which has wonderful graphics like this</p></li>
+</ul>
+<div class="float">
+<img src="index_images/im_Lab02_HistBase_IdiotsGuide.png" alt="Base histogram graphics from an Idiots Guide to R" />
+<div class="figcaption"><em>Base histogram graphics from an Idiots Guide to R</em></div>
+</div>
+<p><br></p>
+<ol style="list-style-type: decimal">
+<li><p>Using my code and this tutorial (or any other), make a ‘professional looking’ base-R histogram for the <code>body_mass_g</code> column of the <code>penguin</code> data. Remember things like units!</p></li>
+<li><p>Underneath your histogram: Write a few sentences on what this figure tells you about the distribution of the body mass of penguins in your dataset.</p></li>
+</ol>
+<p><br><br></p>
+</div>
+<div id="b.-the-ggplot-histogram" class="section level4 hasAnchor" number="0.1.2.2">
+<h4><span class="header-section-number">0.1.2.2</span> <span class="unnumbered"><u><strong>B. The ‘ggplot’ histogram</strong></u></span><a href="Lab_2.html#b.-the-ggplot-histogram" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>This is the ‘tidyverse’ version of making figures. It takes a while to get your head around, but people seem to like it and the plots can be made to look very sophisticated. Here is the basic code.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="Lab_2.html#cb7-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm)) <span class="sc">+</span></span>
+<span id="cb7-2"><a href="Lab_2.html#cb7-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code></pre></div>
+<p>And here is a tutorial I like <a href="https://www.datacamp.com/tutorial/make-histogram-ggplot2#how-to-make-a-histogram-with-ggplot2%C2%A0-nowwe" class="uri">https://www.datacamp.com/tutorial/make-histogram-ggplot2#how-to-make-a-histogram-with-ggplot2%C2%A0-nowwe</a> .<br />
+<br></p>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Using the code and this tutorial (or any other), make a ‘professional looking’ ggplot histogram for the <code>bill_length_mm</code> column of the <code>penguin</code> data.</p></li>
+<li><p>Underneath your histogram: Write a few sentences on what this figure tells you about the distribution of the body mass of penguins in your dataset.</p></li>
+</ol>
+<p><br><br></p>
+</div>
+<div id="c.-the-ggstatsplot-histogram-gghistostats." class="section level4 hasAnchor" number="0.1.2.3">
+<h4><span class="header-section-number">0.1.2.3</span> <span class="unnumbered"><u><strong>C. The ‘ggstatsplot’ histogram, <code>gghistostats()</code>.</strong></u></span><a href="Lab_2.html#c.-the-ggstatsplot-histogram-gghistostats." class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>ggstatsplot</code> is a new package designed to make quick and easy professional looking plots. It’s very powerful but sometimes hard (but not impossible) to adjust basic things like font size or adding custom breaks. For an example, see Friday’s lecture notes<br />
+<br />
+Here is all the code you need for now</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="Lab_2.html#cb8-1" tabindex="-1"></a><span class="fu">gghistostats</span>(<span class="at">data=</span>penguins, <span class="at">x=</span>flipper_length_mm, </span>
+<span id="cb8-2"><a href="Lab_2.html#cb8-2" tabindex="-1"></a>             <span class="at">results.subtitle =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p><br></p>
+<ol start="5" style="list-style-type: decimal">
+<li><p>See if you can get it working. No need to edit further.</p></li>
+<li><p>Underneath your histogram: Write a few sentences on what this figure tells you about the distribution of the body mass of penguins in your dataset.</p></li>
+</ol>
+<hr />
+<p><br><br></p>
+</div>
+</div>
+<div id="scatterplots" class="section level3 unnumbered hasAnchor">
+<h3><strong>[4.12] Scatterplots</strong><a href="Lab_2.html#scatterplots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Scatterplots are going to be key for our regression course. Again, there are a few ways of creating them:</p>
+<div id="a.-the-base-r-scatterplot-plot." class="section level4 hasAnchor" number="0.1.2.4">
+<h4><span class="header-section-number">0.1.2.4</span> <span class="unnumbered"><u><strong>A. The ‘base R’ scatterplot, <code>plot()</code>.</strong></u></span><a href="Lab_2.html#a.-the-base-r-scatterplot-plot." class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>This is quick and easy, unless you want it to look good! This is the basic code, although this time I didn’t actually type real column names…</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="Lab_2.html#cb9-1" tabindex="-1"></a><span class="co"># replace PredictorColumn and ResponseColumn with </span></span>
+<span id="cb9-2"><a href="Lab_2.html#cb9-2" tabindex="-1"></a><span class="co"># the column names of what you are plotting.</span></span>
+<span id="cb9-3"><a href="Lab_2.html#cb9-3" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="Lab_2.html#cb9-4" tabindex="-1"></a><span class="co"># R is weird, so THIS</span></span>
+<span id="cb9-5"><a href="Lab_2.html#cb9-5" tabindex="-1"></a><span class="co"># plot(x, y) separated by a COMMA</span></span>
+<span id="cb9-6"><a href="Lab_2.html#cb9-6" tabindex="-1"></a><span class="fu">plot</span>(penguins<span class="sc">$</span>PredictorColumn, penguins<span class="sc">$</span>ResponseColumn)</span>
+<span id="cb9-7"><a href="Lab_2.html#cb9-7" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="Lab_2.html#cb9-8" tabindex="-1"></a><span class="co"># IS THE SAME AS THIS</span></span>
+<span id="cb9-9"><a href="Lab_2.html#cb9-9" tabindex="-1"></a><span class="co"># plot(y ~ x) Separated by a TILDA</span></span>
+<span id="cb9-10"><a href="Lab_2.html#cb9-10" tabindex="-1"></a><span class="fu">plot</span>(penguins<span class="sc">$</span>ResponseColumn <span class="sc">~</span> penguins<span class="sc">$</span>PredictorColumn)</span></code></pre></div>
+<p>And here a tutorial I like <a href="https://rpubs.com/riazakhan94/297778" class="uri">https://rpubs.com/riazakhan94/297778</a>.</p>
+<p><br></p>
+<ol style="list-style-type: decimal">
+<li><p>Using my code and this tutorial (or any other), make a ‘professional looking’ base-R scatterplot for any two numeric data columns in the penguin data. Remember things like units!</p></li>
+<li><p>Underneath your plot: Write a few sentences on what this figure tells you about the relationship between your two chosen two variables.</p>
+<ul>
+<li>What should you write about the data in a scatterplot? See this tutorial for a description: <a href="https://www.khanacademy.org/math/ap-statistics/bivariate-data-ap/scatterplots-correlation/a/describing-scatterplots-form-direction-strength-outliers" class="uri">https://www.khanacademy.org/math/ap-statistics/bivariate-data-ap/scatterplots-correlation/a/describing-scatterplots-form-direction-strength-outliers</a></li>
+</ul></li>
+</ol>
+<p><br></p>
+<hr />
+<p>We will get to ggplot scatterplots in Lab 3. For now..</p>
+<hr />
+<p><br></p>
+</div>
+<div id="b.-the-ggstatplot-r-scatterplot-ggscatterstats." class="section level4 hasAnchor" number="0.1.2.5">
+<h4><span class="header-section-number">0.1.2.5</span> <span class="unnumbered"><u><strong>B. The ‘ggstatplot R’ scatterplot, <code>ggscatterstats()</code>.</strong></u></span><a href="Lab_2.html#b.-the-ggstatplot-r-scatterplot-ggscatterstats." class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Here is all the code you need for now</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="Lab_2.html#cb10-1" tabindex="-1"></a><span class="fu">ggscatterstats</span>(<span class="at">data=</span>penguins, <span class="at">x=</span>PredictorColumn, <span class="at">y=</span>ResponseColumn, </span>
+<span id="cb10-2"><a href="Lab_2.html#cb10-2" tabindex="-1"></a>             <span class="at">results.subtitle =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p><br></p>
+<ol style="list-style-type: decimal">
+<li><p>See if you can get it working for two DIFFERENT numeric columns of your choice than your first scatterplot.</p>
+<ul>
+<li>If you want to make a more fancy one, see some options here - <a href="https://allisonhorst.github.io/palmerpenguins/articles/examples.html" class="uri"><em>https://allisonhorst.github.io/palmerpenguins/articles/examples.html</em></a><strong><br />
+</strong></li>
+</ul></li>
+<li><p>Underneath your plot: Write a few sentences on what this figure tells you about the relationship between your two chosen two variables.</p>
+<ul>
+<li>What should you write about the data in a scatterplot? See this tutorial for a description: <a href="https://www.khanacademy.org/math/ap-statistics/bivariate-data-ap/scatterplots-correlation/a/describing-scatterplots-form-direction-strength-outliers" class="uri">https://www.khanacademy.org/math/ap-statistics/bivariate-data-ap/scatterplots-correlation/a/describing-scatterplots-form-direction-strength-outliers</a></li>
+</ul></li>
+</ol>
+<p><br><br></p>
+<hr />
+</div>
+</div>
+<div id="correlations" class="section level3 unnumbered hasAnchor">
+<h3><strong>[4.13] Correlations</strong><a href="Lab_2.html#correlations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Finally, calculate the correlation between two variables of your choice in the penguin dataset<br />
+<em>Hint,</em> <a href="https://www.statology.org/r-correlation-with-missing-values/" class="uri">https://www.statology.org/r-correlation-with-missing-values/</a> . As you can see, dealing with missing values isn’t <em>always</em> na.rm=TRUE..<br />
+</p>
+<hr />
+<p><br><br></p>
+</div>
+</div>
+<div id="submitting-your-lab" class="section level2 unnumbered hasAnchor">
+<h2>5. Submitting your Lab<a href="Lab_2.html#submitting-your-lab" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Remember to save your work throughout and to spell check your writing (next to the save button). Now, press the knit button again. If you have not made any mistakes in the code then R should create a html file in your lab 2 folder which includes your answers.</p>
+<p><strong>For R desktop users:</strong></p>
+<ul>
+<li><p>If you look at your lab 2 folder ON YOUR COMPUTER, you should see your html and Rm there - complete with a very recent time-stamp.</p></li>
+<li><p>In that folder, double click on the html file. This will open it in your web-browser.<br />
+CHECK THAT THIS IS WHAT YOU WANT TO SUBMIT.</p></li>
+<li><p>Now go to Canvas and submit BOTH your html and your .Rmd file in Lab 2.</p></li>
+</ul>
+<p><br></p>
+<p><strong>If you are on posit cloud,</strong></p>
+<ul>
+<li><p>go to the files tab, then click the check box by your html file. Click the “more” blue cogwheel in the file quadrant menu options, then click export. This will download the file</p></li>
+<li><p>Uncheck the box and check the box by your .Rmd file. Click the “more” blue cogwheel in the file quadrant menu options, then click export. This will download the file.</p></li>
+<li><p>Now go to Canvas and submit BOTH your html and your .Rmd file in Lab 2.</p></li>
+</ul>
+<p>Congrats! You are done.</p>
+
+</div>
+</div>
+
+
+
+
+
+
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>Type this in the console because it’s an interactive command so the ‘knit’ button hates it.<a href="Lab_2.html#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="Help.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="T1_Projects.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+h1:T6_plots Plots
+h3:what-to-choose What to choose?
+h3:where-to-find-worked-examples Where to find worked examples
+h2:example-dataset Example dataset
+h2:T6_PlotsScatter Scatterplots
+h3:basic-plot-no-line-of-best-fit Basic plot (no line of best fit)
+h3:basic-plot-with-a-line-of-best-fit Basic plot WITH a line of best fit
+h3:ggplot2-scatterplots GGplot2 scatterplots
+h3:T6_PlotGGPlot GGplot2 adding a line of best fit.
+h3:ggplot2-adding-a-line-of-best-fit-and-confidence-intervals GGplot2 adding a line of best fit and confidence intervals
+h3:T6_ScatterPlotly Plotly Interactive scatterplots!
+h2:histograms Histograms
+h3:basics Basics
+h3:ggplot2-histograms ggplot2 histograms
+h4:adding-a-boxplot-and-histogram Adding a boxplot and histogram
+h3:ggstatsplot-histograms ggstatsplot histograms
+h4:adding-a-density-function Adding a density function
+h4:adding-a-distribution Adding a distribution
+h4:mulitple-histograms Mulitple histograms
+h2:T6_boxplots Boxplots
+h3:basics-single-boxplot Basics (single boxplot)
+h3:comparing-groups Comparing groups
+h3:sophisticated Sophisticated
+h2:violin-plots Violin plots
+h2:ridgeline-plots Ridgeline plots
+h2:beeswarm-plots Beeswarm plots
+

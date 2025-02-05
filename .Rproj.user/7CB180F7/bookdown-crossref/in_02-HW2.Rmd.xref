@@ -1,0 +1,33 @@
+h1:Lab_2 Lab 2
+h2:aim Aim
+h2:set-up-dont-skip 1. Set up (DON’T SKIP)
+h3:create-a-project-for-lab-2 
+h3:download-the-lab-report-template 
+h3:edit-the-yaml-code 
+h3:check-progress-knit 
+h3:optional-setup-task 
+h2:getting-help 2. Getting help
+h3:set-up-your-github-account 
+h3:create-your-first-help-post 
+h2:commands-and-data.frames-spreadsheets 3. Commands and data.frames (spreadsheets)
+h2:penguin-data-analysis 4. Penguin data analysis
+h3:optional-but-recommended---data-camp 
+h3:add-to-your-packages 
+h3:load-the-data 
+h3:read-the-helpfile 
+h3:summarize-what-the-data-is-about. 
+h3:print-some-of-the-data 
+h3:create-summary-statistics 
+h3:assess-how-much-data-there-is 
+h3:describe-any-missing-data 
+h3:make-frequency-tables 
+h3:histograms 
+h4:a.-the-base-r-histogram-hist. 
+h4:b.-the-ggplot-histogram 
+h4:c.-the-ggstatsplot-histogram-gghistostats. 
+h3:scatterplots 
+h4:a.-the-base-r-scatterplot-plot. 
+h4:b.-the-ggstatplot-r-scatterplot-ggscatterstats. 
+h3:correlations 
+h2:submitting-your-lab 5. Submitting your Lab
+

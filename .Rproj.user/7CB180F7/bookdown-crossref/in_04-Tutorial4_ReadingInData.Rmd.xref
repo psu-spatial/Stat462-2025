@@ -1,0 +1,9 @@
+h1:T4_ReadingData Reading in data
+h2:dont-use-fileimport-or-drag-in-data DON’T USE  OR DRAG IN DATA
+h2:remember-to-use-projects REMEMBER TO USE PROJECTS
+h2:reading-in-csv-files Reading in csv files
+h3:i-got-an-error I got an error
+h3:my-data-doesnt-have-column-names My data doesn’t have column names
+h2:T4_readxl Reading in excel files
+h2:T4_loaddata Loading built-in data
+

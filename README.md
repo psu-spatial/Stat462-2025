@@ -1,13 +1,9 @@
-Welcome! 
+# Welcome!
 
-This is a minimal example of a book based on R Markdown and **bookdown** (https://github.com/rstudio/bookdown). 
+This is the lab book for STAT-462 (Spring 2024) on applied regression analysis.
 
-This template provides a skeleton file structure that you can edit to create your book. 
+The course is taught by [Dr Helen Greatrex](https://science.psu.edu/stat/people/hlg5155) at Penn State.
 
-The contents inside the .Rmd files provide some pointers to help you get started, but feel free to also delete the content in each file and start fresh.
+This page shows the background code. To read the book itself, go to
 
-Additional resources:
-
-The **bookdown** book: https://bookdown.org/yihui/bookdown/
-
-The **bookdown** package reference site: https://pkgs.rstudio.com/bookdown
+<https://psu-spatial.github.io/Stat462-2024/>

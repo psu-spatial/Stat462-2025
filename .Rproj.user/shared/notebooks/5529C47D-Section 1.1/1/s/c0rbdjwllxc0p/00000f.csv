@@ -1,0 +1,6 @@
+"0",""
+"0","url.to.download <- ""https://online.stat.psu.edu/stat462/sites/onlinecourses.science.psu.edu.stat462/files/data/houseprice/index.txt"""
+"0",""
+"0","# Download the data, read it into R and save to housedata"
+"0","housedata <- read.table(url.to.download,header=TRUE)"
+"0",""

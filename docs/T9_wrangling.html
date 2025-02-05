@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 9 Data Wrangling | STAT462 Lab Book 2024</title>
+  <meta name="description" content="This is the R-based lab book for Penn State STAT-462 on applied regression analysis. To see the accompnying textbook, go to https://online.stat.psu.edu/stat462" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 9 Data Wrangling | STAT462 Lab Book 2024" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is the R-based lab book for Penn State STAT-462 on applied regression analysis. To see the accompnying textbook, go to https://online.stat.psu.edu/stat462" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 9 Data Wrangling | STAT462 Lab Book 2024" />
+  
+  <meta name="twitter:description" content="This is the R-based lab book for Penn State STAT-462 on applied regression analysis. To see the accompnying textbook, go to https://online.stat.psu.edu/stat462" />
+  
+
+<meta name="author" content="Dr Helen Greatrex" />
+
+
+<meta name="date" content="2025-02-05" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="T8_regression.html"/>
+<link rel="next" href="T10_diagnostics.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/vembedr-0.1.5/css/vembedr.css" rel="stylesheet" />
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.4/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome to STAT-462!</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#Home_UsefulLinks"><i class="fa fa-check"></i>Useful Links</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#Home_howtouse"><i class="fa fa-check"></i>How to use this website</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="FAQ.html"><a href="FAQ.html"><i class="fa fa-check"></i>Course FAQ</a>
+<ul>
+<li class="chapter" data-level="" data-path="FAQ.html"><a href="FAQ.html#FAQ-1"><i class="fa fa-check"></i>What files should I submit?</a></li>
+<li class="chapter" data-level="" data-path="FAQ.html"><a href="FAQ.html#FAQ-2"><i class="fa fa-check"></i>My report won’t knit!</a></li>
+<li class="chapter" data-level="" data-path="FAQ.html"><a href="FAQ.html#FAQ-3"><i class="fa fa-check"></i>How am I graded?</a></li>
+<li class="chapter" data-level="" data-path="FAQ.html"><a href="FAQ.html#FAQ-4"><i class="fa fa-check"></i>I’m late! What’s the late policy?</a></li>
+<li class="chapter" data-level="" data-path="FAQ.html"><a href="FAQ.html#FAQ-5"><i class="fa fa-check"></i>Can I work with friends? What counts as cheating?</a></li>
+<li class="chapter" data-level="" data-path="FAQ.html"><a href="FAQ.html#FAQ-6"><i class="fa fa-check"></i>How can I use chatGPT safely?</a>
+<ul>
+<li class="chapter" data-level="" data-path="FAQ.html"><a href="FAQ.html#what-would-sam-do"><i class="fa fa-check"></i><u><strong>What would Sam do?</strong></u></a></li>
+<li class="chapter" data-level="" data-path="FAQ.html"><a href="FAQ.html#example-conversation"><i class="fa fa-check"></i><u><strong>Example conversation</strong></u></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="WhatIsR.html"><a href="WhatIsR.html"><i class="fa fa-check"></i>What are R and R-Studio?</a>
+<ul>
+<li class="chapter" data-level="" data-path="WhatIsR.html"><a href="WhatIsR.html#WhatisRitself"><i class="fa fa-check"></i>1. What is R?</a></li>
+<li class="chapter" data-level="" data-path="WhatIsR.html"><a href="WhatIsR.html#WhatisRstudio"><i class="fa fa-check"></i>2. What is R-Studio/POSIT?</a></li>
+<li class="chapter" data-level="" data-path="WhatIsR.html"><a href="WhatIsR.html#WhatisMarkdown"><i class="fa fa-check"></i>3. What is R-Markdown?</a>
+<ul>
+<li class="chapter" data-level="" data-path="WhatIsR.html"><a href="WhatIsR.html#some-examples"><i class="fa fa-check"></i>Some examples?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="Setup_Desktop.html"><a href="Setup_Desktop.html"><i class="fa fa-check"></i>Installing R/R-Studio</a>
+<ul>
+<li class="chapter" data-level="" data-path="Setup_Desktop.html"><a href="Setup_Desktop.html#Setup_DesktopVideo"><i class="fa fa-check"></i>Video instructions</a></li>
+<li class="chapter" data-level="0.1" data-path="Setup_Desktop.html"><a href="Setup_Desktop.html#written-instructions"><i class="fa fa-check"></i><b>0.1</b> Written Instructions</a>
+<ul>
+<li class="chapter" data-level="" data-path="Setup_Desktop.html"><a href="Setup_Desktop.html#Setup_R"><i class="fa fa-check"></i>1. Installing R.</a></li>
+<li class="chapter" data-level="" data-path="Setup_Desktop.html"><a href="Setup_Desktop.html#Setup_RStudio"><i class="fa fa-check"></i>2. Installing R studio</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="Setup_UpdateDesktop.html"><a href="Setup_UpdateDesktop.html"><i class="fa fa-check"></i>Updating R/R-Studio</a>
+<ul>
+<li class="chapter" data-level="" data-path="Setup_UpdateDesktop.html"><a href="Setup_UpdateDesktop.html#Setup_UpdateExceptions"><i class="fa fa-check"></i>Exceptions</a></li>
+<li class="chapter" data-level="" data-path="Setup_UpdateDesktop.html"><a href="Setup_UpdateDesktop.html#Setup_WhyUpdate"><i class="fa fa-check"></i>Why update R and R-Studio? I took a course using them last semester</a></li>
+<li class="chapter" data-level="" data-path="Setup_UpdateDesktop.html"><a href="Setup_UpdateDesktop.html#Setup_UpdateHow"><i class="fa fa-check"></i>How to update?</a>
+<ul>
+<li class="chapter" data-level="0.1.1" data-path="Setup_UpdateDesktop.html"><a href="Setup_UpdateDesktop.html#then-update-your-packages."><i class="fa fa-check"></i><b>0.1.1</b> Then update your packages.</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="Setup_Online.html"><a href="Setup_Online.html"><i class="fa fa-check"></i>Posit Cloud Online</a>
+<ul>
+<li class="chapter" data-level="" data-path="Setup_Online.html"><a href="Setup_Online.html#PositCloud"><i class="fa fa-check"></i>Posit/R-Studio Cloud Website</a>
+<ul>
+<li class="chapter" data-level="0.1.2" data-path="Setup_Online.html"><a href="Setup_Online.html#what-if-i-run-out-of-free-time"><i class="fa fa-check"></i><b>0.1.2</b> What if I run out of free time?</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b><span style="color: white;">.</span></b></span></li>
+<li class="part"><span><b><strong>LAB INSTRUCTIONS</strong></b></span></li>
+<li class="chapter" data-level="" data-path="Help.html"><a href="Help.html"><i class="fa fa-check"></i>HELP!</a>
+<ul>
+<li class="chapter" data-level="" data-path="Help.html"><a href="Help.html#Help-Github"><i class="fa fa-check"></i>Github help portal</a></li>
+<li class="chapter" data-level="" data-path="Help.html"><a href="Help.html#Help-Noknit"><i class="fa fa-check"></i>My report won’t knit!</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html"><i class="fa fa-check"></i>Lab 2</a>
+<ul>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#aim"><i class="fa fa-check"></i>Aim</a></li>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#set-up-dont-skip"><i class="fa fa-check"></i>1. Set up (DON’T SKIP)</a>
+<ul>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#create-a-project-for-lab-2"><i class="fa fa-check"></i><strong>[1.1] Create a project for Lab 2</strong></a></li>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#download-the-lab-report-template"><i class="fa fa-check"></i><strong>[1.2] Download the lab report template</strong></a></li>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#edit-the-yaml-code"><i class="fa fa-check"></i><strong>[1.3] Edit the yaml code</strong></a></li>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#check-progress-knit"><i class="fa fa-check"></i><strong>[1.4] Check Progress &amp; knit</strong></a></li>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#optional-setup-task"><i class="fa fa-check"></i><strong>[1.5] OPTIONAL Setup task</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#getting-help"><i class="fa fa-check"></i>2. Getting help</a>
+<ul>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#set-up-your-github-account"><i class="fa fa-check"></i><strong>[2.1] Set up your Github Account</strong></a></li>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#create-your-first-help-post"><i class="fa fa-check"></i><strong>[2.2] Create your first ‘help’ post</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#commands-and-data.frames-spreadsheets"><i class="fa fa-check"></i>3. Commands and data.frames (spreadsheets)</a></li>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#penguin-data-analysis"><i class="fa fa-check"></i>4. Penguin data analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#optional-but-recommended---data-camp"><i class="fa fa-check"></i><strong>[4.1] Optional but recommended - data camp</strong></a></li>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#add-to-your-packages"><i class="fa fa-check"></i><strong>[4.2] Add to your packages</strong></a></li>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#load-the-data"><i class="fa fa-check"></i><strong>[4.3] Load the data</strong></a></li>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#read-the-helpfile"><i class="fa fa-check"></i><strong>[4.4] Read the helpfile</strong></a></li>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#summarize-what-the-data-is-about."><i class="fa fa-check"></i><strong>[4.5] Summarize what the data is about.</strong></a></li>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#print-some-of-the-data"><i class="fa fa-check"></i><strong>[4.6] Print some of the data</strong></a></li>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#create-summary-statistics"><i class="fa fa-check"></i><strong>[4.7] Create summary statistics</strong></a></li>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#assess-how-much-data-there-is"><i class="fa fa-check"></i><strong>[4.8] Assess how much data there is</strong></a></li>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#describe-any-missing-data"><i class="fa fa-check"></i><strong>[4.9] Describe any missing data</strong></a></li>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#make-frequency-tables"><i class="fa fa-check"></i><strong>[4.10] Make frequency tables</strong></a></li>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#histograms"><i class="fa fa-check"></i><strong>[4.11] Histograms</strong></a></li>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#scatterplots"><i class="fa fa-check"></i><strong>[4.12] Scatterplots</strong></a></li>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#correlations"><i class="fa fa-check"></i><strong>[4.13] Correlations</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="Lab_2.html"><a href="Lab_2.html#submitting-your-lab"><i class="fa fa-check"></i>5. Submitting your Lab</a></li>
+</ul></li>
+<li class="part"><span><b><span style="color: white;">.</span></b></span></li>
+<li class="part"><span><b><strong>TUTORIALS</strong></b></span></li>
+<li class="chapter" data-level="1" data-path="T1_Projects.html"><a href="T1_Projects.html"><i class="fa fa-check"></i><b>1</b> Projects/Starting a lab</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="T1_Projects.html"><a href="T1_Projects.html#T1_ProjectsCloud"><i class="fa fa-check"></i><b>1.1</b> Projects using posit Cloud</a></li>
+<li class="chapter" data-level="1.2" data-path="T1_Projects.html"><a href="T1_Projects.html#T1_ProjectsDesktop"><i class="fa fa-check"></i><b>1.2</b> Projects on your desktop</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="T1_Projects.html"><a href="T1_Projects.html#how-to-check-you-are-running-your-project"><i class="fa fa-check"></i><b>1.2.1</b> How to check you are running your project</a></li>
+<li class="chapter" data-level="1.2.2" data-path="T1_Projects.html"><a href="T1_Projects.html#returning-to-your-lab-project"><i class="fa fa-check"></i><b>1.2.2</b> Returning to your lab project</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="T2_Libraries.html"><a href="T2_Libraries.html"><i class="fa fa-check"></i><b>2</b> Libraries/Packages</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="T2_Libraries.html"><a href="T2_Libraries.html#T2_Libraries_about"><i class="fa fa-check"></i><b>2.1</b> What are packages?</a></li>
+<li class="chapter" data-level="2.2" data-path="T2_Libraries.html"><a href="T2_Libraries.html#seeing-what-packages-you-already-have"><i class="fa fa-check"></i><b>2.2</b> Seeing what packages you already have</a></li>
+<li class="chapter" data-level="2.3" data-path="T2_Libraries.html"><a href="T2_Libraries.html#the-app-storegetting-new-packages"><i class="fa fa-check"></i><b>2.3</b> The app store/getting new packages</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="T2_Libraries.html"><a href="T2_Libraries.html#manually-click"><i class="fa fa-check"></i><b>2.3.1</b> Manually click</a></li>
+<li class="chapter" data-level="2.3.2" data-path="T2_Libraries.html"><a href="T2_Libraries.html#little-yellow-banner"><i class="fa fa-check"></i><b>2.3.2</b> Little yellow banner</a></li>
+<li class="chapter" data-level="2.3.3" data-path="T2_Libraries.html"><a href="T2_Libraries.html#problem-solving"><i class="fa fa-check"></i><b>2.3.3</b> Problem solving</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="T2_Libraries.html"><a href="T2_Libraries.html#usingloading-a-package-you-own"><i class="fa fa-check"></i><b>2.4</b> Using/Loading a package you ‘own’</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="T2_Libraries.html"><a href="T2_Libraries.html#using-a-single-command-from-a-package"><i class="fa fa-check"></i><b>2.4.1</b> Using a single command from a package</a></li>
+<li class="chapter" data-level="2.4.2" data-path="T2_Libraries.html"><a href="T2_Libraries.html#problem-solving-1"><i class="fa fa-check"></i><b>2.4.2</b> Problem Solving</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="T3_Markdown.html"><a href="T3_Markdown.html"><i class="fa fa-check"></i><b>3</b> R-Markdown</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="T3_Markdown.html"><a href="T3_Markdown.html#T31_Whatisit"><i class="fa fa-check"></i><b>3.1</b> What is markdown?</a></li>
+<li class="chapter" data-level="3.2" data-path="T3_Markdown.html"><a href="T3_Markdown.html#T32_MarkdownImportant"><i class="fa fa-check"></i><b>3.2</b> Important things to know</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="T3_Markdown.html"><a href="T3_Markdown.html#T32A_visualmode"><i class="fa fa-check"></i><b>3.2.1</b> Visual mode</a></li>
+<li class="chapter" data-level="3.2.2" data-path="T3_Markdown.html"><a href="T3_Markdown.html#T32B_formatting"><i class="fa fa-check"></i><b>3.2.2</b> Inserting images/tables and formatting</a></li>
+<li class="chapter" data-level="3.2.3" data-path="T3_Markdown.html"><a href="T3_Markdown.html#T32D_CodeChunks"><i class="fa fa-check"></i><b>3.2.3</b> Code chunks</a></li>
+<li class="chapter" data-level="3.2.4" data-path="T3_Markdown.html"><a href="T3_Markdown.html#T32E_Knitting"><i class="fa fa-check"></i><b>3.2.4</b> Knitting</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="T3_Markdown.html"><a href="T3_Markdown.html#T3_YAML"><i class="fa fa-check"></i><b>3.3</b> YAML Code and templates</a></li>
+<li class="chapter" data-level="3.4" data-path="T3_Markdown.html"><a href="T3_Markdown.html#T3_MathsEquations"><i class="fa fa-check"></i><b>3.4</b> Writing Maths equations in R-Markdown</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="T3_Markdown.html"><a href="T3_Markdown.html#double-dollar-signs"><i class="fa fa-check"></i><b>3.4.1</b> Double dollar signs</a></li>
+<li class="chapter" data-level="3.4.2" data-path="T3_Markdown.html"><a href="T3_Markdown.html#single-dollar-signs"><i class="fa fa-check"></i><b>3.4.2</b> Single dollar signs</a></li>
+<li class="chapter" data-level="3.4.3" data-path="T3_Markdown.html"><a href="T3_Markdown.html#S.Tutorial.4C.2"><i class="fa fa-check"></i><b>3.4.3</b> Using Equatiomatic</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="T3_Markdown.html"><a href="T3_Markdown.html#T3_CodeChunkOptions"><i class="fa fa-check"></i><b>3.5</b> Code Chunk options</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="T3_Markdown.html"><a href="T3_Markdown.html#creating-them-in-source-mode"><i class="fa fa-check"></i><b>3.5.1</b> Creating them in Source mode</a></li>
+<li class="chapter" data-level="3.5.2" data-path="T3_Markdown.html"><a href="T3_Markdown.html#creating-them-in-view-mode"><i class="fa fa-check"></i><b>3.5.2</b> Creating them in View mode</a></li>
+<li class="chapter" data-level="3.5.3" data-path="T3_Markdown.html"><a href="T3_Markdown.html#T3_CodeChunkWholeDoc"><i class="fa fa-check"></i><b>3.5.3</b> Setting the default for the whole document</a></li>
+<li class="chapter" data-level="3.5.4" data-path="T3_Markdown.html"><a href="T3_Markdown.html#common-options"><i class="fa fa-check"></i><b>3.5.4</b> Common options</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="T3_Markdown.html"><a href="T3_Markdown.html#inline-code"><i class="fa fa-check"></i><b>3.6</b> Inline Code</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="T3_Markdown.html"><a href="T3_Markdown.html#tips-for-adding-inline-code"><i class="fa fa-check"></i><b>3.6.1</b> Tips for adding inline code</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="T4_ReadingData.html"><a href="T4_ReadingData.html"><i class="fa fa-check"></i><b>4</b> Reading in data</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="T4_ReadingData.html"><a href="T4_ReadingData.html#dont-use-fileimport-or-drag-in-data"><i class="fa fa-check"></i><b>4.1</b> DON’T USE ‘FILE/IMPORT’ OR DRAG IN DATA</a></li>
+<li class="chapter" data-level="4.2" data-path="T4_ReadingData.html"><a href="T4_ReadingData.html#remember-to-use-projects"><i class="fa fa-check"></i><b>4.2</b> REMEMBER TO USE PROJECTS</a></li>
+<li class="chapter" data-level="4.3" data-path="T4_ReadingData.html"><a href="T4_ReadingData.html#reading-in-csv-files"><i class="fa fa-check"></i><b>4.3</b> Reading in csv files</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="T4_ReadingData.html"><a href="T4_ReadingData.html#i-got-an-error"><i class="fa fa-check"></i><b>4.3.1</b> I got an error</a></li>
+<li class="chapter" data-level="4.3.2" data-path="T4_ReadingData.html"><a href="T4_ReadingData.html#my-data-doesnt-have-column-names"><i class="fa fa-check"></i><b>4.3.2</b> My data doesn’t have column names</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="T4_ReadingData.html"><a href="T4_ReadingData.html#T4_readxl"><i class="fa fa-check"></i><b>4.4</b> Reading in excel files</a></li>
+<li class="chapter" data-level="4.5" data-path="T4_ReadingData.html"><a href="T4_ReadingData.html#T4_loaddata"><i class="fa fa-check"></i><b>4.5</b> Loading built-in data</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="probability-distributions.html"><a href="probability-distributions.html"><i class="fa fa-check"></i><b>5</b> Probability distributions</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="probability-distributions.html"><a href="probability-distributions.html#what-are-they-full-info"><i class="fa fa-check"></i><b>5.1</b> What are they? Full info</a></li>
+<li class="chapter" data-level="5.2" data-path="probability-distributions.html"><a href="probability-distributions.html#T5_NormalDist"><i class="fa fa-check"></i><b>5.2</b> The normal distribution</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="probability-distributions.html"><a href="probability-distributions.html#help-file"><i class="fa fa-check"></i><b>5.2.1</b> Help file</a></li>
+<li class="chapter" data-level="5.2.2" data-path="probability-distributions.html"><a href="probability-distributions.html#generate-a-random-sample"><i class="fa fa-check"></i><b>5.2.2</b> Generate a random sample</a></li>
+<li class="chapter" data-level="5.2.3" data-path="probability-distributions.html"><a href="probability-distributions.html#calculate-probability-when-given-a-z-score"><i class="fa fa-check"></i><b>5.2.3</b> Calculate probability when given a z-score</a></li>
+<li class="chapter" data-level="5.2.4" data-path="probability-distributions.html"><a href="probability-distributions.html#calculate-z-score-when-given-a-probability"><i class="fa fa-check"></i><b>5.2.4</b> Calculate z-score when given a probability</a></li>
+<li class="chapter" data-level="5.2.5" data-path="probability-distributions.html"><a href="probability-distributions.html#testing-normality"><i class="fa fa-check"></i><b>5.2.5</b> Testing normality</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="probability-distributions.html"><a href="probability-distributions.html#TDist"><i class="fa fa-check"></i><b>5.3</b> T-distribution</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="probability-distributions.html"><a href="probability-distributions.html#calculate-a-probability-given-a-t-statistic"><i class="fa fa-check"></i><b>5.3.1</b> Calculate a probability given a T-Statistic</a></li>
+<li class="chapter" data-level="5.3.2" data-path="probability-distributions.html"><a href="probability-distributions.html#calculate-a-t-statistic-for-a-given-probability"><i class="fa fa-check"></i><b>5.3.2</b> Calculate a T-Statistic for a given probability</a></li>
+<li class="chapter" data-level="5.3.3" data-path="probability-distributions.html"><a href="probability-distributions.html#one-sided-t-test"><i class="fa fa-check"></i><b>5.3.3</b> One sided T-test</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="probability-distributions.html"><a href="probability-distributions.html#others"><i class="fa fa-check"></i><b>5.4</b> Others?</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="T6_plots.html"><a href="T6_plots.html"><i class="fa fa-check"></i><b>6</b> Plots</a>
+<ul>
+<li class="chapter" data-level="6.0.1" data-path="T6_plots.html"><a href="T6_plots.html#what-to-choose"><i class="fa fa-check"></i><b>6.0.1</b> What to choose?</a></li>
+<li class="chapter" data-level="6.0.2" data-path="T6_plots.html"><a href="T6_plots.html#where-to-find-worked-examples"><i class="fa fa-check"></i><b>6.0.2</b> Where to find worked examples</a></li>
+<li class="chapter" data-level="6.1" data-path="T6_plots.html"><a href="T6_plots.html#example-dataset"><i class="fa fa-check"></i><b>6.1</b> Example dataset</a></li>
+<li class="chapter" data-level="6.2" data-path="T6_plots.html"><a href="T6_plots.html#T6_PlotsScatter"><i class="fa fa-check"></i><b>6.2</b> Scatterplots</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="T6_plots.html"><a href="T6_plots.html#basic-plot-no-line-of-best-fit"><i class="fa fa-check"></i><b>6.2.1</b> Basic plot (no line of best fit)</a></li>
+<li class="chapter" data-level="6.2.2" data-path="T6_plots.html"><a href="T6_plots.html#basic-plot-with-a-line-of-best-fit"><i class="fa fa-check"></i><b>6.2.2</b> Basic plot WITH a line of best fit</a></li>
+<li class="chapter" data-level="6.2.3" data-path="T6_plots.html"><a href="T6_plots.html#ggplot2-scatterplots"><i class="fa fa-check"></i><b>6.2.3</b> GGplot2 scatterplots</a></li>
+<li class="chapter" data-level="6.2.4" data-path="T6_plots.html"><a href="T6_plots.html#T6_PlotGGPlot"><i class="fa fa-check"></i><b>6.2.4</b> GGplot2 adding a line of best fit.</a></li>
+<li class="chapter" data-level="6.2.5" data-path="T6_plots.html"><a href="T6_plots.html#ggplot2-adding-a-line-of-best-fit-and-confidence-intervals"><i class="fa fa-check"></i><b>6.2.5</b> GGplot2 adding a line of best fit and confidence intervals</a></li>
+<li class="chapter" data-level="6.2.6" data-path="T6_plots.html"><a href="T6_plots.html#T6_ScatterPlotly"><i class="fa fa-check"></i><b>6.2.6</b> Plotly Interactive scatterplots!</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="T6_plots.html"><a href="T6_plots.html#histograms-1"><i class="fa fa-check"></i><b>6.3</b> Histograms</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="T6_plots.html"><a href="T6_plots.html#basics"><i class="fa fa-check"></i><b>6.3.1</b> Basics</a></li>
+<li class="chapter" data-level="6.3.2" data-path="T6_plots.html"><a href="T6_plots.html#ggplot2-histograms"><i class="fa fa-check"></i><b>6.3.2</b> ggplot2 histograms</a></li>
+<li class="chapter" data-level="6.3.3" data-path="T6_plots.html"><a href="T6_plots.html#ggstatsplot-histograms"><i class="fa fa-check"></i><b>6.3.3</b> ggstatsplot histograms</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="T6_plots.html"><a href="T6_plots.html#T6_boxplots"><i class="fa fa-check"></i><b>6.4</b> Boxplots</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="T6_plots.html"><a href="T6_plots.html#basics-single-boxplot"><i class="fa fa-check"></i><b>6.4.1</b> Basics (single boxplot)</a></li>
+<li class="chapter" data-level="6.4.2" data-path="T6_plots.html"><a href="T6_plots.html#comparing-groups"><i class="fa fa-check"></i><b>6.4.2</b> Comparing groups</a></li>
+<li class="chapter" data-level="6.4.3" data-path="T6_plots.html"><a href="T6_plots.html#sophisticated"><i class="fa fa-check"></i><b>6.4.3</b> Sophisticated</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="T6_plots.html"><a href="T6_plots.html#violin-plots"><i class="fa fa-check"></i><b>6.5</b> Violin plots</a></li>
+<li class="chapter" data-level="6.6" data-path="T6_plots.html"><a href="T6_plots.html#ridgeline-plots"><i class="fa fa-check"></i><b>6.6</b> Ridgeline plots</a></li>
+<li class="chapter" data-level="6.7" data-path="T6_plots.html"><a href="T6_plots.html#beeswarm-plots"><i class="fa fa-check"></i><b>6.7</b> Beeswarm plots</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="correlation.html"><a href="correlation.html"><i class="fa fa-check"></i><b>7</b> Correlation</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="correlation.html"><a href="correlation.html#basics-1"><i class="fa fa-check"></i><b>7.1</b> Basics</a></li>
+<li class="chapter" data-level="7.2" data-path="correlation.html"><a href="correlation.html#covariancecorrelation-matrix-plots"><i class="fa fa-check"></i><b>7.2</b> Covariance/Correlation matrix plots</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="T8_regression.html"><a href="T8_regression.html"><i class="fa fa-check"></i><b>8</b> Regression</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="T8_regression.html"><a href="T8_regression.html#T8_lmbasics"><i class="fa fa-check"></i><b>8.1</b> “Standard” regression output</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="T8_regression.html"><a href="T8_regression.html#printing-out-the-equation"><i class="fa fa-check"></i><b>8.1.1</b> Printing out the equation</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="T8_regression.html"><a href="T8_regression.html#better-olsrr-regression-output"><i class="fa fa-check"></i><b>8.2</b> “Better” OLSRR regression output</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="T8_regression.html"><a href="T8_regression.html#errors"><i class="fa fa-check"></i><b>8.2.1</b> Errors</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="T9_wrangling.html"><a href="T9_wrangling.html"><i class="fa fa-check"></i><b>9</b> Data Wrangling</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="T9_wrangling.html"><a href="T9_wrangling.html#example-datasets"><i class="fa fa-check"></i><b>9.1</b> Example datasets</a></li>
+<li class="chapter" data-level="9.2" data-path="T9_wrangling.html"><a href="T9_wrangling.html#T9_basics"><i class="fa fa-check"></i><b>9.2</b> Looking at the data itself</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="T9_wrangling.html"><a href="T9_wrangling.html#example"><i class="fa fa-check"></i><b>9.2.1</b> Example</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="T9_wrangling.html"><a href="T9_wrangling.html#summary-statistics"><i class="fa fa-check"></i><b>9.3</b> Summary statistics</a></li>
+<li class="chapter" data-level="9.4" data-path="T9_wrangling.html"><a href="T9_wrangling.html#Missing"><i class="fa fa-check"></i><b>9.4</b> Removing missing values</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="T9_wrangling.html"><a href="T9_wrangling.html#na.omit"><i class="fa fa-check"></i><b>9.4.1</b> na.omit</a></li>
+<li class="chapter" data-level="9.4.2" data-path="T9_wrangling.html"><a href="T9_wrangling.html#missing-values-in-single-columns-complete.cases"><i class="fa fa-check"></i><b>9.4.2</b> Missing values in single columns, complete.cases</a></li>
+<li class="chapter" data-level="9.4.3" data-path="T9_wrangling.html"><a href="T9_wrangling.html#turning-values-into-na"><i class="fa fa-check"></i><b>9.4.3</b> Turning values into NA</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="T9_wrangling.html"><a href="T9_wrangling.html#ignoring-missing-data-in-commands"><i class="fa fa-check"></i><b>9.5</b> Ignoring missing data in commands</a></li>
+<li class="chapter" data-level="9.6" data-path="T9_wrangling.html"><a href="T9_wrangling.html#making-frequency-tables"><i class="fa fa-check"></i><b>9.6</b> Making frequency tables</a></li>
+<li class="chapter" data-level="9.7" data-path="T9_wrangling.html"><a href="T9_wrangling.html#WrangleBasics"><i class="fa fa-check"></i><b>9.7</b> Wrangling basics</a>
+<ul>
+<li class="chapter" data-level="9.7.1" data-path="T9_wrangling.html"><a href="T9_wrangling.html#selecting-a-specific-column"><i class="fa fa-check"></i><b>9.7.1</b> Selecting a specific column</a></li>
+<li class="chapter" data-level="9.7.2" data-path="T9_wrangling.html"><a href="T9_wrangling.html#choosing-values-from-rows-and-columns"><i class="fa fa-check"></i><b>9.7.2</b> Choosing values from rows and columns</a></li>
+<li class="chapter" data-level="9.7.3" data-path="T9_wrangling.html"><a href="T9_wrangling.html#deleting-rows"><i class="fa fa-check"></i><b>9.7.3</b> Deleting rows</a></li>
+</ul></li>
+<li class="chapter" data-level="9.8" data-path="T9_wrangling.html"><a href="T9_wrangling.html#WrangleFilter"><i class="fa fa-check"></i><b>9.8</b> Filtering</a>
+<ul>
+<li class="chapter" data-level="9.8.1" data-path="T9_wrangling.html"><a href="T9_wrangling.html#the-which-command-approach"><i class="fa fa-check"></i><b>9.8.1</b> The which command approach</a></li>
+<li class="chapter" data-level="9.8.2" data-path="T9_wrangling.html"><a href="T9_wrangling.html#the-dplyr-filter-command-tidyverse"><i class="fa fa-check"></i><b>9.8.2</b> The dplyr filter command (tidyverse)</a></li>
+<li class="chapter" data-level="9.8.3" data-path="T9_wrangling.html"><a href="T9_wrangling.html#group_by-command-statistics-per-group"><i class="fa fa-check"></i><b>9.8.3</b> “Group_by” command: statistics per group</a></li>
+</ul></li>
+<li class="chapter" data-level="9.9" data-path="T9_wrangling.html"><a href="T9_wrangling.html#sorting-data"><i class="fa fa-check"></i><b>9.9</b> Sorting data</a>
+<ul>
+<li class="chapter" data-level="9.9.1" data-path="T9_wrangling.html"><a href="T9_wrangling.html#the-dplyr-arrange-command-tidyverse"><i class="fa fa-check"></i><b>9.9.1</b> The dplyr arrange command (tidyverse)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="T10_diagnostics.html"><a href="T10_diagnostics.html"><i class="fa fa-check"></i><b>10</b> Assessing LINE</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="T10_diagnostics.html"><a href="T10_diagnostics.html#T10_basics"><i class="fa fa-check"></i><b>10.1</b> Basic code</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="T10_diagnostics.html"><a href="T10_diagnostics.html#adding-a-new-column-with-the-residuals"><i class="fa fa-check"></i><b>10.1.1</b> Adding a new column with the residuals</a></li>
+<li class="chapter" data-level="10.1.2" data-path="T10_diagnostics.html"><a href="T10_diagnostics.html#code-for-plotting-the-residuals"><i class="fa fa-check"></i><b>10.1.2</b> Code for plotting the residuals</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="T10_diagnostics.html"><a href="T10_diagnostics.html#checking-line"><i class="fa fa-check"></i><b>10.2</b> Checking LINE</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="T10_diagnostics.html"><a href="T10_diagnostics.html#T10.Linearity"><i class="fa fa-check"></i><b>10.2.1</b> Checking Linearity</a></li>
+<li class="chapter" data-level="10.2.2" data-path="T10_diagnostics.html"><a href="T10_diagnostics.html#T10.Variance"><i class="fa fa-check"></i><b>10.2.2</b> Checking Equal Variance/homoscadisity</a></li>
+<li class="chapter" data-level="10.2.3" data-path="T10_diagnostics.html"><a href="T10_diagnostics.html#T10.Normality"><i class="fa fa-check"></i><b>10.2.3</b> Checking Normality</a></li>
+<li class="chapter" data-level="10.2.4" data-path="T10_diagnostics.html"><a href="T10_diagnostics.html#checking-independence"><i class="fa fa-check"></i><b>10.2.4</b> Checking Independence</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="outliers-high-leverage-influential-points.html"><a href="outliers-high-leverage-influential-points.html"><i class="fa fa-check"></i><b>11</b> Outliers, high leverage &amp; influential points</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="outliers-high-leverage-influential-points.html"><a href="outliers-high-leverage-influential-points.html#what-are-they"><i class="fa fa-check"></i><b>11.1</b> What are they</a>
+<ul>
+<li class="chapter" data-level="" data-path="outliers-high-leverage-influential-points.html"><a href="outliers-high-leverage-influential-points.html#an-outlier"><i class="fa fa-check"></i>An “outlier”</a></li>
+<li class="chapter" data-level="" data-path="outliers-high-leverage-influential-points.html"><a href="outliers-high-leverage-influential-points.html#a-high-leverage-point"><i class="fa fa-check"></i>A high leverage point</a></li>
+<li class="chapter" data-level="" data-path="outliers-high-leverage-influential-points.html"><a href="outliers-high-leverage-influential-points.html#an-influential-point"><i class="fa fa-check"></i>An influential point</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="outliers-high-leverage-influential-points.html"><a href="outliers-high-leverage-influential-points.html#how-to-find-them"><i class="fa fa-check"></i><b>11.2</b> How to find them</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="outliers-high-leverage-influential-points.html"><a href="outliers-high-leverage-influential-points.html#residual-vs-leverage-plots"><i class="fa fa-check"></i><b>11.2.1</b> Residual vs leverage plots</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="outliers-high-leverage-influential-points.html"><a href="outliers-high-leverage-influential-points.html#examples"><i class="fa fa-check"></i><b>11.3</b> Examples</a>
+<ul>
+<li class="chapter" data-level="" data-path="outliers-high-leverage-influential-points.html"><a href="outliers-high-leverage-influential-points.html#no-outliers-influential-or-high-leverage-points"><i class="fa fa-check"></i>No outliers, influential or high leverage points</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="outliers-high-leverage-influential-points.html"><a href="outliers-high-leverage-influential-points.html#how-to-find-them-1"><i class="fa fa-check"></i><b>11.4</b> How to find them</a>
+<ul>
+<li class="chapter" data-level="11.4.1" data-path="outliers-high-leverage-influential-points.html"><a href="outliers-high-leverage-influential-points.html#assessing-outliers-via-visual-inspection"><i class="fa fa-check"></i><b>11.4.1</b> Assessing outliers via visual inspection</a></li>
+<li class="chapter" data-level="" data-path="outliers-high-leverage-influential-points.html"><a href="outliers-high-leverage-influential-points.html#no-outliers-influential-or-high-leverage-points-1"><i class="fa fa-check"></i>No outliers, influential or high leverage points</a></li>
+<li class="chapter" data-level="" data-path="outliers-high-leverage-influential-points.html"><a href="outliers-high-leverage-influential-points.html#an-outlier-with-no-leverage"><i class="fa fa-check"></i>An outlier with no leverage</a></li>
+<li class="chapter" data-level="" data-path="outliers-high-leverage-influential-points.html"><a href="outliers-high-leverage-influential-points.html#a-high-leverage-point-that-isnt-an-outlier"><i class="fa fa-check"></i>A high leverage point that isn’t an outlier</a></li>
+<li class="chapter" data-level="" data-path="outliers-high-leverage-influential-points.html"><a href="outliers-high-leverage-influential-points.html#an-influential-high-leverage-outlier"><i class="fa fa-check"></i>An influential high leverage outlier</a></li>
+<li class="chapter" data-level="11.4.2" data-path="outliers-high-leverage-influential-points.html"><a href="outliers-high-leverage-influential-points.html#detecting-outliers-via-plots"><i class="fa fa-check"></i><b>11.4.2</b> Detecting outliers via plots</a></li>
+<li class="chapter" data-level="11.4.3" data-path="outliers-high-leverage-influential-points.html"><a href="outliers-high-leverage-influential-points.html#detecting-influential-points"><i class="fa fa-check"></i><b>11.4.3</b> Detecting influential points</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="confidence-and-prediction-intervals.html"><a href="confidence-and-prediction-intervals.html"><i class="fa fa-check"></i><b>12</b> Confidence and Prediction Intervals</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="confidence-and-prediction-intervals.html"><a href="confidence-and-prediction-intervals.html#what-are-they-1"><i class="fa fa-check"></i><b>12.1</b> What are they?</a></li>
+<li class="chapter" data-level="12.2" data-path="confidence-and-prediction-intervals.html"><a href="confidence-and-prediction-intervals.html#calculating-a-confidence-interval"><i class="fa fa-check"></i><b>12.2</b> Calculating a confidence interval</a></li>
+<li class="chapter" data-level="12.3" data-path="confidence-and-prediction-intervals.html"><a href="confidence-and-prediction-intervals.html#calculating-a-prediction-interval"><i class="fa fa-check"></i><b>12.3</b> Calculating a prediction interval</a></li>
+<li class="chapter" data-level="12.4" data-path="confidence-and-prediction-intervals.html"><a href="confidence-and-prediction-intervals.html#help-my-code-doesnt-work"><i class="fa fa-check"></i><b>12.4</b> HELP! MY CODE DOESN’T WORK</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="confidence-and-prediction-intervals.html"><a href="confidence-and-prediction-intervals.html#predictormodel-name-spelt-wrong"><i class="fa fa-check"></i><b>12.4.1</b> Predictor/model name spelt wrong</a></li>
+<li class="chapter" data-level="12.4.2" data-path="confidence-and-prediction-intervals.html"><a href="confidence-and-prediction-intervals.html#your-original-lm-command"><i class="fa fa-check"></i><b>12.4.2</b> Your original lm command</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="S.Tutorial_Transformations.html"><a href="S.Tutorial_Transformations.html"><i class="fa fa-check"></i><b>13</b> Transformations</a></li>
+<li class="chapter" data-level="14" data-path="S.Tutorial_GLM.html"><a href="S.Tutorial_GLM.html"><i class="fa fa-check"></i><b>14</b> GLM - Logistic Regression</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="S.Tutorial_GLM.html"><a href="S.Tutorial_GLM.html#great-r-tutorial"><i class="fa fa-check"></i><b>14.1</b> Great R Tutorial</a></li>
+<li class="chapter" data-level="14.2" data-path="S.Tutorial_GLM.html"><a href="S.Tutorial_GLM.html#setting-up-the-dataexample"><i class="fa fa-check"></i><b>14.2</b> Setting up the data/example</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="S.Tutorial_GLM.html"><a href="S.Tutorial_GLM.html#setting-up-categorical-columns"><i class="fa fa-check"></i><b>14.2.1</b> Setting up categorical columns</a></li>
+<li class="chapter" data-level="14.2.2" data-path="S.Tutorial_GLM.html"><a href="S.Tutorial_GLM.html#filtering-data-exploratory-plots"><i class="fa fa-check"></i><b>14.2.2</b> Filtering data &amp; exploratory plots</a></li>
+<li class="chapter" data-level="14.2.3" data-path="S.Tutorial_GLM.html"><a href="S.Tutorial_GLM.html#fiting-a-logistic-model"><i class="fa fa-check"></i><b>14.2.3</b> Fiting a logistic model</a></li>
+<li class="chapter" data-level="14.2.4" data-path="S.Tutorial_GLM.html"><a href="S.Tutorial_GLM.html#model-summary"><i class="fa fa-check"></i><b>14.2.4</b> Model summary</a></li>
+<li class="chapter" data-level="14.2.5" data-path="S.Tutorial_GLM.html"><a href="S.Tutorial_GLM.html#predicting-new-values-and-visualising-results"><i class="fa fa-check"></i><b>14.2.5</b> Predicting new values and visualising results</a></li>
+<li class="chapter" data-level="14.2.6" data-path="S.Tutorial_GLM.html"><a href="S.Tutorial_GLM.html#wald-test-for-significance"><i class="fa fa-check"></i><b>14.2.6</b> Wald test for significance</a></li>
+<li class="chapter" data-level="14.2.7" data-path="S.Tutorial_GLM.html"><a href="S.Tutorial_GLM.html#goodness-of-fit"><i class="fa fa-check"></i><b>14.2.7</b> Goodness of fit</a></li>
+<li class="chapter" data-level="14.2.8" data-path="S.Tutorial_GLM.html"><a href="S.Tutorial_GLM.html#assessing-model-residuals"><i class="fa fa-check"></i><b>14.2.8</b> Assessing model residuals</a></li>
+<li class="chapter" data-level="14.2.9" data-path="S.Tutorial_GLM.html"><a href="S.Tutorial_GLM.html#interactions-with-other-predictors"><i class="fa fa-check"></i><b>14.2.9</b> Interactions with other predictors</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="basic-model-comparisons.html"><a href="basic-model-comparisons.html"><i class="fa fa-check"></i><b>15</b> Basic model comparisons</a>
+<ul>
+<li class="chapter" data-level="" data-path="basic-model-comparisons.html"><a href="basic-model-comparisons.html#is-the-model-appropriate-line-influential-outliers"><i class="fa fa-check"></i>Is the model appropriate? LINE &amp; influential outliers</a></li>
+<li class="chapter" data-level="" data-path="basic-model-comparisons.html"><a href="basic-model-comparisons.html#coefficient-of-determination-r2"><i class="fa fa-check"></i>Coefficient of Determination <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="" data-path="basic-model-comparisons.html"><a href="basic-model-comparisons.html#mse-rmse-root-mean-squared-error"><i class="fa fa-check"></i>MSE, RMSE, (root) mean squared error</a></li>
+<li class="chapter" data-level="" data-path="basic-model-comparisons.html"><a href="basic-model-comparisons.html#information-criteria-aic"><i class="fa fa-check"></i>Information criteria: AIC</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="multiple-regression-model-fitting.html"><a href="multiple-regression-model-fitting.html"><i class="fa fa-check"></i><b>16</b> Multiple regression &amp; model fitting</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="multiple-regression-model-fitting.html"><a href="multiple-regression-model-fitting.html#mlr"><i class="fa fa-check"></i><b>16.1</b> MLR</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="finding-the-optimal-model.html"><a href="finding-the-optimal-model.html"><i class="fa fa-check"></i><b>17</b> Finding the “optimal model”</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="finding-the-optimal-model.html"><a href="finding-the-optimal-model.html#best-subsets"><i class="fa fa-check"></i><b>17.1</b> Best subsets</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">STAT462 Lab Book 2024</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="T9_wrangling" class="section level1 hasAnchor" number="9">
+<h1><span class="header-section-number">Chapter 9</span> Data Wrangling<a href="T9_wrangling.html#T9_wrangling" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="example-datasets" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> Example datasets<a href="T9_wrangling.html#example-datasets" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Here I will show a few examples for the houses dataset we were using in lectures. I will also use a separate dataset on spring frost dates.</p>
+<p><br><br></p>
+</div>
+<div id="T9_basics" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> Looking at the data itself<a href="T9_wrangling.html#T9_basics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To have a look at the data there are many options. You can:</p>
+<ul>
+<li><p>Click on its NAME in the environment tab (not the blue arrow)</p>
+<p><br></p></li>
+<li><p>Type its name into the console or into a code chunk</p>
+<ul>
+<li><p>(e.g. I would type, type <code>HousesNY</code> into the console or a code chunk)</p>
+<p><br></p></li>
+</ul></li>
+<li><p>Run the command <code>View(tablename)</code> IN THE CONSOLE</p>
+<ul>
+<li><p>(View is a command from the tidyverse package).<br></p></li>
+<li><p>This will open the data in a new tab.</p>
+<p><br></p></li>
+</ul></li>
+<li><p>Run the command <code>head(``tablename``)</code> to see the first 6 lines or so (good for quick checks)</p>
+<p><br></p></li>
+<li><p>Run the command <code>glimpse(``tablename``)</code> to get a nice summary.</p>
+<p><br></p></li>
+<li><p>Run the command <code>names(``tablename``)</code> to get the column names.</p></li>
+</ul>
+<div id="example" class="section level3 hasAnchor" number="9.2.1">
+<h3><span class="header-section-number">9.2.1</span> Example<a href="T9_wrangling.html#example" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="T9_wrangling.html#cb101-1" tabindex="-1"></a><span class="co"># Note, there are sometimes more columns to the right, use the arrow to see</span></span>
+<span id="cb101-2"><a href="T9_wrangling.html#cb101-2" tabindex="-1"></a><span class="fu">head</span>(HousesNY)</span></code></pre></div>
+<pre><code>##   Price Beds Baths  Size  Lot
+## 1  57.6    3     2 0.960 1.30
+## 2 120.0    6     2 2.786 0.23
+## 3 150.0    4     2 1.704 0.27
+## 4 143.0    3     2 1.200 0.80
+## 5  92.5    3     1 1.329 0.42
+## 6  50.0    2     1 0.974 0.34</code></pre>
+<p>To see what the column names are, you can use the <code>names(dataset)</code> command</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="T9_wrangling.html#cb103-1" tabindex="-1"></a><span class="fu">names</span>(HousesNY)</span></code></pre></div>
+<pre><code>## [1] &quot;Price&quot; &quot;Beds&quot;  &quot;Baths&quot; &quot;Size&quot;  &quot;Lot&quot;</code></pre>
+<p>Or the glimpse command:</p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="T9_wrangling.html#cb105-1" tabindex="-1"></a><span class="fu">glimpse</span>(HousesNY)</span></code></pre></div>
+<pre><code>## Rows: 53
+## Columns: 5
+## $ Price &lt;dbl&gt; 57.6, 120.0, 150.0, 143.0, 92.5, 50.0, 89.0, 140.0, 197.5, 125.1…
+## $ Beds  &lt;int&gt; 3, 6, 4, 3, 3, 2, 2, 4, 4, 3, 3, 3, 3, 4, 3, 3, 4, 3, 4, 3, 4, 4…
+## $ Baths &lt;dbl&gt; 2.0, 2.0, 2.0, 2.0, 1.0, 1.0, 2.0, 3.0, 2.5, 2.0, 2.0, 1.0, 2.0,…
+## $ Size  &lt;dbl&gt; 0.960, 2.786, 1.704, 1.200, 1.329, 0.974, 1.029, 2.818, 2.268, 1…
+## $ Lot   &lt;dbl&gt; 1.30, 0.23, 0.27, 0.80, 0.42, 0.34, 0.29, 0.21, 1.00, 0.30, 1.30…</code></pre>
+<p>To see how many columns and rows there are, you can use the <code>nrow()</code> and <code>ncol()</code> commands</p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="T9_wrangling.html#cb107-1" tabindex="-1"></a><span class="fu">nrow</span>(HousesNY)</span></code></pre></div>
+<pre><code>## [1] 53</code></pre>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="T9_wrangling.html#cb109-1" tabindex="-1"></a><span class="fu">ncol</span>(HousesNY)</span></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<hr />
+<p><br><br></p>
+</div>
+</div>
+<div id="summary-statistics" class="section level2 hasAnchor" number="9.3">
+<h2><span class="header-section-number">9.3</span> Summary statistics<a href="T9_wrangling.html#summary-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To look at the summaries there are a load of options. Choose your favourites:</p>
+<ul>
+<li><code>summary(dataset)</code></li>
+<li><code>skim(dataset)</code> in the skimr package</li>
+<li><code>summarize(dataset)</code> in the papeR package. This looks pretty powerful, I’m just learning it</li>
+</ul>
+<p>None are better or worse than others - simply choose what works for you in the moment.</p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="T9_wrangling.html#cb111-1" tabindex="-1"></a><span class="fu">summary</span>(HousesNY)</span></code></pre></div>
+<pre><code>##      Price            Beds           Baths            Size      
+##  Min.   : 38.5   Min.   :2.000   Min.   :1.000   Min.   :0.712  
+##  1st Qu.: 82.7   1st Qu.:3.000   1st Qu.:1.500   1st Qu.:1.296  
+##  Median :107.0   Median :3.000   Median :2.000   Median :1.528  
+##  Mean   :113.6   Mean   :3.396   Mean   :1.858   Mean   :1.678  
+##  3rd Qu.:141.0   3rd Qu.:4.000   3rd Qu.:2.000   3rd Qu.:2.060  
+##  Max.   :197.5   Max.   :6.000   Max.   :3.500   Max.   :3.100  
+##       Lot        
+##  Min.   :0.0000  
+##  1st Qu.:0.2700  
+##  Median :0.4200  
+##  Mean   :0.7985  
+##  3rd Qu.:1.1000  
+##  Max.   :3.5000</code></pre>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="T9_wrangling.html#cb113-1" tabindex="-1"></a><span class="fu">library</span>(skimr) <span class="co"># you would need to install this</span></span>
+<span id="cb113-2"><a href="T9_wrangling.html#cb113-2" tabindex="-1"></a><span class="fu">skim</span>(HousesNY)</span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-7">Table 9.1: </span>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td align="left">Name</td>
+<td align="left">HousesNY</td>
+</tr>
+<tr class="even">
+<td align="left">Number of rows</td>
+<td align="left">53</td>
+</tr>
+<tr class="odd">
+<td align="left">Number of columns</td>
+<td align="left">5</td>
+</tr>
+<tr class="even">
+<td align="left">_______________________</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Column type frequency:</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">numeric</td>
+<td align="left">5</td>
+</tr>
+<tr class="odd">
+<td align="left">________________________</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Group variables</td>
+<td align="left">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table style="width:100%;">
+<colgroup>
+<col width="15%" />
+<col width="11%" />
+<col width="15%" />
+<col width="7%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="7%" />
+<col width="7%" />
+<col width="6%" />
+<col width="6%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">p0</th>
+<th align="right">p25</th>
+<th align="right">p50</th>
+<th align="right">p75</th>
+<th align="right">p100</th>
+<th align="left">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Price</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">113.63</td>
+<td align="right">41.43</td>
+<td align="right">38.50</td>
+<td align="right">82.70</td>
+<td align="right">107.00</td>
+<td align="right">141.00</td>
+<td align="right">197.5</td>
+<td align="left">▃▇▅▃▃</td>
+</tr>
+<tr class="even">
+<td align="left">Beds</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">3.40</td>
+<td align="right">0.79</td>
+<td align="right">2.00</td>
+<td align="right">3.00</td>
+<td align="right">3.00</td>
+<td align="right">4.00</td>
+<td align="right">6.0</td>
+<td align="left">▂▇▆▁▁</td>
+</tr>
+<tr class="odd">
+<td align="left">Baths</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">1.86</td>
+<td align="right">0.65</td>
+<td align="right">1.00</td>
+<td align="right">1.50</td>
+<td align="right">2.00</td>
+<td align="right">2.00</td>
+<td align="right">3.5</td>
+<td align="left">▅▇▁▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">Size</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">1.68</td>
+<td align="right">0.60</td>
+<td align="right">0.71</td>
+<td align="right">1.30</td>
+<td align="right">1.53</td>
+<td align="right">2.06</td>
+<td align="right">3.1</td>
+<td align="left">▃▇▅▂▂</td>
+</tr>
+<tr class="odd">
+<td align="left">Lot</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0.80</td>
+<td align="right">0.76</td>
+<td align="right">0.00</td>
+<td align="right">0.27</td>
+<td align="right">0.42</td>
+<td align="right">1.10</td>
+<td align="right">3.5</td>
+<td align="left">▇▃▂▁▁</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="T9_wrangling.html#cb114-1" tabindex="-1"></a><span class="fu">library</span>(pillar) <span class="co"># you would need to install this</span></span>
+<span id="cb114-2"><a href="T9_wrangling.html#cb114-2" tabindex="-1"></a><span class="fu">glimpse</span>(HousesNY)</span></code></pre></div>
+<pre><code>## Rows: 53
+## Columns: 5
+## $ Price &lt;dbl&gt; 57.6, 120.0, 150.0, 143.0, 92.5, 50.0, 89.0, 140.0, 197.5, 125.1…
+## $ Beds  &lt;int&gt; 3, 6, 4, 3, 3, 2, 2, 4, 4, 3, 3, 3, 3, 4, 3, 3, 4, 3, 4, 3, 4, 4…
+## $ Baths &lt;dbl&gt; 2.0, 2.0, 2.0, 2.0, 1.0, 1.0, 2.0, 3.0, 2.5, 2.0, 2.0, 1.0, 2.0,…
+## $ Size  &lt;dbl&gt; 0.960, 2.786, 1.704, 1.200, 1.329, 0.974, 1.029, 2.818, 2.268, 1…
+## $ Lot   &lt;dbl&gt; 1.30, 0.23, 0.27, 0.80, 0.42, 0.34, 0.29, 0.21, 1.00, 0.30, 1.30…</code></pre>
+<p>or</p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="T9_wrangling.html#cb116-1" tabindex="-1"></a><span class="fu">str</span>(HousesNY)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    53 obs. of  5 variables:
+##  $ Price: num  57.6 120 150 143 92.5 ...
+##  $ Beds : int  3 6 4 3 3 2 2 4 4 3 ...
+##  $ Baths: num  2 2 2 2 1 1 2 3 2.5 2 ...
+##  $ Size : num  0.96 2.79 1.7 1.2 1.33 ...
+##  $ Lot  : num  1.3 0.23 0.27 0.8 0.42 0.34 0.29 0.21 1 0.3 ...</code></pre>
+<p>To see what the column names are, you can use the names(dataset) command</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="T9_wrangling.html#cb118-1" tabindex="-1"></a><span class="fu">names</span>(HousesNY)</span></code></pre></div>
+<pre><code>## [1] &quot;Price&quot; &quot;Beds&quot;  &quot;Baths&quot; &quot;Size&quot;  &quot;Lot&quot;</code></pre>
+<p>To print the first few rows</p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="T9_wrangling.html#cb120-1" tabindex="-1"></a><span class="fu">head</span>(HousesNY)</span></code></pre></div>
+<pre><code>##   Price Beds Baths  Size  Lot
+## 1  57.6    3     2 0.960 1.30
+## 2 120.0    6     2 2.786 0.23
+## 3 150.0    4     2 1.704 0.27
+## 4 143.0    3     2 1.200 0.80
+## 5  92.5    3     1 1.329 0.42
+## 6  50.0    2     1 0.974 0.34</code></pre>
+<p>To find the number of rows and columns</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="T9_wrangling.html#cb122-1" tabindex="-1"></a><span class="fu">nrow</span>(HousesNY)</span></code></pre></div>
+<pre><code>## [1] 53</code></pre>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="T9_wrangling.html#cb124-1" tabindex="-1"></a><span class="fu">ncol</span>(HousesNY)</span></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="T9_wrangling.html#cb126-1" tabindex="-1"></a><span class="co">#or both dimensions</span></span>
+<span id="cb126-2"><a href="T9_wrangling.html#cb126-2" tabindex="-1"></a><span class="fu">dim</span>(HousesNY)</span></code></pre></div>
+<pre><code>## [1] 53  5</code></pre>
+<p>Or you can do things manually, using the $ symbol to choose a column. All of this is for the price column</p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="T9_wrangling.html#cb128-1" tabindex="-1"></a><span class="fu">mean</span>(HousesNY<span class="sc">$</span>Price)</span></code></pre></div>
+<pre><code>## [1] 113.6321</code></pre>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="T9_wrangling.html#cb130-1" tabindex="-1"></a><span class="fu">median</span>(HousesNY<span class="sc">$</span>Price)</span></code></pre></div>
+<pre><code>## [1] 107</code></pre>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="T9_wrangling.html#cb132-1" tabindex="-1"></a><span class="fu">mode</span>(HousesNY<span class="sc">$</span>Price)</span></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="T9_wrangling.html#cb134-1" tabindex="-1"></a><span class="fu">sd</span>(HousesNY<span class="sc">$</span>Price)</span></code></pre></div>
+<pre><code>## [1] 41.43006</code></pre>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="T9_wrangling.html#cb136-1" tabindex="-1"></a><span class="fu">var</span>(HousesNY<span class="sc">$</span>Price)</span></code></pre></div>
+<pre><code>## [1] 1716.45</code></pre>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="T9_wrangling.html#cb138-1" tabindex="-1"></a><span class="fu">IQR</span>(HousesNY<span class="sc">$</span>Price)</span></code></pre></div>
+<pre><code>## [1] 58.3</code></pre>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="T9_wrangling.html#cb140-1" tabindex="-1"></a><span class="fu">range</span>(HousesNY<span class="sc">$</span>Price)</span></code></pre></div>
+<pre><code>## [1]  38.5 197.5</code></pre>
+<hr />
+<p><br><br></p>
+</div>
+<div id="Missing" class="section level2 hasAnchor" number="9.4">
+<h2><span class="header-section-number">9.4</span> Removing missing values<a href="T9_wrangling.html#Missing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="na.omit" class="section level3 hasAnchor" number="9.4.1">
+<h3><span class="header-section-number">9.4.1</span> na.omit<a href="T9_wrangling.html#na.omit" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The na.omit command will remove any row with ANY missing value.</p>
+<p>Note I’m overwriting my variable HousesNY with the new one. It’s up to you if you want to do this or make a new variable</p>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="T9_wrangling.html#cb142-1" tabindex="-1"></a>HousesNY <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(HousesNY)</span></code></pre></div>
+<p><br><br></p>
+</div>
+<div id="missing-values-in-single-columns-complete.cases" class="section level3 hasAnchor" number="9.4.2">
+<h3><span class="header-section-number">9.4.2</span> Missing values in single columns, complete.cases<a href="T9_wrangling.html#missing-values-in-single-columns-complete.cases" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If you want to only remove rows with missing values in a single column, we can use the complete cases command</p>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="T9_wrangling.html#cb143-1" tabindex="-1"></a>HousesNY <span class="ot">&lt;-</span> HousesNY[<span class="fu">complete.cases</span>(HousesNY<span class="sc">$</span>Price), ]</span></code></pre></div>
+<p>E.g. take the HousesNY table and ONLY include values where the price data is not missing. Note, this can be any column name at all.</p>
+<p><br><br></p>
+</div>
+<div id="turning-values-into-na" class="section level3 hasAnchor" number="9.4.3">
+<h3><span class="header-section-number">9.4.3</span> Turning values into NA<a href="T9_wrangling.html#turning-values-into-na" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Sometimes, you have -999 or something as your missing mark. R expects them to be NA.</p>
+<p>You can apply a RULE using the filter command below or like this to make them actually NAs</p>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="T9_wrangling.html#cb144-1" tabindex="-1"></a>HousesNY<span class="sc">$</span>Price[HousesNY<span class="sc">$</span>Price <span class="sc">&lt;</span> <span class="dv">0</span>]   <span class="ot">&lt;-</span> <span class="cn">NA</span></span></code></pre></div>
+<p>E.g. here I select all the prices that are less than 0 (e.g impossible) and set them to NA.</p>
+<p><br></p>
+</div>
+</div>
+<div id="ignoring-missing-data-in-commands" class="section level2 hasAnchor" number="9.5">
+<h2><span class="header-section-number">9.5</span> Ignoring missing data in commands<a href="T9_wrangling.html#ignoring-missing-data-in-commands" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>There are missing values in some datasets - and by default, R will set the answer to statistics to also be missing.</p>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="T9_wrangling.html#cb145-1" tabindex="-1"></a><span class="co"># Create some test data</span></span>
+<span id="cb145-2"><a href="T9_wrangling.html#cb145-2" tabindex="-1"></a>test <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">A=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
+<span id="cb145-3"><a href="T9_wrangling.html#cb145-3" tabindex="-1"></a>                   <span class="at">B=</span><span class="fu">c</span>(<span class="cn">NA</span>,<span class="dv">3</span>,<span class="dv">1</span>))</span>
+<span id="cb145-4"><a href="T9_wrangling.html#cb145-4" tabindex="-1"></a><span class="fu">print</span>(test)</span></code></pre></div>
+<pre><code>##   A  B
+## 1 1 NA
+## 2 3  3
+## 3 4  1</code></pre>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="T9_wrangling.html#cb147-1" tabindex="-1"></a><span class="co"># Take the mean of column B</span></span>
+<span id="cb147-2"><a href="T9_wrangling.html#cb147-2" tabindex="-1"></a><span class="fu">mean</span>(test<span class="sc">$</span>B)</span></code></pre></div>
+<pre><code>## [1] NA</code></pre>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="T9_wrangling.html#cb149-1" tabindex="-1"></a><span class="co"># Take the correlation between A and B</span></span>
+<span id="cb149-2"><a href="T9_wrangling.html#cb149-2" tabindex="-1"></a><span class="fu">cor</span>(test<span class="sc">$</span>A,test<span class="sc">$</span>B)</span></code></pre></div>
+<pre><code>## [1] NA</code></pre>
+<p>To ignore them in a given command, try adding ,na.rm=TRUE to the command e.g.</p>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="T9_wrangling.html#cb151-1" tabindex="-1"></a><span class="fu">mean</span>(test<span class="sc">$</span>B, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<p>or sometimes I look in the help file (or on google) for a slightly different terminology.</p>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="T9_wrangling.html#cb153-1" tabindex="-1"></a><span class="co">#the cor command doesn&#39;t follow the pattern.</span></span>
+<span id="cb153-2"><a href="T9_wrangling.html#cb153-2" tabindex="-1"></a></span>
+<span id="cb153-3"><a href="T9_wrangling.html#cb153-3" tabindex="-1"></a><span class="fu">cor</span>(test<span class="sc">$</span>A,test<span class="sc">$</span>B,<span class="at">use =</span> <span class="st">&quot;complete.obs&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] -1</code></pre>
+</div>
+<div id="making-frequency-tables" class="section level2 hasAnchor" number="9.6">
+<h2><span class="header-section-number">9.6</span> Making frequency tables<a href="T9_wrangling.html#making-frequency-tables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Sometimes we want to see how many rows there are in different categories. The easiest way to do this is using the table command. For example, in our New York data, we can see how many houses there are with each number of beds using</p>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="T9_wrangling.html#cb155-1" tabindex="-1"></a><span class="fu">table</span>(HousesNY<span class="sc">$</span>Beds)</span></code></pre></div>
+<pre><code>## 
+##  2  3  4  5  6 
+##  5 26 19  2  1</code></pre>
+<p>So there are 19 rows in our dataset where the Beds column says 4 (AKA 19 houses in our sample with 4 beds). Or we can look at a 2 dimensional table</p>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="T9_wrangling.html#cb157-1" tabindex="-1"></a><span class="fu">table</span>(HousesNY<span class="sc">$</span>Beds, HousesNY<span class="sc">$</span>Baths)</span></code></pre></div>
+<pre><code>##    
+##      1 1.5  2 2.5  3 3.5
+##   2  2   0  3   0  0   0
+##   3  8   3 14   0  1   0
+##   4  3   1 10   1  3   1
+##   5  0   0  1   0  0   1
+##   6  0   0  1   0  0   0</code></pre>
+<p>So there are 10 houses with 4 beds and 2 baths</p>
+<p>To make these look more professional there are a number of packages you can install and use. For example, ztable will take the output of table and format it in a pretty way. This will look TERRIBLE when you run R as it’s making html code. But when you press knit it will look beautiful</p>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="T9_wrangling.html#cb159-1" tabindex="-1"></a><span class="co"># don&#39;t include the install line in your code, run it in the console</span></span>
+<span id="cb159-2"><a href="T9_wrangling.html#cb159-2" tabindex="-1"></a><span class="co"># install.package(&quot;ztable&quot;)</span></span>
+<span id="cb159-3"><a href="T9_wrangling.html#cb159-3" tabindex="-1"></a></span>
+<span id="cb159-4"><a href="T9_wrangling.html#cb159-4" tabindex="-1"></a><span class="fu">library</span>(ztable)</span>
+<span id="cb159-5"><a href="T9_wrangling.html#cb159-5" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
+<span id="cb159-6"><a href="T9_wrangling.html#cb159-6" tabindex="-1"></a><span class="fu">options</span>(<span class="at">ztable.type=</span><span class="st">&quot;html&quot;</span>)</span>
+<span id="cb159-7"><a href="T9_wrangling.html#cb159-7" tabindex="-1"></a></span>
+<span id="cb159-8"><a href="T9_wrangling.html#cb159-8" tabindex="-1"></a>mytable <span class="ot">&lt;-</span> <span class="fu">table</span>(HousesNY<span class="sc">$</span>Beds, HousesNY<span class="sc">$</span>Baths)</span>
+<span id="cb159-9"><a href="T9_wrangling.html#cb159-9" tabindex="-1"></a></span>
+<span id="cb159-10"><a href="T9_wrangling.html#cb159-10" tabindex="-1"></a>my_ztable <span class="ot">=</span><span class="fu">ztable</span>(mytable) </span>
+<span id="cb159-11"><a href="T9_wrangling.html#cb159-11" tabindex="-1"></a><span class="fu">print</span>(my_ztable,<span class="at">caption=</span><span class="st">&quot;Table 1. Basic Table&quot;</span>)</span></code></pre></div>
+<head>
+<style>
+        table {
+              font-family: times ;
+color:  black ;
+text-align: right;}
+        th {
+              padding: 1px 1px 5px 5px;
+            }
+        td {
+             padding: 1px 1px 5px 5px; }
+      </style>
+</head>
+<table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;">
+<caption style="text-align:center;">
+Table 1. Basic Table
+</caption>
+<tr>
+<th style="border-left: 0px solid black;background-color: #FFFFFF;border-top: 2px solid gray;border-bottom: 1px solid gray;">
+ 
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">1</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">1.5</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">2</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">2.5</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">3</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">3.5</th>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; ">
+2
+</td>
+<td align="right" style="border-left: 0px solid black;">
+2
+</td>
+<td align="right" style="border-left: 0px solid black;">
+0
+</td>
+<td align="right" style="border-left: 0px solid black;">
+3
+</td>
+<td align="right" style="border-left: 0px solid black;">
+0
+</td>
+<td align="right" style="border-left: 0px solid black;">
+0
+</td>
+<td align="right" style="border-left: 0px solid black;border-right:0px solid black;">
+0
+</td>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; border-top: hidden;">
+3
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+8
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+3
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+14
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+0
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+1
+</td>
+<td align="right" style="border-left: 0px solid black;border-right:0px solid black;border-top: hidden;">
+0
+</td>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; border-top: hidden;">
+4
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+3
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+1
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+10
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+1
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+3
+</td>
+<td align="right" style="border-left: 0px solid black;border-right:0px solid black;border-top: hidden;">
+1
+</td>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; border-top: hidden;">
+5
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+0
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+0
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+1
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+0
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+0
+</td>
+<td align="right" style="border-left: 0px solid black;border-right:0px solid black;border-top: hidden;">
+1
+</td>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; border-top: hidden;">
+6
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+0
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+0
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+1
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+0
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+0
+</td>
+<td align="right" style="border-left: 0px solid black;border-right:0px solid black;border-top: hidden;">
+0
+</td>
+</tr>
+<tr>
+<td colspan="7" align="left" style="font-size:9pt ;border-top: 1px solid black; border-bottom: hidden;">
+</td>
+</tr>
+</table>
+<p><br><br></p>
+</div>
+<div id="WrangleBasics" class="section level2 hasAnchor" number="9.7">
+<h2><span class="header-section-number">9.7</span> Wrangling basics<a href="T9_wrangling.html#WrangleBasics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="selecting-a-specific-column" class="section level3 hasAnchor" number="9.7.1">
+<h3><span class="header-section-number">9.7.1</span> Selecting a specific column<a href="T9_wrangling.html#selecting-a-specific-column" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Here I am using the NYHouses data as an example. Sometimes we want to deal with only one specific column in our spreadsheet/dataframe, for example applying the mean/standard deviation/inter-quartile range command to say just the Price column.</p>
+<p>To do this, we use the $ symbol. For example, here I’m simply selecting the data in the elevation column only and saving it to a new variable called elevationdata.</p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="T9_wrangling.html#cb160-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;HousesNY&quot;</span>)</span>
+<span id="cb160-2"><a href="T9_wrangling.html#cb160-2" tabindex="-1"></a>price <span class="ot">&lt;-</span> HousesNY<span class="sc">$</span>Price</span>
+<span id="cb160-3"><a href="T9_wrangling.html#cb160-3" tabindex="-1"></a></span>
+<span id="cb160-4"><a href="T9_wrangling.html#cb160-4" tabindex="-1"></a>price</span></code></pre></div>
+<p>Try it yourself. You should have seen that as you typed the $, it gave you all the available column names to choose from.</p>
+<p>This means we can now easily summarise specific columns. For example:</p>
+<ul>
+<li><code>summary(HousesNY)</code> will create a summary of the whole spreadsheet,</li>
+<li><code>summary(HousesNY$Price)</code> will only summarise the Price column.<br />
+</li>
+<li><code>mean(HousesNY$Price)</code> will take the mean of the Price column in the HousesNY dataframe.</li>
+</ul>
+<p><br><br></p>
+</div>
+<div id="choosing-values-from-rows-and-columns" class="section level3 hasAnchor" number="9.7.2">
+<h3><span class="header-section-number">9.7.2</span> Choosing values from rows and columns<a href="T9_wrangling.html#choosing-values-from-rows-and-columns" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Sometimes, we do not want to analyse at the entire data.frame. Instead, we would like to only look at one (or more) columns or rows.</p>
+<p>There are several ways we can select data.</p>
+<ul>
+<li><p>To choose a specific column, we can use the <code>$</code> symbol to select its name (as described above)</p></li>
+<li><p>If you know which number rows or columns you want, you can use <strong>square brackets</strong> to numerically select data.</p></li>
+</ul>
+<p>Essentially our data follows the format: tablename<span class="math display">\[ROWS,COLUMNS\]</span></p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="T9_wrangling.html#cb161-1" tabindex="-1"></a><span class="co"># reading in some new data</span></span>
+<span id="cb161-2"><a href="T9_wrangling.html#cb161-2" tabindex="-1"></a>frost    <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="st">&quot;Data_frostdata.xlsx&quot;</span>)</span>
+<span id="cb161-3"><a href="T9_wrangling.html#cb161-3" tabindex="-1"></a></span>
+<span id="cb161-4"><a href="T9_wrangling.html#cb161-4" tabindex="-1"></a><span class="co"># This will select the data in the 5th row and 7th column</span></span>
+<span id="cb161-5"><a href="T9_wrangling.html#cb161-5" tabindex="-1"></a>frost[<span class="dv">5</span>,<span class="dv">7</span>]</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 1
+##   Elevation
+##       &lt;dbl&gt;
+## 1       195</code></pre>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="T9_wrangling.html#cb163-1" tabindex="-1"></a><span class="co"># This will select the 2nd row and ALL the columns </span></span>
+<span id="cb163-2"><a href="T9_wrangling.html#cb163-2" tabindex="-1"></a>frost[<span class="dv">2</span>,]</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 8
+##   Station State Type_Fake Avg_DOY_SpringFrost Latitude Longitude Elevation
+##   &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;                   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Union   AL    City                     82.3     32.0     -85.8       440
+## # ℹ 1 more variable: Dist_to_Coast &lt;dbl&gt;</code></pre>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="T9_wrangling.html#cb165-1" tabindex="-1"></a><span class="co"># This will select the 3rd column and ALL the rows</span></span>
+<span id="cb165-2"><a href="T9_wrangling.html#cb165-2" tabindex="-1"></a>frost[,<span class="dv">3</span>]</span></code></pre></div>
+<pre><code>## # A tibble: 76 × 1
+##    Type_Fake                    
+##    &lt;chr&gt;                        
+##  1 City                         
+##  2 City                         
+##  3 Airport                      
+##  4 City                         
+##  5 City                         
+##  6 City                         
+##  7 City                         
+##  8 City                         
+##  9 Agricultural_Research_Station
+## 10 Agricultural_Research_Station
+## # ℹ 66 more rows</code></pre>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="T9_wrangling.html#cb167-1" tabindex="-1"></a><span class="co"># similar to using its name</span></span>
+<span id="cb167-2"><a href="T9_wrangling.html#cb167-2" tabindex="-1"></a>frost<span class="sc">$</span>Type_Fake</span></code></pre></div>
+<pre><code>##  [1] &quot;City&quot;                          &quot;City&quot;                         
+##  [3] &quot;Airport&quot;                       &quot;City&quot;                         
+##  [5] &quot;City&quot;                          &quot;City&quot;                         
+##  [7] &quot;City&quot;                          &quot;City&quot;                         
+##  [9] &quot;Agricultural_Research_Station&quot; &quot;Agricultural_Research_Station&quot;
+## [11] &quot;Agricultural_Research_Station&quot; &quot;Airport&quot;                      
+## [13] &quot;Airport&quot;                       &quot;City&quot;                         
+## [15] &quot;City&quot;                          &quot;Airport&quot;                      
+## [17] &quot;City&quot;                          &quot;Airport&quot;                      
+## [19] &quot;City&quot;                          &quot;Airport&quot;                      
+## [21] &quot;City&quot;                          &quot;City&quot;                         
+## [23] &quot;City&quot;                          &quot;Airport&quot;                      
+## [25] &quot;Agricultural_Research_Station&quot; &quot;City&quot;                         
+## [27] &quot;City&quot;                          &quot;City&quot;                         
+## [29] &quot;Airport&quot;                       &quot;Agricultural_Research_Station&quot;
+## [31] &quot;Airport&quot;                       &quot;City&quot;                         
+## [33] &quot;City&quot;                          &quot;City&quot;                         
+## [35] &quot;Airport&quot;                       &quot;Agricultural_Research_Station&quot;
+## [37] &quot;City&quot;                          &quot;City&quot;                         
+## [39] &quot;City&quot;                          &quot;Agricultural_Research_Station&quot;
+## [41] &quot;Agricultural_Research_Station&quot; &quot;City&quot;                         
+## [43] &quot;City&quot;                          &quot;Airport&quot;                      
+## [45] &quot;Airport&quot;                       &quot;Airport&quot;                      
+## [47] &quot;Agricultural_Research_Station&quot; &quot;City&quot;                         
+## [49] &quot;City&quot;                          &quot;City&quot;                         
+## [51] &quot;City&quot;                          &quot;Agricultural_Research_Station&quot;
+## [53] &quot;Agricultural_Research_Station&quot; &quot;Agricultural_Research_Station&quot;
+## [55] &quot;Airport&quot;                       &quot;City&quot;                         
+## [57] &quot;Airport&quot;                       &quot;City&quot;                         
+## [59] &quot;Airport&quot;                       &quot;City&quot;                         
+## [61] &quot;Agricultural_Research_Station&quot; &quot;Airport&quot;                      
+## [63] &quot;Agricultural_Research_Station&quot; &quot;City&quot;                         
+## [65] &quot;City&quot;                          &quot;City&quot;                         
+## [67] &quot;City&quot;                          &quot;Airport&quot;                      
+## [69] &quot;Airport&quot;                       &quot;Agricultural_Research_Station&quot;
+## [71] &quot;Airport&quot;                       &quot;City&quot;                         
+## [73] &quot;Airport&quot;                       &quot;Airport&quot;                      
+## [75] &quot;City&quot;                          &quot;Agricultural_Research_Station&quot;</code></pre>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="T9_wrangling.html#cb169-1" tabindex="-1"></a><span class="co"># We can combine our commands, this will print the 13th row of the Longitude column </span></span>
+<span id="cb169-2"><a href="T9_wrangling.html#cb169-2" tabindex="-1"></a><span class="co"># (no comma as we&#39;re only looking at one column)</span></span>
+<span id="cb169-3"><a href="T9_wrangling.html#cb169-3" tabindex="-1"></a>frost<span class="sc">$</span>Longitude[<span class="dv">13</span>]</span></code></pre></div>
+<pre><code>## [1] -82.58</code></pre>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="T9_wrangling.html#cb171-1" tabindex="-1"></a><span class="co"># The : symbol lets you choose a sequence of numbers e.g. 1:5 is 1 2 3 4 5</span></span>
+<span id="cb171-2"><a href="T9_wrangling.html#cb171-2" tabindex="-1"></a><span class="co"># So this prints out rows 11 to 15 and all the columns</span></span>
+<span id="cb171-3"><a href="T9_wrangling.html#cb171-3" tabindex="-1"></a>frost[<span class="dv">11</span><span class="sc">:</span><span class="dv">15</span>,]</span></code></pre></div>
+<pre><code>## # A tibble: 5 × 8
+##   Station  State Type_Fake      Avg_DOY_SpringFrost Latitude Longitude Elevation
+##   &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;                        &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Winthrop SC    Agricultural_…                87.2     34.9     -81.0       690
+## 2 Little   SC    Airport                       87.7     34.2     -81.4       711
+## 3 Calhoun  SC    Airport                       91.5     34.1     -82.6       530
+## 4 Clemson  SC    City                          93.6     34.7     -82.8       824
+## 5 De       FL    City                          71.3     30.7     -86.1       245
+## # ℹ 1 more variable: Dist_to_Coast &lt;dbl&gt;</code></pre>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="T9_wrangling.html#cb173-1" tabindex="-1"></a><span class="co"># The &quot;c&quot; command allows you to enter whatever numbers you like.  </span></span>
+<span id="cb173-2"><a href="T9_wrangling.html#cb173-2" tabindex="-1"></a><span class="co"># So this will print out rows 4,3,7 and the &quot;Elevation&quot; and &quot;Dist_to_Coast&quot; columns</span></span>
+<span id="cb173-3"><a href="T9_wrangling.html#cb173-3" tabindex="-1"></a>frost[<span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">7</span>), <span class="fu">c</span>(<span class="st">&quot;Elevation&quot;</span>,<span class="st">&quot;Dist_to_Coast&quot;</span>)]</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 2
+##   Elevation Dist_to_Coast
+##       &lt;dbl&gt;         &lt;dbl&gt;
+## 1        13          1.15
+## 2       800        252.  
+## 3       500        132.</code></pre>
+</div>
+<div id="deleting-rows" class="section level3 hasAnchor" number="9.7.3">
+<h3><span class="header-section-number">9.7.3</span> Deleting rows<a href="T9_wrangling.html#deleting-rows" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Or if you know the row number you can use the minus - sign to remove. Or just filter below.</p>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="T9_wrangling.html#cb175-1" tabindex="-1"></a><span class="co"># remove row 6 and and overwrite</span></span>
+<span id="cb175-2"><a href="T9_wrangling.html#cb175-2" tabindex="-1"></a>frost <span class="ot">&lt;-</span> frost[<span class="sc">-</span><span class="dv">6</span> ,]</span>
+<span id="cb175-3"><a href="T9_wrangling.html#cb175-3" tabindex="-1"></a></span>
+<span id="cb175-4"><a href="T9_wrangling.html#cb175-4" tabindex="-1"></a><span class="co"># remove columns 4 and 2 and save result to newdata and overwrite</span></span>
+<span id="cb175-5"><a href="T9_wrangling.html#cb175-5" tabindex="-1"></a>newdata <span class="ot">&lt;-</span> frost[, <span class="sc">-</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>) ]</span></code></pre></div>
+<p><br><br></p>
+</div>
+</div>
+<div id="WrangleFilter" class="section level2 hasAnchor" number="9.8">
+<h2><span class="header-section-number">9.8</span> Filtering<a href="T9_wrangling.html#WrangleFilter" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="the-which-command-approach" class="section level3 hasAnchor" number="9.8.1">
+<h3><span class="header-section-number">9.8.1</span> The which command approach<a href="T9_wrangling.html#the-which-command-approach" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The which command essentially says “which numbers” meet a certain threshold</p>
+<p>e,g,</p>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="T9_wrangling.html#cb176-1" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">100</span><span class="sc">:</span><span class="dv">110</span></span>
+<span id="cb176-2"><a href="T9_wrangling.html#cb176-2" tabindex="-1"></a><span class="fu">which</span>(a <span class="sc">&gt;</span> <span class="dv">107</span>)</span></code></pre></div>
+<pre><code>## [1]  9 10 11</code></pre>
+<p>Or which rows:</p>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="T9_wrangling.html#cb178-1" tabindex="-1"></a>outlier_rows <span class="ot">&lt;-</span> <span class="fu">which</span>(frost<span class="sc">$</span>Dist_to_Coast <span class="sc">&lt;</span> <span class="fl">1.5</span>)</span></code></pre></div>
+<p>So you can also add questions and commands inside the square brackets. For example here is the weather station with the lowest elevation. You can see my command chose BOTH rows where elevation = 10.</p>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="T9_wrangling.html#cb179-1" tabindex="-1"></a><span class="co"># which row has the lowest elevation</span></span>
+<span id="cb179-2"><a href="T9_wrangling.html#cb179-2" tabindex="-1"></a><span class="co"># note the double == (more below)</span></span>
+<span id="cb179-3"><a href="T9_wrangling.html#cb179-3" tabindex="-1"></a>row_number <span class="ot">&lt;-</span> <span class="fu">which</span>(frost<span class="sc">$</span>Elevation <span class="sc">==</span> <span class="fu">min</span>(frost<span class="sc">$</span>Elevation))</span>
+<span id="cb179-4"><a href="T9_wrangling.html#cb179-4" tabindex="-1"></a></span>
+<span id="cb179-5"><a href="T9_wrangling.html#cb179-5" tabindex="-1"></a><span class="co"># choose that row</span></span>
+<span id="cb179-6"><a href="T9_wrangling.html#cb179-6" tabindex="-1"></a>loweststtation <span class="ot">&lt;-</span> frost[row_number ,  ]</span>
+<span id="cb179-7"><a href="T9_wrangling.html#cb179-7" tabindex="-1"></a>loweststtation</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 8
+##   Station     State Type_Fake   Avg_DOY_SpringFrost Latitude Longitude Elevation
+##   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;                     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Charlestown SC    Agricultur…                84.6     32.8     -79.9        10
+## 2 Edenton     NC    City                       85.3     36.0     -76.6        10
+## # ℹ 1 more variable: Dist_to_Coast &lt;dbl&gt;</code></pre>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="T9_wrangling.html#cb181-1" tabindex="-1"></a>seaside <span class="ot">&lt;-</span> frost[<span class="fu">which</span>(frost<span class="sc">$</span>Dist_to_Coast <span class="sc">&lt;</span> <span class="dv">10</span>) ,  ]</span>
+<span id="cb181-2"><a href="T9_wrangling.html#cb181-2" tabindex="-1"></a>seaside</span></code></pre></div>
+<pre><code>## # A tibble: 5 × 8
+##   Station     State Type_Fake   Avg_DOY_SpringFrost Latitude Longitude Elevation
+##   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;                     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Fernandina  FL    City                       46.9     30.7     -81.5        13
+## 2 Charlestown SC    Agricultur…                84.6     32.8     -79.9        10
+## 3 Edenton     NC    City                       85.3     36.0     -76.6        10
+## 4 Southport   NC    City                       82.8     33.9     -78.0        20
+## 5 Brunswick   GA    Agricultur…                48.4     31.2     -81.5        13
+## # ℹ 1 more variable: Dist_to_Coast &lt;dbl&gt;</code></pre>
+</div>
+<div id="the-dplyr-filter-command-tidyverse" class="section level3 hasAnchor" number="9.8.2">
+<h3><span class="header-section-number">9.8.2</span> The dplyr filter command (tidyverse)<a href="T9_wrangling.html#the-dplyr-filter-command-tidyverse" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Filtering means selecting rows/observations based on their values. To filter in R, use the command <code>filter()</code> from the dplyr package. I tend to write it as <code>dplyr:filter()</code> to force it to be correct.</p>
+<p>Here we can apply the filter command to choose specific rows that meet certain criteria</p>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="T9_wrangling.html#cb183-1" tabindex="-1"></a><span class="fu">filter</span>(frost, State <span class="sc">==</span> <span class="st">&quot;FL&quot;</span>)</span></code></pre></div>
+<p>The double equal operator <code>==</code> means equal to. The command is telling R to keep the rows in <em>frost</em> where the <em>State</em> column equals “FL”.</p>
+<p>If you want a few categories, choose the %in% operator, using the <code>c()</code> command to stick together the categories you want. For example, here are states in Florida and Virginia.</p>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="T9_wrangling.html#cb184-1" tabindex="-1"></a><span class="fu">filter</span>(frost, State <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;FL&quot;</span>,<span class="st">&quot;VA&quot;</span>))</span></code></pre></div>
+<p>We can also explicitly exclude cases and keep everything else by using the not equal operator <code>!=</code>. The following code <em>excludes</em> airport stations.</p>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="T9_wrangling.html#cb185-1" tabindex="-1"></a><span class="fu">filter</span>(frost, Type_Fake <span class="sc">!=</span> <span class="st">&quot;Airport&quot;</span>)</span></code></pre></div>
+<p>What about filtering if a row has a value greater than a specified value? For example, Stations with an elevation greater than 500 feet?</p>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="T9_wrangling.html#cb186-1" tabindex="-1"></a><span class="fu">filter</span>(frost, Elevation <span class="sc">&gt;</span> <span class="dv">500</span>)</span></code></pre></div>
+<p>Or less-than-or-equal-to 200 feet.</p>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="T9_wrangling.html#cb187-1" tabindex="-1"></a><span class="co"># or save the result to a new variable</span></span>
+<span id="cb187-2"><a href="T9_wrangling.html#cb187-2" tabindex="-1"></a>lowland_stations <span class="ot">&lt;-</span> <span class="fu">filter</span>(frost, Elevation <span class="sc">&lt;</span> <span class="dv">200</span>)</span>
+<span id="cb187-3"><a href="T9_wrangling.html#cb187-3" tabindex="-1"></a><span class="fu">summary</span>(lowland_stations)</span></code></pre></div>
+<p><br></p>
+<p>In addition to comparison operators, filtering may also utilize logical operators that make multiple selections. There are three basic logical operators: <code>&amp;</code> (and), <code>|</code> (or), and <code>!</code> (not). We can keep Stations with an <em>Elevation</em> greater than 300 <strong>and</strong> <em>State</em> in Alabama <code>&amp;</code>.</p>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="T9_wrangling.html#cb188-1" tabindex="-1"></a><span class="fu">filter</span>(frost, Elevation <span class="sc">&gt;</span> <span class="dv">300</span> <span class="sc">&amp;</span> State <span class="sc">==</span> <span class="st">&quot;AL&quot;</span>)</span></code></pre></div>
+<p>Use <code>|</code> to keep Stations with a <em>Type_Fake</em> of “Airport” <strong>or</strong> a last spring frost date after April (~ day 90 of the year).</p>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="T9_wrangling.html#cb189-1" tabindex="-1"></a><span class="fu">filter</span>(frost, Type_Fake <span class="sc">==</span> <span class="st">&quot;Airport&quot;</span> <span class="sc">|</span> Avg_DOY_SpringFrost <span class="sc">&gt;</span> <span class="dv">90</span> )</span></code></pre></div>
+<p><br><br></p>
+</div>
+<div id="group_by-command-statistics-per-group" class="section level3 hasAnchor" number="9.8.3">
+<h3><span class="header-section-number">9.8.3</span> “Group_by” command: statistics per group<a href="T9_wrangling.html#group_by-command-statistics-per-group" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>What if we want to do more than just count the number of rows?</p>
+<p>Well, we can use the <code>group_by()</code> and <code>summarise()</code> commands and save our answers to a new variable.</p>
+<p>Here we are making use of the pipe symbol, %&gt;%, which takes the answer from group_by and sends it directly to the summarise command.</p>
+<p>Here is some data on frost dates at weather stations.</p>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="T9_wrangling.html#cb190-1" tabindex="-1"></a>frost    <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="st">&quot;Data_frostdata.xlsx&quot;</span>)</span>
+<span id="cb190-2"><a href="T9_wrangling.html#cb190-2" tabindex="-1"></a><span class="fu">head</span>(frost)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 8
+##   Station    State Type_Fake Avg_DOY_SpringFrost Latitude Longitude Elevation
+##   &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;                   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Valley     AL    City                    110.      34.6     -85.6      1020
+## 2 Union      AL    City                     82.3     32.0     -85.8       440
+## 3 Saint      AL    Airport                  99.8     34.2     -86.8       800
+## 4 Fernandina FL    City                     46.9     30.7     -81.5        13
+## 5 Lake       FL    City                     60.6     30.2     -82.6       195
+## 6 West       GA    City                     85.6     32.9     -85.2       575
+## # ℹ 1 more variable: Dist_to_Coast &lt;dbl&gt;</code></pre>
+<p>To summarise results by the type of weather station:</p>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="T9_wrangling.html#cb192-1" tabindex="-1"></a>frost.summary.type <span class="ot">&lt;-</span> <span class="fu">group_by</span>(frost, <span class="at">by=</span>Type_Fake) <span class="sc">%&gt;%</span></span>
+<span id="cb192-2"><a href="T9_wrangling.html#cb192-2" tabindex="-1"></a>                          <span class="fu">summarise</span>(<span class="fu">mean</span>(Latitude),</span>
+<span id="cb192-3"><a href="T9_wrangling.html#cb192-3" tabindex="-1"></a>                                    <span class="fu">max</span>(Latitude),</span>
+<span id="cb192-4"><a href="T9_wrangling.html#cb192-4" tabindex="-1"></a>                                    <span class="fu">min</span>(Dist_to_Coast))</span>
+<span id="cb192-5"><a href="T9_wrangling.html#cb192-5" tabindex="-1"></a>frost.summary.type</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 4
+##   by                       `mean(Latitude)` `max(Latitude)` `min(Dist_to_Coast)`
+##   &lt;chr&gt;                               &lt;dbl&gt;           &lt;dbl&gt;                &lt;dbl&gt;
+## 1 Agricultural_Research_S…             33.7            36.3                 4.95
+## 2 Airport                              34.4            37.3                45.4 
+## 3 City                                 33.7            36.5                 1.15</code></pre>
+<p>Here, my code is:</p>
+<ul>
+<li>Splitting up the frost data by the Type_Fake column<br>(e.g. one group for City, one for Airport and one for Agricultural Research)</li>
+<li>For the data rows in <em>each group</em>, calculating the mean latitude, the maximum latitude and the minimum distance to the coast</li>
+<li>Saving the result to a new variable called frost.summary.type.</li>
+<li>Printing the results on the screen e.g. the furthest North/maximum latitude of rows tagged Agricultural_Research_Station is 36.32 degrees.</li>
+</ul>
+<p><br><br></p>
+</div>
+</div>
+<div id="sorting-data" class="section level2 hasAnchor" number="9.9">
+<h2><span class="header-section-number">9.9</span> Sorting data<a href="T9_wrangling.html#sorting-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="the-dplyr-arrange-command-tidyverse" class="section level3 hasAnchor" number="9.9.1">
+<h3><span class="header-section-number">9.9.1</span> The dplyr arrange command (tidyverse)<a href="T9_wrangling.html#the-dplyr-arrange-command-tidyverse" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We use the <code>arrange()</code> function to sort a data frame by one or more variables. You might want to do this to get a sense of which cases have the highest or lowest values in your data set or sort counties by their name. For example, let’s sort in ascending order by elevation.</p>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="T9_wrangling.html#cb194-1" tabindex="-1"></a><span class="fu">arrange</span>(frost, Latitude)</span></code></pre></div>
+<pre><code>## # A tibble: 76 × 8
+##    Station     State Type_Fake  Avg_DOY_SpringFrost Latitude Longitude Elevation
+##    &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;                    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+##  1 Inverness   FL    City                      50.6     28.8     -82.3        40
+##  2 Ocala       FL    City                      52.7     29.2     -82.1        75
+##  3 Lake        FL    City                      60.6     30.2     -82.6       195
+##  4 Tallahassee FL    Agricultu…                75.8     30.4     -84.4        55
+##  5 Fernandina  FL    City                      46.9     30.7     -81.5        13
+##  6 De          FL    City                      71.3     30.7     -86.1       245
+##  7 Quitman     GA    City                      65.5     30.8     -83.6       185
+##  8 Brunswick   GA    Agricultu…                48.4     31.2     -81.5        13
+##  9 Waycross    GA    Agricultu…                75.9     31.2     -82.3       145
+## 10 Tifton      GA    City                      87.3     31.4     -83.5       380
+## # ℹ 66 more rows
+## # ℹ 1 more variable: Dist_to_Coast &lt;dbl&gt;</code></pre>
+<p>By default, <code>arrange()</code> sorts in ascending order. We can sort by a variable in descending order by using the <code>desc()</code> function on the variable we want to sort by. For example, to sort the dataframe by <em>Avg_DOY_SpringFrost</em> in descending order we use</p>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="T9_wrangling.html#cb196-1" tabindex="-1"></a><span class="fu">arrange</span>(frost, <span class="fu">desc</span>(Avg_DOY_SpringFrost))</span></code></pre></div>
+<pre><code>## # A tibble: 76 × 8
+##    Station      State Type_Fake Avg_DOY_SpringFrost Latitude Longitude Elevation
+##    &lt;chr&gt;        &lt;chr&gt; &lt;chr&gt;                   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+##  1 Marshall     NC    Airport                  118.     35.8     -82.7      2000
+##  2 Highlands    NC    Agricult…                118.     35.0     -83.2      3333
+##  3 Mt           NC    City                     113.     36.5     -80.6      1041
+##  4 Louisburg    NC    City                     113.     36.1     -78.3       260
+##  5 Rocky        VA    Airport                  111.     37.0     -79.9      1315
+##  6 Henderson    NC    Agricult…                111.     36.3     -78.4       512
+##  7 Farmville    VA    Airport                  111.     37.3     -78.4       450
+##  8 Statesville  NC    City                     110.     35.8     -80.9       951
+##  9 Valley       AL    City                     110.     34.6     -85.6      1020
+## 10 Hendersonvi… NC    Agricult…                110.     35.3     -82.4      2160
+## # ℹ 66 more rows
+## # ℹ 1 more variable: Dist_to_Coast &lt;dbl&gt;</code></pre>
+<p><br> <br></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="T8_regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="T10_diagnostics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

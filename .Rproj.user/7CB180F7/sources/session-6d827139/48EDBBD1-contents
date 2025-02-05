@@ -1,0 +1,712 @@
+---
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    yml_clean: true
+    toc_depth: 4
+    toc_float: 
+      collapsed: false
+    number_sections: TRUE   
+    theme: cerulean
+---
+
+```{r setup,message=FALSE, warning=FALSE, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning=FALSE)
+```
+
+```{r,message=FALSE, warning=FALSE, include=FALSE}
+# Libraries
+library("corrplot")  # correlation plots
+library("GGally")    # correlation plots
+library("ggplot2")   # Output plots
+library("ggpubr")     # QQplots
+library("ggstatsplot")# QQplots
+library("hrbrthemes") # ggplot options
+library("knitr")     # Helps make good output files
+library("olsrr")     # Regression specific commands
+library("plotly")    # Interactive plots
+library("readxl")    # Read from excel files
+library("RColorBrewer") # Makes nice color-scales
+library("rmarkdown") # Helps make good output files
+library("skimr")     # Summary statistics
+library("Stat2Data") # Regression specific commands
+library("tidyverse") # Lots of data processing commands
+library("sf")        # Spatial 
+library("tmap")      # tmap 
+
+movies <- read_excel("G3642023_HollywoodMovies2011.xlsx")
+
+
+```
+
+![](index_images/im_film2.png){width="80%"}
+
+# FINAL PROJECT EXAMPLE: Movie Ratings {.unnumbered}
+
+## Introduction {.unnumbered}
+
+In the film industry, predictive modeling and machine learning are increasingly used to help studios make data-driven decisions and predict the success of films. From forecasting box office revenue to optimizing marketing campaigns, these models provide insights that can significantly influence a film's profitability. Additionally, machine learning algorithms can analyze viewer preferences and behaviors, enabling studios to tailor content to specific audiences.
+
+A key data source for the film industry is the Rotten Tomatoes website, an online aggregator that compiles critic and audience reviews into a "Tomatometer" score. This score, distinguishing films as "Fresh" or "Rotten," heavily influences viewer perceptions and can drive box office success, as many potential viewers consult these ratings before choosing to see a film.
+
+The aim is to assess how different factors, including the rotten tomatoes score, influences the domestic gross profit of a MAINSTREAM film (not a pilot run) for Lion Studios, using a training dataset based on 116 movies released in 2011. This dataset includes the following variables.
+
++-------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Variable Name                 | Description                                                                                                                                                                                |
++===============================+============================================================================================================================================================================================+
+| *Name*                        | Film Name                                                                                                                                                                                  |
++-------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| *DomesticGross (million USD)* | Gross revenue in the US by the end of 2011, in millions of dollars                                                                                                                         |
++-------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| *RottenTomatoes (%)*          | Percentage rating from critics reviews on Rotten Tomatoes                                                                                                                                  |
++-------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| *AudienceScore (%)*           | Percentage audience rating from opening weekend surveys                                                                                                                                    |
++-------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| *TheatersOpenWeek*            | Number of cinemas showing the movie on opening weekend. *Films that were shown in less than 1000 cinemas are considered 'pilot/test' showings that should not be included in the analysis* |
++-------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| *BOAverageOpenWeek (USD)*     | Average box office revenue per theater opening weekend, in dollars                                                                                                                         |
++-------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| *Profitability (categorical)* | **Loss**: The film cost more to make than it gained as profit. \                                                                                                                           |
+|                               | **Average**: 100-300% of the budget spent was gained as profit. \                                                                                                                          |
+|                               | **High**: Greater than 300% of the budget spent was gained as profit.                                                                                                                      |
++-------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+A sample of the data can be seen here.
+
+```{r}
+head(as.data.frame(movies))
+```
+
+<br><br>
+
+## Exploratory data analysis {.unnumbered}
+
+The training data for this project includes information on 116 movies released in 2011:
+
+-   **Object of analysis:** An individual film
+
+-   **Population:** All films released by Lion Studios from 2011-present
+
+-   **Response variable:** *DomesticGross (millions of USD)*
+
+It is difficult in this case to assess whether the dataset is truly representative of the film industry now. With the rise of digital technology, streaming and COVID, the situation at present may look very different. Equally, there have been concerns about whether rotten tomatoes is gender neutral (as many more men than women appear to vote, further skewing the results towards films men are likely to watch). That said, this is the data available for this study, so we shall continue as requested.
+
+<br><br>
+
+### Data wrangling {.unnumbered}
+
+```{r}
+movies$Profitability <- as.factor(movies$Profitability)
+summary(movies)
+```
+
+The studio (Dr G), asked for me to only assess mainstream movies rather than pilot or test showings. They defined this as films shown in over 1000 theatres in their opening week and it is clear from the summary that there are pilot films in the dataset. This means I am filtering down to the correct,mainstream-film sub-set.
+
+```{r}
+movies <- filter(movies,TheatersOpenWeek > 1000)
+```
+
+<br><br>
+
+### Response Variable Analysis {.unnumbered}
+
+```{r}
+gghistostats(DomesticGross,data=movies,results.subtitle=FALSE)
+```
+
+As shown in the summary above, the domestic gross of films in the sample ranges from \$400,000 (Friends with Benefits) to \$381 million USD (Harry Potter and the Deathly Hallows II) with a mean domestic gross profit of \$76.41 million and a median value of \$51.93 million USD. As shown in the histogram, the data is highly skewed, with the films Harry Potter and 30 Minutes or Less making substantially more money than other films released in 2011.
+
+<br><br>
+
+### Correlation Matrix {.unnumbered}
+
+Correlation matrices are a quick and easy way of assessing whether there is a linear relationship between many sets of variables. However it is important to note that it will only "see" linear relationships, a complex pattern such as a curve will not be reflected in the statistics.
+
+```{r}
+# remove the name column and the factor column
+
+movies.numeric <- movies[ , sapply(movies,is.numeric)]
+corrplot(cor(movies.numeric), type = "lower", tl.col = "black", tl.srt = 45)
+```
+
+The matrix suggests a strong relationship between the domestic gross and almost all the other scores provided, especially the number of theaters showing the film in its opening week. We can examine this in more detail (and include the profitability categorical variable) through looking at the individual scatterplots.
+
+```{r, message=FALSE,warning=FALSE}
+
+# remove the names variable
+ggpairs(movies[,-1])
+
+```
+
+Here we can see that, for most predictors, there is a somewhat complex relationship with domestic gross profits. It seems that profitability also might play a role.
+
+<br><br>
+
+## Single Predictor models {.unnumbered}
+
+As requested, we shall now compute and compare two single predictor, simple linear regression models. Also as requested, I have chosen two predictor variables I consider to be 'interesting' from my summary analysis above:
+
+1.  **The number of theaters showing the film in its opening week (`TheatersOpenWeek`).** I chose this because it has the highest correlation out of all the predictor variables.
+
+2.  **Average box office revenue per theater opening weekend, in dollars (`BOAverageOpenWeek`).** I chose this because of a reasonably strong positive correlation, and from looking at the ggpairs matrix, the potential that investigating some outliers might increase the predictability further.
+
+<br><br>
+
+### Model 1a: TheatersOpenWeek {.unnumbered}
+
+```{r}
+# Scatterplot 
+myplot <- ggplot(movies, aes(x=TheatersOpenWeek, y=DomesticGross)) + 
+    geom_point() + 
+    xlab("Number of theaters") + ylab("Domestic Gross Profit")+
+    geom_smooth(method=lm , color="blue", se=TRUE) +
+    theme_ipsum()
+ggplotly(myplot)
+
+LM_NumTheatres <- lm(DomesticGross ~ TheatersOpenWeek, data = movies)
+```
+
+In this case, as shown in the scatterplot above and the summary below, our model suggests that for this sample:
+
+$$
+\widehat{DomesticGross} = -189.48250 + 0.08705 (NumberTheatres)
+$$
+
+<br><br>
+
+#### LINE assumptions check {.unnumbered}
+
+```{r}
+# Model Diagnostics 
+ols_plot_resid_stud_fit(LM_NumTheatres) 
+```
+
+-   **Linearity**: FAIL
+-   **Equal variance/normality**: probably fail
+
+As shown in the residual plot, this model has clear issues with non-linearity (e.g. a curve would clearly fit better than a line). Therefore I will apply a transformation to fix the issue before moving on.
+
+<br><br>
+
+#### Transformations {.unnumbered}
+
+I used the code below to assess several transformations on both the predictor and the response. I first applied some predictor transformation to account for the non-linearity. It became increasingly clear that there was also non equal variance, so I applied a transformation to the response and tried transformations of both.
+
+```{r, eval=FALSE}
+
+# Make some transformations
+# This code-chunk has been set to eval=FALSE, but you can see what I did
+
+# I don't want to mess up my movie dataset, so I'm trying this on a temporary dataset
+tmpmovie <- movies
+
+#===============================
+# MAKE TRANSFORMATION COLUMNS
+#===============================
+# Log
+ tmpmovie$Log_TheatersOpenWeek  <- log(tmpmovie$TheatersOpenWeek)
+ tmpmovie$Log_DomesticGross     <- log(tmpmovie$DomesticGross)
+
+# Sqrt
+ tmpmovie$Sqrt_TheatersOpenWeek  <- sqrt(tmpmovie$TheatersOpenWeek)
+ tmpmovie$Sqrt_DomesticGross     <- sqrt(tmpmovie$DomesticGross)
+
+# Inverse e.g. 1/x
+ tmpmovie$Inv_TheatersOpenWeek  <- 1/(tmpmovie$TheatersOpenWeek)
+ tmpmovie$Inv_DomesticGross  <- 1/(tmpmovie$DomesticGross)
+
+# Boxcox, a more detailed combination of log and 1/x  e.g. see equation below 
+# I chose the 0.222 from the top of the boxcox plot. (NOT IN EXAM)
+ boxcox_result <- MASS::boxcox(LM_NumTheatres)
+ tmpmovie$box_TheatersOpenWeek <- (tmpmovie$TheatersOpenWeek^0.222 - 1) / 0.22
+
+
+#===============================
+# TEST SOME MODELS
+# I'm just looking at the residual plots to see which works for fixing Linearity & equal variance. I ran each line using contrl-enter. I'm looking for the simplest possible answer that does the job
+ 
+# PREDICTOR TRANSFORMATIONS. 
+#=============================== 
+ ols_plot_resid_stud_fit(lm(DomesticGross ~ Log_TheatersOpenWeek, data = tmpmovie))
+ ols_plot_resid_stud_fit(lm(DomesticGross ~ Sqrt_TheatersOpenWeek,data = tmpmovie))
+ ols_plot_resid_stud_fit(lm(DomesticGross ~ Inv_TheatersOpenWeek, data = tmpmovie))
+ ols_plot_resid_stud_fit(lm(DomesticGross ~ box_TheatersOpenWeek, data = tmpmovie))
+ ols_plot_resid_stud_fit(lm(DomesticGross ~ poly(TheatersOpenWeek,2),data = tmpmovie))
+ ols_plot_resid_stud_fit(lm(DomesticGross ~ poly(TheatersOpenWeek,3),data = tmpmovie))
+                             
+# RESPONSE TRANSFORMATIONS. 
+#=============================== 
+ ols_plot_resid_stud_fit(lm(Log_DomesticGross ~ TheatersOpenWeek, data = tmpmovie))
+ ols_plot_resid_stud_fit(lm(Sqrt_DomesticGross ~ TheatersOpenWeek,data = tmpmovie))
+ ols_plot_resid_stud_fit(lm(Inv_DomesticGross ~ TheatersOpenWeek, data = tmpmovie))
+ 
+# BOTH TRANSFORMATIONS. 
+#===============================    
+ ols_plot_resid_stud_fit(lm(Log_DomesticGross~Log_TheatersOpenWeek, data = tmpmovie))
+ ols_plot_resid_stud_fit(lm(Sqrt_DomesticGross~Sqrt_TheatersOpenWeek,data = tmpmovie))
+ ols_plot_resid_stud_fit(lm(Inv_DomesticGross~Inv_TheatersOpenWeek, data = tmpmovie))
+ 
+ rm(tmpmovies)
+
+```
+
+There was a clear winner, the log transformation of the response, so I will move forwards from here. This makes sense given how skewed the resonse variable was.
+
+```{r}
+# Log response transformation
+ movies$Log_DomesticGross     <- log(movies$DomesticGross)
+ ols_plot_resid_stud_fit(lm(Log_DomesticGross ~ TheatersOpenWeek,data=movies))
+
+```
+
+<br><br>
+
+#### Model 1B, Log(Domestic_Gross) {.unnumbered}
+
+Now, let's assess our new and more complex model:
+
+```{r}
+
+# New scatterplot with theatres open week vs log_domgross
+ggplot(movies, aes(x=TheatersOpenWeek, y=Log_DomesticGross)) +
+    xlab("Number of Theatres") + ylab("Domestic Gross Profit (million USD)")+
+    geom_point() +
+    geom_smooth(method="lm")
+
+# linear model
+LM_Log_NumTheatres <- lm(Log_DomesticGross ~ TheatersOpenWeek,data=movies)
+LM_Log_NumTheatres
+
+```
+
+In this case, as shown in the scatterplot above and the summary below, our model suggests that for this sample:
+
+$$
+\widehat{\ln(DomesticGross)} = 0.430433 + 0.001158(NumberTheatres)
+$$
+
+<br><br>
+
+##### LINE assessment {.unnumbered}
+
+```{r}
+residplot1 <- ols_plot_resid_stud_fit(LM_Log_NumTheatres,print_plot=FALSE) 
+residplot1$plot +  ggtitle("log transformation of response only")
+ 
+```
+
+```{r}
+ols_plot_resid_qq(LM_Log_NumTheatres) 
+```
+
+```{r}
+# Normality test
+ols_test_normality(LM_Log_NumTheatres) 
+```
+
+```{r}
+# F test for variance
+ols_test_f(LM_Log_NumTheatres) 
+```
+
+-   **Linearity**: PASS - No evidence a curve would fit the mean of y\|x better than a line <br>
+-   **Independence**: PASS - Hard to assess, but no huge issues I can see <br>
+-   **Normality**: PASS - the QQplot looks straight and according to several normality significance tests, there is almost a 95% probability of seeing a result like this if it was sampled from an underlying population which had normal residuals. <br>
+-   **Equal variance: PASS** (just) - The residual plot looks relatively random and according there is a 10% chance of seeing a result like this if it was sampled from a population with equal variances in residuals.
+
+<br><br>
+
+##### Check for Influential Outliers {.unnumbered}
+
+Now that model 1B is valid in that it is satisfying the LINE conditions), I will make one final check for influential outliers, as shown below.
+
+```{r}
+ols_plot_resid_lev(LM_Log_NumTheatres)
+ols_plot_cooksd_bar(LM_Log_NumTheatres,threshold=1)
+```
+
+Although there are high leverage points (unusually far from the mean of x in the x direction), and some outliers, none of the outliers are influential, suggesting we can move on to model 2.
+
+<br><br>
+
+### Model 2: BOAverageOpenWeek {.unnumbered}
+
+My second model assesses if Domestic Gross (millions of dollars) can be modelled using the Average box office revenue per theater opening weekend (in dollars), variable `BOAverageOpenWeek`.
+
+```{r}
+# Scatterplot 
+ggplot(movies, aes(x=BOAverageOpenWeek, y=DomesticGross)) + 
+    geom_point() + 
+    xlab("Opening week profit ") + ylab("Domestic Gross Profit (million USD)")+
+    geom_smooth(method=lm , color="blue", se=TRUE) +
+    theme_ipsum()
+
+
+LM_BOAvOpen <- lm(DomesticGross ~ BOAverageOpenWeek, data = movies)
+LM_BOAvOpen
+```
+
+In this case, as shown in the scatterplot above, our model suggests that for this sample:
+
+$$
+\widehat{DomesticGross} = -3.56700 + 0.01062 (BO_AverageOpeningWeek)
+$$
+
+<br><br>
+
+#### LINE assumptions check {.unnumbered}
+
+```{r}
+# Model Diagnostics 
+ols_plot_resid_stud_fit(LM_BOAvOpen) 
+
+```
+
+-   **Linearity**: PASS - No evidence a curve would fit the mean of y\|x better than a line <br>
+-   **Equal variance: FAIL** - The residual plot shows significant "fanning out" (e.g. the points are close to the line for low predicted values and far from the line for higher ones). <br>
+
+This makes physical sense; there is probably a baseline ticket price for cinemas to break even, so for low profits, there's not much room for variability. But for a very profitable movie or blockbuster, many different types of cinema are showing the film, with different levels of luxury.
+
+<br><br>
+
+#### Model 2B, Log-Log transformation {.unnumbered}
+
+Again, we will try a transformation to fix line - after exploring the issue using the code above, it seems that this model needs a log-log transformation (e.g. both the response and predictor are log transformed).
+
+```{r}
+
+# Log response transformation
+ movies$Log_DomesticGross        <- log(movies$DomesticGross)
+ movies$Log_BOAverageOpenWeek    <- log(movies$BOAverageOpenWeek)
+
+ 
+# Scatterplot 
+ggplot(movies, aes(x=Log_BOAverageOpenWeek, y=Log_DomesticGross)) + 
+    geom_point() + 
+    xlab("Opening week profit") + ylab("Domestic Gross Profit")+
+    geom_smooth(method=lm , color="blue", se=TRUE) +
+    theme_ipsum()
+
+
+LM_BOAvOpen_loglog <- lm(Log_DomesticGross ~ Log_BOAverageOpenWeek, data = movies)
+ols_plot_resid_stud_fit(LM_BOAvOpen_loglog)
+LM_BOAvOpen_loglog
+```
+
+Our model is now:
+
+$$
+\widehat{\ln(DomesticGross)} = -7.077 + 1.270(\ln(BO_AverageOpeningWeek))
+$$
+
+<br><br>
+
+##### LINE assessment {.unnumbered}
+
+```{r}
+residplot1 <- ols_plot_resid_stud_fit(LM_BOAvOpen_loglog,print_plot=FALSE) 
+residplot1$plot +  ggtitle("log transformation of response only")
+ 
+```
+
+```{r}
+ols_plot_resid_qq(LM_BOAvOpen_loglog) 
+```
+
+```{r}
+# Normality test
+ols_test_normality(LM_BOAvOpen_loglog) 
+```
+
+```{r}
+# F test for variance
+ols_test_f(LM_BOAvOpen_loglog) 
+```
+
+-   **Linearity**: PASS - No evidence a curve would fit the mean of y\|x better than a line <br>
+-   **Independence**: PASS - Hard to assess, but no huge issues I can see <br>
+-   **Normality**: PASS - the QQplot looks straight and according to several normality significance tests, there is over an 80% probability of seeing a result like this if our sample was taken from an underlying population which had normal residuals. <br>
+-   **Equal variance: PASS** - The residual plot looks relatively random and according there is a 27% chance of seeing a result like this if it was sampled from a population with equal variances in residuals
+
+<br><br>
+
+##### Check for Influential Outliers {.unnumbered}
+
+Now that model 1B is valid in that it is satisfying the LINE conditions), I will make one final check for influential outliers, as shown below.
+
+```{r}
+ols_plot_resid_lev(LM_BOAvOpen_loglog)
+ols_plot_cooksd_bar(LM_BOAvOpen_loglog,threshold=1)
+```
+
+Although there are high leverage points (unusually far from the mean of x in the x direction), and some outliers, none of the outliers are influential, suggesting we can move on to model 2.
+
+<br><br>
+
+### Model comparison {.unnumbered}
+
+We now have two valid models predicting the domestic gross product (`LM_Log_NumTheatres` and `LM_BOAvOpen_loglog`) where:
+
+**Model 1:**
+
+$$
+\widehat{\ln(DomesticGross)} = 0.430433 + 0.001158(TheatersOpenWeek)
+$$
+
+**Model 2:**
+
+$$
+\widehat{\ln(DomesticGross)} = -7.077 + 1.270(\ln(BOAverageOpeningWeek))
+$$
+
+Where, DomesticGross is the Gross revenue in the US by the end of 2011, in millions of dollars; *TheatersOpenWeek* is the number of cinemas showing the movie on opening weekend; and BOAverageOpeningWeek is the average box office revenue per theater opening weekend (in dollars).
+
+The model summaries for each model can be seen as follows:
+
+```{r}
+ols_regress(LM_Log_NumTheatres)
+```
+
+and
+
+```{r}
+ols_regress(LM_BOAvOpen_loglog)
+```
+
+The studio asked us to compare the models against several metrics:
+
+1.  $R^2$ **- How much variation is explained by the model:**
+
+    -   Model LM_Log_NumTheatres: $R^2$ = 0.581.
+    -   Model LM_BOAvOpen_loglog: $R^2$ = 0.897
+    -   So the second model performs better in terms of R2; AKA the average box office revenue per theater opening weekend (in dollars) is able to explain nearly 90% of the variation in $\ln(DomesticGross)$ in our sample <br><br>\
+
+2.  $MSE$ **- The mean squared error** - Model LM_Log_NumTheatres: MSE = 0.321 - Model LM_BOAvOpen_loglog: MSE = 0.079 - So the second model performs better in terms of the mean squared error, as it has smaller errors than the first (possible as both models have a response variable in the same units) <br><br>\
+
+3.  ***LINE Assumptions/residuals*** **- Is the model valid**
+
+    -   We spent some time finding transformations that make the model valid in both cases.
+    -   Each model performs equally well using this metric <br><br>\
+
+4.  *AIC **- Aikikes Information Criterion*** - This is a modification to the sum of squares error which takes into account the number of predictors (p) and the number of objects (n).
+
+$$
+  n\ln{SSE}-n\ln{n}+2p
+$$
+
+Given that in both our cases n=108 and p=1, it would stand to reason that this result would reflect the SSE.
+
+```{r}
+AIC(LM_Log_NumTheatres,LM_BOAvOpen_loglog)
+```
+
+So this metric also suggests that the second model is better, as it has a lower value of AIC. <br><br>
+
+<br><br>
+
+## Multiple regression {.unnumbered}
+
+### Best Subsets model selection {.unnumbered}
+
+Finally, we move onto the use of multiple predictors, specifically using the stepwise best subsets model selection approach. Given that both of my individual models use $\ln(DomesticGross)$, I will also use this as my response variable here.
+
+```{r}
+# apply a model to all the variables 
+fullmodel <- lm(Log_DomesticGross ~ RottenTomatoes+ AudienceScore+TheatersOpenWeek+BOAverageOpenWeek+Profitability, data=movies)
+
+# Now run the stepwise regression
+ols_step_best_subset(fullmodel)
+```
+
+I am also going to try one with Log_BOAverageOpenWeek, as that seemed to improve my individual model skill
+
+```{r}
+
+# apply a model to all the variables 
+fullmodel.log <- lm(Log_DomesticGross ~ RottenTomatoes+ AudienceScore+TheatersOpenWeek+Log_BOAverageOpenWeek+Profitability, data=movies)
+
+# Now run the stepwise regression
+ols_step_best_subset(fullmodel.log)
+```
+
+Out of all the tables above, it seems that first, by using Log_BOAverageOpenWeek, we can improve the skill, and that also other variables do appear to be important.
+
+<br><br>
+
+### Final model {.unnumbered}
+
+The analysis above suggests that the following model has the highest adjusted $R^2$ (0.9325) and the lowest AIC (-6.6882).
+
+$$
+\widehat{\ln(DomesticGross)} = \beta_0 + \beta_1(AudienceScore)+\beta_2(TheatersOpenWeek)+\beta_3(BOAverageOpenWeek)+\beta_4(Profitability)
+$$
+
+<br><br>
+
+```{r}
+finalmodel <- lm(Log_DomesticGross ~ AudienceScore+TheatersOpenWeek+Log_BOAverageOpenWeek+Profitability, data=movies)
+finalmodel
+```
+
+Therefore, we see the following relationships.
+
+**For movies that made a loss:**
+
+$$
+\widehat{\ln(DomesticGross)} = -5.594 + 0.0066(AudienceScore)+0.00036(TheatersOpenWeek)+0.9244820(\ln(BOAverageOpenWeek))-0.1572
+$$
+
+which can be simplified to:
+
+$$
+\widehat{\ln(DomesticGross)} = -5.752 + 0.0066(AudienceScore)+0.00036(TheatersOpenWeek)+0.9244820(\ln(BOAverageOpenWeek))
+$$
+
+------------------------------------------------------------------------
+
+**For movies with an average level of profit:**
+
+$$
+\widehat{\ln(DomesticGross)} = -5.594 + 0.0066(AudienceScore)+0.00036(TheatersOpenWeek)+0.9244820(\ln(BOAverageOpenWeek))-0.1572
+$$
+
+------------------------------------------------------------------------
+
+**and for movies that made a high level of profit**
+
+$$
+\widehat{\ln(DomesticGross)} = -5.594 + 0.0066(AudienceScore)+0.00036(TheatersOpenWeek)+0.9244820(\ln(BOAverageOpenWeek))+0.091
+$$
+
+which can be simplified to
+
+$$
+\widehat{\ln(DomesticGross)} = -5.5034 + 0.0066(AudienceScore)+0.00036(TheatersOpenWeek)+0.9244820(\ln(BOAverageOpenWeek))+0.091
+$$
+
+<br><br>
+
+#### LINE assessment {.unnumbered}
+
+```{r}
+residplot1 <- ols_plot_resid_stud_fit(finalmodel) 
+```
+
+```{r}
+ols_plot_resid_qq(finalmodel) 
+```
+
+```{r}
+# Normality test
+ols_test_normality(finalmodel) 
+```
+
+```{r}
+# F test for variance
+ols_test_f(finalmodel) 
+```
+
+-   **Linearity**: PASS - No evidence a curve would fit the mean of y\|x better than a line <br>
+-   **Independence**: PASS - Hard to assess, but no huge issues I can see <br>
+-   **Normality**: PASS, The QQ plot does show a few tiny issues around the tails, but the significance tests suggest that this could easily be explained by random chance<br>
+-   **Equal variance: PASS** (just..)- The residual plot looks relatively random, but the F-test does suggest only a 2% chance of seeing a result like this if it was sampled from a population with equal variances in residuals. I wonder if this is due to the two potential outliers (line 108: (Harry Potter and the Deathly Hallows II) and line 106 (The Thing)).
+
+<br><br>
+
+#### Check for Influential Outliers {.unnumbered}
+
+Now that model 1B is valid in that it is satisfying the LINE conditions), I will make one final check for influential outliers, as shown below:
+
+```{r}
+ols_plot_resid_lev(finalmodel)
+ols_plot_cooksd_bar(finalmodel,threshold=1)
+```
+
+This shows that although there are several outliers and high leverage points, none are influential enough to especially capture the fit.
+
+<br><br>
+
+## Studio questions {.unnumbered}
+
+The studio had several questions about the new model, which I answer below:
+
+#### 1. Show your final model is more skillful than the other models you made {.unnumbered}
+
+We can do this simply by using AIC, where the smallest value indicates the most skillful model (assuming LINE assumptions). Note, I only included models where the response was ln(DomesticGross), as this technique requires the response variable to be identical across the model comparisons. As you can see below, our final model has the lowest value of AIC.
+
+```{r}
+AIC(finalmodel,fullmodel.log, fullmodel, LM_BOAvOpen_loglog, LM_Log_NumTheatres)
+```
+
+<br><br>
+
+#### 2. Conduct a partial F test to assess if your final model is significantly better than your best 'single variable' model {.unnumbered}
+
+```{r}
+anova(finalmodel, LM_BOAvOpen_loglog)
+```
+
+-   H0: The Reduced model is all we need (one predictor)
+
+-   H1: The full model (finalmodel) expains so much more variability that this is appropriate to use
+
+-   Test statistic: F-test: 15.524
+
+-   P-value: very small
+
+This suggests that the full model reduces the model error by such a large amount that we think it would be *very* unlikely to see this by chance. Therefore we have enough evidence to reject H0 and choose the full model.
+
+<br><br>
+
+#### 3. In your final model, which predictors have the highest effect size and significance? {.unnumbered}
+
+We can answer this by looking at the table of coefficients
+
+```{r}
+ols_regress(finalmodel)
+```
+
+The variable with the largest effect size is Log_BOAverage_OpenWeek. If we increase that value by 1, then LogDomesticGross goes up by 0.924. Of course the fact that both are log transformed makes this harder to interpret.
+
+All the variables appear to be significant predictors of gross domestic profit (p \< 0.05), apart from "ProfitabilityHigh". So this suggests that perhaps the profitability should simply be coded as "loss" or "profit" - and the model could be improved further.
+
+<br><br>
+
+#### 4. We have a new film that has been released, what does your model suggest its gross domestic profit will be? What is the 95% uncertainty interval on your estimate {.unnumbered}
+
+The movie is:
+
+-   Kung Fu Panda 4
+
+-   RottenTomatoes: 78
+
+-   Audience Score: 88
+
+-   Open week profits: 5400 USD per cinema
+
+-   Number of theatres: 3300 cinemas showed the film in week 1
+
+-   Profitability: Average
+
+OK - we can use our model to predict the gross domestic profit:
+
+```{r}
+
+newdata <- data.frame (Name="Kung Fu Panda 4", RottenTomatoes=78,
+                       AudienceScore=88, TheatersOpenWeek = 3300,
+                       Log_BOAverageOpenWeek=log(5400),
+                       Profitability = "Average")
+newdata$Profitability <- as.factor(newdata$Profitability)
+
+
+Ln_DomesticGross <- predict(finalmodel,newdata=newdata,
+                            interval="prediction",level = 0.95)
+
+# Back transform
+DomesticGross <- exp(Ln_DomesticGross)
+
+DomesticGross
+```
+
+Our model suggests that the film will make \$62,091,270 USD during its year of release. Or to put it in terms of confidence intervals, we are 95% certain that KungFu Panda 4 will make between \$39.1 Million and \$98.5 Million USD during its year of release.

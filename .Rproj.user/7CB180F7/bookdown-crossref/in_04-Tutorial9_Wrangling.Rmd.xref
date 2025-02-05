@@ -1,0 +1,22 @@
+h1:T9_wrangling Data Wrangling
+h2:example-datasets Example datasets
+h2:T9_basics Looking at the data itself
+h3:example Example
+h2:summary-statistics Summary statistics
+h2:Missing Removing missing values
+h3:na.omit na.omit
+h3:missing-values-in-single-columns-complete.cases Missing values in single columns, complete.cases
+h3:turning-values-into-na Turning values into NA
+h2:ignoring-missing-data-in-commands Ignoring missing data in commands
+h2:making-frequency-tables Making frequency tables
+h2:WrangleBasics Wrangling basics
+h3:selecting-a-specific-column Selecting a specific column
+h3:choosing-values-from-rows-and-columns Choosing values from rows and columns
+h3:deleting-rows Deleting rows
+h2:WrangleFilter Filtering
+h3:the-which-command-approach The which command approach
+h3:the-dplyr-filter-command-tidyverse The dplyr filter command (tidyverse)
+h3:group_by-command-statistics-per-group  command: statistics per group
+h2:sorting-data Sorting data
+h3:the-dplyr-arrange-command-tidyverse The dplyr arrange command (tidyverse)
+

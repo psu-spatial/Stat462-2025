@@ -1,0 +1,16 @@
+h1:probability-distributions Probability distributions
+h2:what-are-they-full-info What are they? Full info
+h2:T5_NormalDist The normal distribution
+h3:help-file Help file
+h3:generate-a-random-sample Generate a random sample
+h3:calculate-probability-when-given-a-z-score Calculate probability when given a z-score
+h3:calculate-z-score-when-given-a-probability Calculate z-score when given a probability
+h3:testing-normality Testing normality
+h4:wilks-shapiro-test-for-normality Wilks Shapiro test for normality
+h4:qq-norm-plot QQ-Norm plot
+h2:TDist T-distribution
+h3:calculate-a-probability-given-a-t-statistic Calculate a probability given a T-Statistic
+h3:calculate-a-t-statistic-for-a-given-probability Calculate a T-Statistic for a given probability
+h3:one-sided-t-test One sided T-test
+h2:others Others?
+

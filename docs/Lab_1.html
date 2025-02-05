@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Lab 1 | STAT462 Lab Book 2024</title>
+<meta name="author" content="Dr Helen Greatrex">
+<meta name="description" content="0.2 Aim Welcome to your first lab. This is worth 10% (100 points) and you can drop your lowest lab out of six. We have three main learning objectives. To allow you to practice the statistical...">
+<meta name="generator" content="bookdown 0.37 with bs4_book()">
+<meta property="og:title" content="Lab 1 | STAT462 Lab Book 2024">
+<meta property="og:type" content="book">
+<meta property="og:description" content="0.2 Aim Welcome to your first lab. This is worth 10% (100 points) and you can drop your lowest lab out of six. We have three main learning objectives. To allow you to practice the statistical...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Lab 1 | STAT462 Lab Book 2024">
+<meta name="twitter:description" content="0.2 Aim Welcome to your first lab. This is worth 10% (100 points) and you can drop your lowest lab out of six. We have three main learning objectives. To allow you to practice the statistical...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.1/transition.js"></script><script src="libs/bs3compat-0.6.1/tabs.js"></script><script src="libs/bs3compat-0.6.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<link href="libs/vembedr-0.1.5/css/vembedr.css" rel="stylesheet">
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><script src="libs/plotly-binding-4.10.3/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script><link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">STAT462 Lab Book 2024</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Welcome to STAT-462!</a></li>
+<li><a class="" href="FAQ.html">Course FAQ</a></li>
+<li><a class="" href="WhatIsR.html">What are R and R-Studio?</a></li>
+<li><a class="" href="Setup_Desktop.html">Installing R/R-Studio</a></li>
+<li><a class="" href="Setup_UpdateDesktop.html">Updating R/R-Studio</a></li>
+<li><a class="" href="Setup_Online.html">Posit Cloud Online</a></li>
+<li class="book-part">.</li>
+<li class="book-part">LAB INSTRUCTIONS</li>
+<li><a class="" href="Help.html">HELP!</a></li>
+<li><a class="active" href="Lab_1.html">Lab 1</a></li>
+<li><a class="" href="Lab_2.html">Lab 2</a></li>
+<li><a class="" href="Lab_3.html">Lab 3</a></li>
+<li><a class="" href="Lab_4.html">Lab 4</a></li>
+<li><a class="" href="Lab_5.html">Lab 5A</a></li>
+<li><a class="" href="Lab_5B.html">Lab 5B</a></li>
+<li><a class="" href="lab-6.html">Lab 6</a></li>
+<li><a class="" href="final-project.html">Final Project</a></li>
+<li><a class="" href="final-project-example-movie-ratings.html">FINAL PROJECT EXAMPLE: Movie Ratings</a></li>
+<li class="book-part">.</li>
+<li class="book-part">TUTORIALS</li>
+<li><a class="" href="T1_Projects.html"><span class="header-section-number">1</span> Projects/Starting a lab</a></li>
+<li><a class="" href="T2_Libraries.html"><span class="header-section-number">2</span> Libraries/Packages</a></li>
+<li><a class="" href="T3_Markdown.html"><span class="header-section-number">3</span> R-Markdown</a></li>
+<li><a class="" href="T4_ReadingData.html"><span class="header-section-number">4</span> Reading in data</a></li>
+<li><a class="" href="probability-distributions.html"><span class="header-section-number">5</span> Probability distributions</a></li>
+<li><a class="" href="T6_plots.html"><span class="header-section-number">6</span> Plots</a></li>
+<li><a class="" href="correlation.html"><span class="header-section-number">7</span> Correlation</a></li>
+<li><a class="" href="T8_regression.html"><span class="header-section-number">8</span> Regression</a></li>
+<li><a class="" href="T9_wrangling.html"><span class="header-section-number">9</span> Data Wrangling</a></li>
+<li><a class="" href="T10_diagnostics.html"><span class="header-section-number">10</span> Assessing LINE</a></li>
+<li><a class="" href="outliers-high-leverage-influential-points.html"><span class="header-section-number">11</span> Outliers, high leverage &amp; influential points</a></li>
+<li><a class="" href="confidence-and-prediction-intervals.html"><span class="header-section-number">12</span> Confidence and Prediction Intervals</a></li>
+<li><a class="" href="S.Tutorial_Transformations.html"><span class="header-section-number">13</span> Transformations</a></li>
+<li><a class="" href="S.Tutorial_GLM.html"><span class="header-section-number">14</span> GLM - Logistic Regression</a></li>
+<li><a class="" href="basic-model-comparisons.html"><span class="header-section-number">15</span> Basic model comparisons</a></li>
+<li><a class="" href="multiple-regression-model-fitting-1.html"><span class="header-section-number">16</span> Multiple regression &amp; model fitting</a></li>
+<li><a class="" href="finding-the-optimal-model.html"><span class="header-section-number">17</span> Finding the “optimal model”</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="Lab_1" class="section level1 unnumbered">
+<h1>Lab 1<a class="anchor" aria-label="anchor" href="#Lab_1"><i class="fas fa-link"></i></a>
+</h1>
+<div id="aim" class="section level2" number="0.2">
+<h2>
+<span class="header-section-number">0.2</span> Aim<a class="anchor" aria-label="anchor" href="#aim"><i class="fas fa-link"></i></a>
+</h2>
+<p>Welcome to your first lab. This is worth 10% (100 points) and you can drop your lowest lab out of six. We have three main learning objectives.</p>
+<ul>
+<li><p>To allow you to practice the statistical concepts from the course</p></li>
+<li><p>To use real-world data-sets</p></li>
+<li><p>To be comfortable conducting analysis in R and writing up your reports professionally.</p></li>
+</ul>
+<p>With this in mind, your first lab will be getting used to the R-Markdown format and the course structure. This is a ONE WEEK LAB. You only have one lab session (today) working on this during class, then 10 days to finish up and write up. The maximum time it should take is about 4-5 hrs of your time. <u><strong>If you are really stuck, ask for help</strong></u>.</p>
+<p><br></p>
+<hr>
+</div>
+<div id="instructions" class="section level2 unnumbered">
+<h2>Instructions<a class="anchor" aria-label="anchor" href="#instructions"><i class="fas fa-link"></i></a>
+</h2>
+<p><br></p>
+<div id="if-you-skipped-homework-1.." class="section level3 unnumbered">
+<h3>If you skipped homework 1..<a class="anchor" aria-label="anchor" href="#if-you-skipped-homework-1.."><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li><p><strong>[1]</strong> Read more about R, R-Studio and R-Markdown: <a href="WhatIsR.html#WhatIsR">What are R and R-Studio</a></p></li>
+<li><p><strong>[2]</strong> Either install R and R-Studio on your own computer OR make an account at posit cloud. You should be running R version “4.3.2 Eye Holes” (look at the top of the console), and R-Studio version 2023.12.0.</p></li>
+</ul>
+<hr>
+<p><br></p>
+</div>
+<div id="projects-templates" class="section level3 unnumbered">
+<h3>Projects &amp; Templates<a class="anchor" aria-label="anchor" href="#projects-templates"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>
+<p><strong>[3]</strong> It is likely that past R users did not have to use projects, but they are WONDERFUL.</p>
+<ul>
+<li>Go here to read more about projects. Follow the tutorial instructions to make a project for Lab 1 (instructions available for both desktop and posit-cloud): <a href="T1_Projects.html#T1_Projects">Projects</a>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>[4]</strong> I have provided a template for your lab 1 report.</p>
+<ul>
+<li><p>Go to the Canvas assignment page and, download <code>Lab1_Template.RmD</code>,</p></li>
+<li><p>RENAME IT TO <code>Lab1_Email_ID.RmD</code> (e.g. for me, <code>Lab1_hlg5155.RmD</code>)</p></li>
+<li><p>and place in your project folder on your computer. On Posit cloud, open your project, then look for the upload button in the Files tab.</p></li>
+<li><p>Ignore it for now.</p></li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><br></p>
+</div>
+<div id="libraries" class="section level3 unnumbered">
+<h3>Libraries<a class="anchor" aria-label="anchor" href="#libraries"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li><p><strong>[5]</strong> Most of the code/commands we will use is stored inside packages. Go and read <a href="T2_Libraries.html#T2_Libraries">Libraries</a></p></li>
+<li>
+<p><strong>[6]</strong> If you haven’t already, open your R-Project. Now go to the ‘install/app store’ and install these three packages:</p>
+<ul>
+<li><p><code>rmdformats</code></p></li>
+<li><p><code>tidyverse</code></p></li>
+<li><p><code>ggstatsplot</code></p></li>
+</ul>
+</li>
+<li><p>Note - I ‘load’ them for you in the lab template. Look for the library command.</p></li>
+</ul>
+<hr>
+<p><br></p>
+</div>
+<div id="r-markdown" class="section level3 unnumbered">
+<h3>R-Markdown<a class="anchor" aria-label="anchor" href="#r-markdown"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li><p><strong>[7]</strong> Read through the tutorial about R Markdown. <a href="T3_Markdown.html#T3_Markdown">Markdown Tutorial</a></p></li>
+<li><p><strong>[8]</strong> Open your RmD report file (click on its name in the files tab, as long as you are running your project). Click visual mode and see if you can identify the code chunks, space for text and yaml files.</p></li>
+<li><p><strong>[9]</strong> Click knit. This should work and create a html file. IF YOU HAVE PROBLEMS ASK FOR HELP (as long as you have first installed rmdformats)</p></li>
+<li>
+<p><strong>[10]</strong> In the space assigned, answer these questions</p>
+<ul>
+<li><p><u><strong>QUESTION 1:</strong></u> Using a bullet point list (hint visual mode, formatting at the top), state three advantages of using R projects (hint 2, video in the project tutorial)<br></p></li>
+<li><p><u><strong>QUESTION 2:</strong></u> Using the example of phone apps (or any other example), explain what R packages are and the difference between installing them and loading them. State what command is used to <em>load</em> packages ready for use? Finally, state whether you can load packages when you are not connected to the internet (hint, think about your phone).<br></p></li>
+<li><p><u><strong>QUESTION 3:</strong></u> Make a new heading called favorite photo in the question 3 slot, then change its format to ‘heading 3’. Inside insert a photo/picture of your choice and underneath explain why you chose it.<br></p></li>
+<li><p><u><strong>QUESTION 4:</strong></u> Go to the canvas course page and look at the course expectations document (in modules at the top). Summarise IN YOUR OWN WORDS what assignments are expected for this course.<br></p></li>
+<li><p><u><strong>QUESTION 5:</strong></u> Go to the lab FAQ page. <a href="https://psu-spatial.github.io/Stat462-2024/FAQ.html" class="uri">https://psu-spatial.github.io/Stat462-2024/FAQ.html</a> Explain IN YOUR OWN WORDS, what the policy is surrounding ChatGPT.</p></li>
+</ul>
+</li>
+</ul>
+<p>Press knit and check it still works.</p>
+<hr>
+<p><br></p>
+</div>
+<div id="r-coding" class="section level3 unnumbered">
+<h3>R-Coding<a class="anchor" aria-label="anchor" href="#r-coding"><i class="fas fa-link"></i></a>
+</h3>
+<p>The following questions link to your homework and datacamp. For those who have programmed in R, they are trivial, but use it to get used to the markdown format.</p>
+<p>In the space for Question 6, make a new code chunk. (either a single one or mulitple is fine). Answer the following questions using R.</p>
+<p>You get the first one for free :)</p>
+<ol style="list-style-type: decimal">
+<li>Calculate the sum of 1+1 and assign it to the variable ‘a’ (e.g. a &lt;- 1+1)</li>
+</ol>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">+</span><span class="fl">1</span></span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Calculate the sum of 1+3 and assign it to the variable ‘b’</p></li>
+<li><p>Calculate your age to the power 4 and assign it to a variable called yourname (e.g. mine would be helen &lt;- ..)</p></li>
+<li><p>Calculate the sum of a/b and assign it to the variable ans</p></li>
+<li><p>Calculate the number of characters in the word “Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch” using the nchar commannd (hint <a href="https://www.educative.io/answers/how-to-calculate-the-size-of-a-string-using-nchar-in-r" class="uri">https://www.educative.io/answers/how-to-calculate-the-size-of-a-string-using-nchar-in-r</a>, hint 2 QUOTES)</p></li>
+</ol>
+<hr>
+<p><br></p>
+</div>
+<div id="above-and-beyond" class="section level3 unnumbered">
+<h3>Above and beyond<a class="anchor" aria-label="anchor" href="#above-and-beyond"><i class="fas fa-link"></i></a>
+</h3>
+<p>There are only 3 marks for this! So it’s a space to stretch yourself and show off. Set a timer for 20mins and see how far you get.</p>
+<p>Load the starwars dataset by creating a code chunk with this command.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># THIS WILL ONLY RUN IF YOU FIRST RUN THAT LIBRARY CODE CHUNK AT THE TOP</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">starwars</span><span class="op">)</span></span></code></pre></div>
+<p>See how much you can find out about this dataset using R. Hints, you could use the summary command, you can select individual columns using $ e.g. starwars$name gets the data command, you can use the table command on categories, or any plots you wish.</p>
+<p>You get the three marks for a reasonable attempt, and if nothing works, for writing what you tried and what happened.</p>
+<hr>
+<p><br></p>
+</div>
+</div>
+<div id="Lab_1_01" class="section level2" number="0.3">
+<h2>
+<span class="header-section-number">0.3</span> What do I submit?<a class="anchor" aria-label="anchor" href="#Lab_1_01"><i class="fas fa-link"></i></a>
+</h2>
+<p>Press knit one final time.</p>
+<p>You will have created two files; a <code>.Rmd</code> file containing your code and a <code>.html</code> file for viewing your finished document. You need to submit BOTH of these files on the relevant Canvas assignment page. You can also add comments to your submission as needed on the canvas page, or you can message Dr G.</p>
+<p>To download them on posit cloud, click on the check box by the RmD and html, then click on the little blue cog on the far right of the Files tab (you might need to maximise the window), then press export.</p>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="Help.html">HELP!</a></div>
+<div class="next"><a href="Lab_2.html">Lab 2</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#Lab_1">Lab 1</a></li>
+<li><a class="nav-link" href="#aim"><span class="header-section-number">0.2</span> Aim</a></li>
+<li>
+<a class="nav-link" href="#instructions">Instructions</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#if-you-skipped-homework-1..">If you skipped homework 1..</a></li>
+<li><a class="nav-link" href="#projects-templates">Projects &amp; Templates</a></li>
+<li><a class="nav-link" href="#libraries">Libraries</a></li>
+<li><a class="nav-link" href="#r-markdown">R-Markdown</a></li>
+<li><a class="nav-link" href="#r-coding">R-Coding</a></li>
+<li><a class="nav-link" href="#above-and-beyond">Above and beyond</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#Lab_1_01"><span class="header-section-number">0.3</span> What do I submit?</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>STAT462 Lab Book 2024</strong>" was written by Dr Helen Greatrex. It was last built on 2024-04-25.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

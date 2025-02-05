@@ -1,0 +1,7 @@
+h1:T8_regression Regression
+h2:T8_lmbasics  regression output
+h3:printing-out-the-equation Printing out the equation
+fig:eqn See the asis in the top, this prints the output directly when you knit
+h2:better-olsrr-regression-output  OLSRR regression output
+h3:errors Errors
+

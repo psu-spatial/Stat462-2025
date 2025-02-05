@@ -1,0 +1,18 @@
+h1:S.Tutorial_GLM GLM - Logistic Regression
+h2:great-r-tutorial Great R Tutorial
+h2:setting-up-the-dataexample Setting up the data/example
+h3:setting-up-categorical-columns Setting up categorical columns
+h4:data-summary Data summary
+h3:filtering-data-exploratory-plots Filtering data & exploratory plots
+h3:fiting-a-logistic-model Fiting a logistic model
+h3:model-summary Model summary
+h4:interpretation-in-terms-of-log-odds. Interpretation in terms of log odds.
+h4:interpretation-in-terms-of-odds Interpretation in terms of odds:
+h4:interpretation-in-terms-of-percentage-change Interpretation in terms of percentage change:
+h3:predicting-new-values-and-visualising-results Predicting new values and visualising results
+h3:wald-test-for-significance Wald test for significance
+h3:goodness-of-fit Goodness of fit
+h3:assessing-model-residuals Assessing model residuals
+h4:alternative-plots Alternative plots
+h3:interactions-with-other-predictors Interactions with other predictors
+

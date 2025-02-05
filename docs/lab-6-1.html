@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Lab 6 | STAT462 Lab Book 2024</title>
+<meta name="author" content="Dr Helen Greatrex">
+<meta name="description" content="Aim Welcome to your final project. This is worth 160 points (similar to an exam), compared to your labs which were worth 100 points. Remember you can drop either this or your lowest exam grade By...">
+<meta name="generator" content="bookdown 0.37 with bs4_book()">
+<meta property="og:title" content="Lab 6 | STAT462 Lab Book 2024">
+<meta property="og:type" content="book">
+<meta property="og:description" content="Aim Welcome to your final project. This is worth 160 points (similar to an exam), compared to your labs which were worth 100 points. Remember you can drop either this or your lowest exam grade By...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Lab 6 | STAT462 Lab Book 2024">
+<meta name="twitter:description" content="Aim Welcome to your final project. This is worth 160 points (similar to an exam), compared to your labs which were worth 100 points. Remember you can drop either this or your lowest exam grade By...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.1/transition.js"></script><script src="libs/bs3compat-0.6.1/tabs.js"></script><script src="libs/bs3compat-0.6.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<link href="libs/vembedr-0.1.5/css/vembedr.css" rel="stylesheet">
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><script src="libs/plotly-binding-4.10.3/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script><link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">STAT462 Lab Book 2024</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Welcome to STAT-462!</a></li>
+<li><a class="" href="FAQ.html">Course FAQ</a></li>
+<li><a class="" href="WhatIsR.html">What are R and R-Studio?</a></li>
+<li><a class="" href="Setup_Desktop.html">Installing R/R-Studio</a></li>
+<li><a class="" href="Setup_UpdateDesktop.html">Updating R/R-Studio</a></li>
+<li><a class="" href="Setup_Online.html">Posit Cloud Online</a></li>
+<li class="book-part">.</li>
+<li class="book-part">LAB INSTRUCTIONS</li>
+<li><a class="" href="Help.html">HELP!</a></li>
+<li><a class="" href="Lab_1.html">Lab 1</a></li>
+<li><a class="" href="Lab_2.html">Lab 2</a></li>
+<li><a class="" href="Lab_3.html">Lab 3</a></li>
+<li><a class="" href="Lab_4.html">Lab 4</a></li>
+<li><a class="" href="Lab_5.html">Lab 5A</a></li>
+<li><a class="" href="Lab_5B.html">Lab 5B</a></li>
+<li><a class="" href="lab-6.html">Lab 6</a></li>
+<li><a class="active" href="lab-6-1.html">Lab 6</a></li>
+<li class="book-part">.</li>
+<li class="book-part">TUTORIALS</li>
+<li><a class="" href="T1_Projects.html"><span class="header-section-number">1</span> Projects/Starting a lab</a></li>
+<li><a class="" href="T2_Libraries.html"><span class="header-section-number">2</span> Libraries/Packages</a></li>
+<li><a class="" href="T3_Markdown.html"><span class="header-section-number">3</span> R-Markdown</a></li>
+<li><a class="" href="T4_ReadingData.html"><span class="header-section-number">4</span> Reading in data</a></li>
+<li><a class="" href="probability-distributions.html"><span class="header-section-number">5</span> Probability distributions</a></li>
+<li><a class="" href="T6_plots.html"><span class="header-section-number">6</span> Plots</a></li>
+<li><a class="" href="correlation.html"><span class="header-section-number">7</span> Correlation</a></li>
+<li><a class="" href="T8_regression.html"><span class="header-section-number">8</span> Regression</a></li>
+<li><a class="" href="T9_wrangling.html"><span class="header-section-number">9</span> Data Wrangling</a></li>
+<li><a class="" href="T10_diagnostics.html"><span class="header-section-number">10</span> Assessing LINE</a></li>
+<li><a class="" href="outliers-high-leverage-influential-points.html"><span class="header-section-number">11</span> Outliers, high leverage &amp; influential points</a></li>
+<li><a class="" href="confidence-and-prediction-intervals.html"><span class="header-section-number">12</span> Confidence and Prediction Intervals</a></li>
+<li><a class="" href="S.Tutorial_Transformations.html"><span class="header-section-number">13</span> Transformations</a></li>
+<li><a class="" href="S.Tutorial_GLM.html"><span class="header-section-number">14</span> GLM - Logistic Regression</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="lab-6-1" class="section level1 unnumbered">
+<h1>Lab 6<a class="anchor" aria-label="anchor" href="#lab-6-1"><i class="fas fa-link"></i></a>
+</h1>
+<div id="aim-7" class="section level2 unnumbered">
+<h2>Aim<a class="anchor" aria-label="anchor" href="#aim-7"><i class="fas fa-link"></i></a>
+</h2>
+<p>Welcome to your final project. This is worth 160 points (similar to an exam), compared to your labs which were worth 100 points.<br>
+Remember you can drop either this or your lowest exam grade</p>
+<p>By the end of this lab, you will be able to:</p>
+<ol style="list-style-type: decimal">
+<li>Showcase your knowledge of simple linear regression</li>
+<li>Carry this forward into a mulitple regression analysis</li>
+<li>Use your models to predict a real-life messy dataset.</li>
+</ol>
+<p>You need to submit your report by Wed May 1, 23:59pm. If you are going to be late, you have 3 options:</p>
+<ol style="list-style-type: decimal">
+<li>Especially if you are graduating, you can use this as your drop. Submit what you have and focus on the exam</li>
+<li>If you are NOT graduating and struggling to get it done, I am happy to formally defer your grade to give you a little more support.</li>
+</ol>
+<p><br></p>
+<div id="need-help-4" class="section level3 unnumbered">
+<h3>Need help?<a class="anchor" aria-label="anchor" href="#need-help-4"><i class="fas fa-link"></i></a>
+</h3>
+<p><strong>Code won’t knit? Struggling? Have a question? See the help page here: <a href="Help.html#Help">Help!</a></strong></p>
+<p><br></p>
+</div>
+</div>
+<div id="set-up-dont-skip-6" class="section level2 unnumbered">
+<h2>1. Set up (DON’T SKIP)<a class="anchor" aria-label="anchor" href="#set-up-dont-skip-6"><i class="fas fa-link"></i></a>
+</h2>
+<p><br></p>
+<div id="step-1.1-create-a-new-project-for-your-project" class="section level3 unnumbered">
+<h3>
+<strong>[Step 1.1] Create a new project for your project</strong><a class="anchor" aria-label="anchor" href="#step-1.1-create-a-new-project-for-your-project"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>I am assuming you now know how to do this. See previous labs and the tutorial</li>
+</ul>
+<p><br><br></p>
+</div>
+<div id="step-1.2-go-to-canvas-and-get-your-personalised-data." class="section level3 unnumbered">
+<h3>
+<strong>[Step 1.2] Go to Canvas and get your personalised data.</strong><a class="anchor" aria-label="anchor" href="#step-1.2-go-to-canvas-and-get-your-personalised-data."><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>You each get your own individual dataset, sampled out of a large population. You can download this from Canvas.</li>
+</ul>
+<p><br><br></p>
+</div>
+<div id="step-1.3-create-a-lab-report-template" class="section level3 unnumbered">
+<h3>
+<strong>[Step 1.3] Create a lab report template</strong><a class="anchor" aria-label="anchor" href="#step-1.3-create-a-lab-report-template"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>
+<p>I expect your report to look professional, with a floating table of contents, a report title and the date in your YAML code (AKA exactly what I have asked in the other labs). You now have many templates:</p>
+<ul>
+<li><p>You could copy over a previous one that you like and just delete your code, use one I provided and/or create your own using tutorial 3 (<a href="https://psu-spatial.github.io/Stat462-2024/T3_Markdown.html#T3_YAML" class="uri">https://psu-spatial.github.io/Stat462-2024/T3_Markdown.html#T3_YAML</a>). <br></p></li>
+<li><p>Remember that in the template for lab 6, I have summarized all the linear regression code in a bundle that you can copy/paste to save time.<br></p></li>
+<li><p>I suggest copy/pasting your initial library code chunk from Lab 6, then you have those options set and your libraries already loaded.</p></li>
+<li><p>Press knit and make sure it all works. OR TALK TO DR G.</p></li>
+</ul>
+</li>
+</ul>
+<p><br><br></p>
+<hr>
+</div>
+</div>
+<div id="the-airbnb-challenge-read-this" class="section level2 unnumbered">
+<h2>2. The AirBnB challenge (READ THIS!)<a class="anchor" aria-label="anchor" href="#the-airbnb-challenge-read-this"><i class="fas fa-link"></i></a>
+</h2>
+<p>You are an analyst for the holiday rental company, AirBnB. You have been paid to answer some questions that the company has about their rentals in San Francisco. They are especially interested in understanding if you can predict rental prices given recent fears about a crash (see below)</p>
+<p>AirBnB have provided you a sample dataset of 150 AirBnb rentals from March-05-2023 in San Francisco. Your professor has also merged this with a load of demographics data from the US Census. Overall you have this data:</p>
+<p>Your unit of analysis is an individual rental on a specific day and your RESPONSE variable is price.</p>
+<p>Here is your full list of variables and their units/sources:</p>
+<div id="step-2.1-write-up-a-brief-introduction-100-words" class="section level3 unnumbered">
+<h3>
+<strong>[Step 2.1] Write up a brief introduction (~ 100 words)</strong><a class="anchor" aria-label="anchor" href="#step-2.1-write-up-a-brief-introduction-100-words"><i class="fas fa-link"></i></a>
+</h3>
+<p>In your report, write up a brief introduction about AirBnb rentals in San Francisco and what you think might be driving rental prices. Consider including a picture/photo to make it look even more professional (imagine a consultancy style report you can share in your job interview). These links might help:</p>
+<ul>
+<li><p><a href="https://news.airbnb.com/about-us/" class="uri">https://news.airbnb.com/about-us/</a></p></li>
+<li><p><a href="https://sfstandard.com/2023/07/05/san-francisco-airbnb-bookings-plunge-as-city-battles-bad-press/" class="uri">https://sfstandard.com/2023/07/05/san-francisco-airbnb-bookings-plunge-as-city-battles-bad-press/</a></p></li>
+<li><p><a href="https://www.newsweek.com/airbnb-revenue-collapse-housing-market-crash-fears-1809543" class="uri">https://www.newsweek.com/airbnb-revenue-collapse-housing-market-crash-fears-1809543</a></p></li>
+</ul>
+<p>Given what you read above (e.g. using your own common sense), write a prediction of which variable(s) you THINK might most impact house prices.</p>
+<p><strong>Remember to use headings and subheadings to make it easy to read</strong></p>
+<p><br><br></p>
+</div>
+<div id="step-2.2-read-in-your-sample-data" class="section level3 unnumbered">
+<h3>
+<strong>[Step 2.2] Read in your sample data</strong><a class="anchor" aria-label="anchor" href="#step-2.2-read-in-your-sample-data"><i class="fas fa-link"></i></a>
+</h3>
+<p>You should have downloaded TWO files from the canvas link. Both should have your email ID on them,</p>
+<ul>
+<li><p>The first file contains 150 individual room rentals in San Francisco from May 2023</p></li>
+<li><p>The other file contains 150 ENTIRE HOUSE rentals in San Francisco from May 2023</p></li>
+</ul>
+<p>Use the <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel()</a></code> command to load the data into R. I suggest assigning the room data to a variable called <code>room</code> and the other to a variable called <code>house</code>. If you are stuck see (<a href="https://psu-spatial.github.io/Stat462-2024/T4_ReadingData.html#T4_readxl" class="uri">https://psu-spatial.github.io/Stat462-2024/T4_ReadingData.html#T4_readxl</a>)</p>
+<p><br><br></p>
+</div>
+<div id="step-2.3-now-make-a-spatial-version" class="section level3 unnumbered">
+<h3>
+<strong>[Step 2.3] Now make a spatial version</strong><a class="anchor" aria-label="anchor" href="#step-2.3-now-make-a-spatial-version"><i class="fas fa-link"></i></a>
+</h3>
+<p>Just like with the Taiwan dataset, you have a spatial component and so you are able to make maps in order to better understand your dataset. To do this:</p>
+<ol style="list-style-type: decimal">
+<li><p>Make sure that the <code>sf</code> , <code>corrplot</code> and <code>tmap</code> libraries are both installed AND loaded in your library code chink at the top.</p></li>
+<li><p>Adjust this code to match your variable names and run. R will now understand that room.sf is a spatial dataset - in step 2.4 you can make some maps.</p></li>
+</ol>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># adjust to whatever you called your datasets. the 4326 means lat/long</span></span>
+<span><span class="va">room.sf</span> <span class="op">&lt;-</span> <span class="fu">st_as_sf</span><span class="op">(</span><span class="va">room</span>,coords<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Longitude"</span>,<span class="st">"Latitude"</span><span class="op">)</span>,crs<span class="op">=</span><span class="fl">4326</span><span class="op">)</span></span>
+<span><span class="va">house.sf</span> <span class="op">&lt;-</span> <span class="fu">st_as_sf</span><span class="op">(</span><span class="va">house</span>,coords<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Longitude"</span>,<span class="st">"Latitude"</span><span class="op">)</span>,crs<span class="op">=</span><span class="fl">4326</span><span class="op">)</span></span></code></pre></div>
+<p><br><br></p>
+</div>
+<div id="step-2.4-summarise-the-data" class="section level3 unnumbered">
+<h3>
+<strong>[Step 2.4] Summarise the data</strong><a class="anchor" aria-label="anchor" href="#step-2.4-summarise-the-data"><i class="fas fa-link"></i></a>
+</h3>
+<p>Use summary code to describe the dataset. I suggest first copying over the table in these in these instructions into the text so you have a list of variables.</p>
+<p>Then you can use your summary code and common sense to report things like how much data you have, what your response variable looks like, if there are any notable outliers, any interesting relationships and any correlations. You can use old code from your old labs! Also included here in the tutorials</p>
+<ul>
+<li><p>Summary code:<a href="https://psu-spatial.github.io/Stat462-2024/T9_wrangling.html#summary-statistics" class="uri">https://psu-spatial.github.io/Stat462-2024/T9_wrangling.html#summary-statistics</a></p></li>
+<li><p>Plots: <a href="https://psu-spatial.github.io/Stat462-2024/T6_plots.html" class="uri">https://psu-spatial.github.io/Stat462-2024/T6_plots.html</a></p></li>
+<li><p>Correlation matrices (I suggest the corrplot one): <a href="https://psu-spatial.github.io/Stat462-2024/correlation.html" class="uri">https://psu-spatial.github.io/Stat462-2024/correlation.html</a></p></li>
+<li>
+<p>Maps:</p>
+<ul>
+<li><p>The easiest map you can make is a “quick thematic map”, <code>qtm</code> from the tmap package</p></li>
+<li><p>For example, this should run on your spatial data.</p></li>
+</ul>
+</li>
+</ul>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># on the cloud, try tmap_mode("plot"), or don't make maps</span></span>
+<span><span class="fu">tmap_mode</span><span class="op">(</span><span class="st">"view"</span><span class="op">)</span></span>
+<span><span class="fu">qtm</span><span class="op">(</span><span class="va">room.sf</span>,dots.col<span class="op">=</span><span class="st">"price"</span>,title<span class="op">=</span><span class="st">"AirBnB Price"</span>,dots.size<span class="op">=</span><span class="fl">.5</span>,dots.palette<span class="op">=</span><span class="st">"Blues"</span><span class="op">)</span></span></code></pre></div>
+<p>For more fancy maps (that aren’t much harder), see here = BUT KNOW YOU’RE SWITCHING TUTORIAL TO MY OTHER COURSE! You can also see how to extract things like elevation data if you want even more variables.</p>
+<ul>
+<li><a href="https://psu-spatial.github.io/Geog364-2021/364Data_TutorialWranglePoint.html" class="uri">https://psu-spatial.github.io/Geog364-2021/364Data_TutorialWranglePoint.html</a></li>
+</ul>
+<p><strong>As well as your code/analysis/plots, I expect you to write around 100 words, explaining what you see. Remember headings/subheadings to make it easy to follow! Including “</strong><code>&lt;br&gt;</code>” will also give you a line of white space - it’s how I separate my sections.</p>
+<p><br><br></p>
+<hr>
+</div>
+</div>
+<div id="simple-linear-regression" class="section level2 unnumbered">
+<h2>3. Simple Linear Regression<a class="anchor" aria-label="anchor" href="#simple-linear-regression"><i class="fas fa-link"></i></a>
+</h2>
+<p><br></p>
+<div id="step-3.1-get-the-code-running" class="section level3 unnumbered">
+<h3>
+<strong>[Step 3.1]</strong> Get the code running<a class="anchor" aria-label="anchor" href="#step-3.1-get-the-code-running"><i class="fas fa-link"></i></a>
+</h3>
+<p>Choose <u><strong>TWO</strong></u> variables that you think might predict airbnb prices. Briefly explain why you chose those two variables in your report, using your summary analysis above to justify your choice.</p>
+<p>Conduct TWO SEPARATE simple linear regression analyses, one for each variable - with the response as price.</p>
+<ul>
+<li><p>For each, include a professional scatterplot</p></li>
+<li><p>Assess LINE/outliers</p></li>
+<li><p>And summarise model in the text.</p></li>
+</ul>
+</div>
+<div id="step-3.2-compare-the-models" class="section level3 unnumbered">
+<h3>
+<strong>[Step 3.2]</strong> Compare the models<a class="anchor" aria-label="anchor" href="#step-3.2-compare-the-models"><i class="fas fa-link"></i></a>
+</h3>
+<p>Compare your two models in terms of:</p>
+<ol style="list-style-type: decimal">
+<li><p>The percentage variability explained</p></li>
+<li><p>AIC</p></li>
+<li><p>The effect (slope) size</p></li>
+<li><p>Whether the slope is significant</p></li>
+<li><p>Meeting the LINE assumptions</p></li>
+</ol>
+<p>At the end, explain which model you would choose so far.</p>
+<p><br></p>
+</div>
+<div id="step-3.3-the-milkshake-challenge-1" class="section level3 unnumbered">
+<h3>
+<strong>[Step 3.3]</strong> The Milkshake Challenge<a class="anchor" aria-label="anchor" href="#step-3.3-the-milkshake-challenge-1"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li><p>Copy the code bundle a second time into the appropriate spot in your write up.</p></li>
+<li><p>Get the code working to make a liner model that assesses whether removing hairs from your head leads to weight loss - along with professional scatterplots and model diagnostics.</p></li>
+<li><p>Underneath this analysis, I asked some questions. Fill in the answers in the space provided along with as much detail as you can (e.g. use this as your revision notes)</p></li>
+</ul>
+<p><br></p>
+</div>
+<div id="step-3.4-model-comparison-1" class="section level3 unnumbered">
+<h3>
+<strong>[Step 3.4]</strong> Model comparison<a class="anchor" aria-label="anchor" href="#step-3.4-model-comparison-1"><i class="fas fa-link"></i></a>
+</h3>
+<p>You will see a final set of questions. Answer them as fully as possible.</p>
+<p><br><br></p>
+<hr>
+</div>
+</div>
+<div id="multiple-regression" class="section level2 unnumbered">
+<h2>4. MULTIPLE REGRESSION<a class="anchor" aria-label="anchor" href="#multiple-regression"><i class="fas fa-link"></i></a>
+</h2>
+<p>These instructions and the code will be released this evening.</p>
+
+</div>
+</div>
+
+
+
+
+
+
+  <div class="chapter-nav">
+<div class="prev"><a href="lab-6.html">Lab 6</a></div>
+<div class="next"><a href="T1_Projects.html"><span class="header-section-number">1</span> Projects/Starting a lab</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#lab-6-1">Lab 6</a></li>
+<li>
+<a class="nav-link" href="#aim-7">Aim</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#need-help-4">Need help?</a></li></ul>
+</li>
+<li>
+<a class="nav-link" href="#set-up-dont-skip-6">1. Set up (DON’T SKIP)</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#step-1.1-create-a-new-project-for-your-project">[Step 1.1] Create a new project for your project</a></li>
+<li><a class="nav-link" href="#step-1.2-go-to-canvas-and-get-your-personalised-data.">[Step 1.2] Go to Canvas and get your personalised data.</a></li>
+<li><a class="nav-link" href="#step-1.3-create-a-lab-report-template">[Step 1.3] Create a lab report template</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#the-airbnb-challenge-read-this">2. The AirBnB challenge (READ THIS!)</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#step-2.1-write-up-a-brief-introduction-100-words">[Step 2.1] Write up a brief introduction (~ 100 words)</a></li>
+<li><a class="nav-link" href="#step-2.2-read-in-your-sample-data">[Step 2.2] Read in your sample data</a></li>
+<li><a class="nav-link" href="#step-2.3-now-make-a-spatial-version">[Step 2.3] Now make a spatial version</a></li>
+<li><a class="nav-link" href="#step-2.4-summarise-the-data">[Step 2.4] Summarise the data</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#simple-linear-regression">3. Simple Linear Regression</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#step-3.1-get-the-code-running">[Step 3.1] Get the code running</a></li>
+<li><a class="nav-link" href="#step-3.2-compare-the-models">[Step 3.2] Compare the models</a></li>
+<li><a class="nav-link" href="#step-3.3-the-milkshake-challenge-1">[Step 3.3] The Milkshake Challenge</a></li>
+<li><a class="nav-link" href="#step-3.4-model-comparison-1">[Step 3.4] Model comparison</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#multiple-regression">4. MULTIPLE REGRESSION</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>STAT462 Lab Book 2024</strong>" was written by Dr Helen Greatrex. It was last built on 2024-04-17.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

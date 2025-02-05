@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Lab 3 | STAT462 Lab Book 2024</title>
+<meta name="author" content="Dr Helen Greatrex">
+<meta name="description" content="Aim Welcome to lab 3. This is worth 10% (100 points) and you can drop your lowest lab out of six. The aim of the lab is to continue getting used to some basic exploratory data analysis, including...">
+<meta name="generator" content="bookdown 0.37 with bs4_book()">
+<meta property="og:title" content="Lab 3 | STAT462 Lab Book 2024">
+<meta property="og:type" content="book">
+<meta property="og:description" content="Aim Welcome to lab 3. This is worth 10% (100 points) and you can drop your lowest lab out of six. The aim of the lab is to continue getting used to some basic exploratory data analysis, including...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Lab 3 | STAT462 Lab Book 2024">
+<meta name="twitter:description" content="Aim Welcome to lab 3. This is worth 10% (100 points) and you can drop your lowest lab out of six. The aim of the lab is to continue getting used to some basic exploratory data analysis, including...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.1/transition.js"></script><script src="libs/bs3compat-0.6.1/tabs.js"></script><script src="libs/bs3compat-0.6.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<link href="libs/vembedr-0.1.5/css/vembedr.css" rel="stylesheet">
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><script src="libs/plotly-binding-4.10.3/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script><link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">STAT462 Lab Book 2024</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Welcome to STAT-462!</a></li>
+<li><a class="" href="FAQ.html">Course FAQ</a></li>
+<li><a class="" href="WhatIsR.html">What are R and R-Studio?</a></li>
+<li><a class="" href="Setup_Desktop.html">Installing R/R-Studio</a></li>
+<li><a class="" href="Setup_UpdateDesktop.html">Updating R/R-Studio</a></li>
+<li><a class="" href="Setup_Online.html">Posit Cloud Online</a></li>
+<li class="book-part">.</li>
+<li class="book-part">LAB INSTRUCTIONS</li>
+<li><a class="" href="Help.html">HELP!</a></li>
+<li><a class="" href="Lab_1.html">Lab 1</a></li>
+<li><a class="" href="Lab_2.html">Lab 2</a></li>
+<li><a class="active" href="Lab_3.html">Lab 3</a></li>
+<li><a class="" href="Lab_4.html">Lab 4</a></li>
+<li><a class="" href="Lab_5.html">Lab 5A</a></li>
+<li><a class="" href="Lab_5B.html">Lab 5B</a></li>
+<li><a class="" href="lab-6.html">Lab 6</a></li>
+<li><a class="" href="final-project.html">Final Project</a></li>
+<li><a class="" href="final-project-example-movie-ratings.html">FINAL PROJECT EXAMPLE: Movie Ratings</a></li>
+<li class="book-part">.</li>
+<li class="book-part">TUTORIALS</li>
+<li><a class="" href="T1_Projects.html"><span class="header-section-number">1</span> Projects/Starting a lab</a></li>
+<li><a class="" href="T2_Libraries.html"><span class="header-section-number">2</span> Libraries/Packages</a></li>
+<li><a class="" href="T3_Markdown.html"><span class="header-section-number">3</span> R-Markdown</a></li>
+<li><a class="" href="T4_ReadingData.html"><span class="header-section-number">4</span> Reading in data</a></li>
+<li><a class="" href="probability-distributions.html"><span class="header-section-number">5</span> Probability distributions</a></li>
+<li><a class="" href="T6_plots.html"><span class="header-section-number">6</span> Plots</a></li>
+<li><a class="" href="correlation.html"><span class="header-section-number">7</span> Correlation</a></li>
+<li><a class="" href="T8_regression.html"><span class="header-section-number">8</span> Regression</a></li>
+<li><a class="" href="T9_wrangling.html"><span class="header-section-number">9</span> Data Wrangling</a></li>
+<li><a class="" href="T10_diagnostics.html"><span class="header-section-number">10</span> Assessing LINE</a></li>
+<li><a class="" href="outliers-high-leverage-influential-points.html"><span class="header-section-number">11</span> Outliers, high leverage &amp; influential points</a></li>
+<li><a class="" href="confidence-and-prediction-intervals.html"><span class="header-section-number">12</span> Confidence and Prediction Intervals</a></li>
+<li><a class="" href="S.Tutorial_Transformations.html"><span class="header-section-number">13</span> Transformations</a></li>
+<li><a class="" href="S.Tutorial_GLM.html"><span class="header-section-number">14</span> GLM - Logistic Regression</a></li>
+<li><a class="" href="basic-model-comparisons.html"><span class="header-section-number">15</span> Basic model comparisons</a></li>
+<li><a class="" href="multiple-regression-model-fitting-1.html"><span class="header-section-number">16</span> Multiple regression &amp; model fitting</a></li>
+<li><a class="" href="finding-the-optimal-model.html"><span class="header-section-number">17</span> Finding the “optimal model”</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="Lab_3" class="section level1 unnumbered">
+<h1>Lab 3<a class="anchor" aria-label="anchor" href="#Lab_3"><i class="fas fa-link"></i></a>
+</h1>
+<div id="aim-2" class="section level2 unnumbered">
+<h2>Aim<a class="anchor" aria-label="anchor" href="#aim-2"><i class="fas fa-link"></i></a>
+</h2>
+<p>Welcome to lab 3. This is worth 10% (100 points) and you can drop your lowest lab out of six. The aim of the lab is to continue getting used to some basic exploratory data analysis, including</p>
+<ul>
+<li><p>Reading in data</p></li>
+<li><p>Basic regression</p></li>
+<li><p>Making nice plots &amp; summary statistics</p></li>
+</ul>
+<p>This is a TWO WEEK LAB. You only have two lab sessions (today and next week) working on this during class. You need to finish writing up by the following Tuesday (23:59pm) e.g. just before Lab 4 starts. The maximum time it should take is about 9-10 hrs of your time (e.g 4-5 hrs each week). <u><strong>If you are stuck, ask for help</strong></u>.</p>
+<p><br></p>
+<hr>
+</div>
+<div id="set-up-dont-skip-1" class="section level2 unnumbered">
+<h2>1. Set up (DON’T SKIP)<a class="anchor" aria-label="anchor" href="#set-up-dont-skip-1"><i class="fas fa-link"></i></a>
+</h2>
+<p><br></p>
+<div id="create-a-project-for-lab-3" class="section level3 unnumbered">
+<h3>
+<strong>[1.1] Create a project for Lab 3</strong><a class="anchor" aria-label="anchor" href="#create-a-project-for-lab-3"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li><p>If you are using the POSIT Cloud (AKA R-Studio online), log-in and make a new project for lab 3 using <a href="T1_Projects.html#T1_ProjectsCloud">Tutorial 1B</a></p></li>
+<li><p>If you are using R-Studio on your own computer/laptop, log in and make a new project for lab 3 using <a href="T1_Projects.html#T1_ProjectsCloud">T1_ProjectsDesktop</a>. To open/re-open your project, look in the STAT462/Lab3 folder on your computer and double click the .RProj file (I often rename it something like OPENTHIS.RProj)</p></li>
+</ul>
+<p><br></p>
+</div>
+<div id="download-the-lab-report-template-1" class="section level3 unnumbered">
+<h3>
+<strong>[1.2] Download the lab report template</strong><a class="anchor" aria-label="anchor" href="#download-the-lab-report-template-1"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li><p>Go to the Canvas assignment page and, download <code>Lab1_Template.RmD</code>,</p></li>
+<li><p>DON’T FORGET THIS STEP! <br><strong>RENAME THE FILE TO <code>Lab1_Email_ID.RmD</code> (e.g. for me, <code>Lab1_hlg5155.RmD</code>)</strong> <br> You do this by right clicking on the file on your computer and selecting rename.</p></li>
+<li>
+<p>Now place the file in your Lab 3 folder</p>
+<ul>
+<li><p>For desktop users, do this outside R. E.g. go to your downloads folder and move the file to the Lab 2 folder on your computer.<br></p></li>
+<li>
+<p>On Posit Cloud, open your project, then look for the upload button in the Files tab.</p>
+<details><summary><p><span style="color: #1388aa;">Expand to see where the button is</span></p>
+</summary><div class="inline-figure"><img src="index_images/im_Lab02_Upload.png"></div>
+<p><br></p>
+</details>
+</li>
+</ul>
+</li>
+</ul>
+<p><br></p>
+</div>
+<div id="edit-the-yaml-code---new" class="section level3 unnumbered">
+<h3>
+<strong>[1.3] Edit the yaml code - NEW</strong><a class="anchor" aria-label="anchor" href="#edit-the-yaml-code---new"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li><p>Inside R-studio, open your lab 2 project (if it’s not already open), then click Lab1_Email_ID.RmD to open it.</p></li>
+<li><p>Change the author name at the top to your email ID.</p></li>
+<li>
+<p>There are many themes you can choose for your reports. Time to choose a new one. Go here - <a href="https://github.com/juba/rmdformats" class="uri">https://github.com/juba/rmdformats</a> and scroll down. You will see many different formats. Note the name of the one you like.</p>
+<ul>
+<li><p>In your YAML code, you should see something like this.<br><img src="index_images/im_T3_templates.png" style="width:90.0%"></p></li>
+<li><p>Change the word downcute to your new template name. You might need also to CAREFULLY delete some of the options after it (e.g. the downcute_theme line is probably not needed.)</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div id="check-progress-knit-1" class="section level3 unnumbered">
+<h3>
+<strong>[1.4] Check Progress &amp; knit</strong><a class="anchor" aria-label="anchor" href="#check-progress-knit-1"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li><p>You should have something like this e.g. you are in your project, you have downloaded/renamed your lab report and changed the author name. If you are stuck, either go back and redo the tutorials or talk to Dr G.</p></li>
+<li><p>Press knit and check it all works. You might need to install some packages.</p></li>
+</ul>
+<div class="figure" style="text-align: center">
+<img src="index_images/im_Lab02_SetUp.png" alt="*Your screen should look like this*" width="90%"><p class="caption">
+(#fig:im_Lab03_SetUp)<em>Your screen should look like this</em>
+</p>
+</div>
+<p><br></p>
+<hr>
+</div>
+</div>
+<div id="code-showcase" class="section level2 unnumbered">
+<h2>2. Code showcase<a class="anchor" aria-label="anchor" href="#code-showcase"><i class="fas fa-link"></i></a>
+</h2>
+<p>So far you have only dealt with data stored inside R. Here we will be practicing reading in data from files and the basics of regression code.</p>
+<ul>
+<li><p>Go here: <a href="https://stephenturner.github.io/drawmydata/" class="uri">https://stephenturner.github.io/drawmydata/</a></p></li>
+<li><p>Click on the plot itself to draw dots; make yourself a scatterplot with negative correlation.</p></li>
+<li>
+<p>Save the data as a csv file and put it in your Lab 3 folder.</p>
+<ul>
+<li>
+<p><strong>You will need to add column names.</strong></p>
+<ul>
+<li>You can do this by opening it in excel and adding them in on the top row (e.g. X and Y), then saving as a <code>.csv</code> or <code>.xlsx</code> format. Don’t let your mac save it as a stupid format.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Read the data into R using <a href="T4_ReadingData.html#T4_ReadingData">TUTORIAL 4</a></p></li>
+<li><p>Make a statistical summary of the data (e.g. using the summary or skim commands in - labs 1 and 2)</p></li>
+<li><p>Make a scatterplot and create your first linear regression model (Tutorial 6 plots - <a href="T6_plots.html#T6_PlotsScatter">ScatterPlots</a> scroll down to scatterplots, and Tutorial 8: <a href="T8_regression.html#T8_regression">Regression</a> )</p></li>
+<li><p>Write the gradient and intercept - and the full model equation. BONUS 1%, see if you can use Insert to write it in Latex equation format. (and google)</p></li>
+</ul>
+<p><br><br></p>
+</div>
+<div id="taiwan-analysis" class="section level2 unnumbered">
+<h2>3: Taiwan analysis<a class="anchor" aria-label="anchor" href="#taiwan-analysis"><i class="fas fa-link"></i></a>
+</h2>
+<p>Next month, your friend is moving to Sindian Dist., in New Taipei City, Taiwan. They want to buy a house and have asked you to figure out what most impacts house price.</p>
+<p><strong>In your write up I want you to imagine your are LITERALLY writing this analysis for your friend.</strong></p>
+<p><br></p>
+<p><strong>[Step 1]:</strong> Go to the “House Price Analysis” section of your report</p>
+<p><br></p>
+<p><strong>[Step 2]:</strong> You have been given a specific dataset to help answer your friend’s question. Read more about the data here:<a href="https://archive.ics.uci.edu/ml/datasets/Real+estate+valuation+data+set" class="uri">https://archive.ics.uci.edu/ml/datasets/Real+estate+valuation+data+set</a>.</p>
+<p>In your report, define a relevant population to answer your friend’s question (start of question 3), then discuss how this data might be useful, but also any issues or limitations with the inferences you can make using this data.</p>
+<p><strong>[Step 3]:</strong> Describe your object of analysis and your response variable (INCLUDING UNITS).</p>
+<p><strong>[Step 4]:</strong> If you haven’t already, download the “Lab03_house.xlsx” dataset from the Lab page on canvas and put it into your Lab 3 folder.</p>
+<p><br></p>
+<p><strong>[Step 5]:</strong> Use the read_excel command to load the data into your report and save it to a variable called House (Tutorial 4: <a href="T4_ReadingData.html#T4_readxl">Read Excel</a></p>
+<p><br></p>
+<p><strong>[Step 6]:</strong> Now use R-Commands that you learned in Labs 1, 2 and the tutorials to explore the summary statistics and distribution of the House.Price column. See if you can work out:</p>
+<ul>
+<li><p>What range of costs are “most” of the prices between? (say 68%) or the interquartile range. (Remember you can google the command for IQR, or see the boxplot tutorials in (Tutorial 6: <a href="T6_plots.html#T6_boxplots">Box Plots</a></p></li>
+<li><p>Is the house price data normally distributed? See (Tutorial 5: <a href="probability-distributions.html#T5_NormalDist">Normal distribution</a></p></li>
+<li><p>Make a professional looking histogram of the price data (see tutorial 6)</p></li>
+</ul>
+<p><br></p>
+<p><strong>[Step 7]:</strong> Your friend has been told that houses “might be more expensive in the North” and wants you to assess this. So I want you to complete a regression analysis between the house price and a predictor of ‘Latitude’.</p>
+<ul>
+<li><p>Create a high quality scatterplot of your response and predictor WITHOUT A REGRESSION LINE (hint, on the more sophisticated plots, you can go into help to work out how to turn it off)</p></li>
+<li><p>Describe the scatterplot’s form, direction, strength and outliers - hint <a href="https://www.khanacademy.org/math/ap-statistics/bivariate-data-ap/scatterplots-correlation/a/describing-scatterplots-form-direction-strength-outliers" class="uri">https://www.khanacademy.org/math/ap-statistics/bivariate-data-ap/scatterplots-correlation/a/describing-scatterplots-form-direction-strength-outliers</a></p></li>
+<li><p>Create your first Simple Linear Regression model to assess the issue. See (Tutorial 8: <a href="T8_regression.html#T8_regression">Regression</a></p></li>
+<li><p>Make a new scatterplot, but this time with your line of best fit added.</p></li>
+</ul>
+<p><br></p>
+<p><strong>[Step 8]:</strong> In your report explain to your friend why this might be be misleading as an analysis? or why might this model be flawed? (e.g. are there confounding/lurking variables?</p>
+<p><strong>[Step 9]:</strong></p>
+<p>To help you answer question 8, try running this code to further explore the data on a map. You might have to first install the sf package and add library(sf) to your library code chunk (and re-run the library code chunk).</p>
+<p>I am assuming your house data is called house (all lower case). if not, remember to change ‘house’ to whatever you called it.</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Command from the sf library</span></span>
+<span><span class="co"># Make a spatial version of the data using the Longitide and Latitude columns</span></span>
+<span><span class="va">house.spatial</span> <span class="op">&lt;-</span> <span class="fu">st_as_sf</span><span class="op">(</span><span class="va">house</span>,</span>
+<span>                          coords<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Longitude"</span>,<span class="st">"Latitude"</span><span class="op">)</span>,crs <span class="op">=</span> <span class="fl">4326</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># make interactive, for static set as "plot"</span></span>
+<span><span class="fu">tmap_mode</span><span class="op">(</span><span class="st">"view"</span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="co"># Command from the tmap library</span></span>
+<span><span class="co"># and plot</span></span>
+<span><span class="fu">tm_basemap</span><span class="op">(</span><span class="st">"Esri.WorldTopoMap"</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>     <span class="fu">qtm</span><span class="op">(</span><span class="va">house.spatial</span>, <span class="co"># data</span></span>
+<span>         symbols.col<span class="op">=</span><span class="st">"House.Price"</span>, <span class="co"># which column for the symbols</span></span>
+<span>         symbols.alpha<span class="op">=</span><span class="fl">0.9</span>, <span class="co"># transparency</span></span>
+<span>         symbols.size<span class="op">=</span><span class="fl">.2</span>, <span class="co"># how big</span></span>
+<span>         symbols.palette<span class="op">=</span><span class="st">"Spectral"</span>, <span class="co">#colors from https://colorbrewer2.org</span></span>
+<span>         symbols.style<span class="op">=</span><span class="st">"fisher"</span><span class="op">)</span> <span class="co"># color breaks</span></span></code></pre></div>
+<p><br></p>
+<p><strong>[Step 10]:</strong> Now continue your answer to question 8. Is there a variable that is more important than latitude in predicting house prices? Provide evidence to justify your answer. To help you answer this data and answer this question, some useful code includes:</p>
+<ul>
+<li><p>A correlation matrix (see tutorial 7)</p></li>
+<li><p>Interactive plots If you then want to look at three variables together, you can use an interactive plot e.g you can use this code and change the response, y (currently house price), the predictor x (currently latitude) and the colour (currently distance from the metro station). Have a play and see what variables stand out.</p></li>
+</ul>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Create a plot</span></span>
+<span><span class="va">p</span> <span class="op">&lt;-</span> <span class="va">house</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>                  </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">Latitude</span>,<span class="va">House.Price</span>, col<span class="op">=</span> <span class="va">House.Age</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_gradient.html">scale_color_gradient</a></span><span class="op">(</span>low<span class="op">=</span><span class="st">"blue"</span>, high<span class="op">=</span><span class="st">"red"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># and actually plot it</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/plotly/man/ggplotly.html">ggplotly</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span></code></pre></div>
+<ul>
+<li>You can also use standard scatterplots and regression models if that is easier. Or even excel and screenshots embedded in your report if it is all going wrong!</li>
+</ul>
+<p><br></p>
+<ol start="8" style="list-style-type: decimal">
+<li>Your friend forgot to tell you that they <em>love</em> shopping. They only want to live in a house that is close to at least 7 shops, but are worried that they might end up paying too much.</li>
+</ol>
+<ul>
+<li><p>Filter the data so that it only includes 7 or more nearby shops e.g you’re subsetting by the number of shops column (Tutorial 2C, section 1.8.6). Save the output to a new variable called <code>house.gt7shop</code>.  Hint, TUTORIAL HERE: <a href="https://crd150.github.io/lab2.html#Filtering" class="uri">https://crd150.github.io/lab2.html#Filtering</a></p></li>
+<li><p>Run a t.test to find out if your house.gt7shop data has a mean that is significantly higher than the mean of the house prices over the whole region. See Tutorial 6: <a href="probability-distributions.html#TDist">T Distribution</a> and homework 3, lecture 4C.</p></li>
+</ul>
+<p>Remember to write up your hypotheses, the results and the conclusion in plain English that your friend would understand.</p>
+<p><br></p>
+<p><strong>[Step 9]:</strong> FINAL 2%. Work out how much does the house price goes up for every 1 KILOMETER that you travel away from a metro station?</p>
+<p><br><br></p>
+</div>
+<div id="submitting-your-lab-1" class="section level2 unnumbered">
+<h2>4. Submitting your Lab<a class="anchor" aria-label="anchor" href="#submitting-your-lab-1"><i class="fas fa-link"></i></a>
+</h2>
+<p>Remember to save your work throughout and to spell check your writing (next to the save button). Now, press the knit button again. If you have not made any mistakes in the code then R should create a html file in your lab 2 folder which includes your answers.</p>
+<p><strong>For R desktop users:</strong></p>
+<ul>
+<li><p>If you look at your lab 2 folder ON YOUR COMPUTER, you should see your html and Rm there - complete with a very recent time-stamp.</p></li>
+<li><p>In that folder, double click on the html file. This will open it in your web-browser.<br>
+CHECK THAT THIS IS WHAT YOU WANT TO SUBMIT.</p></li>
+<li><p>Now go to Canvas and submit BOTH your html and your .Rmd file in Lab 2.</p></li>
+</ul>
+<p><br></p>
+<p><strong>If you are on posit cloud,</strong></p>
+<ul>
+<li><p>go to the files tab, then click the check box by your html file. Click the “more” blue cogwheel in the file quadrant menu options, then click export. This will download the file</p></li>
+<li><p>Uncheck the box and check the box by your .Rmd file. Click the “more” blue cogwheel in the file quadrant menu options, then click export. This will download the file.</p></li>
+<li><p>Now go to Canvas and submit BOTH your html and your .Rmd file in Lab 2.</p></li>
+</ul>
+<p>Congrats! You are done.</p>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="Lab_2.html">Lab 2</a></div>
+<div class="next"><a href="Lab_4.html">Lab 4</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#Lab_3">Lab 3</a></li>
+<li><a class="nav-link" href="#aim-2">Aim</a></li>
+<li>
+<a class="nav-link" href="#set-up-dont-skip-1">1. Set up (DON’T SKIP)</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#create-a-project-for-lab-3">[1.1] Create a project for Lab 3</a></li>
+<li><a class="nav-link" href="#download-the-lab-report-template-1">[1.2] Download the lab report template</a></li>
+<li><a class="nav-link" href="#edit-the-yaml-code---new">[1.3] Edit the yaml code - NEW</a></li>
+<li><a class="nav-link" href="#check-progress-knit-1">[1.4] Check Progress &amp; knit</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#code-showcase">2. Code showcase</a></li>
+<li><a class="nav-link" href="#taiwan-analysis">3: Taiwan analysis</a></li>
+<li><a class="nav-link" href="#submitting-your-lab-1">4. Submitting your Lab</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>STAT462 Lab Book 2024</strong>" was written by Dr Helen Greatrex. It was last built on 2024-04-25.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

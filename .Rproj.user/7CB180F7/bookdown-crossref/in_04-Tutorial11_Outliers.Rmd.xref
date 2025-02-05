@@ -1,0 +1,18 @@
+h1:outliers-high-leverage-influential-points Outliers, high leverage & influential points
+h2:what-are-they What are they
+h3:an-outlier An 
+h3:a-high-leverage-point A high leverage point
+h3:an-influential-point An influential point
+h2:how-to-find-them How to find them
+h3:residual-vs-leverage-plots Residual vs leverage plots
+h2:examples Examples
+h3:no-outliers-influential-or-high-leverage-points No outliers, influential or high leverage points
+h2:how-to-find-them-1 How to find them
+h3:assessing-outliers-via-visual-inspection Assessing outliers via visual inspection
+h3:no-outliers-influential-or-high-leverage-points-1 No outliers, influential or high leverage points
+h3:an-outlier-with-no-leverage An outlier with no leverage
+h3:a-high-leverage-point-that-isnt-an-outlier A high leverage point that isn’t an outlier
+h3:an-influential-high-leverage-outlier An influential high leverage outlier
+h3:detecting-outliers-via-plots Detecting outliers via plots
+h3:detecting-influential-points Detecting influential points
+

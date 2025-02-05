@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Lab 5B | STAT462 Lab Book 2024</title>
+<meta name="author" content="Dr Helen Greatrex">
+<meta name="description" content="Aim Welcome to lab 5B. This is worth 6% (60 points), alongside 40 for Lab 5A last week (you can drop them together or neither) By the end of this lab, you will be able to: Understand &amp; use...">
+<meta name="generator" content="bookdown 0.37 with bs4_book()">
+<meta property="og:title" content="Lab 5B | STAT462 Lab Book 2024">
+<meta property="og:type" content="book">
+<meta property="og:description" content="Aim Welcome to lab 5B. This is worth 6% (60 points), alongside 40 for Lab 5A last week (you can drop them together or neither) By the end of this lab, you will be able to: Understand &amp; use...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Lab 5B | STAT462 Lab Book 2024">
+<meta name="twitter:description" content="Aim Welcome to lab 5B. This is worth 6% (60 points), alongside 40 for Lab 5A last week (you can drop them together or neither) By the end of this lab, you will be able to: Understand &amp; use...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.1/transition.js"></script><script src="libs/bs3compat-0.6.1/tabs.js"></script><script src="libs/bs3compat-0.6.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<link href="libs/vembedr-0.1.5/css/vembedr.css" rel="stylesheet">
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><script src="libs/plotly-binding-4.10.3/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script><link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">STAT462 Lab Book 2024</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Welcome to STAT-462!</a></li>
+<li><a class="" href="FAQ.html">Course FAQ</a></li>
+<li><a class="" href="WhatIsR.html">What are R and R-Studio?</a></li>
+<li><a class="" href="Setup_Desktop.html">Installing R/R-Studio</a></li>
+<li><a class="" href="Setup_UpdateDesktop.html">Updating R/R-Studio</a></li>
+<li><a class="" href="Setup_Online.html">Posit Cloud Online</a></li>
+<li class="book-part">.</li>
+<li class="book-part">LAB INSTRUCTIONS</li>
+<li><a class="" href="Help.html">HELP!</a></li>
+<li><a class="" href="Lab_1.html">Lab 1</a></li>
+<li><a class="" href="Lab_2.html">Lab 2</a></li>
+<li><a class="" href="Lab_3.html">Lab 3</a></li>
+<li><a class="" href="Lab_4.html">Lab 4</a></li>
+<li><a class="" href="Lab_5.html">Lab 5A</a></li>
+<li><a class="active" href="Lab_5B.html">Lab 5B</a></li>
+<li><a class="" href="lab-6.html">Lab 6</a></li>
+<li><a class="" href="final-project.html">Final Project</a></li>
+<li><a class="" href="final-project-example-movie-ratings.html">FINAL PROJECT EXAMPLE: Movie Ratings</a></li>
+<li class="book-part">.</li>
+<li class="book-part">TUTORIALS</li>
+<li><a class="" href="T1_Projects.html"><span class="header-section-number">1</span> Projects/Starting a lab</a></li>
+<li><a class="" href="T2_Libraries.html"><span class="header-section-number">2</span> Libraries/Packages</a></li>
+<li><a class="" href="T3_Markdown.html"><span class="header-section-number">3</span> R-Markdown</a></li>
+<li><a class="" href="T4_ReadingData.html"><span class="header-section-number">4</span> Reading in data</a></li>
+<li><a class="" href="probability-distributions.html"><span class="header-section-number">5</span> Probability distributions</a></li>
+<li><a class="" href="T6_plots.html"><span class="header-section-number">6</span> Plots</a></li>
+<li><a class="" href="correlation.html"><span class="header-section-number">7</span> Correlation</a></li>
+<li><a class="" href="T8_regression.html"><span class="header-section-number">8</span> Regression</a></li>
+<li><a class="" href="T9_wrangling.html"><span class="header-section-number">9</span> Data Wrangling</a></li>
+<li><a class="" href="T10_diagnostics.html"><span class="header-section-number">10</span> Assessing LINE</a></li>
+<li><a class="" href="outliers-high-leverage-influential-points.html"><span class="header-section-number">11</span> Outliers, high leverage &amp; influential points</a></li>
+<li><a class="" href="confidence-and-prediction-intervals.html"><span class="header-section-number">12</span> Confidence and Prediction Intervals</a></li>
+<li><a class="" href="S.Tutorial_Transformations.html"><span class="header-section-number">13</span> Transformations</a></li>
+<li><a class="" href="S.Tutorial_GLM.html"><span class="header-section-number">14</span> GLM - Logistic Regression</a></li>
+<li><a class="" href="basic-model-comparisons.html"><span class="header-section-number">15</span> Basic model comparisons</a></li>
+<li><a class="" href="multiple-regression-model-fitting-1.html"><span class="header-section-number">16</span> Multiple regression &amp; model fitting</a></li>
+<li><a class="" href="finding-the-optimal-model.html"><span class="header-section-number">17</span> Finding the “optimal model”</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="Lab_5B" class="section level1 unnumbered">
+<h1>Lab 5B<a class="anchor" aria-label="anchor" href="#Lab_5B"><i class="fas fa-link"></i></a>
+</h1>
+<div id="aim-5" class="section level2 unnumbered">
+<h2>Aim<a class="anchor" aria-label="anchor" href="#aim-5"><i class="fas fa-link"></i></a>
+</h2>
+<p>Welcome to lab 5B. This is worth 6% (60 points), alongside 40 for Lab 5A last week (you can drop them together or neither)</p>
+<p>By the end of this lab, you will be able to:</p>
+<ol style="list-style-type: decimal">
+<li>Understand &amp; use regression diagnostics to assess outliers</li>
+<li>Test your knowledge on a real dataset.</li>
+</ol>
+<p>This is a TWO WEEK LAB (e.g. 3 weeks total). You need to finish writing up by a week next Tuesday (Tues April 2nd 23:59pm) e.g. just before Lab 6 starts.</p>
+<p><br></p>
+<div id="need-help-2" class="section level3" number="0.3.3">
+<h3>
+<span class="header-section-number">0.3.3</span> Need help?<a class="anchor" aria-label="anchor" href="#need-help-2"><i class="fas fa-link"></i></a>
+</h3>
+<p>REMEMBER THAT EVERY TIME YOU RE-OPEN R-STUDIO YOU NEED TO RE-RUN <strong>ALL</strong> YOUR CODE CHUNKS. The easiest way to do this is to press the “Run All” button (see the Run menu at the top right of your script)</p>
+<p><strong>Code won’t knit? Struggling? Have a question? See the help page here: <a href="Help.html#Help">Help!</a></strong></p>
+<p>The maximum time this lab should take is about 4-5 hrs of your time.</p>
+<p>If for some reason, you didn’t do lab 5A, START THERE FIRST!</p>
+<p><br></p>
+<hr>
+</div>
+</div>
+<div id="set-up-dont-skip-4" class="section level2 unnumbered">
+<h2>1. Set up (DON’T SKIP)<a class="anchor" aria-label="anchor" href="#set-up-dont-skip-4"><i class="fas fa-link"></i></a>
+</h2>
+<p><br></p>
+<div id="step-1.1-re-open-your-lab-5-project" class="section level3 unnumbered">
+<h3>
+<strong>[Step 1.1] Re-Open your Lab 5 project</strong><a class="anchor" aria-label="anchor" href="#step-1.1-re-open-your-lab-5-project"><i class="fas fa-link"></i></a>
+</h3>
+<p><strong>WE ARE CONTINUING FROM YOUR PREVIOUS LAB 5 WORK</strong></p>
+<ul>
+<li><p>If you are using the POSIT Cloud (AKA R-Studio online), log-in and click on your project</p></li>
+<li><p>If you are using R-Studio on your own computer/laptop, look in the STAT462/Lab5 folder on your computer and double click the .RProj file (I often rename it something like OPENTHIS.RProj)</p></li>
+</ul>
+<p><br><br></p>
+</div>
+<div id="step-1.2-re-run-your-previous-work-check-progress" class="section level3 unnumbered">
+<h3>
+<strong>[Step 1.2] Re-run your previous work &amp; check progress</strong><a class="anchor" aria-label="anchor" href="#step-1.2-re-run-your-previous-work-check-progress"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li><p>You will be continuing your reports from Lab 5A.</p></li>
+<li><p>Go to the files tab and click on the your Lab 5 .RmD lab report file to open it. (NOT THE HTML)</p></li>
+<li><p>Go to the Session menu at the top and click “Clear Workspace”.</p></li>
+<li><p>Now go to the session menu and click Restart R and run all code chunks. Everything in your script should run with out errors.</p></li>
+<li>
+<p>Press knit and check that works. Look at the html and click through your table of contents (created using those headings).</p>
+<ul>
+<li><p>Could you tidy up your sub-headings to make it easier to follow?</p></li>
+<li><p>Any spelling errors/answers that weren’t so clear?</p></li>
+</ul>
+</li>
+</ul>
+<p><br><br></p>
+<hr>
+</div>
+</div>
+<div id="code-challenge---regression-outliers" class="section level2 unnumbered">
+<h2>2. Code Challenge - Regression outliers<a class="anchor" aria-label="anchor" href="#code-challenge---regression-outliers"><i class="fas fa-link"></i></a>
+</h2>
+<div id="step-2.1-detecting-outliers" class="section level3 unnumbered">
+<h3>
+<strong>[Step 2.1] Detecting Outliers</strong><a class="anchor" aria-label="anchor" href="#step-2.1-detecting-outliers"><i class="fas fa-link"></i></a>
+</h3>
+<p><em>We will be discussing this in next week’s lectures.</em></p>
+<p>FIRST, read this tutorial on identifying outliers: <a href="https://psu-spatial.github.io/Stat462-2024/T10_diagnostics.html#tests-for-outliers" class="uri">https://psu-spatial.github.io/Stat462-2024/T10_diagnostics.html#tests-for-outliers</a></p>
+<ul>
+<li><p>Go to Canvas and download the three “testdata” datasets into your lab 5 folder (you may as well also download the bass data at this point) <br></p></li>
+<li><p>Scroll to the end of your Lab report &amp; press enter a few times. Create a level 1 heading called “Lab 5B - Outliers” <br></p></li>
+<li><p>Now copy/paste this code into your report and get it running. Remember to make sure that the data is in your lab 5 folder AND you are running your project AND you have run your library code chunk.</p></li>
+</ul>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">layout</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span>, <span class="fl">1</span>,<span class="fl">3</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">testdata1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"testdata1.xlsx"</span><span class="op">)</span></span>
+<span><span class="va">Model1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">y</span><span class="op">~</span><span class="va">x</span>,data<span class="op">=</span><span class="va">testdata1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">testdata1</span><span class="op">$</span><span class="va">y</span> <span class="op">~</span> <span class="va">testdata1</span><span class="op">$</span><span class="va">x</span>,pch<span class="op">=</span><span class="fl">16</span>,xlab<span class="op">=</span><span class="st">"x1"</span>,ylab<span class="op">=</span><span class="st">"y1"</span>,main<span class="op">=</span><span class="st">"Example 1"</span><span class="op">)</span> </span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span><span class="va">Model1</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">testdata2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"Testdata2.xlsx"</span><span class="op">)</span></span>
+<span><span class="va">Model2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">y</span><span class="op">~</span><span class="va">x</span>,data<span class="op">=</span><span class="va">testdata2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">testdata2</span><span class="op">$</span><span class="va">y</span> <span class="op">~</span> <span class="va">testdata2</span><span class="op">$</span><span class="va">x</span>,pch<span class="op">=</span><span class="fl">16</span>,xlab<span class="op">=</span><span class="st">"x2"</span>,ylab<span class="op">=</span><span class="st">"y2"</span>,main<span class="op">=</span><span class="st">"Example 2"</span><span class="op">)</span> </span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span><span class="va">Model2</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">testdata3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"Testdata3.xlsx"</span><span class="op">)</span></span>
+<span><span class="va">Model3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">y</span><span class="op">~</span><span class="va">x</span>,data<span class="op">=</span><span class="va">testdata3</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">testdata3</span><span class="op">$</span><span class="va">y</span> <span class="op">~</span> <span class="va">testdata3</span><span class="op">$</span><span class="va">x</span>,pch<span class="op">=</span><span class="fl">16</span>,xlab<span class="op">=</span><span class="st">"x3"</span>,ylab<span class="op">=</span><span class="st">"y3"</span>,main<span class="op">=</span><span class="st">"Example 3"</span><span class="op">)</span> </span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span><span class="va">Model3</span><span class="op">)</span></span></code></pre></div>
+<ul>
+<li><p>In your report, and using the tutorial I linked to above, describe the difference between an outlier, a high leverage point and an influential outlier.</p></li>
+<li><p>In your report, identify which of the three Models has a high leverage point, which has an influential outlier, and which has been a non-influential outlier</p></li>
+</ul>
+</div>
+<div id="step-2.2-using-code-to-detect-outliers" class="section level3 unnumbered">
+<h3>
+<strong>[Step 2.2] Using code to detect outliers</strong><a class="anchor" aria-label="anchor" href="#step-2.2-using-code-to-detect-outliers"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>Now run this code for each model. Below your results, explain how these plots agree/disagree with your conclusions above.</li>
+</ul>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># remember to edit for model 2 and 3 </span></span>
+<span> <span class="fu"><a href="https://olsrr.rsquaredacademy.com/reference/ols_plot_resid_lev.html">ols_plot_resid_lev</a></span><span class="op">(</span><span class="va">Model1</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div id="step-2.3-understand-influential-outliers" class="section level3 unnumbered">
+<h3>
+<strong>[Step 2.3] Understand influential outliers</strong><a class="anchor" aria-label="anchor" href="#step-2.3-understand-influential-outliers"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>Finally, this code filters out the outliers. In real life, you could use the filter command on column of your choice, remove the data in excel or use the which command. Get this running.</li>
+</ul>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># remember to edit for model 2 and 3 </span></span>
+<span><span class="va">new_testdata1</span> <span class="op">&lt;-</span> <span class="va">testdata1</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">24</span>,<span class="op">]</span></span>
+<span><span class="va">new_testdata2</span> <span class="op">&lt;-</span> <span class="va">testdata2</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">24</span>,<span class="op">]</span></span>
+<span><span class="va">new_testdata3</span> <span class="op">&lt;-</span> <span class="va">testdata3</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">24</span>,<span class="op">]</span></span>
+<span><span class="va">NewModel1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">y</span><span class="op">~</span><span class="va">x</span>,data<span class="op">=</span><span class="va">new_testdata1</span><span class="op">)</span></span>
+<span><span class="va">NewModel2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">y</span><span class="op">~</span><span class="va">x</span>,data<span class="op">=</span><span class="va">new_testdata2</span><span class="op">)</span></span>
+<span><span class="va">NewModel3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">y</span><span class="op">~</span><span class="va">x</span>,data<span class="op">=</span><span class="va">new_testdata3</span><span class="op">)</span></span></code></pre></div>
+<ul>
+<li><p>Now examine the model slope and intercept for Model1 vs NewModel1, Model2 vs NewModel2 and Model3 vs NewModel3 (you could look at the OLSregress summary or the normal summary, or just type its name in the console). You don’t need to include all the code if you don’t want to.</p></li>
+<li><p>In your report, use this additional evidence to explain how these plots agree/disagree with your conclusions above. Bonus, think about using the confidence intervals on the slope in the OLSRR summary to help with this.</p></li>
+</ul>
+<p><br><br></p>
+<hr>
+</div>
+</div>
+<div id="real-data---florida-fish-challenge" class="section level2 unnumbered">
+<h2>3. Real Data - Florida Fish Challenge<a class="anchor" aria-label="anchor" href="#real-data---florida-fish-challenge"><i class="fas fa-link"></i></a>
+</h2>
+<p><br></p>
+<div id="step-3.1-read-everything-in-this-section---you-will-need-it" class="section level3 unnumbered">
+<h3>
+<strong>[Step 3.1] Read everything in this section - you will need it!</strong><a class="anchor" aria-label="anchor" href="#step-3.1-read-everything-in-this-section---you-will-need-it"><i class="fas fa-link"></i></a>
+</h3>
+<p>(remember you can use google translate if/as needed)</p>
+<div id="study-background" class="section level4 unnumbered">
+<h4>Study Background<a class="anchor" aria-label="anchor" href="#study-background"><i class="fas fa-link"></i></a>
+</h4>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:unnamed-chunk-5"></span>
+<img src="index_images/im_Lab5_Fish.png" alt="a. (Left): The mercury food chain in fish.(Wikimedia commons, Bretwood Higman, Ground Truth Trekking) b. (middle) A large bass caught and released in a central Florida lake (https://www.wired2fish.com/news/young-man-catches-releases-huge-bass-from-bank/) c. (right). The location of the lakes in Florida (Google maps)" width="95%"><p class="caption">
+Figure 0.1: a. (Left): The mercury food chain in fish.(Wikimedia commons, Bretwood Higman, Ground Truth Trekking) b. (middle) A large bass caught and released in a central Florida lake (<a href="https://www.wired2fish.com/news/young-man-catches-releases-huge-bass-from-bank/" class="uri">https://www.wired2fish.com/news/young-man-catches-releases-huge-bass-from-bank/</a>) c. (right). The location of the lakes in Florida (Google maps)
+</p>
+</div>
+<p>Small amounts of the element mercury are present in many foods. They do not normally affect your health, but too much mercury can be poisonous. Although mercury is naturally occurring, the amounts in the environment have been on the rise from industrialization. You can read more details here:</p>
+<ul>
+<li><a href="https://www.wearecognitive.com/project/extra-narrative/bbc-mercury" class="uri">https://www.wearecognitive.com/project/extra-narrative/bbc-mercury</a></li>
+<li><a href="https://medium.com/predict/mercury-pollution-reaches-the-deep-sea-f59a4938dc7c" class="uri">https://medium.com/predict/mercury-pollution-reaches-the-deep-sea-f59a4938dc7c</a></li>
+</ul>
+<p>In the late 1980s, there were widespread public safety concerns in Florida about high mercury concentrations in sport fish. In 1989, the State of Florida issued an advisory urging the public to limit consumption of “top level” predatory fish from Lake Tohopekaliga and connected waters: including largemouth bass (Micropterus salmoides), bowfin (Amia calva), and gar (Lepisosteus spp.). This severely impacted tourism and the economy in the area.</p>
+<p>Urgent research was required to inform public policy about which lakes needed to be closed. We are going to reproduce part of one study on the topic conducted by T.R. Lange in 1993.</p>
+<p>You can see part of the paper here: <a href="https://www.researchgate.net/publication/15388314_Mercury_accumulation_in_largemouth_bass_Micropterus_salmoides_in_a_Florida_Lake" class="uri">https://www.researchgate.net/publication/15388314_Mercury_accumulation_in_largemouth_bass_Micropterus_salmoides_in_a\_Florida_Lake</a><br></p>
+</div>
+<div id="your-goal" class="section level4 unnumbered">
+<h4>Your Goal<a class="anchor" aria-label="anchor" href="#your-goal"><i class="fas fa-link"></i></a>
+</h4>
+<p><strong>You have been asked to use this dataset assess whether the alkalinity levels of a lake might impact Mercury levels in large-mouth bass.</strong></p>
+<p><strong>You will be presenting your results to the Mayor of Orlando in order to set new fishing regulations.</strong></p>
+<p>Urgent research was required to inform public policy about which lakes needed to be closed. We are going to reproduce part of one study on the topic conducted by T.R. Lange in 1993. Dr Lange and their team took samples from 53 lakes in the Central Florida area.</p>
+<ul>
+<li><p>Using water samples collected from each of the lakes, the researchers measured the pH level, as well as the amount of chlorophyll, calcium and alkalinity.</p></li>
+<li><p>The Mercury concentration in the muscle tissue of lake fish was also recorded.</p></li>
+</ul>
+<p>You can read more details in the paper/resources here - <a href="https://www.researchgate.net/publication/15388314_Mercury_accumulation_in_largemouth_bass_Micropterus_salmoides_in_a_Florida_Lake" class="uri">https://www.researchgate.net/publication/15388314_Mercury_accumulation_in_largemouth_bass_Micropterus_salmoides_in_a\_Florida_Lake</a>.</p>
+<p>The units of the your dataset are:</p>
+<div class="inline-table"><table class="table table-sm">
+<colgroup>
+<col width="13%">
+<col width="86%">
+</colgroup>
+<thead><tr class="header">
+<th align="center"><strong>Variable</strong></th>
+<th align="center"><strong>Unit</strong></th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center">No_fish_sampled</td>
+<td align="center">Number of fish sampled from each lake</td>
+</tr>
+<tr class="even">
+<td align="center">fish_av_mercury</td>
+<td align="center">Average amount of mercury found in sampled fish, <span class="math inline">\(\mu g\)</span>
+</td>
+</tr>
+<tr class="odd">
+<td align="center">lake_alkalinity</td>
+<td align="center">
+<p>miligrams/Litre, <span class="math inline">\(mg/L\)</span></p>
+<p>(Total alkalinity is expressed as <strong>milligrams per liter</strong> (mg/L) or parts per million (ppm) of calcium carbonate (CaCO3))</p>
+</td>
+</tr>
+<tr class="even">
+<td align="center">lake_ph</td>
+<td align="center">Unitless measure of acidity/alkalinity</td>
+</tr>
+<tr class="odd">
+<td align="center">lake_calcium</td>
+<td align="center">Measured calcium content of the lake in miligrams/Litre, <span class="math inline">\(mg/L\)</span>
+</td>
+</tr>
+<tr class="even">
+<td align="center">lake_chlorophyll</td>
+<td align="center">Measured chlorophyll content of the lake in miligrams/Litre, Micrograms, <span class="math inline">\(\mu g\)</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p>The data is stored on Canvas in <strong>bass.xlsx</strong>.</p>
+<p>NOTE, I HAVE CHANGED NUMBERS IN THIS DATASET - IT’S NOT THE ONE YOU SEE ONLINE..</p>
+<p><br><br></p>
+</div>
+</div>
+<div id="step-3.2-obtain-the-data" class="section level3 unnumbered">
+<h3>
+<strong>[Step 3.2]</strong> Obtain the data<a class="anchor" aria-label="anchor" href="#step-3.2-obtain-the-data"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>Scroll to the end of your Lab report &amp; press enter a few times.</li>
+<li>Create a level 1 heading called Lab 5B - Florida Fish<br>
+</li>
+</ul>
+<p>Obtain the data from Canvas and put it in your project folder. Use read_excel to read it into R and save it as a variable called <code>BassNew.xlsx</code>. e.g.</p>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">bass</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"BassNew.xlsx"</span><span class="op">)</span></span></code></pre></div>
+<p><br><br></p>
+</div>
+<div id="step-3.3-describe-the-study-aim" class="section level3 unnumbered">
+<h3>
+<strong>[Step 3.3]</strong> Describe the study aim<a class="anchor" aria-label="anchor" href="#step-3.3-describe-the-study-aim"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li><p>If you skipped it, go back and read the brief in 3.1. Seriously, it will save you time.</p></li>
+<li>
+<p>Imagine you are writing a brief for the Orlando Mayor. Start by summarizing your research goal and the data available, including</p>
+<ul>
+<li><p>Why people who care about Mercury poisoning are looking at fish (use the reference links)</p></li>
+<li><p>What you are trying to achieve in this report</p></li>
+<li><p>The data that is available and what population you are planning to apply it to (e.g. is your sample representative of “Florida lakes today”</p></li>
+<li><p>The object of analysis.</p></li>
+<li><p>The variables and their units (especially identifying the response variable - you’re welcome to copy/paste my table.</p></li>
+</ul>
+</li>
+<li><p>Use formatting like headings/sub-headings/bullet points etc to make your write up easy to read.</p></li>
+</ul>
+<p><br><br></p>
+</div>
+<div id="step-3.4-exploratory-analysis" class="section level3 unnumbered">
+<h3>
+<strong>[Step 3.4]</strong> Exploratory analysis<a class="anchor" aria-label="anchor" href="#step-3.4-exploratory-analysis"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li><p>Conduct a quick exploratory analysis of the data using commands like skim or summary (read ahead first!).</p></li>
+<li><p>Below the code, in the text describe how much data is available, any missing data and any other interesting features. If you already did this above, just refer to what you did.</p></li>
+<li><p>Make a histogram of the response variable and use any method you see fit to assess its normality. Describe your findings in the text.</p></li>
+<li>
+<p>Use the ggcorrmat command from the ggstatsplot package to make a correlation matrix of your bass data: <br></p>
+<ul>
+<li>Install the ggstatsplot package (Tutorial 2: <a href="https://psu-spatial.github.io/Stat462-2024/T2_Libraries.html#the-app-storegetting-new-packages" class="uri">https://psu-spatial.github.io/Stat462-2024/T2_Libraries.html#the-app-storegetting-new-packages</a>) <br>
+</li>
+<li>Add library(ggstatsplot) to your library code chunk <br>
+</li>
+<li>Then at the appropriate place in your report, include <br>
+</li>
+</ul>
+</li>
+</ul>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">ggcorrmat</span><span class="op">(</span><span class="va">bass</span><span class="op">)</span> </span></code></pre></div>
+<ul>
+<li>Describe the relationships you see in the text and which (if any) other predictors might be confounding variables that also impact your response variable.</li>
+</ul>
+<p><br><br></p>
+</div>
+<div id="step-3.5-first-model" class="section level3 unnumbered">
+<h3>
+<strong>[Step 3.5]</strong> First model<a class="anchor" aria-label="anchor" href="#step-3.5-first-model"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li><p>Create a linear model between your response and predictor (remember to read the problem statement to work out what they are). It will make your life easier to save this as a variable called model1. e.g. <code>model1 &lt;- ..</code></p></li>
+<li><p>Make a professional looking scatterplot (this should have proper x,y axis labels etc) with the line of best fit plotted from the model. (remember <a href="https://psu-spatial.github.io/Stat462-2024/T6_plots.html#T6_PlotGGPlot" class="uri">https://psu-spatial.github.io/Stat462-2024/T6_plots.html#T6_PlotGGPlot</a>)</p></li>
+<li><p>Include the linear model summary from olsrr.</p></li>
+<li><p>In the text below the model, formally write out the linear model equation, including the numeric coefficients.</p></li>
+<li><p>In the text, describe the scatter-plot (e.g. strength, association, outliers etc)</p></li>
+<li>
+<p>The Mayor doesn’t understand statistics very well. Clearly interpret the estimated model parameters (slope &amp; intercept)/model summary-statistics in the the context of the problem, in a way that would be understandable to a policy maker. <br></p>
+<ul>
+<li>By this I mean explain what the slope/intercept means in terms of fish and florida lakes, highlighting if a parameter is nonsensical (for example, knowing the weight of someone with zero height is not useful). <br>
+</li>
+</ul>
+</li>
+</ul>
+<p><br><br></p>
+</div>
+<div id="step-3.5-line-inspection" class="section level3 unnumbered">
+<h3>
+<strong>[Step 3.5]</strong> LINE inspection<a class="anchor" aria-label="anchor" href="#step-3.5-line-inspection"><i class="fas fa-link"></i></a>
+</h3>
+<p>We are now able to check for Linearity, Normality, Equal Variance and Outliers. We will look at independence in Lab 6.</p>
+<ul>
+<li>Use the code from Lab 5A (at the top of your lab script!) to visually inspect
+<ul>
+<li>Linearity, Equal variance and Normality of residuals (you can choose the method)</li>
+</ul>
+</li>
+<li>Write your conclusions in the text.</li>
+</ul>
+<p><br><br></p>
+</div>
+<div id="step-3.6-outliers---see-tutorial-11-new" class="section level3 unnumbered">
+<h3>
+<strong>[Step 3.6]</strong> Outliers - SEE TUTORIAL 11 (NEW)<a class="anchor" aria-label="anchor" href="#step-3.6-outliers---see-tutorial-11-new"><i class="fas fa-link"></i></a>
+</h3>
+<p>In this lab, we will now also look at Outliers. We will look at independence in Lab 6.</p>
+<ul>
+<li>I have assumed that you have called your linear-model, <code>model1</code> and your data, <code>bass</code>. Copy/edit-as-needed/run this code. This extracts from the model your predicted y-values, the residuals and outlier analysis for each data point. Get this working without errors.</li>
+</ul>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Make a new column with the predicted y value</span></span>
+<span><span class="va">bass</span><span class="op">$</span><span class="va">y_predicted</span> <span class="op">&lt;-</span> <span class="va">model1</span><span class="op">$</span><span class="va">fitted.values</span></span>
+<span></span>
+<span><span class="co"># Make a new column with the raw residuals</span></span>
+<span><span class="va">bass</span><span class="op">$</span><span class="va">residuals_m1</span> <span class="op">&lt;-</span> <span class="va">model1</span><span class="op">$</span><span class="va">residuals</span></span>
+<span></span>
+<span><span class="co"># Make a new column with the leverage</span></span>
+<span><span class="va">bass</span><span class="op">$</span><span class="va">x_leverage</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://olsrr.rsquaredacademy.com/reference/ols_leverage.html">ols_leverage</a></span><span class="op">(</span><span class="va">model1</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Make a new column with the Cook's distance. OLSRR package</span></span>
+<span><span class="va">bass</span><span class="op">$</span><span class="va">cooks.distance</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/influence.measures.html">cooks.distance</a></span><span class="op">(</span><span class="va">model1</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Print out the table</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">bass</span><span class="op">)</span></span></code></pre></div>
+<p><br></p>
+<p><strong>Now take a look at tutorial 11 (NEW)!.</strong></p>
+<ul>
+<li>
+<p>Use this data to identify:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>The name of the lake with highest residual mercury value</p></li>
+<li><p>The name of the lake with highest leverage</p></li>
+<li><p>The name of the lake with highest Cook’s distance</p></li>
+</ol>
+</li>
+</ul>
+<p>HINT - To do this, remember you can filter and sort the data table in the View window (tiny little arrows next to each variable name) You can also use commands like max() on any column (e.g. this code would tell you the row number). Or you can sort the data using this command (<a href="https://psu-spatial.github.io/Stat462-2024/T9_wrangling.html#sorting-data" class="uri">https://psu-spatial.github.io/Stat462-2024/T9_wrangling.html#sorting-data</a>)</p>
+<pre><code>which(tablename$columnname == max(tablename$columnname, na.rm=TRUE))</code></pre>
+<p><br><br></p>
+</div>
+<div id="step-3.7-outlier-question" class="section level3 unnumbered">
+<h3>
+<strong>[Step 3.7]</strong> Outlier question<a class="anchor" aria-label="anchor" href="#step-3.7-outlier-question"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li><p>Another analyst looked at the scatterplot and suggested that they thought there might be three or four Lakes which appear to be either Influential, or close-to-influential outliers. If there is an outlier, then the mayor would want to send people to examine the lakes to make sure that there is nothing weird going on (which is expensive and time consuming)</p></li>
+<li><p>In your analysis, use Cook’s distance to identify the names of lakes the analysts are worried about.</p></li>
+<li><p>In the text explain if you agree with the comment by the analysts. Explain your reasoning and point the reader to evidence in your R output.</p></li>
+</ul>
+<p><br><br></p>
+</div>
+<div id="step-3.8-transformations" class="section level3 unnumbered">
+<h3>
+<strong>[Step 3.8]</strong> Transformations<a class="anchor" aria-label="anchor" href="#step-3.8-transformations"><i class="fas fa-link"></i></a>
+</h3>
+<p>Linearity appears to be the biggest problem - we are going to see if we can use a transformation to fit the data. We will cover these in next week’s lecture</p>
+<ul>
+<li>To do this, we will take the log transformation of our predictor, lake_alkalinity, and save it as a new column. Full tutorial in Tutorial 13, but for now - get this running in the code:</li>
+</ul>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">bass</span><span class="op">$</span><span class="va">Log_Alkalinity</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">bass</span><span class="op">$</span><span class="va">lake_alkalinity</span><span class="op">)</span></span></code></pre></div>
+<ul>
+<li><p>Now fit a NEW model between your response and lake_alkalinity (call it model2),</p></li>
+<li><p>Plot it in a professional scatterplot (with a line of best fit)</p></li>
+<li><p>Assess it for LINE/outliers (ignoring independence).</p></li>
+<li><p>Write out the regression equation remembering that you are now looking at log(alkalinity) as a predictor..</p></li>
+</ul>
+<p>Remember you can copy/paste previous code!</p>
+<p><br><br></p>
+</div>
+<div id="step-3.9-model-skill" class="section level3 unnumbered">
+<h3>
+<strong>[Step 3.9]</strong> Model skill<a class="anchor" aria-label="anchor" href="#step-3.9-model-skill"><i class="fas fa-link"></i></a>
+</h3>
+<p>Make a new sub-heading called “Model skill” to make it easy for me to find these. In your report….</p>
+<p><br></p>
+<ol style="list-style-type: decimal">
+<li>Out of model 1 and model 2, discuss which model in your opinion best fits the LINE assumptions, referring to your code output above.</li>
+</ol>
+<p>NOTE - QUESTION 3.9 part 2 WAS INCLUDED IN ERROR (LEFT OVER FROM AN OLD DATASET) AND HAS BEEN REMOVED.</p>
+<p><br></p>
+<ol start="3" style="list-style-type: decimal">
+<li>
+<p>Out of model 1 and model 2, which model explains the most variability in fish-mercury-content across the lakes?</p>
+<ul>
+<li><em>Provide evidence to justify your answer, including the relevant statistic for each model from your model summaries.</em></li>
+</ul>
+<p><br></p>
+</li>
+<li>
+<p>For model 2, are there still any outliers you might want to take a look at? Are they especially influential?</p>
+<ul>
+<li><em>Provide evidence to justify your answer, referring to your code above</em></li>
+</ul>
+</li>
+</ol>
+<p><br><br></p>
+</div>
+<div id="step-3.10-prediction---see-tutorial-12-new" class="section level3 unnumbered">
+<h3>
+<strong>[Step 3.10]</strong> Prediction - SEE TUTORIAL 12 (NEW)<a class="anchor" aria-label="anchor" href="#step-3.10-prediction---see-tutorial-12-new"><i class="fas fa-link"></i></a>
+</h3>
+<p>Read Tutorial 12: <a href="https://psu-spatial.github.io/Stat462-2024/confidence-and-prediction-intervals.html" class="uri">https://psu-spatial.github.io/Stat462-2024/confidence-and-prediction-intervals.html</a></p>
+<p>Make a new subsection called <code>Prediction</code>. The mayor recently had a question from a member if the public who went fishing in a new lake that was not part of the study.</p>
+<ul>
+<li>We know the alkalinity level of that lake was 40mg/L.</li>
+<li>The member of the public wants to be 99% sure that they won’t exceed the Florida Health Advisory level for Mercury levels in Fish, which is 1 <span class="math inline">\(\mu g\)</span> of Mercury.</li>
+</ul>
+<p>Should they eat the fish? <strong>You should decide the best model to use in getting to your answer.</strong></p>
+<p>Explain your answer and show your evidence for how you came to your conclusion.</p>
+<p>PROBLEM SOLVING - IF YOU GOT MANY ROWS IN YOUR OUTPUT OR THE OUTPUT LOOKS STRANGE, GO BACK AND CHECK THAT YOUR LINEAR MODEL CODE IS</p>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">YColumn</span> <span class="op">~</span> <span class="va">XColumn</span>, data<span class="op">=</span><span class="va">mytable</span><span class="op">)</span></span></code></pre></div>
+<p>NOT</p>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># THIS WILL BREAK THE PREDICT COMMAND LATER ON</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">mytable</span><span class="op">$</span><span class="va">YColumn</span> <span class="op">~</span> <span class="va">mytable</span><span class="op">$</span><span class="va">XColumn</span>, data<span class="op">=</span><span class="va">mytable</span><span class="op">)</span></span></code></pre></div>
+<p>See the end of Tutorial 12 for more details.</p>
+<p><br><br></p>
+</div>
+<div id="step-3.11-more-complex---worth-3." class="section level3 unnumbered">
+<h3>
+<strong>[Step 3.11]</strong> More complex - worth 3%.<a class="anchor" aria-label="anchor" href="#step-3.11-more-complex---worth-3."><i class="fas fa-link"></i></a>
+</h3>
+<p>Make a new subsection called <code>Bonus.</code></p>
+<p><strong>The Florida Health Advisory level for Mercury levels in Fish is 1</strong> <span class="math inline">\(\mu g\)</span> <strong>of Mercury. The nayor has accepted your model and is requiring state-wide alkalinity tests.</strong></p>
+<p><strong>Using your new model, what is your recommended “safety cut-off” value of alkalinity for new lakes? You would like to be 95% sure that you aren’t just seeing this result by chance. Provide evidence/code showing how you got to your answer</strong></p>
+<p><em>This question is designed to be more difficult and realistic. I will answer points of clarification, but I will not help anyone work through it before the labs are submitted. However I will award partial marks for workings and how far you get.</em></p>
+<p><em>It is based on thinking about confidence and prediction intervals and as a hint, think about confidence and prediction intervals graphically on your scatterplot.</em></p>
+<p><a href="https://online.stat.psu.edu/stat501/lesson/3/3.3"><img src="images/regress_mort_lat_PICI.png" style="width:50.0%" alt="Confidence and prediction intervals from the STAT online text book"></a></p>
+<p><br><br></p>
+<hr>
+</div>
+</div>
+<div id="submitting-your-lab-4" class="section level2 unnumbered">
+<h2>4. Submitting your Lab<a class="anchor" aria-label="anchor" href="#submitting-your-lab-4"><i class="fas fa-link"></i></a>
+</h2>
+<p>Remember to save your work throughout and to spell check your writing (next to the save button). Now, press the knit button again. If you have not made any mistakes in the code then R should create a html file in your lab 5 folder which includes your answers.</p>
+<p><strong>For R desktop users:</strong></p>
+<ul>
+<li><p>If you look at your lab 5 folder ON YOUR COMPUTER, you should see your html and Rm there - complete with a very recent time-stamp.</p></li>
+<li><p>In that folder, double click on the html file. This will open it in your web-browser.<br>
+CHECK THAT THIS IS WHAT YOU WANT TO SUBMIT.</p></li>
+<li><p>Now go to Canvas and submit BOTH your html and your .Rmd file in Lab 5.</p></li>
+</ul>
+<p><br></p>
+<p><strong>If you are on posit cloud,</strong></p>
+<ul>
+<li><p>go to the files tab, then click the check box by your html file. Click the “more” blue cogwheel in the file quadrant menu options, then click export. This will download the file</p></li>
+<li><p>Uncheck the box and check the box by your .Rmd file. Click the “more” blue cogwheel in the file quadrant menu options, then click export. This will download the file.</p></li>
+<li><p>Now go to Canvas and submit BOTH your html and your .Rmd file in Lab 5.</p></li>
+</ul>
+<p>Congrats! You are done.</p>
+<p>Overall, here is what your lab should correspond to:</p>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="Lab_5.html">Lab 5A</a></div>
+<div class="next"><a href="lab-6.html">Lab 6</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#Lab_5B">Lab 5B</a></li>
+<li>
+<a class="nav-link" href="#aim-5">Aim</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#need-help-2"><span class="header-section-number">0.3.3</span> Need help?</a></li></ul>
+</li>
+<li>
+<a class="nav-link" href="#set-up-dont-skip-4">1. Set up (DON’T SKIP)</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#step-1.1-re-open-your-lab-5-project">[Step 1.1] Re-Open your Lab 5 project</a></li>
+<li><a class="nav-link" href="#step-1.2-re-run-your-previous-work-check-progress">[Step 1.2] Re-run your previous work &amp; check progress</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#code-challenge---regression-outliers">2. Code Challenge - Regression outliers</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#step-2.1-detecting-outliers">[Step 2.1] Detecting Outliers</a></li>
+<li><a class="nav-link" href="#step-2.2-using-code-to-detect-outliers">[Step 2.2] Using code to detect outliers</a></li>
+<li><a class="nav-link" href="#step-2.3-understand-influential-outliers">[Step 2.3] Understand influential outliers</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#real-data---florida-fish-challenge">3. Real Data - Florida Fish Challenge</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#step-3.1-read-everything-in-this-section---you-will-need-it">[Step 3.1] Read everything in this section - you will need it!</a></li>
+<li><a class="nav-link" href="#step-3.2-obtain-the-data">[Step 3.2] Obtain the data</a></li>
+<li><a class="nav-link" href="#step-3.3-describe-the-study-aim">[Step 3.3] Describe the study aim</a></li>
+<li><a class="nav-link" href="#step-3.4-exploratory-analysis">[Step 3.4] Exploratory analysis</a></li>
+<li><a class="nav-link" href="#step-3.5-first-model">[Step 3.5] First model</a></li>
+<li><a class="nav-link" href="#step-3.5-line-inspection">[Step 3.5] LINE inspection</a></li>
+<li><a class="nav-link" href="#step-3.6-outliers---see-tutorial-11-new">[Step 3.6] Outliers - SEE TUTORIAL 11 (NEW)</a></li>
+<li><a class="nav-link" href="#step-3.7-outlier-question">[Step 3.7] Outlier question</a></li>
+<li><a class="nav-link" href="#step-3.8-transformations">[Step 3.8] Transformations</a></li>
+<li><a class="nav-link" href="#step-3.9-model-skill">[Step 3.9] Model skill</a></li>
+<li><a class="nav-link" href="#step-3.10-prediction---see-tutorial-12-new">[Step 3.10] Prediction - SEE TUTORIAL 12 (NEW)</a></li>
+<li><a class="nav-link" href="#step-3.11-more-complex---worth-3.">[Step 3.11] More complex - worth 3%.</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#submitting-your-lab-4">4. Submitting your Lab</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>STAT462 Lab Book 2024</strong>" was written by Dr Helen Greatrex. It was last built on 2024-04-25.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

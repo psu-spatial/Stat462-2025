@@ -1,4 +1,38 @@
-delete_merged_file: true
+book_filename: "STAT-462_SP24 Lab Book"
+output_dir: "docs"
 language:
   ui:
     chapter_name: "Chapter "
+delete_merged_file: true
+new_session: true
+
+rmd_files:
+  [
+    "index.Rmd",
+    "in_01-CourseFAQ.Rmd",
+    "in_01-WhatIsR.Rmd",
+    "in_03-Setup1_desktop.Rmd",
+    "in_03-Setup2_updatedesktop.Rmd",
+    "in_03-Setup3_RCloud.Rmd",
+
+    "in_01-HELP.Rmd",
+    "in_02-HW2.Rmd",
+
+    "in_04-Tutorial1_Projects.Rmd",
+    "in_04-Tutorial2_Libraries.Rmd",
+    "in_04-Tutorial3_Markdown.Rmd",
+    "in_04-Tutorial4_ReadingInData.Rmd",
+    "in_04-Tutorial5_NormalDistributionsTTests.Rmd",
+    "in_04-Tutorial6_Plots.Rmd",
+    "in_04-Tutorial7_Correlation.Rmd",
+    "in_04-Tutorial8_Regression.Rmd",
+    "in_04-Tutorial9_Wrangling.Rmd",
+    "in_04-Tutorial10_Diagnostics.Rmd",
+    "in_04-Tutorial11_Outliers.Rmd",
+    "in_04-Tutorial12_ConfPred.Rmd",
+    "in_04-Tutorial13_Transformations.Rmd",
+    "in_04-Tutorial14_GLM.Rmd",
+    "in_04-Tutorial15_MLR.Rmd",
+
+
+  ]
