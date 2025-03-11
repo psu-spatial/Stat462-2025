@@ -1,0 +1,541 @@
+```{r setup, include=FALSE,message=FALSE,warning=FALSE}
+# OPTIONS -----------------------------------------------
+knitr::opts_chunk$set(echo = TRUE, 
+                      warning=FALSE, 
+                      message = FALSE)
+
+# PACKAGES-----------------------------------------------
+# Tutorial packages
+library(vembedr)
+library(skimr)
+library(yarrr)
+library(RColorBrewer)
+library(GGally) 
+library(tidyverse)
+library(plotly)
+library(readxl)
+library(rvest)
+library(biscale)
+library(tidycensus)
+library(cowplot)
+library(units)
+library(olsrr)
+
+data("HousesNY", package = "Stat2Data")
+
+```
+
+# Data Wrangling {#T9_wrangling}
+
+## Example datasets
+
+Here I will show a few examples for the houses dataset we were using in lectures. I will also use a separate dataset on spring frost dates.
+
+```{r,warning=FALSE,message=FALSE,echo=FALSE}
+# House data
+data("HousesNY", package = "Stat2Data")
+```
+
+<br><br>
+
+## Looking at the data itself {#T9_basics}
+
+To have a look at the data there are many options. You can:
+
+-   Click on its NAME in the environment tab (not the blue arrow)
+
+    <br>
+
+-   Type its name into the console or into a code chunk
+
+    -   (e.g. I would type, type `HousesNY` into the console or a code chunk)
+
+        <br>
+
+-   Run the command `View(tablename)` IN THE CONSOLE
+
+    -   (View is a command from the tidyverse package).<br>
+
+    -   This will open the data in a new tab.
+
+        <br>
+
+-   Run the command `head(``tablename``)` to see the first 6 lines or so (good for quick checks)
+
+    <br>
+
+-   Run the command `glimpse(``tablename``)` to get a nice summary.
+
+    <br>
+
+-   Run the command `names(``tablename``)` to get the column names.
+
+### Example
+
+```{r}
+# Note, there are sometimes more columns to the right, use the arrow to see
+head(HousesNY)
+```
+
+To see what the column names are, you can use the `names(dataset)` command
+
+```{r}
+names(HousesNY)
+```
+
+Or the glimpse command:
+
+```{r}
+glimpse(HousesNY)
+```
+
+To see how many columns and rows there are, you can use the `nrow()` and `ncol()` commands
+
+```{r}
+nrow(HousesNY)
+ncol(HousesNY)
+```
+
+------------------------------------------------------------------------
+
+<br><br>
+
+## Summary statistics
+
+To look at the summaries there are a load of options. Choose your favourites:
+
+-   `summary(dataset)`
+-   `skim(dataset)` in the skimr package
+-   `summarize(dataset)` in the papeR package. This looks pretty powerful, I'm just learning it
+
+None are better or worse than others - simply choose what works for you in the moment.
+
+```{r}
+summary(HousesNY)
+```
+
+```{r}
+library(skimr) # you would need to install this
+skim(HousesNY)
+```
+
+```{r}
+library(pillar) # you would need to install this
+glimpse(HousesNY)
+```
+
+or
+
+```{r}
+str(HousesNY)
+```
+
+To see what the column names are, you can use the names(dataset) command
+
+```{r}
+names(HousesNY)
+
+```
+
+To print the first few rows
+
+```{r}
+head(HousesNY)
+```
+
+To find the number of rows and columns
+
+```{r}
+nrow(HousesNY)
+
+ncol(HousesNY)
+
+#or both dimensions
+dim(HousesNY)
+```
+
+Or you can do things manually, using the \$ symbol to choose a column. All of this is for the price column
+
+```{r}
+mean(HousesNY$Price)
+median(HousesNY$Price)
+mode(HousesNY$Price)
+sd(HousesNY$Price)
+var(HousesNY$Price)
+IQR(HousesNY$Price)
+range(HousesNY$Price)
+```
+
+
+------------------------------------------------------------------------
+
+<br><br>
+
+
+## Removing missing values {#Missing}
+
+### na.omit
+
+The na.omit command will remove any row with ANY missing value. 
+
+Note I'm overwriting my variable HousesNY with the new one. It's up to you if you want to do this or make a new variable
+
+```{r, eval=FALSE}
+HousesNY <- na.omit(HousesNY)
+```
+
+<br><br>
+
+### Missing values in single columns, complete.cases
+
+If you want to only remove rows with missing values in a single column, we can use the complete cases command
+
+
+```{r, eval=FALSE}
+HousesNY <- HousesNY[complete.cases(HousesNY$Price), ]
+```
+
+E.g. take the HousesNY table and ONLY include values where the price data is not missing.   Note, this can be any column name at all.
+
+<br><br>
+
+
+### Turning values into NA
+
+Sometimes, you have -999 or something as your missing mark.  R expects them to be NA.  
+
+You can apply a RULE using the filter command below or like this to make them actually NAs
+
+```{r}
+HousesNY$Price[HousesNY$Price < 0]   <- NA
+```
+
+E.g. here I select all the prices that are less than 0 (e.g impossible) and set them to NA.
+
+
+<br>
+
+## Ignoring missing data in commands
+
+
+There are missing values in some datasets - and by default, R will set the answer to statistics to also be missing.
+
+```{r}
+# Create some test data
+test <- data.frame(A=c(1,3,4),
+                   B=c(NA,3,1))
+print(test)
+```
+
+```{r}
+# Take the mean of column B
+mean(test$B)
+
+# Take the correlation between A and B
+cor(test$A,test$B)
+
+```
+
+To ignore them in a given command, try adding ,na.rm=TRUE to the command e.g.
+
+```{r}
+mean(test$B, na.rm=TRUE)
+```
+
+or sometimes I look in the help file (or on google) for a slightly different terminology.
+
+```{r}
+#the cor command doesn't follow the pattern.
+
+cor(test$A,test$B,use = "complete.obs")
+
+
+```
+
+
+
+## Making frequency tables
+
+Sometimes we want to see how many rows there are in different categories. The easiest way to do this is using the table command. For example, in our New York data, we can see how many houses there are with each number of beds using
+
+```{r}
+table(HousesNY$Beds)
+```
+
+So there are 19 rows in our dataset where the Beds column says 4 (AKA 19 houses in our sample with 4 beds). Or we can look at a 2 dimensional table
+
+```{r}
+table(HousesNY$Beds, HousesNY$Baths)
+```
+
+So there are 10 houses with 4 beds and 2 baths
+
+To make these look more professional there are a number of packages you can install and use. For example, ztable will take the output of table and format it in a pretty way. This will look TERRIBLE when you run R as it's making html code. But when you press knit it will look beautiful
+
+```{r, results='asis'}
+# don't include the install line in your code, run it in the console
+# install.package("ztable")
+
+library(ztable)
+library(magrittr)
+options(ztable.type="html")
+
+mytable <- table(HousesNY$Beds, HousesNY$Baths)
+
+my_ztable =ztable(mytable) 
+print(my_ztable,caption="Table 1. Basic Table")
+```
+
+<br><br>
+
+
+```{r,include=FALSE,echo=FALSE}
+# invisible data read
+library(tidyverse)
+library(sp)
+library(sf)
+library(readxl)
+library(skimr)
+library(tmap)
+library(viridis)
+```
+
+## Wrangling basics {#WrangleBasics}
+
+
+### Selecting a specific column
+
+Here I am using the NYHouses data as an example. Sometimes we want to deal with only one specific column in our spreadsheet/dataframe, for example applying the mean/standard deviation/inter-quartile range command to say just the Price column.
+
+To do this, we use the \$ symbol. For example, here I'm simply selecting the data in the elevation column only and saving it to a new variable called elevationdata.
+
+```{r, eval=FALSE}
+data("HousesNY")
+price <- HousesNY$Price
+
+price
+```
+
+Try it yourself. You should have seen that as you typed the \$, it gave you all the available column names to choose from.
+
+This means we can now easily summarise specific columns. For example:
+
+-   `summary(HousesNY)` will create a summary of the whole spreadsheet,
+-   `summary(HousesNY$Price)` will only summarise the Price column.\
+-   `mean(HousesNY$Price)` will take the mean of the Price column in the HousesNY dataframe.
+
+<br><br>
+
+
+### Choosing values from rows and columns
+
+Sometimes, we do not want to analyse at the entire data.frame. Instead, we would like to only look at one (or more) columns or rows.
+
+There are several ways we can select data.
+
+-   To choose a specific column, we can use the `$` symbol to select its name (as described above)
+
+-   If you know which number rows or columns you want, you can use **square brackets** to numerically select data.
+
+Essentially our data follows the format: tablename$$ROWS,COLUMNS$$
+
+```{r, eval=FALSE}
+# reading in some new data
+frost    <- readxl::read_excel("Data_frostdata.xlsx")
+```
+
+```{r, echo=FALSE, include=FALSE}
+# reading in some new data
+frost    <- readxl::read_excel("index_data/frostdata.xlsx")
+```
+
+
+```{r, eval=FALSE}
+# This will select the data in the 5th row and 7th column
+frost[5,7]
+
+# This will select the 2nd row and ALL the columns 
+frost[2,]
+
+# This will select the 3rd column and ALL the rows
+frost[,3]
+# similar to using its name
+frost$Type_Fake
+
+# We can combine our commands, this will print the 13th row of the Longitude column 
+# (no comma as we're only looking at one column)
+frost$Longitude[13]
+
+# The : symbol lets you choose a sequence of numbers e.g. 1:5 is 1 2 3 4 5
+# So this prints out rows 11 to 15 and all the columns
+frost[11:15,]
+
+# The "c" command allows you to enter whatever numbers you like.  
+# So this will print out rows 4,3,7 and the "Elevation" and "Dist_to_Coast" columns
+frost[c(4,3,7), c("Elevation","Dist_to_Coast")]
+```
+
+
+### Deleting rows
+
+Or if you know the row number you can use the minus - sign to remove. Or just filter below.
+
+```{r, eval=FALSE}
+# remove row 6 and and overwrite
+frost <- frost[-6 ,]
+
+# remove columns 4 and 2 and save result to newdata and overwrite
+newdata <- frost[, - c(2,4) ]
+
+```
+
+<br><br>
+
+## Filtering {#WrangleFilter}
+
+### The which command approach
+
+The which command essentially says "which numbers" meet a certain threshold
+
+e,g,
+
+```{r, eval=FALSE}
+a <- 100:110
+which(a > 107)
+```
+
+Or which rows:
+
+```{r, eval=FALSE}
+outlier_rows <- which(frost$Dist_to_Coast < 1.5)
+```
+
+So you can also add questions and commands inside the square brackets. For example here is the weather station with the lowest elevation. You can see my command chose BOTH rows where elevation = 10.
+
+```{r, eval=FALSE}
+
+# which row has the lowest elevation
+# note the double == (more below)
+row_number <- which(frost$Elevation == min(frost$Elevation))
+
+# choose that row
+loweststtation <- frost[row_number ,  ]
+loweststtation
+```
+
+```{r, eval=FALSE}
+seaside <- frost[which(frost$Dist_to_Coast < 10) ,  ]
+seaside
+```
+
+
+### The dplyr filter command (tidyverse)
+
+Filtering means selecting rows/observations based on their values. To filter in R, use the command `filter()` from the dplyr package. I tend to write it as `dplyr:filter()` to force it to be correct.
+
+Here we can apply the filter command to choose specific rows that meet certain criteria
+
+```{r, results="hide"}
+filter(frost, State == "FL")
+```
+
+The double equal operator `==` means equal to. The command is telling R to keep the rows in *frost* where the *State* column equals "FL".
+
+If you want a few categories, choose the %in% operator, using the `c()` command to stick together the categories you want. For example, here are states in Florida and Virginia.
+
+```{r, results="hide"}
+filter(frost, State %in% c("FL","VA"))
+```
+
+We can also explicitly exclude cases and keep everything else by using the not equal operator `!=`. The following code *excludes* airport stations.
+
+```{r, results="hide"}
+filter(frost, Type_Fake != "Airport")
+```
+
+What about filtering if a row has a value greater than a specified value? For example, Stations with an elevation greater than 500 feet?
+
+```{r, results="hide"}
+filter(frost, Elevation > 500)
+```
+
+Or less-than-or-equal-to 200 feet.
+
+```{r, results="hide"}
+
+# or save the result to a new variable
+lowland_stations <- filter(frost, Elevation < 200)
+summary(lowland_stations)
+```
+
+<br>
+
+In addition to comparison operators, filtering may also utilize logical operators that make multiple selections. There are three basic logical operators: `&` (and), `|` (or), and `!` (not). We can keep Stations with an *Elevation* greater than 300 **and** *State* in Alabama `&`.
+
+```{r, results="hide"}
+filter(frost, Elevation > 300 & State == "AL")
+```
+
+Use `|` to keep Stations with a *Type_Fake* of "Airport" **or** a last spring frost date after April (\~ day 90 of the year).
+
+```{r, results="hide"}
+filter(frost, Type_Fake == "Airport" | Avg_DOY_SpringFrost > 90 )
+
+```
+
+
+<br><br>
+
+
+### "Group_by" command: statistics per group
+
+What if we want to do more than just count the number of rows?
+
+Well, we can use the `group_by()` and `summarise()` commands and save our answers to a new variable.
+
+Here we are making use of the pipe symbol, %\>%, which takes the answer from group_by and sends it directly to the summarise command.
+
+Here is some data that we used earlier on frost dates at weather stations.
+
+```{r}
+head(frost)
+```
+
+To summarise results by the type of weather station:
+
+```{r}
+frost.summary.type <- group_by(frost, by=Type_Fake) %>%
+                          summarise(mean(Latitude),
+                                    max(Latitude),
+                                    min(Dist_to_Coast))
+frost.summary.type
+```
+
+Here, my code is:
+
+-   Splitting up the frost data by the Type_Fake column<br>(e.g. one group for City, one for Airport and one for Agricultural Research)
+-   For the data rows in *each group*, calculating the mean latitude, the maximum latitude and the minimum distance to the coast
+-   Saving the result to a new variable called frost.summary.type.
+-   Printing the results on the screen e.g. the furthest North/maximum latitude of rows tagged Agricultural_Research_Station is 36.32 degrees.
+
+<br><br>
+
+
+## Sorting data
+
+### The dplyr arrange command (tidyverse)
+
+
+We use the `arrange()` function to sort a data frame by one or more variables. You might want to do this to get a sense of which cases have the highest or lowest values in your data set or sort counties by their name. For example, let's sort in ascending order by elevation.
+
+```{r}
+arrange(frost, Latitude)
+```
+
+By default, `arrange()` sorts in ascending order. We can sort by a variable in descending order by using the `desc()` function on the variable we want to sort by. For example, to sort the dataframe by *Avg_DOY_SpringFrost* in descending order we use
+
+```{r}
+arrange(frost, desc(Avg_DOY_SpringFrost))
+```
+
+<br> <br>

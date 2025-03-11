@@ -1,63 +1,87 @@
-/* ============================================= */
-/*                 Whole Document                */
-/* ============================================= */
 
-/* Basic styling for html and body to set a fixed height */
-html, body {
-  height: 100%;
-  padding: 20px; /* More whitespace around the document */
-  margin-bottom: 20px; /* Adjust for more space */
-}
+/* Whole document: */
 
-/* Wrapper for centering and setting max width and height */
-.wrapper {
-  width: 100%; 
-  max-width: 1800px;
-  height: 100%;
-  max-height: 1000px;
-  background: #CCC;
-  padding: 30px;
-}
-
-/* Border style for screenshots */
 .screenshot {
   border: 1px solid #ccc;
 }
 
-p {
-  margin-bottom: 20px; /* Adjust for more space */
-}
-
-ul li, ol li {
-  margin-bottom: 12px; /* Creates more space between bullets */
-}
-
-
-/* ============================================= */
-/*                    Tables                     */
-/* ============================================= */
-
-/* Remove link underlining for specific table cells */
 table.table td a:only-child:link,
 table.table td a:only-child:visited {
   text-decoration: none;
 }
-
-/* Add underlining on hover for links in table cells */
 table.table td a:only-child:hover,
 table.table td a:only-child:active {
   text-decoration: underline;
 }
 
-/* ============================================= */
-/*                      Well                     */
-/* ============================================= */
-
-/* Rounded, soft background 'well' section */
-.well {
+.well{
   background-color: #F5F5DC;
   border-radius: 40px 0 40px 0;
 }
+
+
+
+/*******  Footer ******/
+
+#site-footer {
+height: 50px;
+}
+
+#footer1{
+width: 80%;
+float: left;
+}
+#footer2{
+width: 20%;
+float: right
+}
+
+/*****
+Create class for scaled iframe content
+*****/
+html,body {height:75%;}
+.wrapper{
+  width:100%; 
+  max-width:1800px;
+  height:75%;
+  max-height:1000px;
+  margin:0 auto;
+  background:#CCC}
+.h_iframe{
+  position:relative;
+  padding-top: 100%}
+.h_iframe iframe {
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  -ms-transform: scale(0.6);
+  -ms-transform-origin: top left;
+  -moz-transform: scale(0.6);
+  -moz-transform-origin: top left;
+  -o-transform: scale(0.6);
+  -o-transform-origin: top left;
+  -webkit-transform: scale(0.6);
+  -webkit-transform-origin: top left;
+  transform: scale(0.6);
+  transform-origin: top left;
+  overflow: hidden;
+}
+
+/**************************
+  Main text
+**************************/
+
+p {
+  margin-bottom: 25px; /* Space below paragraphs */
+}
+
+ul li, ol li {
+  margin-bottom: 12px; /* Increase space between bullets */
+}
+
+
 
 /* ============================================= */
 /*                   Comments                    */
@@ -73,221 +97,89 @@ p.comment {
   font-style: italic;
 }
 
-/* ============================================= */
-/*                  Headings                     */
-/* ============================================= */
-
-/* H1: Bold Arial font for primary title */
-h1.title {
-  font-weight: bold;
-  font-family: Arial;
-}
-
-/* H2: Regular Arial font for secondary title */
-h2.title {
-  font-family: Arial;
-}
-
-.wrapper h1 {
-  margin-top: 20px !important;
-}
-
-.wrapper h2 {
-  margin-top: 10px !important;
-}
-
-.wrapper h3 {
-  margin-top: 5px !important;
-}
-
-body h1 {
-  margin-top: 20px !important;
-}
-
-body h2 {
-  margin-top: 10px !important;
-}
-
-body h3 {
-  margin-top: 5px !important;
-}
 
 
+/**************************
+  DEFAULT BOOTSTRAP STYLES
+**************************/
 
-/* ============================================= */
-/*            Table of Contents (TOC)            */
-/* ============================================= */
-
-/* Styling for the table of contents */
-#TOC {
-  font-size: 13px;
-  font-family: Arial;
-}
-
-/* ============================================= */
-/*                    Footer                     */
-/* ============================================= */
-
-/* Footer section with different content alignment */
-#site-footer {
-  height: 50px;
-}
-
-/* Footer 1: Left side, 80% width */
-#footer1 {
-  width: 80%;
-  float: left;
-}
-
-/* Footer 2: Right side, 20% width */
-#footer2 {
-  width: 20%;
-  float: right;
-}
-
-/* ============================================= */
-/*                   Iframes                     */
-/* ============================================= */
-
-/* Container for iframe, using padding for responsiveness */
-.h_iframe {
-  position: relative;
-  padding-top: 100%;
-}
-
-/* Resizing the iframe for responsive scaling */
-.h_iframe iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  transform: scale(0.6);
-  transform-origin: top left;
-  overflow: hidden;
-}
-
-/* ============================================= */
-/*                    Buttons                    */
-/* ============================================= */
-
-/* General button styling with uppercase text */
 .btn {
   display: inline-block;
-  padding: 10px 20px;
+  padding: 6px 12px;
+  margin-bottom: 0;
   font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   background-image: none;
   border: 1px solid transparent;
   border-radius: 4px;
-  cursor: pointer;
-  user-select: none;
 }
-
-/* Large button variation */
+  
 .btn-lg {
   font-size: 18px;
   line-height: 1.33;
   border-radius: 6px;
 }
 
-/* Primary button styling */
 .btn-primary {
-  background: #0099cc;
-  color: #ffffff;
+  color: #fff;
+  background-color: #428bca;
+  border-color: #357ebd;
 }
 
-/* Hover effects for primary buttons */
-.btn-primary:hover, .btn-primary:focus, .btn-primary:active, 
-.btn-primary.active, .open > .dropdown-toggle.btn-primary {
-  background: #33a6cc;
-}
-
-/* Active state for primary button */
-.btn-primary:active, .btn-primary.active {
-  background: #007299;
-  box-shadow: none;
-}
-
-/* Default button styling with right float */
 .btn-default {
   font-size: 10px;
   float: right !important;
 }
 
-/* Round button variant */
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open .dropdown-toggle.btn-primary {
+  color: #fff;
+  background-color: #3276b1;
+  border-color: #285e8e;
+}
+
+/***********************
+  ROUND BUTTONS
+************************/
 .round {
   border-radius: 24px;
 }
 
-/* ============================================= */
-/*                    Gaps                       */
-/* ============================================= */
+/***********************
+  CUSTON BTN VALUES from https://bootstrapbay.com/blog/bootstrap-button-styles/
+************************/
 
-/* Small margin to create spacing between elements */
-.small-gap {
-  margin-bottom: 10px;
+.btn {
+    padding: 10px 20px;
+    border: 0 none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+.btn:focus, .btn:active:focus, .btn.active:focus {
+    outline: 0 none;
 }
 
-/* ============================================= */
-/*              Collapsible Sections             */
-/* ============================================= */
-
-/* Styling for collapsible section summaries */
-details summary {
-  cursor: pointer;
-  padding: 10px;
-  background-color: #95a5a6;
-  color: white;
-  border: none;
-  text-align: left;
-  font-size: 15px;
-  margin-left: 2em;
-  margin-right: 2em;
+.btn-primary {
+    background: #0099cc;
+    color: #ffffff;
 }
-
-/* Hover effect for summary */
-details summary:hover {
-  background-color: #18bc9c;
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+    background: #33a6cc;
 }
-
-/* Change background when collapsible section is open */
-details[open] summary {
-  background-color: #95a5a6;
+.btn-primary:active, .btn-primary.active {
+    background: #007299;
+    box-shadow: none;
 }
-
-/* Margin for collapsible content (excluding summary) */
-details > *:not(summary) {
-  margin-left: 5em;
-}
-
-/* Additional styling for collapsible content */
-.collapsible-content {
-  background-color: #DBDBDB;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  margin: 40px;
-}
-
-/* ============================================= */
-/*            Anchor links                       */
-/* ============================================= */
-
-
-.anchor-link {
-  position: absolute;
-  left: -25px; /* Adjust to position the anchor */
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 0.8em;
-  text-decoration: none;
-  color: #007ACC;
-  opacity: 0.6; /* Slightly faded for subtlety */
-}
-
-.anchor-link:hover {
-  opacity: 1; /* Full visibility on hover */
-}
-

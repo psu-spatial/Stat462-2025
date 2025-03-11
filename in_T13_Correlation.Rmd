@@ -1,0 +1,85 @@
+```{r setup, include=FALSE,message=FALSE,warning=FALSE}
+# OPTIONS -----------------------------------------------
+knitr::opts_chunk$set(echo = TRUE, 
+                      warning=FALSE, 
+                      message = FALSE)
+
+# PACKAGES-----------------------------------------------
+# Tutorial packages
+library(vembedr)
+library(skimr)
+library(yarrr)
+library(RColorBrewer)
+library(GGally) 
+library(tidyverse)
+library(plotly)
+library(readxl)
+library(rvest)
+library(biscale)
+library(tidycensus)
+library(cowplot)
+library(units)
+library(olsrr)
+
+data("HousesNY", package = "Stat2Data")
+
+
+
+```
+
+# Correlation
+
+## Basics
+
+To find the correlation between two variables, you can simply use the cor function e.g.
+
+```{r}
+cor(HousesNY$Price,HousesNY$Beds)
+```
+
+To see the correlation between ALL columns we can make a "correlation matrix"
+
+Importantly, remember this website - <https://www.tylervigen.com/spurious-correlations>. Just because another variable is correlated with our response does not mean it HAS to be in the model. It simply means that you might want to consider whether there is a reason for that correlation.
+
+Also, the correlation is a measure of the LINEAR relationship between two values... All of these scatterplots have the same correlation! (meet the datasaurus)
+
+![](https://media.licdn.com/dms/image/D5612AQHYc0oDHJNE1g/article-inline_image-shrink_400_744/0/1689928057943?e=2147483647&v=beta&t=d6XaMDTpBJyujV1N088xPBIJJNSZdKUJedFclvCQyqQ){width="82%"}
+
+As you can see better in this gif
+
+![](https://miro.medium.com/v2/resize:fit:1400/1*uzVmvgn7I-t9x5MTByQg_A.gif){width="70%"}
+
+## Covariance/Correlation matrix plots
+
+Looking at correlations is a quick (but often misleading) way to assess what is happening. Essentially we can look at the correlation between each column of data. You can simply look at the correlations of any NUMERIC columns using the corrplot code.
+
+```{r}
+library(corrplot)
+
+# Filter to a new data frame with only numeric columns
+house.numeric.columns <- HousesNY[ , sapply(HousesNY,is.numeric)]
+corrplot(cor(house.numeric.columns),method="ellipse",type="lower")
+```
+
+Another one is in the ggstatsplot package - <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html> many more examples here.
+
+```{r}
+library(ggstatsplot)
+ggcorrmat(HousesNY)
+```
+
+There are LOADS of other ways to run correlation plots here: <https://www.r-graph-gallery.com/correlogram.html> Feel free to choose a favourite.
+
+For example, GGALLY does this with its ggpairs command. But it doesn't like working on large datasets.
+
+```{r,message=FALSE,warning=FALSE}
+
+# Choose column names - let's say I don't care about location
+colnames(HousesNY)
+
+# Create plot - note I have message=TRUE and warning=TRUE turned on at the top of my code chunk
+ggpairs(HousesNY[,c("Price","Beds" ,"Baths","Size" , "Lot"   )])
+
+```
+
+<br> <br>

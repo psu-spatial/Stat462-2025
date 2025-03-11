@@ -1,3 +1,5 @@
+<br>
+
 ## R as a calculator {#ConsoleB_Calc}
 
 Remember that the aim of programming is to provide a language so you can ask your computer to do complex tasks. The
@@ -55,6 +57,8 @@ print(data.frame(x=1:5,y=6:10))
 plot(x= 1:5, y= 6:10,xlab="x-axis",ylab="y-axis")
 ```
 
+<br>
+
 ### Comparisons
 
 We can also do comparisons in R - using the special symbols TRUE or FALSE (no quote marks, they are special).
@@ -90,7 +94,9 @@ reset.**
 Pressing escape isn’t only useful for killing incomplete commands: you can also use it to tell R to stop running code
 (for example if it’s taking much longer than you expect), or to get rid of the code you’re currently writing.
 
-<br>
+<br><br>
+
+------------------------------------------------------------------------------------------------------------------------
 
 ## Functions/Commands {#ConsoleD_functions}
 
@@ -151,7 +157,9 @@ plot(1:10,11:20,col="dark blue", xlab="x values",ylab="GEOG-364 is the best")
 If you are feeling lost, <https://swcarpentry.github.io/r-novice-gapminder/01-rstudio-intro/> is a really good website
 which goes over a lot of this in more detail. A lot of this is based on their work.
 
-<br>
+<br><br>
+
+------------------------------------------------------------------------------------------------------------------------
 
 ## Dealing with text {#ConsoleE_text}
 
@@ -167,6 +175,10 @@ you.Forget about the quotes and this happens..
 Your first error. The "unexpected symbol" it's talking about is the computer thinking that
 
 Hello must be a command, then getting really confused by the space between Hello and World..
+
+<br><br>
+
+------------------------------------------------------------------------------------------------------------------------
 
 ## Variables {#ConsoleF_vars}
 
@@ -216,6 +228,8 @@ The way R works is that first it looks for the commands on the right of the arro
 result, then saves that result with the name on the left of the arrow. **It does not save the command itself, just the
 answer.** For example, in this case, R has no idea that `x` was created using maths, it just knows that it is equal to
 the number 0.02.
+
+<br>
 
 ### Reassigning/recyling variables
 
@@ -275,6 +289,8 @@ and to clear everything, type
 ```{r, eval=FALSE}
 rm(list=ls())
 ```
+
+<br>
 
 ### Combining variables
 

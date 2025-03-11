@@ -1,0 +1,73 @@
+---
+title: "R-Basics"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 2
+    number_sections: yes  
+    toc_float:
+      collapsed: no  # Ensure Level 1 & 2 remain expanded
+      smooth_scroll: yes
+---
+
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<br>
+
+# Accessing R & R-Studio {#ch1}
+
+## Posit-Cloud Online
+
+```{r child="zpg_T1_PositCloud.Rmd"}
+```
+
+<br>
+
+
+```{r child="zpg_T1_LaptopInstall.Rmd"}
+```
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+<br>
+
+# Basics & settings {#ch2}
+
+
+```{r child="zpg_T2_IntroWorkspace.Rmd"}
+```
+
+<br>
+
+```{r child="zpg_T3_GlobalSettings.Rmd"}
+```
+
+
+<br>
+
+# Console/Coding basics {#ch3}
+
+
+This tutorial is about getting used to the basic commands you can run in R.
+
+-   [**R as a calculator**](#ConsoleB_Calc)
+-   [**The + symbol in console**](#ConsoleC_plus)
+-   [**Functions/Commands**](#ConsoleD_functions)
+-   [**Dealing with text**](#ConsoleE_text)
+-   [**Variables**](#ConsoleF_vars)
+
+First watch this 5 min video for some pointers.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/SWxoJqTqo08?start=26" frameborder="0" allowfullscreen></iframe>
+
+
+```{r child="zpg_T4_ConsoleBasics.Rmd"}
+```
+
+------------------------------------------------------------------------------------------------------------------------
+
+

@@ -1,4 +1,31 @@
-### Installing/Updating R
+## Installing on your laptop
+
+**You can also use your own laptop to run R-code, but it's ESSENTIAL that you update it, or install both R and R-studio.**
+
+You need TWO pieces of software to run your labs.
+
+-   The "R" Software teaches your computer to 'speak' R. This is why the R version is so important. Using an early
+    version is like teaching your computer to speak Shakespearean English! The R-Studio software is like a programming
+    version of Microsoft Word. It lets you work using the R language and has many nice features.
+
+-   The "R_Studio" part is the program you actually use when completing your labs.
+
+<br>
+
+**QU. I already have R & R-Studio! Do I need to complete this section?**
+
+-   YES! Both R and R-Studio change regularly, so I want everyone to be running the most up-to-date version and you will
+    be graded on this in HW1. This should not hurt any of your other work. To update, follow the instructions below.
+
+**QU. I have a very old computer, will this work?**
+
+-   If you have a very old computer, this might not work. In that case, it's OK! You can use the Posit Cloud website.
+    You're welcome to try the install and I'm happy to support you.
+    
+    
+<br><br>     
+
+### First install R
 
 [**STEP 1**]{.underline} <br> Go to <https://posit.co/download/rstudio-desktop/#download>. <br>Scroll down and you
 should see something like this.<br>
@@ -50,9 +77,11 @@ Mac:
 
 ------------------------------------------------------------------------------------------------------------------------
 
-### Installing/Updating R-Studio
+<br>
 
-[**STEP 5**]{.underline} <br> Go back to <https://posit.co/download/rstudio-desktop/#download>. <br>Now click the other
+### Then install R-studio
+
+[**STEP 4**]{.underline} <br> Go back to <https://posit.co/download/rstudio-desktop/#download>. <br>Now click the other
 button. It should automatically download a file onto your computer<br>
 
 ![](Index_Images/05_InstallRStudio.png){fig-align="right" width="95%"}

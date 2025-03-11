@@ -1,0 +1,135 @@
+```{r setup, include=FALSE,message=FALSE,warning=FALSE}
+# OPTIONS -----------------------------------------------
+knitr::opts_chunk$set(echo = TRUE, 
+                      warning=FALSE, 
+                      message = FALSE)
+
+# PACKAGES-----------------------------------------------
+# Tutorial packages
+library(vembedr)
+library(skimr)
+library(yarrr)
+library(RColorBrewer)
+library(GGally) 
+library(tidyverse)
+library(plotly)
+library(readxl)
+library(rvest)
+library(biscale)
+library(tidycensus)
+library(cowplot)
+library(units)
+library(olsrr)
+
+data("pirates", package = "yarrr")
+
+```
+
+# Confidence and Prediction Intervals
+
+## What are they?
+
+Essentially these are two different things:
+
+**Confidence interval:** "Error bar" on the location of the regression line at any specific value of x, or "what is the uncertainty on the population mean of $y$, for a specific value of $x$?"
+
+**Prediction interval:** Predicting the range of likely y-values for a new data-point, or "if you had to put a new dot on the scatterplot, what range of y values would it likely be found in
+
+These are described in detail here:
+
+-   <https://online.stat.psu.edu/stat462/node/125/>
+-   <https://online.stat.psu.edu/stat462/node/126/>
+-   <https://online.stat.psu.edu/stat462/node/127/>
+-   <https://online.stat.psu.edu/stat462/node/128/>
+
+In R, lets look at the pirate dataset
+
+```{r}
+#For our pirate weight/height dataset
+lm.pirate <- lm(weight~height,data=pirates)
+summary(lm.pirate)
+```
+
+<br><br>
+
+## Calculating a confidence interval
+
+**What are the AVERAGE WEIGHTS (and uncertainty on our estimate) of pirates whose heights are 150cm and 170cm?**
+
+```{r}
+# So we have the MODEL
+lm.pirate <- lm(weight~height,data=pirates)
+
+
+# a mini table of our new X-Values - you need the column name to be identical to your predictor
+new.pirates <- data.frame(height=c(150,170))
+
+
+# and the command
+# predict (MODEL_NAME ,  NAME_OF_NEW_DATA,  TYPE_OF_INTERVAL, SIG LEVEL)
+predict(lm.pirate,newdata=new.pirates,interval="confidence",level=0.95)
+
+```
+
+We are 95% certain that on average, the AVERAGE weight of pirates who are 150cm tall falls between 52.8 Kg and 53.74 Kg.
+
+We are 95% certain that on average, the AVERAGE weight of pirates who are 170cm tall falls between 69.32 Kg and 69.80 Kg.
+
+<br><br>
+
+## Calculating a prediction interval
+
+**A new pirate joins and her height is 160cm. What range of weights is she likely to have? with a significance level of 99%**
+
+```{r}
+# So we have the model
+# MAKE SURE THAT YOU ONLY MENTION THE TABLE-NAME AT THE END
+lm.pirate <- lm(weight~height,data=pirates)
+
+
+# a mini table of our new X-Values - you need the column name to be identical to your predictor
+new.pirates <- data.frame(height=c(160))
+
+
+# and the command
+# predict (MODEL_NAME ,  NAME_OF_NEW_DATA,  TYPE_OF_INTERVAL, SIG LEVEL)
+predict(lm.pirate,newdata=new.pirates,interval="predict",level=0.99)
+
+```
+
+Given our model, her weight is likely to be somewhere between 51.27 Kg and 71.56 Kg with 99% certainty.
+
+## HELP! MY CODE DOESN'T WORK
+
+### Predictor/model name spelt wrong
+
+If you don't spell your column name EXACTLY (case sensitive) the same as the predictor in your model, the code will break. Here I put HEIGHT not height for my new predictor:
+
+```{r,error=TRUE}
+# THIS WILL LOOK FINE BUT BREAK PREDICT.
+# ONLY MENTION THE WORD PIRATES AFTER THE DATA BIT
+lm.pirate <- lm(weight~height,data=pirates)
+
+new.pirates <- data.frame(HEIGHT=c(160))
+predict(lm.pirate,newdata=new.pirates,interval="predict",level=0.99)
+
+```
+
+### Your original lm command 
+
+The `predict` command is fussy and depends on your original `lm` command being exactly correct, where you only type the name of the data.table once at the end. If you type it at each stage, then the model doesn't understand it all comes from one table, which means that predict will run, but give the wrong answer.
+
+For example
+
+```{r}
+# this is correct
+# lm_correct <- lm(weight~height,data=pirates)
+
+# If you add the data name at each step, the predict behaves wrongly
+# THIS WILL WORK FINE INITIALY BUT CAUSE ISSUES FOR PREDICT
+lm_WRONG <- lm(pirates$weight~pirates$height,data=pirates)
+
+new.pirates <- data.frame(height=c(160))
+predict(lm_WRONG,newdata=new.pirates,interval="predict",level=0.99)
+
+```

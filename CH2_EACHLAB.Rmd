@@ -1,0 +1,139 @@
+---
+title: "Getting started on each lab"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 2
+    number_sections: yes  
+    toc_float:
+      collapsed: no  # Ensure Level 1 & 2 remain expanded
+      smooth_scroll: yes
+---
+
+
+
+
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<br>
+
+
+# R-Projects {#ch4}
+
+An R-project stores everything to do with each lab in one place on your computer.
+
+This is incredibly useful - it means that if you switch from R-Cloud, to the lab computers, to your laptop, all you have
+to do is to move the folder and everything will just work. It also means you have to worry less about directory names.
+
+[![](index_images/im_T1_ProjectVideo.png)](https://www.linkedin.com/learning/learning-the-r-tidyverse/why-should-you-use-projects-in-rstudio?u=76811570)
+
+------------------------------------------------------------------------------------------------------------------------
+
+<br>
+
+## Projects using R-Studio Desktop
+
+```{r child="zpg_T5_ProjectsRDesktop.Rmd"}
+```
+
+------------------------------------------------------------------------------------------------------------------------
+
+<br>
+
+## Projects using Posit Cloud
+
+```{r child="zpg_T5_ProjectsPositCloud.Rmd"}
+```
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+<br><br>
+
+# Packages {#ch5}
+
+```{r child="zpg_T6_Packages.Rmd"}
+```
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+<br><br>
+
+# R-Markdown {#ch6}
+
+R Markdown is a powerful tool that allows you to combine text, code, and outputs in a single document. This tutorial will guide you through creating an R Markdown document, using templates, understanding its components, and working with key features like visual mode, code chunks, and knitting.
+
+There are also many more hints and tips here <https://posit.co/blog/r-markdown-tips-tricks-1-rstudio-ide/>.
+
+
+## R-Markdown Introduction
+
+```{r child="zpg_T7_Markdown_0Intro.Rmd"}
+```
+
+------------------------------------------------------------------------------------------------------------------------
+
+<br>
+
+
+## R-Markdown Structure
+
+
+```{r child="zpg_T7_Markdown_1Structure.Rmd"}
+```
+
+------------------------------------------------------------------------------------------------------------------------
+
+<br>
+
+## Creating R-Markdown Files
+
+```{r child="zpg_T7_Markdown_2CreationTemplates.Rmd"}
+```
+
+------------------------------------------------------------------------------------------------------------------------
+
+<br>
+
+## Editing YAML
+
+```{r child="zpg_T7_Markdown_3EditYAML.Rmd"}
+```
+
+------------------------------------------------------------------------------------------------------------------------
+
+<br>
+
+## Editing markdown text
+
+```{r child="zpg_T7_Markdown_3EditText.Rmd"}
+```
+
+------------------------------------------------------------------------------------------------------------------------
+
+<br>
+
+## Editing code
+
+```{r child="zpg_T7_Markdown_4aCodeChunk.Rmd"}
+```
+
+```{r child="zpg_T7_Markdown_4bCodeChunkOptions.Rmd"}
+```
+
+------------------------------------------------------------------------------------------------------------------------
+
+<br>
+
+## Knitting
+
+```{r child="zpg_T7_Markdown_5Knitting.Rmd"}
+```
+
+------------------------------------------------------------------------------------------------------------------------
+

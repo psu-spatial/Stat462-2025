@@ -2,7 +2,15 @@
 title: 'STAT-462 - Regression Tutorials'
 subtitle: Dr Helen Greatrex
 author: Penn State, Dept Geography
+output: 
+  html_document:
+    toc: false
+    theme: flatly
+    toc_float:
+      collapsed: no 
+      smooth_scroll: yes
 ---
+
 
 
 ```{r setup, include=FALSE}

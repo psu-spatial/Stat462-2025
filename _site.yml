@@ -1,37 +1,69 @@
 name: "STAT-462 R Tutorials"
 output_dir: "docs"
 navbar:
-  title: "STAT-462 R Tutorials"
   left:
-    - text: "Home"
+    - text: "Full Tutorial List"
       href: index.html
-    - text: "Tutorials"
+    - text: "R-BASICS"
       menu:
-        - text: "Installing/Accessing R"
-          href: Ch1_InstallR.html
-        - text: "Introduction to the workspace"
-          href: Ch2_Workspace.html  
-        - text: "Changing settings"
-          href: Ch3_GlobalSettings.html           
-        - text: "Console/coding basics"
-          href: Ch4_ConsoleCodingBasics.html  
-        - text: "Projects"
-          href: Ch5_Projects.html
-        - text: "Packages"
-          href: Ch6_Packages.html  
-        - text: "R-Markdown"
-          href: Ch7_Markdown.html  
+        - text: "1 Installing/Accessing R"
+          href: CH1_BASICS.html#ch1
+        - text: "2 Changing Settings"
+          href: CH1_BASICS.html#ch2
+        - text: "3 Console/coding basics"
+          href: CH1_BASICS.html#ch3
+    - text: "STARTING EACH LAB"
+      menu:  
+        - text: "4. Projects"
+          href: CH2_EACHLAB.html#ch4
+        - text: "5. Packages"
+          href: CH2_EACHLAB.html#ch5  
+        - text: "6. R-Markdown"
+          href: CH2_EACHLAB.html#ch6  
+    - text: "EXPLORING DATA"
+      menu:  
+        - text: "7. Reading in data"
+          href: in_T07_ReadingInData.html
+        - text: "8. Summaries"
+          href: in_T08_Wrangling.html
+        - text: "9. Filtering"
+          href: in_T08_Wrangling.html
+        - text: "10. Missing data"
+          href: in_T08_Wrangling.html
+        - text: "11. Plots"
+          href: in_T11_Plots.html
+    - text: "STATISTICAL-ANALYSIS"
+      menu:  
+        - text: "12. Normal/T-Dist/Tests"
+          href: in_T12_NormalDistributionsTTests.html
+        - text: "13 Correlation"
+          href: in_T13_Correlation.html          
+        - text: "14. Simple Linear Regression"
+          href: in_T14_Regression.html          
+        - text: "15. Model Diagnostics"
+          href: in_T15_Diagnostics.html          
+        - text: "16. Outliers"
+          href: in_T16_Outliers.html    
+        - text: "17. Confidence & Prediction"
+          href: in_T17_ConfPred.html  
+        - text: "18. Transformations"
+          href: in_T18_Transformations.html     
+        - text: "19. Multiple Linear Regression"
+          href: in_T19_MLR.html         
+        - text: "20. General Linear Regression"
+          href: in_T20_GLM.html         
 output:
   html_document:
     theme: flatly
     highlight: textmate
     mathjax: "default"
+    toc: yes
     toc_depth: 4
+    number_sections: yes  
     toc_float:
       collapsed: yes
       smooth_scroll: yes
-      number_sections: yes
-      section_divs: true  # Enables section IDs
+    section_divs: true  
     css: styles.css
     keep_md: false
     lib_dir: site_libs

@@ -1,0 +1,98 @@
+```{r setup, include=FALSE,message=FALSE,warning=FALSE}
+# OPTIONS -----------------------------------------------
+knitr::opts_chunk$set(echo = TRUE, 
+                      warning=FALSE, 
+                      message = FALSE)
+
+# PACKAGES-----------------------------------------------
+# Tutorial packages
+library(vembedr)
+library(skimr)
+library(yarrr)
+library(RColorBrewer)
+library(GGally) 
+library(tidyverse)
+library(plotly)
+library(readxl)
+library(rvest)
+library(biscale)
+library(tidycensus)
+library(cowplot)
+library(units)
+library(olsrr)
+
+data("HousesNY", package = "Stat2Data")
+
+
+
+```
+
+# Regression 
+
+Now we will fit our first regression model.
+
+## "Standard" regression output 
+
+The command to do this is `lm()` e.g. linear model.
+
+```{r,eval=FALSE}
+output <- lm(y_column ~ x_column,data=tablename)
+output
+```
+
+NOTE, THE WEIRD \~ SYMBOL. This means "depends on"/"is modelled by" and it's how we tell R what the response variable is. E.g. in y=mx+c, y depends on x, or y is modelled/predicted by x.
+
+For example for the NYHouses dataset, if I wanted to create a model of the Price and Lot columns to see if Lot size could predict house sales price, then I would type.
+
+```{r}
+# response = Price, predictor = Lot size
+Model1.lm <- lm(Price ~ Lot,data=HousesNY)
+Model1.lm
+```
+
+So we are saying here that the equation is
+
+Expected_Average_Price = -0.5749\*Lot_Size + 114.0911
+
+E.g. the average expected price house with no Lot/Garden is 114.09 (x1000 USD)
+
+
+### Printing out the equation
+
+Now you have the numbers, you can use Tutorial 6 on Markdown to print out the equation. For example, if you wanted to print out the equation of the line, you could use the following code:
+
+$$
+\hat{y} =  114.0911  -0.5749 \times \text{Lot}
+$$
+
+
+
+## Model summary
+
+You can  look at the summary by using the `summary()` command:
+
+```{r}
+summary(Model1.lm)
+```
+
+<br>
+
+### OLSRR regression summaries
+
+If you want a different way of seeing the same output, you can use the `ols_regress()` command inside the `olsrr` package.  THIS ONLY WORKS IF YOU USED lm(y ~ x, data=TABLENAME).  If you used a $ it will break.
+
+```{r}
+library(olsrr)
+Model1.lm.ols <- ols_regress(Model1.lm)
+Model1.lm.ols
+```
+
+The ols_regress command produces beautiful output, but sometimes it doesn't work well with other commands. So I tend to run a lm command at the same time to have both available.
+
+
+<br>
+
+## Plotting your regression line
+
+See the scatterplot tutorial under plots!
+

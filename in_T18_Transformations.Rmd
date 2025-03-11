@@ -1,0 +1,114 @@
+```{r setup, include=FALSE,message=FALSE,warning=FALSE}
+# OPTIONS -----------------------------------------------
+knitr::opts_chunk$set(echo = TRUE, 
+                      warning=FALSE, 
+                      message = FALSE)
+
+# PACKAGES-----------------------------------------------
+# Tutorial packages
+library(vembedr)
+library(skimr)
+library(yarrr)
+library(RColorBrewer)
+library(GGally) 
+library(tidyverse)
+library(plotly)
+library(readxl)
+library(rvest)
+library(biscale)
+library(tidycensus)
+library(cowplot)
+library(units)
+library(olsrr)
+
+data("pirates", package = "yarrr")
+
+```
+
+
+
+# Transformations {#S.Tutorial_Transformations}
+
+We will talk in the class (or read here! https://online.stat.psu.edu/stat501/lesson/9 ) about *why* to apply transformations.  Here I will simply show you how.
+
+We simply make a new column and use maths to fill in the value.
+
+For example. Here is some data.
+
+```{r,message=FALSE}
+# read the data
+data <- read.csv("index_data/neither.csv")
+head(data)
+```
+
+To make a column with $\frac{1}{x}$ as the predictor, I would use the $ to create a new column a and on the other side of the arrow, take the fraction.
+
+```{r,message=FALSE}
+# Note I am trying to avoid spaces  or special characters in my data
+data$transform_1overx <- 1/data$x
+```
+
+
+To make a column with $x^2$ as the predictor, we do
+
+```{r,message=FALSE}
+# Note I am trying to avoid spaces  or special characters in my data
+data$transform_xsquare <- data$x^2
+```
+
+To make a column with $\log(x)$ as the predictor, we do (this is the NATURAL LOG)
+
+```{r,message=FALSE}
+# Note I am trying to avoid spaces  or special characters in my data
+data$transform_lnx <- log(data$x)
+```
+
+To make a column with $\log_{10}(x)$ as the predictor, we do 
+
+```{r,message=FALSE}
+# Note I am trying to avoid spaces  or special characters in my data
+data$transform_logx <- log(data$x,base=10)
+```
+
+To make a column with $\sqrt{x}$ as the predictor, we do 
+
+```{r,message=FALSE}
+# Note I am trying to avoid spaces  or special characters in my data
+data$transform_sqrtx <- sqrt(data$x)
+```
+
+And let's see the output
+
+```{r}
+head(data)
+```
+
+We could now perform our linear regression with any of these as our predictor.  For example
+
+
+```{r}
+newmodel <- lm(y~transform_sqrtx,data=data)
+plot(data$y~data$transform_sqrtx,xlab="Sqrt(x) UNITS",ylab="y UNITS")
+```
+
+You don't *have* to make a new column in advance, you can do the maths within the regression itself:
+
+```{r}
+newmodel2 <- lm(y~sqrt(x),data=data)
+
+# For Polynomial regression you can use the poly command e.g. X+X^2 
+
+newmodel3 <- lm(y ~ poly(x,2),data=data)
+
+```
+
+```{r}
+summary(newmodel3)
+```
+
+
+So the final model is
+
+$$
+\operatorname{y} = \alpha + \beta_{1}(\operatorname{x}) + \beta_{2}(\operatorname{x^2}) + \epsilon
+$$
