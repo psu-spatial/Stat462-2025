@@ -1,0 +1,34 @@
+---
+title: "Console/Coding basics"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 4
+    toc_float: true
+    theme: flatly
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This tutorial is about getting used to the basic commands you can run in R.
+
+-   [**R as a calculator**](#ConsoleB_Calc)
+-   [**The + symbol in console**](#ConsoleC_plus)
+-   [**Functions/Commands**](#ConsoleD_functions)
+-   [**Dealing with text**](#ConsoleE_text)
+-   [**Variables**](#ConsoleF_vars)
+
+First watch this 5 min video for some pointers.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/SWxoJqTqo08?start=26" frameborder="0" allowfullscreen></iframe>
+
+------------------------------------------------------------------------------------------------------------------------
+
+```{r child="zpg_T4_ConsoleBasics.Rmd"}
+```
+
+------------------------------------------------------------------------------------------------------------------------
+
+## 

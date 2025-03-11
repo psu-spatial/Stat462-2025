@@ -1,0 +1,37 @@
+name: "STAT-462 R Tutorials"
+output_dir: "docs"
+navbar:
+  title: "STAT-462 R Tutorials"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Tutorials"
+      menu:
+        - text: "Installing/Accessing R"
+          href: Ch1_InstallR.html
+        - text: "Introduction to the workspace"
+          href: Ch2_Workspace.html  
+        - text: "Changing settings"
+          href: Ch3_GlobalSettings.html           
+        - text: "Console/coding basics"
+          href: Ch4_ConsoleCodingBasics.html  
+        - text: "Projects"
+          href: Ch5_Projects.html
+        - text: "Packages"
+          href: Ch6_Packages.html  
+        - text: "R-Markdown"
+          href: Ch7_Markdown.html  
+output:
+  html_document:
+    theme: flatly
+    highlight: textmate
+    mathjax: "default"
+    toc_depth: 4
+    toc_float:
+      collapsed: yes
+      smooth_scroll: yes
+      number_sections: yes
+      section_divs: true  # Enables section IDs
+    css: styles.css
+    keep_md: false
+    lib_dir: site_libs

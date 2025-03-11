@@ -1,0 +1,5 @@
+## F: R-markdown tips and tricks
+
+There are many I wasn't aware of here!
+
+-   <https://posit.co/blog/r-markdown-tips-tricks-1-rstudio-ide/>

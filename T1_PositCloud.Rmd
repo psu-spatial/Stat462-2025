@@ -1,0 +1,4 @@
+
+R and R studio are available online for anyone to use for free, as part of a company called Posit-Cloud. Although you can also use your laptop, I want EVERYONE to have an account.
+
+-   Go to <https://posit.cloud/> and click "Get started". Make a free account. We will come back to this later

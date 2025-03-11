@@ -1,0 +1,69 @@
+
+### Basics
+
+To create a new R Markdown document in RStudio:
+
+![](index_images/pg_Tut4_markdown_fig1.png)
+
+1.  **Go to** `File` → `New File` → `R Markdown...`
+2.  **Choose a document type** (HTML, PDF, or Word). For now, \| select `HTML`.
+3.  **Give your document a title** and specify the author as \| your Email ID e.g. hlg5155
+4.  **Click `OK`**
+5.  *If this is your first time ever doing this or you're running a new POSIT-Cloud project, then R-studio might ask to download some packages before it can do this this. Say yes.*
+6.  A new file should appear on your screen. At the top of that window (by the knit button, there is a save button. Save it as something relevant INSIDE YOUR PROJECT FOLDER!
+
+RStudio will generate a default R Markdown file with an example of formatted text and an embedded code chunk.
+
+#### **Important**
+
+-   Before you continue, on your computer (outside R-Studio), go to your project folder
+
+-   MAKE SURE THE RMD FILE SAVED IN YOUR PROJECT FOLDER. Also, check you didn't accidentally create a load of
+    sub-folders inside your lab. If so, delete/move things around until it looks like this.
+
+![](index_images/pg_Tut4_markdown_fig2.png)
+
+------------------------------------------------------------------------------------------------------------------------
+
+### Custom R-Markdown Templates
+
+There are also now several package which contain professional markdown templates. Common examples include
+
+-   The `rmdformats` package: See example themes here: <https://github.com/juba/rmdformats>
+-   The `prettydoc` package: See example themes here: <https://prettydoc.statr.me/themes.html>
+
+To use one of these packages:
+
++-----------------------------------------------------------+----------------------------------------------------------+
+| 1.  Make sure the relevant package is installed (e.g.     | ![](index_images/im_05MarkdownScratchtemplate.png)       |
+|     packages tab, install button)                         |                                                          |
+|                                                           |                                                          |
+| 2.  **Go to** `File` → `New File` → `R Markdown...`       |                                                          |
+|                                                           |                                                          |
+| 3.  **Click the `Templates` button**                      |                                                          |
+|                                                           |                                                          |
+| 4.  **Select the template you want to use**.              |                                                          |
+|                                                           |                                                          |
+| 5.  **Click `OK`**.                                       |                                                          |
+|                                                           |                                                          |
+| 6.  A new file should appear on your screen. At the top   |                                                          |
+|     of that window (by the knit button, there is a save   |                                                          |
+|     button. Save it as something relevant INSIDE YOUR     |                                                          |
+|     PROJECT FOLDER!                                       |                                                          |
+|                                                           |                                                          |
+| Alternatively, you can replace your YAML code with the    |                                                          |
+| suggested code from that theme.                           |                                                          |
++-----------------------------------------------------------+----------------------------------------------------------+
+
+![](index_images/im_T3RmdformatsPlus.png)
+
+#### **Important!**
+
+Sometimes rmdformats makes an extra subfolder and puts your report in there.
+
+-   So before you continue, on your computer (outside R-Studio), go to your project folder
+
+-   MAKE SURE THE RMD FILE SAVED IN YOUR PROJECT FOLDER. Also, check you didn't accidentally create a load of
+    sub-folders inside your lab. If so, delete/move things around until it looks like this.
+
+![](index_images/pg_Tut4_markdown_fig2.png)

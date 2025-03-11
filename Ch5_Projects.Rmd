@@ -1,0 +1,34 @@
+---
+title: "Projects"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 4
+    toc_float: true
+    theme: flatly
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+An R-project stores everything to do with each lab in one place on your computer.
+
+This is incredibly useful - it means that if you switch from R-Cloud, to the lab computers, to your laptop, all you have
+to do is to move the folder and everything will just work. It also means you have to worry less about directory names.
+
+[![](index_images/im_T1_ProjectVideo.png)](https://www.linkedin.com/learning/learning-the-r-tidyverse/why-should-you-use-projects-in-rstudio?u=76811570)
+
+------------------------------------------------------------------------------------------------------------------------
+
+## Projects using R-Studio Desktop
+
+```{r child="zpg_T5_ProjectsRDesktop.Rmd"}
+```
+
+------------------------------------------------------------------------------------------------------------------------
+
+## Projects using Posit Cloud
+
+```{r child="zpg_T5_ProjectsPositCloud.Rmd"}
+```

@@ -1,0 +1,15 @@
+
+### What is R-Markdown? 
+
+Read more here: <https://rmarkdown.rstudio.com>
+
+Typing commands into the console is like making a phone call to the computer—you communicate but don't keep a record of your interactions. To save your commands for future use, we use scripts and documents. There are several types:
+
+-   **A basic script** (`.R` file): A blank notepad where you save code commands. When you "run" the script, R simply
+    copies and pastes the commands into the console.
+
+-   **An R Notebook or R Markdown document** (`.Rmd` file): An interactive document where you can combine text, code,
+    and output in one place. With a single click, you can convert `.Rmd` files into reports, websites, blogs,
+    presentations, or interactive applications.
+
+R Markdown is especially useful for labs because it allows you to integrate code, output, and written analysis seamlessly. Instead of taking screenshots, you can embed results directly in your document.

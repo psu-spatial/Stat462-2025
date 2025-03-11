@@ -1,0 +1,45 @@
+
+### Basics
+
+The basic RmD format is pretty boring. So if you go this route, it's good to edit the YAML code to add in a few additional features. Here is some example YAML code that I often use as a baseline. CAREFULLY replace yours with this, paying attention to spacing.
+
+```{r, asis=TRUE,eval=FALSE}
+
+---
+title: "change to add your title"
+author: "hlg5155 or your email ID"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    number_sections: true
+    toc: true
+    toc_float: true
+    toc_depth: 3
+    theme: journal
+---  
+
+
+```
+
+There are many more details about different options on these websites:
+
+-   <https://bookdown.org/yihui/rmarkdown/html-document.html>
+-   <https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf>
+-   If you want to get really fancy, there is an interesting package to help you design YAML code here:
+    <https://education.rstudio.com/blog/2019/10/tools-for-teaching-yaml-with-ymlthis/>
+
+
+### Themes
+
+There are about 10 built-in themes in R to quickly change the format of your documents. You view them here, alongside ways to further customize your document (for example to add a table of contents)
+
+-   <https://rpubs.com/ranydc/rmarkdown_themes>
+
+If you used a custom theme from rmdformats, check out their websites to see if there are additional options you wish to add in.
+
+#### Custom R-Markdown Templates
+
+As I described in the previous section,  you can also use other themes from packages like `rmdformats`, but rather than just changing the word "theme", the entire YAML changes.  
+
+So the easiest way to do this is to create a blank new file for the template you want, then copy/paste the entire YAML code across to your report.
+

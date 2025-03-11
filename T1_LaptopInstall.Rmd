@@ -1,0 +1,69 @@
+### Installing/Updating R
+
+[**STEP 1**]{.underline} <br> Go to <https://posit.co/download/rstudio-desktop/#download>. <br>Scroll down and you
+should see something like this.<br>
+
+[![](Index_Images/01_Installing%20R.png){fig-alt="Installing R and R-Studio" fig-align="right"
+width="95%"}](https://posit.co/download/rstudio-desktop/#download)
+
+[**STEP 2**]{.underline}<br>Now click on DOWNLOAD AND INSTALL R. It will take you to a scary looking website called Cran
+R. <br>Click the "INSTALL R" for your computer type. <br>
+
+[![](Index_Images/02_CranR.png){fig-align="right" width="95%"}](https://cran.rstudio.com/)
+
+[**STEP 3**]{.underline} <br>The setup looks a little different depending on whether you are on a Windows Machine or a
+Mac:
+
+<details>
+
+<summary>[WINDOWS people]{.underline}, Click the arrow to show your instructions</summary>
+
+![](Index_Images/03_WindowsCran.png){fig-align="right" width="95%"}
+
+-   Click "Installing R for the first time", EVEN IF YOU ARE UPDATING R-STUDIO
+
+-   This will download a file. Double click to install. You do not need a shortcut on your desktop (because we will use
+    R studio to access it)
+
+</details>
+
+<details>
+
+<summary>[MAC people]{.underline}, Click the arrow to show your instructions</summary>
+
+![](Index_Images/04_CRANR_Mac.png){fig-align="right" width="95%"}
+
+-   There are two potential options for you to download - only one will work, so it's easy to try both if you're not
+    sure.
+
+    -   If your Mac is pretty new, try the top option.
+
+    -   If your Mac is more than a few years old, try the second option.
+
+-   This will download a file. Double click to install. If it doesn't work, try downloading the other one.
+
+-   It might say that you cannot open the file because of safety concerns. If that's the case, click the
+    magnifying-glass on the top right of your screen, search for settings, click on the security tab and click that it's
+    OK to open it. Then try again.
+
+</details>
+
+------------------------------------------------------------------------------------------------------------------------
+
+### Installing/Updating R-Studio
+
+[**STEP 5**]{.underline} <br> Go back to <https://posit.co/download/rstudio-desktop/#download>. <br>Now click the other
+button. It should automatically download a file onto your computer<br>
+
+![](Index_Images/05_InstallRStudio.png){fig-align="right" width="95%"}
+
+-   IF YOU ARE USING WINDOWS: Double click and install as normal.
+
+-   IF YOU ARE USING A MAC, double click, then [**drag the icon into applications.**]{.underline}\
+    Nothing should happen!
+
+    -   If you already have R-studio, *replace* the current one.
+
+    -   *(If you have an old mac this might be where it breaks, let Dr G know)*
+
+![](Index_Images/06_RstudioMac.png){fig-align="right" width="90%"}

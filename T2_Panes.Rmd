@@ -1,0 +1,7 @@
+### ii. Adjusting the four panes
+
+Look at the VERY TOP OF THE SCREEN.  
+
+  - In the`View` menu, there is a `/Panes/Pane Layout` menu item, where you can move the on-screen quadrants around.  I tend to like the console to be top left and scripts to be top right, with the plots and environment on the bottom - but this is  personal choice. 
+
+ -  There should also be a menu called `Help`<br>Useful for R-studio version and Markdown cheatsheets.

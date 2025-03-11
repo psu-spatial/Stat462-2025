@@ -1,0 +1,45 @@
+---
+title: "Installing R and R-Studio"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 4
+    toc_float: true
+    theme: flatly
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Posit-Cloud: R/R-Studio online
+
+```{r child="zpg_T1_LaptopInstall.Rmd"}
+```
+
+------------------------------------------------------------------------------------------------------------------------
+
+## Using R/R-Studio on your laptop
+
+Optionally, you can use your own computer and laptop to complete the home-works and labs.
+
+You need TWO pieces of software to run your labs.
+
+-   The "R" Software teaches your computer to 'speak' R. This is why the R version is so important. Using an early
+    version is like teaching your computer to speak Shakespearean English! The R-Studio software is like a programming
+    version of Microsoft Word. It lets you work using the R language and has many nice features.
+
+-   The "R_Studio" part is the program you actually use when completing your labs.
+
+**QU. I already have R & R-Studio! Do I need to complete this section?**
+
+-   YES! Both R and R-Studio change regularly, so I want everyone to be running the most up-to-date version and you will
+    be graded on this in HW1. This should not hurt any of your other work. To update, follow the instructions below.
+
+**QU. I have a very old computer, will this work?**
+
+-   If you have a very old computer, this might not work. In that case, it's OK! You can use the Posit Cloud website.
+    You're welcome to try the install and I'm happy to support you.
+
+```{r child="zpg_T1_LaptopInstall.Rmd"}
+```
