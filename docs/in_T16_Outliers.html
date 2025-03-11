@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>in_T16_Outliers.knit</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Full Tutorial List</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    R-BASICS
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="CH1_BASICS.html#ch1">1 Installing/Accessing R</a>
+    </li>
+    <li>
+      <a href="CH1_BASICS.html#ch2">2 Changing Settings</a>
+    </li>
+    <li>
+      <a href="CH1_BASICS.html#ch3">3 Console/coding basics</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    STARTING EACH LAB
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="CH2_EACHLAB.html#ch4">4. Projects</a>
+    </li>
+    <li>
+      <a href="CH2_EACHLAB.html#ch5">5. Packages</a>
+    </li>
+    <li>
+      <a href="CH2_EACHLAB.html#ch6">6. R-Markdown</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    EXPLORING DATA
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="in_T07_ReadingInData.html">7. Reading in data</a>
+    </li>
+    <li>
+      <a href="in_T08_Wrangling.html">8. Summaries</a>
+    </li>
+    <li>
+      <a href="in_T08_Wrangling.html">9. Filtering</a>
+    </li>
+    <li>
+      <a href="in_T08_Wrangling.html">10. Missing data</a>
+    </li>
+    <li>
+      <a href="in_T11_Plots.html">11. Plots</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    STATISTICAL-ANALYSIS
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="in_T12_NormalDistributionsTTests.html">12. Normal/T-Dist/Tests</a>
+    </li>
+    <li>
+      <a href="in_T13_Correlation.html">13 Correlation</a>
+    </li>
+    <li>
+      <a href="in_T14_Regression.html">14. Simple Linear Regression</a>
+    </li>
+    <li>
+      <a href="in_T15_Diagnostics.html">15. Model Diagnostics</a>
+    </li>
+    <li>
+      <a href="in_T16_Outliers.html">16. Outliers</a>
+    </li>
+    <li>
+      <a href="in_T17_ConfPred.html">17. Confidence &amp; Prediction</a>
+    </li>
+    <li>
+      <a href="in_T18_Transformations.html">18. Transformations</a>
+    </li>
+    <li>
+      <a href="in_T19_MLR.html">19. Multiple Linear Regression</a>
+    </li>
+    <li>
+      <a href="in_T20_GLM.html">20. General Linear Regression</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="outliers-high-leverage-influential-points"
+class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Outliers, high leverage
+&amp; influential points</h1>
+<div id="what-are-they" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> What are they</h2>
+<p>There are three key things to know when it comes to outliers:</p>
+<div id="an-outlier" class="section level3 unnumbered">
+<h3 class="unnumbered">An “outlier”</h3>
+<p>We use the word <strong>outlier</strong> to describe an observation
+(point on the scatterplot) that has a very different response from the
+predicted response from the model. E.g. it has a large residual.</p>
+<p><br></p>
+</div>
+<div id="a-high-leverage-point" class="section level3 unnumbered">
+<h3 class="unnumbered">A high leverage point</h3>
+<p>If a data point has an x-value that is extremely different (either
+too high or too low) from the rest of the data points, we call this a
+<strong>high leverage</strong> point. It might, or might not be an
+outlier.</p>
+<p><br></p>
+</div>
+<div id="an-influential-point" class="section level3 unnumbered">
+<h3 class="unnumbered">An influential point</h3>
+<p>We call a data point an <strong>influential point</strong> if that
+data point has a considerable impact on the regression model. It likely
+has an unusual X AND an unusual residual. For instance, if the model fit
+changes considerably by removing a point, such data point is called an
+influential point. Influential points tend to be further from the
+mean.</p>
+<p><br><br></p>
+<details>
+</div>
+</div>
+<div id="how-to-find-them" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> How to find them</h2>
+<p>We can identify residuals via “residual vs leverage plots” and by
+looking at the ‘cooks distance’ for influential points.</p>
+<div id="residual-vs-leverage-plots" class="section level3"
+number="1.2.1">
+<h3><span class="header-section-number">1.2.1</span> Residual vs
+leverage plots</h3>
+<pre class="r"><code>ols_plot_resid_lev(model)</code></pre>
+<p><img src="in_T16_Outliers_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>This takes all</p>
+</div>
+</div>
+<div id="examples" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> Examples</h2>
+<div id="no-outliers-influential-or-high-leverage-points"
+class="section level3 unnumbered">
+<h3 class="unnumbered">No outliers, influential or high leverage
+points</h3>
+<div class="figure">
+<img src="in_T16_Outliers_files/figure-html/unnamed-chunk-3-1.png" alt="No outliers, influential values or high leverage points" width="672" />
+<p class="caption">
+No outliers, influential values or high leverage points
+</p>
+</div>
+</details>
+</div>
+</div>
+<div id="how-to-find-them-1" class="section level2" number="1.4">
+<h2><span class="header-section-number">1.4</span> How to find them</h2>
+<div id="assessing-outliers-via-visual-inspection"
+class="section level3" number="1.4.1">
+<h3><span class="header-section-number">1.4.1</span> Assessing outliers
+via visual inspection</h3>
+<p>The first way we can check for simple linear regression is to plot
+the data and take a look. Here are some examples that we can assess by
+eye which show the different effects.</p>
+<p><br></p>
+</div>
+<div id="no-outliers-influential-or-high-leverage-points-1"
+class="section level3 unnumbered">
+<h3 class="unnumbered">No outliers, influential or high leverage
+points</h3>
+<div class="figure">
+<img src="in_T16_Outliers_files/figure-html/unnamed-chunk-4-1.png" alt="No outliers, influential values or high leverage points" width="672" />
+<p class="caption">
+No outliers, influential values or high leverage points
+</p>
+</div>
+<p>In the figure above, all of the data points follow the general trend
+of the rest of the data, so there are no outliers (in the y direction).
+And, none of the data points are extreme with respect to x, so there are
+no high leverage points. Overall, none of the data points would appear
+to be influential with respect to the location of the best fitting line.
+e.g. if we removed any one point, the line would probably be the
+same.</p>
+<p><br></p>
+</div>
+<div id="an-outlier-with-no-leverage" class="section level3 unnumbered">
+<h3 class="unnumbered">An outlier with no leverage</h3>
+<div class="figure">
+<img src="in_T16_Outliers_files/figure-html/unnamed-chunk-5-1.png" alt="One outlier. The red-dashed line is the model including all the points. The black-solid line is the model with the red point removed " width="672" />
+<p class="caption">
+One outlier. The red-dashed line is the model including all the points.
+The black-solid line is the model with the red point removed
+</p>
+</div>
+<p>In the figure above, most of the data points follow the general trend
+of the rest of the data, but there is one clear outlier (one point that
+is unusual in the y direction). However, no point has an extreme x
+value, so there are no high leverage points. Overall, none of the data
+points would appear to be influential with respect to the location of
+the best fitting line. e.g.when we removed the red point,the line of
+best fit remains relatively stable.</p>
+<p><br></p>
+</div>
+<div id="a-high-leverage-point-that-isnt-an-outlier"
+class="section level3 unnumbered">
+<h3 class="unnumbered">A high leverage point that isn’t an outlier</h3>
+<div class="figure">
+<img src="in_T16_Outliers_files/figure-html/unnamed-chunk-6-1.png" alt="No outliers,but one high leverage point. The red-dashed line is the model including all the points. The black-solid line is the model with the red point removed" width="672" />
+<p class="caption">
+No outliers,but one high leverage point. The red-dashed line is the
+model including all the points. The black-solid line is the model with
+the red point removed
+</p>
+</div>
+<p>In the figure above, most of the data points follow the general trend
+of the rest of the data, so there are no outliers (in the y direction).
+But one data points is extreme with respect to x. Overall, none of the
+data points would appear to be influential with respect to the location
+of the best fitting line. e.g.when we removed the red point,the line of
+best fit remained relatively stable.</p>
+<p><br></p>
+</div>
+<div id="an-influential-high-leverage-outlier"
+class="section level3 unnumbered">
+<h3 class="unnumbered">An influential high leverage outlier</h3>
+<div class="figure">
+<img src="in_T16_Outliers_files/figure-html/unnamed-chunk-7-1.png" alt="One influential high leverage outlier. The red-dashed line is the model including all the points. The black-solid line is the model with the red point removed" width="672" />
+<p class="caption">
+One influential high leverage outlier. The red-dashed line is the model
+including all the points. The black-solid line is the model with the red
+point removed
+</p>
+</div>
+<p>In the figure above, most of the data points follow the general trend
+of the rest of the data, with one clear outlier. This point also has
+high leverage abd appears to be very influential. e.g.when we removed
+the red point,the line of best fit changes hugely,</p>
+<p>Here with a simple regression, we can easily see outliers. This is
+much harder when we have many predictors. So as well as examining the
+data by eye, we can use diagnostic plots.</p>
+</div>
+<div id="detecting-outliers-via-plots" class="section level3"
+number="1.4.2">
+<h3><span class="header-section-number">1.4.2</span> Detecting outliers
+via plots</h3>
+<p>In lab 5, we mentioned two measures that we use to help identify
+outliers. They are:</p>
+<ul>
+<li>Residuals</li>
+<li>Studentized residuals (or internally studentized residuals) (often
+called standardized residuals)</li>
+</ul>
+<p>First, briefly review these measures using this page: <a
+href="https://online.stat.psu.edu/stat501/lesson/11/11.3"
+class="uri">https://online.stat.psu.edu/stat501/lesson/11/11.3</a></p>
+<p>OLSRR also offers several more plots and tests including :</p>
+<ul>
+<li>Cook’s D Bar Plot</li>
+<li>Cook’s D Chart</li>
+<li>DFBETAs Panel</li>
+<li>DFFITs Plot</li>
+<li>Studentized Residual Plot</li>
+<li>Standardized Residual Chart</li>
+<li>Studentized Residuals vs Leverage Plot</li>
+<li>Deleted Studentized Residual vs Fitted Values Plot</li>
+<li>Hadi Plot</li>
+<li>Potential Residual Plot</li>
+</ul>
+<p>For now, we will focus on one of the most effective ways to assess
+residuals, the studentized residual/fits plot.</p>
+<p>For example for our test data:</p>
+<pre class="r"><code># read the data
+data &lt;- read.csv(&quot;index_data/neither.csv&quot;)
+
+#calculate the model
+model &lt;- lm(y~x,data=data)
+leverage &lt;- ols_leverage(model) 
+
+# plot 1 (left hand side)
+plot(data$x,data$y,pch=16,xlab=&quot;x&quot;,ylab=&quot;y&quot;,main=&quot;Dataset C&quot;); 
+abline(model)</code></pre>
+<p><img src="in_T16_Outliers_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<pre class="r"><code># plot 2 (right hand side). Remember to choose your own ylim
+ols_plot_resid_stud(model)</code></pre>
+<p><img src="in_T16_Outliers_files/figure-html/unnamed-chunk-8-2.png" width="672" /></p>
+<p>There should be no absolute cut-off here (around 2-3 is a warning
+sign). Instead, take these as an opportunity to explore those points
+further. For example here is our plot with the residual:</p>
+<pre class="r"><code># read the data
+data1 &lt;- read.csv(&quot;index_data/outlier.csv&quot;)
+
+#calculate the model
+model1 &lt;- lm(y~x,data=data1)
+
+# plot 1 (left hand side)
+plot(data1$x,data1$y,pch=16,xlab=&quot;x&quot;,ylab=&quot;y&quot;,main=&quot;Dataset B&quot;); 
+abline(model1)</code></pre>
+<p><img src="in_T16_Outliers_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<pre class="r"><code># plot 2 (right hand side). Remember to choose your own ylim
+ols_plot_resid_stand(model1)</code></pre>
+<p><img src="in_T16_Outliers_files/figure-html/unnamed-chunk-9-2.png" width="672" /></p>
+<p>Here the plot is telling me that it thinks row 21 of the dataset
+might be an outlier</p>
+<pre class="r"><code>data1[21,]</code></pre>
+<pre><code>##    x  y
+## 21 4 40</code></pre>
+<p><br><br></p>
+</div>
+<div id="detecting-influential-points" class="section level3"
+number="1.4.3">
+<h3><span class="header-section-number">1.4.3</span> Detecting
+influential points</h3>
+<p>If a point is both an outlier AND has leverage, chances are it will
+be influential over the fit. OLSRR has a nice way of summarising both
+statistics.</p>
+<p>For example here are our four plots together:</p>
+<pre class="r"><code># read the data
+data &lt;- read.csv(&quot;index_data/neither.csv&quot;)
+data2 &lt;- read.csv(&quot;index_data/outlier.csv&quot;)
+data2b &lt;- data2[-21,]
+data3 &lt;- read.csv(&quot;index_data/leverage.csv&quot;)
+data3b &lt;- data3[-25,]
+data4 &lt;- read.csv(&quot;index_data/influential.csv&quot;)
+data4b &lt;- data4[-25,]
+
+#calculate the model
+model &lt;- lm(y~x,data=data)
+model2 &lt;- lm(y~x,data=data2)
+model3 &lt;- lm(y~x,data=data3)
+model4 &lt;- lm(y~x,data=data4)
+
+# Set up 4 sub-plots one next to each other
+layout(matrix(c(1,2,3,4), 2, 2, byrow = TRUE))
+
+plot(data$x,data$y,pch=16,xlab=&quot;x&quot;,ylab=&quot;y&quot;,main=&quot;Dataset A&quot;,col=&quot;black&quot;) 
+abline(model)
+
+plot(data2$x,data2$y,pch=16,xlab=&quot;x&quot;,ylab=&quot;y&quot;,main=&quot;Dataset B&quot;,col=&quot;red&quot;) 
+lines(data2b$x,data2b$y,pch=16,type=&quot;p&quot;)
+abline(model2)
+
+plot(data3$x,data3$y,pch=16,xlab=&quot;x&quot;,ylab=&quot;y&quot;,main=&quot;Dataset C&quot;,col=&quot;red&quot;) 
+lines(data3b$x,data3b$y,pch=16,type=&quot;p&quot;)
+abline(model3)
+
+plot(data4$x,data4$y,pch=16,xlab=&quot;x&quot;,ylab=&quot;y&quot;,main=&quot;Dataset D&quot;,col=&quot;red&quot;,ylim=c(0,100)) 
+lines(data4b$x,data4b$y,pch=16,type=&quot;p&quot;)
+abline(model4)</code></pre>
+<div class="figure">
+<img src="in_T16_Outliers_files/figure-html/unnamed-chunk-11-1.png" alt="Our four examples" width="672" />
+<p class="caption">
+Our four examples
+</p>
+</div>
+<p>and here are the OLSRR summary plots for each.</p>
+<ul>
+<li><p>On the x-axis, you can see how high the leverage is. E.g. if it’s
+on the left it’s close to the mean x, if it’s on the right it’s far from
+the mean AKA it’s high leverage</p></li>
+<li><p>On the y-axis, you can see the normalised residual value AKA how
+big is the residual, but plotted in terms of standard deviations away
+from the mean of y.</p></li>
+</ul>
+<p>Compare plots 1,2,3 and 4 with the scatterplots above. See if you can
+identify which is which.</p>
+<pre class="r"><code># model A
+ols_plot_resid_lev(model)</code></pre>
+<p><img src="in_T16_Outliers_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<pre class="r"><code># model B
+ols_plot_resid_lev(model2)</code></pre>
+<p><img src="in_T16_Outliers_files/figure-html/unnamed-chunk-12-2.png" width="672" /></p>
+<pre class="r"><code># model C
+ols_plot_resid_lev(model3)</code></pre>
+<p><img src="in_T16_Outliers_files/figure-html/unnamed-chunk-12-3.png" width="672" /></p>
+<pre class="r"><code># model D
+ols_plot_resid_lev(model4)</code></pre>
+<p><img src="in_T16_Outliers_files/figure-html/unnamed-chunk-12-4.png" width="672" /></p>
+</div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

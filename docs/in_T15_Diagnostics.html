@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>in_T15_Diagnostics.knit</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Full Tutorial List</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    R-BASICS
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="CH1_BASICS.html#ch1">1 Installing/Accessing R</a>
+    </li>
+    <li>
+      <a href="CH1_BASICS.html#ch2">2 Changing Settings</a>
+    </li>
+    <li>
+      <a href="CH1_BASICS.html#ch3">3 Console/coding basics</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    STARTING EACH LAB
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="CH2_EACHLAB.html#ch4">4. Projects</a>
+    </li>
+    <li>
+      <a href="CH2_EACHLAB.html#ch5">5. Packages</a>
+    </li>
+    <li>
+      <a href="CH2_EACHLAB.html#ch6">6. R-Markdown</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    EXPLORING DATA
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="in_T07_ReadingInData.html">7. Reading in data</a>
+    </li>
+    <li>
+      <a href="in_T08_Wrangling.html">8. Summaries</a>
+    </li>
+    <li>
+      <a href="in_T08_Wrangling.html">9. Filtering</a>
+    </li>
+    <li>
+      <a href="in_T08_Wrangling.html">10. Missing data</a>
+    </li>
+    <li>
+      <a href="in_T11_Plots.html">11. Plots</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    STATISTICAL-ANALYSIS
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="in_T12_NormalDistributionsTTests.html">12. Normal/T-Dist/Tests</a>
+    </li>
+    <li>
+      <a href="in_T13_Correlation.html">13 Correlation</a>
+    </li>
+    <li>
+      <a href="in_T14_Regression.html">14. Simple Linear Regression</a>
+    </li>
+    <li>
+      <a href="in_T15_Diagnostics.html">15. Model Diagnostics</a>
+    </li>
+    <li>
+      <a href="in_T16_Outliers.html">16. Outliers</a>
+    </li>
+    <li>
+      <a href="in_T17_ConfPred.html">17. Confidence &amp; Prediction</a>
+    </li>
+    <li>
+      <a href="in_T18_Transformations.html">18. Transformations</a>
+    </li>
+    <li>
+      <a href="in_T19_MLR.html">19. Multiple Linear Regression</a>
+    </li>
+    <li>
+      <a href="in_T20_GLM.html">20. General Linear Regression</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="T10_diagnostics" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Assessing LINE</h1>
+<p>We know from the lectures that there are multiple assumptions
+underpinning whether a regression is a good model or not - especially
+LINE assumptions (as described in <a
+href="https://online.stat.psu.edu/stat501/lesson/4/">Online STAT-462 -
+Lesson 4</a>). Regression diagnostics are a set of tools we can use to
+assess these assumptions. All the example datasets are from the online
+textbook and can be downloaded there.</p>
+<p><br><br></p>
+<div id="T10_basics" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Basic code</h2>
+<p>It can be difficult looking at the raw data to assess whether many of
+the assumptions are true or not. So in this case we can look at residual
+plots.</p>
+<p><img src="index_images/im_T10_residualplot.png"
+style="width:80.0%" /></p>
+<p><img src="index_images/im_T10_residualplotB.png"
+style="width:50.0%" /></p>
+<p>Still confused? See</p>
+<ul>
+<li><p><a
+href="https://www.khanacademy.org/math/ap-statistics/bivariate-data-ap/xfb5d8e68:residuals/v/regression-residual-intro"
+class="uri">https://www.khanacademy.org/math/ap-statistics/bivariate-data-ap/xfb5d8e68:residuals/v/regression-residual-intro</a>)</p></li>
+<li><p>or <a href="https://www.displayr.com/learn-what-are-residuals/"
+class="uri">https://www.displayr.com/learn-what-are-residuals/</a></p></li>
+</ul>
+<p><br><br></p>
+<div id="adding-a-new-column-with-the-residuals" class="section level3"
+number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> Adding a new column
+with the residuals</h3>
+<p>We can add a new column with the residuals.</p>
+<details>
+<summary>
+<span style="color: #1388aa;">Expand for more details</span>
+</summary>
+<p>Imagine you are interested in determining whether or not alcohol
+consumption was linearly related to muscle strength. You measured the
+total lifetime consumption of alcohol (x) on a random sample of n = 50
+alcoholic men. They also measured the strength (y) of the deltoid muscle
+in each person’s left arm, then created a linear model to forecast
+strength.</p>
+<p>The predicted value is the y-value at the line for each point,
+strength is the actual measured strength and residual is the difference
+between the two.</p>
+<pre class="r"><code># I store my data in a sub-folder called index_data
+alcoholdata &lt;- read.csv(&quot;index_data/alcoholstrength.csv&quot;)
+mymodel &lt;- lm(strength~alcohol,data=alcoholdata)
+
+# now add in the predicted and residual values
+alcoholdata$strength_predicted &lt;- mymodel$fitted.values
+alcoholdata$residuals          &lt;- mymodel$residuals
+head(alcoholdata)</code></pre>
+<pre><code>##   alcohol strength strength_predicted residuals
+## 1    36.2     1000           1565.911 -565.9109
+## 2    39.7     1000           1462.357 -462.3570
+## 3    39.5     1080           1468.274 -388.2744
+## 4    18.2     1220           2098.474 -878.4739
+## 5    29.2     1310           1773.019 -463.0187
+## 6    32.5     1400           1675.382 -275.3822</code></pre>
+<p>See if you can match the point in red to the first value above and
+understand the numbers.</p>
+<p><img src="in_T15_Diagnostics_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p><br><br></p>
+</details>
+</div>
+<div id="code-for-plotting-the-residuals" class="section level3"
+number="1.1.2">
+<h3><span class="header-section-number">1.1.2</span> Code for plotting
+the residuals</h3>
+<p>Instead, we plot at the <em>residuals</em> vs the fitted values,
+which often show a pattern much more clearly. If you’re not sure what I
+mean by these words, go back and read from “what are residuals”</p>
+<p>The code to do this is pretty simple from the olsrr package. If this
+is the scatterplot:</p>
+<p><img src="in_T15_Diagnostics_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>Here are the raw residuals</p>
+<pre class="r"><code>ols_plot_resid_fit(mymodel)</code></pre>
+<p><img src="in_T15_Diagnostics_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>and here are the residuals, but this time they are normalised
+(e.g. the residuals are in “standard deviations away from the
+mean”).</p>
+<pre class="r"><code>ols_plot_resid_stud_fit(mymodel)</code></pre>
+<p><img src="in_T15_Diagnostics_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><br><br></p>
+</div>
+</div>
+<div id="checking-line" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> Checking LINE</h2>
+<div id="T10.Linearity" class="section level3" number="1.2.1">
+<h3><span class="header-section-number">1.2.1</span> Checking
+Linearity</h3>
+<p><strong>THE AIM HERE IS TO SEE IF A CURVE (or pattern) WOULD FIT THE
+DATA BETTER THAN A LINE. JUST RANDOM POINTS IS OK, A CURVE/DINOSAUR IS
+BAD.</strong></p>
+<p><img src="index_images/im_T10_linearity.png"
+style="width:90.0%" /></p>
+<p>We do this by looking at the residuals vs fits plot.</p>
+<p><br><br></p>
+<details>
+<summary>
+<span style="color: #1388aa;">Expand to see an example</span>
+</summary>
+<p>The goal of data-science is often to find the ‘best’ model that fits
+your data AKA the one with the smallest residuals. If your underlying
+dataset is not linear, then we probably want to choose a different model
+than linear data.</p>
+<p>However, in real life, it can often be difficult to assess whether
+the fit is linear by looking at the scatterplot alone. For example,
+using another dataset from the textbook, your mind might think this is
+linear.</p>
+<div class="figure">
+<img src="in_T15_Diagnostics_files/figure-html/unnamed-chunk-6-1.png" alt="This looks relatively linear, but...." width="672" />
+<p class="caption">
+This looks relatively linear, but….
+</p>
+</div>
+<p><br><br></p>
+<p>and calculate the residuals.</p>
+<pre class="r"><code># using the olsrr package
+ols_plot_resid_fit(tread_model)</code></pre>
+<div class="figure">
+<img src="in_T15_Diagnostics_files/figure-html/unnamed-chunk-7-1.png" alt="A parabola would clearly fit the data better than a straight line" width="672" />
+<p class="caption">
+A parabola would clearly fit the data better than a straight line
+</p>
+</div>
+<p>Let’s compare this residual plot to the strength/alcohol example from
+the section above (I include all the code for completeness). You can see
+in the treadwear data, the residuals depart from 0 in a very systematic
+manner. They are clearly positive for small x values, negative for
+medium x values, and positive again for large x values.</p>
+<p>Clearly, a non-linear model would better describe the relationship
+between the two variables.</p>
+<p>**IF IT’S LINEAR, WE SHOULD SEE A GENERAL CLOUD OF POINTS WITH NO
+CLEAR PATTERN. IF IT’S NOT LINEAR, YOU MIGHT SEE A CURVE OR A PATTERN
+(or a dinosaur..)</p>
+<p><br><br></p>
+</details>
+</div>
+<div id="T10.Variance" class="section level3" number="1.2.2">
+<h3><span class="header-section-number">1.2.2</span> Checking Equal
+Variance/homoscadisity</h3>
+<p><strong>Look at the cloud of points - they should stay roughly the
+same distance away either side of your line</strong></p>
+<p><img src="index_images/im_T10_variance.png"
+style="width:90.0%" /></p>
+<p>We do this by looking at the residuals vs fits plot AND by looking at
+a significance test.</p>
+<p><br><br></p>
+<details>
+<summary>
+<span style="color: #1388aa;">Expand to read more about how to do
+this</span>
+</summary>
+<div id="residual-vs-fits-plots-for-equal-variance-checks"
+class="section level4" number="1.2.2.1">
+<h4><span class="header-section-number">1.2.2.1</span> Residual vs fits
+plots for equal variance checks</h4>
+<p>This can also be hard to see in the raw scatterplot, so again we use
+the residual vs fits plot. Look for the dots “fanning out” or bow-tie
+shapes vs a random cloud.</p>
+<p>Heres how some data appears in the raw scatterplot and the residual
+fits plot.</p>
+<div class="figure">
+<img src="in_T15_Diagnostics_files/figure-html/unnamed-chunk-8-1.png" alt="This data breaks equal variance" width="672" />
+<p class="caption">
+This data breaks equal variance
+</p>
+</div>
+<pre class="r"><code>ols_plot_resid_fit(alpha_model)</code></pre>
+<p><img src="in_T15_Diagnostics_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>You can clearly see here that for low values of the fitted data,
+there is not much variance - but there is a lot of variance as the data
+expands.</p>
+</div>
+<div id="statistical-tests-for-non-equal-variance"
+class="section level4" number="1.2.2.2">
+<h4><span class="header-section-number">1.2.2.2</span> Statistical Tests
+for non-equal variance</h4>
+<p>You can also run statistical tests, explained in more detail here: <a
+href="https://rpubs.com/tskam/Session06"
+class="uri">https://rpubs.com/tskam/Session06</a></p>
+<p>For example, this is the heteroskadisity F-Test. There is also
+another test available, the Breusch Pagan Test - but this relies on the
+residuals being normally distributed.</p>
+<pre class="r"><code># F test - assumes residuals are  independent and identically distributed (i.i.d.)
+ols_test_f(alpha_model)</code></pre>
+<pre><code>## 
+##  F Test for Heteroskedasticity
+##  -----------------------------
+##  Ho: Variance is homogenous
+##  Ha: Variance is not homogenous
+## 
+##  Variables: fitted values of alpha 
+## 
+##         Test Summary         
+##  ----------------------------
+##  Num DF     =    1 
+##  Den DF     =    21 
+##  F          =    16.37716 
+##  Prob &gt; F   =    0.0005808712</code></pre>
+<p>There is a small probability of seeing this sample result if H0 is
+true and the underlying population has equal variance. So I have enough
+evidence to reject H0 and suggest that maybe the underlying population
+does not have equal variance.</p>
+<p><strong>In this case, we can see that, similar to the plot, we need
+to worry about unequal variance.</strong> (note, updated from a typo
+before where I used a different dataset - this is now correct)</p>
+<p><br><br></p>
+</details>
+</div>
+</div>
+<div id="T10.Normality" class="section level3" number="1.2.3">
+<h3><span class="header-section-number">1.2.3</span> Checking
+Normality</h3>
+<p><strong>Again, we are testing whether the RESIDUALS are normal around
+the regression line</strong></p>
+<p><img src="index_images/im_T10_Normality.png"
+style="width:90.0%" /></p>
+<p>To get the best estimates of parameters such as B0 and B1, the
+residuals must be normally distributed around the regression line.
+However, this has a much smaller effect typically than non-linearity or
+breaking assumptions of independence.</p>
+<p>Breaking normality is only important in the calculation of p values
+for significance testing and confidence intervals, but this is only a
+problem when the sample size is small. When the sample size is larger
+(&gt;200), the Central Limit Theorem ensures that the distribution of
+residuals will approximate normality when calculating parameters.</p>
+<p>So never throw away your data if it breaks normality. But it’s good
+to take a look.</p>
+<p>First, read this to see how the different tests look: <a
+href="https://online.stat.psu.edu/stat501/lesson/4/4.6"
+class="uri">https://online.stat.psu.edu/stat501/lesson/4/4.6</a></p>
+<p>Let’s go back to our original test data:</p>
+<pre class="r"><code>mymodel &lt;- lm(strength~alcohol,data=alcoholdata)
+plot(alcoholdata$alcohol,alcoholdata$strength,xlab=&quot;Alcohol&quot;,ylab=&quot;Strength&quot;,pch=16)
+abline(mymodel)</code></pre>
+<p><img src="in_T15_Diagnostics_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>To test normality, we can use OLSRR to:</p>
+<pre class="r"><code>#Create a QQ plot of the residuals
+ols_plot_resid_qq(mymodel)</code></pre>
+<p><img src="in_T15_Diagnostics_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<pre class="r"><code>#Create a histogram of the residuals
+ols_plot_resid_hist(mymodel)</code></pre>
+<p><img src="in_T15_Diagnostics_files/figure-html/unnamed-chunk-12-2.png" width="672" /></p>
+<pre class="r"><code>#Run a Wilks-Shapiro test for normality
+ols_test_normality(mymodel)</code></pre>
+<pre><code>## -----------------------------------------------
+##        Test             Statistic       pvalue  
+## -----------------------------------------------
+## Shapiro-Wilk              0.9877         0.8767 
+## Kolmogorov-Smirnov        0.0502         0.9990 
+## Cramer-von Mises          4.1667         0.0000 
+## Anderson-Darling          0.1699         0.9289 
+## -----------------------------------------------</code></pre>
+<p>In this case, our residuals look very normal.</p>
+<p>There are several tests available, look at papers such as these to
+understand why and which is best - <a
+href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3693611/"
+class="uri">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3693611/</a></p>
+<p><br><br></p>
+</div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

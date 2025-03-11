@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Getting started on each lab</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Full Tutorial List</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    R-BASICS
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="CH1_BASICS.html#ch1">1 Installing/Accessing R</a>
+    </li>
+    <li>
+      <a href="CH1_BASICS.html#ch2">2 Changing Settings</a>
+    </li>
+    <li>
+      <a href="CH1_BASICS.html#ch3">3 Console/coding basics</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    STARTING EACH LAB
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="CH2_EACHLAB.html#ch4">4. Projects</a>
+    </li>
+    <li>
+      <a href="CH2_EACHLAB.html#ch5">5. Packages</a>
+    </li>
+    <li>
+      <a href="CH2_EACHLAB.html#ch6">6. R-Markdown</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    EXPLORING DATA
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="in_T07_ReadingInData.html">7. Reading in data</a>
+    </li>
+    <li>
+      <a href="in_T08_Wrangling.html">8. Summaries</a>
+    </li>
+    <li>
+      <a href="in_T08_Wrangling.html">9. Filtering</a>
+    </li>
+    <li>
+      <a href="in_T08_Wrangling.html">10. Missing data</a>
+    </li>
+    <li>
+      <a href="in_T11_Plots.html">11. Plots</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    STATISTICAL-ANALYSIS
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="in_T12_NormalDistributionsTTests.html">12. Normal/T-Dist/Tests</a>
+    </li>
+    <li>
+      <a href="in_T13_Correlation.html">13 Correlation</a>
+    </li>
+    <li>
+      <a href="in_T14_Regression.html">14. Simple Linear Regression</a>
+    </li>
+    <li>
+      <a href="in_T15_Diagnostics.html">15. Model Diagnostics</a>
+    </li>
+    <li>
+      <a href="in_T16_Outliers.html">16. Outliers</a>
+    </li>
+    <li>
+      <a href="in_T17_ConfPred.html">17. Confidence &amp; Prediction</a>
+    </li>
+    <li>
+      <a href="in_T18_Transformations.html">18. Transformations</a>
+    </li>
+    <li>
+      <a href="in_T19_MLR.html">19. Multiple Linear Regression</a>
+    </li>
+    <li>
+      <a href="in_T20_GLM.html">20. General Linear Regression</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Getting started on each lab</h1>
+
+</div>
+
+
+<p><br></p>
+<div id="ch4" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> R-Projects</h1>
+<p>An R-project stores everything to do with each lab in one place on
+your computer.</p>
+<p>This is incredibly useful - it means that if you switch from R-Cloud,
+to the lab computers, to your laptop, all you have to do is to move the
+folder and everything will just work. It also means you have to worry
+less about directory names.</p>
+<p><a
+href="https://www.linkedin.com/learning/learning-the-r-tidyverse/why-should-you-use-projects-in-rstudio?u=76811570"><img
+src="index_images/im_T1_ProjectVideo.png" /></a></p>
+<hr />
+<p><br></p>
+<div id="projects-using-r-studio-desktop" class="section level2"
+number="1.1">
+<h2><span class="header-section-number">1.1</span> Projects using
+R-Studio Desktop</h2>
+
+<style>
+  header, .site-header, .footer, .site-footer {
+    display: none !important;
+  }
+</style>
+  
+<div id="creating-a-new-project" class="section level3" number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> Creating a new
+project</h3>
+<p><img src="index_images/pg_Tut2_startup_fig1.png" /></p>
+<p><br></p>
+<ol style="list-style-type: decimal">
+<li>If it’s not already open, open <strong>R-Studio</strong> <br></li>
+<li>Go to the File menu at the very top and click
+<code>New Project</code>. <br></li>
+<li>Select <code>New Directory</code>, then <code>New Project</code>.
+<br></li>
+<li>Name your project after your lab . <br></li>
+<li>Under “create project as a subdirectory of”, hit the browse button
+and go inside your GEOG-364 main folder (you just need to be in the
+folder, you don’t need to have selected anything). Press open. <br></li>
+<li>Finally, press <code>Create Project</code>, <br></li>
+</ol>
+<p><img src="index_images/pg_Tut2_startup_fig4.png" width="554" /></p>
+<p><br></p>
+</div>
+<div id="how-do-i-know-its-worked" class="section level3"
+number="1.1.2">
+<h3><span class="header-section-number">1.1.2</span> How do I know it’s
+worked?</h3>
+<p>R will change slightly.<br />
+- If you look at the top of the screen in the title bar, it should say
+<em>Lab1-Project R Studio</em>.<br />
+- The Files tab should have gone to your project folder. Essentially,
+R-Studio is now “looking” inside your Lab 1 folder, making it easier to
+find your data and output your results.</p>
+<p><img src="index_images/pg_Tut2_startup_fig5.png" /></p>
+</div>
+<div id="returning-to-your-lab-project" class="section level3"
+number="1.1.3">
+<h3><span class="header-section-number">1.1.3</span> Returning to your
+lab project</h3>
+<p><img src="index_images/pg_Tut2_startup_fig6.png" /></p>
+<ol style="list-style-type: decimal">
+<li>On your computer, find your <em>GEOG-364</em> folder and go to the
+lab you want.<br />
+</li>
+<li>Double click on the file with the extension
+<code>.RProj</code>.</li>
+</ol>
+<hr />
+<p><br></p>
+</div>
+</div>
+<div id="projects-using-posit-cloud" class="section level2"
+number="1.2">
+<h2><span class="header-section-number">1.2</span> Projects using Posit
+Cloud</h2>
+
+<style>
+  header, .site-header, .footer, .site-footer {
+    display: none !important;
+  }
+</style>
+  
+<div id="creating-a-new-project-1" class="section level3"
+number="1.2.1">
+<h3><span class="header-section-number">1.2.1</span> Creating a new
+project</h3>
+<ol style="list-style-type: decimal">
+<li><p><strong>Visit the Posit Cloud Login Page:</strong></p>
+<ul>
+<li>Go to <a href="https://login.posit.cloud/login"
+class="uri">https://login.posit.cloud/login</a> from any web browser.
+After logging in, you will see a dashboard similar to the image
+below.</li>
+</ul></li>
+</ol>
+<p><img src="index_images/im_T1_ProjectCloud.png" /></p>
+<ol start="2" style="list-style-type: decimal">
+<li><p><strong>Create a New Project:</strong></p>
+<ul>
+<li><p>Click the button on the top right and select “R-studio
+project.”</p></li>
+<li><p>A new R-studio Cloud instance will open. Rename it to match your
+lab.</p></li>
+</ul></li>
+</ol>
+</div>
+<div id="returning-to-your-project" class="section level3"
+number="1.2.2">
+<h3><span class="header-section-number">1.2.2</span> <strong>Returning
+to your project</strong></h3>
+<ul>
+<li>To return to your labs, visit <a
+href="https://posit.cloud/content/yours"
+class="uri">https://posit.cloud/content/yours</a> or click the workspace
+menu in the top left.</li>
+</ul>
+<p><img src="index_images/im_T1_ProjectWorkspaceCloud.png" /></p>
+<hr />
+<p><br><br></p>
+</div>
+</div>
+</div>
+<div id="ch5" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Packages</h1>
+
+<style>
+  header, .site-header, .footer, .site-footer {
+    display: none !important;
+  }
+</style>
+  
+<div id="how-to-downloadinstall-packages" class="section level3"
+number="2.0.1">
+<h3><span class="header-section-number">2.0.1</span> How to
+download/install packages</h3>
+<p>Just as you don’t need to go to the app store every time you use your
+weather app, you only need to download and install packages once. There
+are two methods</p>
+<ol style="list-style-type: decimal">
+<li>Clicking the INSTALL button in the Packages tab, then start typing
+the package name and it will show up (check the include dependencies
+box).</li>
+<li>In the console, run the <code>install.packages()</code> command with
+quotes around the package name
+e.g. <code>install.packages("bardr")</code>.</li>
+</ol>
+<p>Try installing the bardr package onto your computer</p>
+<p><br></p>
+</div>
+<div id="how-to-load-packages-you-want-to-use" class="section level3"
+number="2.0.2">
+<h3><span class="header-section-number">2.0.2</span> How to load
+packages you want to use</h3>
+<p>Installing a package doesn’t make it available to you. For that you
+need to load it (like clicking on an app). This can be done with the
+<code>library()</code> command.</p>
+<p>In the console type this to install the full works of Shakespeare in
+the bardr package (<a
+href="https://www.rdocumentation.org/packages/bardr/versions/0.0.9"
+class="uri">https://www.rdocumentation.org/packages/bardr/versions/0.0.9</a>)</p>
+<pre class="r"><code>library(bardr)</code></pre>
+<div id="what-should-happen" class="section level4" number="2.0.2.1">
+<h4><span class="header-section-number">2.0.2.1</span> What should
+happen?</h4>
+<p>If you have managed to install a package successfully, often nothing
+happens - this is great! It means it loaded the package without
+errors.</p>
+<p>Otherwise, I suggest running this command TWICE! This is because
+loading packages will print “friendly messages” or “welcome text” the
+first time you load them.</p>
+<p>For example, this is what shows up when you install the tidyverse
+package. The welcome text is indicating the sub-packages that tidyverse
+downloaded and also that some commands now have a different meaning.</p>
+<div class="figure" style="text-align: center">
+<img src="index_images/pg_Tut3_basics_fig4.png" alt="Tidyverse install messages" width="80%" />
+<p class="caption">
+Tidyverse install messages
+</p>
+</div>
+<p><strong>To find out if what you are seeing is a friendly message or
+an error, run the command again. If you run it a second time and there
+is no error then nothing should happen.</strong></p>
+</div>
+</div>
+<div id="how-to-force-the-computer-to-use-a-specific-commandpackages"
+class="section level3" number="2.0.3">
+<h3><span class="header-section-number">2.0.3</span> How to force the
+computer to use a specific command/packages</h3>
+<p>You can also use any command from any package by naming it and using
+::</p>
+<p>For example, this command <em>forces</em> the computer to use the
+dplyr package version of filter.</p>
+<pre class="r"><code>dplyr::filter(mydata)</code></pre>
+<hr />
+<p><br><br></p>
+</div>
+</div>
+<div id="ch6" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> R-Markdown</h1>
+<p>R Markdown is a powerful tool that allows you to combine text, code,
+and outputs in a single document. This tutorial will guide you through
+creating an R Markdown document, using templates, understanding its
+components, and working with key features like visual mode, code chunks,
+and knitting.</p>
+<p>There are also many more hints and tips here <a
+href="https://posit.co/blog/r-markdown-tips-tricks-1-rstudio-ide/"
+class="uri">https://posit.co/blog/r-markdown-tips-tricks-1-rstudio-ide/</a>.</p>
+<div id="r-markdown-introduction" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> R-Markdown
+Introduction</h2>
+
+<style>
+  header, .site-header, .footer, .site-footer {
+    display: none !important;
+  }
+</style>
+  
+<div id="what-is-r-markdown" class="section level3" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> What is
+R-Markdown?</h3>
+<p>Read more here: <a href="https://rmarkdown.rstudio.com"
+class="uri">https://rmarkdown.rstudio.com</a></p>
+<p>Typing commands into the console is like making a phone call to the
+computer—you communicate but don’t keep a record of your interactions.
+To save your commands for future use, we use scripts and documents.
+There are several types:</p>
+<ul>
+<li><p><strong>A basic script</strong> (<code>.R</code> file): A blank
+notepad where you save code commands. When you “run” the script, R
+simply copies and pastes the commands into the console.</p></li>
+<li><p><strong>An R Notebook or R Markdown document</strong>
+(<code>.Rmd</code> file): An interactive document where you can combine
+text, code, and output in one place. With a single click, you can
+convert <code>.Rmd</code> files into reports, websites, blogs,
+presentations, or interactive applications.</p></li>
+</ul>
+<p>R Markdown is especially useful for labs because it allows you to
+integrate code, output, and written analysis seamlessly. Instead of
+taking screenshots, you can embed results directly in your document.</p>
+<hr />
+<p><br></p>
+</div>
+</div>
+<div id="r-markdown-structure" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> R-Markdown
+Structure</h2>
+
+<style>
+  header, .site-header, .footer, .site-footer {
+    display: none !important;
+  }
+</style>
+  
+<div id="markdown-file-structure" class="section level3" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Markdown file
+structure</h3>
+<p><img src="index_images/pg_Tut4_markdown_fig4.png"
+style="width:100.0%" /></p>
+<p>Your markdown file contains three main areas:</p>
+<ul>
+<li><p><strong>The YAML code at the top describes what the final output
+should look like.</strong></p>
+<ul>
+<li><p>For example this might be a website, a pdf, a presentation or one
+of these 21 other formats…<a
+href="https://rmarkdown.rstudio.com/lesson-9.html"
+class="uri">https://rmarkdown.rstudio.com/lesson-9.html</a></p></li>
+<li><p>It also includes other ‘meta-data’ for example the title/author
+name, whether you want a table of contents and any themes. For example,
+in the screenshot above, I included:</p>
+<ul>
+<li>The title</li>
+<li>The author (note,use your email ID not your name)</li>
+<li>Automatically created today’s date</li>
+<li>A floating table of contents</li>
+<li>Numbered sections (this won’t appear until you start typing section
+headings)</li>
+<li>The lumen theme.</li>
+</ul></li>
+<li><p>See “Editing YAML” below for more information.</p></li>
+</ul></li>
+<li><p><strong>The report text.</strong></p>
+<ul>
+<li>This is essentially the same as Microsoft word, where you can write
+up interpretations, include pictures, tables, links and equations.. See
+“Editing text” below for more information.</li>
+</ul></li>
+<li><p><strong>Code chunks</strong></p>
+<ul>
+<li>These are spaces for you to R-Code. They are essentially “mini
+consoles”. To run the code inside, click the little green arrow on the
+right. This copies the code into the console, runs it, then copies the
+output underneath the code chunk, integrating it into your report. See
+“Editing R-Markdown” below for more information.</li>
+</ul></li>
+</ul>
+<hr />
+<p><br></p>
+</div>
+</div>
+<div id="creating-r-markdown-files" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Creating R-Markdown
+Files</h2>
+
+<style>
+  header, .site-header, .footer, .site-footer {
+    display: none !important;
+  }
+</style>
+  
+<div id="basics" class="section level3" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Basics</h3>
+<p>To create a new R Markdown document in RStudio:</p>
+<p><img src="index_images/pg_Tut4_markdown_fig1.png" /></p>
+<ol style="list-style-type: decimal">
+<li><strong>Go to</strong> <code>File</code> → <code>New File</code> →
+<code>R Markdown...</code></li>
+<li><strong>Choose a document type</strong> (HTML, PDF, or Word). For
+now, | select <code>HTML</code>.</li>
+<li><strong>Give your document a title</strong> and specify the author
+as | your Email ID e.g. hlg5155</li>
+<li><strong>Click <code>OK</code></strong></li>
+<li><em>If this is your first time ever doing this or you’re running a
+new POSIT-Cloud project, then R-studio might ask to download some
+packages before it can do this this. Say yes.</em></li>
+<li>A new file should appear on your screen. At the top of that window
+(by the knit button, there is a save button. Save it as something
+relevant INSIDE YOUR PROJECT FOLDER!</li>
+</ol>
+<p>RStudio will generate a default R Markdown file with an example of
+formatted text and an embedded code chunk.</p>
+<div id="important" class="section level4" number="3.3.1.1">
+<h4><span class="header-section-number">3.3.1.1</span>
+<strong>Important</strong></h4>
+<ul>
+<li><p>Before you continue, on your computer (outside R-Studio), go to
+your project folder</p></li>
+<li><p>MAKE SURE THE RMD FILE SAVED IN YOUR PROJECT FOLDER. Also, check
+you didn’t accidentally create a load of sub-folders inside your lab. If
+so, delete/move things around until it looks like this.</p></li>
+</ul>
+<p><img src="index_images/pg_Tut4_markdown_fig2.png" /></p>
+<hr />
+</div>
+</div>
+<div id="custom-r-markdown-templates" class="section level3"
+number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> Custom R-Markdown
+Templates</h3>
+<p>There are also now several package which contain professional
+markdown templates. Common examples include</p>
+<ul>
+<li>The <code>rmdformats</code> package: See example themes here: <a
+href="https://github.com/juba/rmdformats"
+class="uri">https://github.com/juba/rmdformats</a></li>
+<li>The <code>prettydoc</code> package: See example themes here: <a
+href="https://prettydoc.statr.me/themes.html"
+class="uri">https://prettydoc.statr.me/themes.html</a></li>
+</ul>
+<p>To use one of these packages:</p>
+<table>
+<colgroup>
+<col width="50%" />
+<col width="49%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><ol style="list-style-type: decimal">
+<li><p>Make sure the relevant package is installed (e.g. packages tab,
+install button)</p></li>
+<li><p><strong>Go to</strong> <code>File</code> → <code>New File</code>
+→ <code>R Markdown...</code></p></li>
+<li><p><strong>Click the <code>Templates</code> button</strong></p></li>
+<li><p><strong>Select the template you want to use</strong>.</p></li>
+<li><p><strong>Click <code>OK</code></strong>.</p></li>
+<li><p>A new file should appear on your screen. At the top of that
+window (by the knit button, there is a save button. Save it as something
+relevant INSIDE YOUR PROJECT FOLDER!</p></li>
+</ol>
+<p>Alternatively, you can replace your YAML code with the suggested code
+from that theme.</p></td>
+<td><img src="index_images/im_05MarkdownScratchtemplate.png" /></td>
+</tr>
+</tbody>
+</table>
+<p><img src="index_images/im_T3RmdformatsPlus.png" /></p>
+<div id="important-1" class="section level4" number="3.3.2.1">
+<h4><span class="header-section-number">3.3.2.1</span>
+<strong>Important!</strong></h4>
+<p>Sometimes rmdformats makes an extra subfolder and puts your report in
+there.</p>
+<ul>
+<li><p>So before you continue, on your computer (outside R-Studio), go
+to your project folder</p></li>
+<li><p>MAKE SURE THE RMD FILE SAVED IN YOUR PROJECT FOLDER. Also, check
+you didn’t accidentally create a load of sub-folders inside your lab. If
+so, delete/move things around until it looks like this.</p></li>
+</ul>
+<p><img src="index_images/pg_Tut4_markdown_fig2.png" /></p>
+<hr />
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="editing-yaml" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> Editing YAML</h2>
+
+<style>
+  header, .site-header, .footer, .site-footer {
+    display: none !important;
+  }
+</style>
+  
+<div id="basics-1" class="section level3" number="3.4.1">
+<h3><span class="header-section-number">3.4.1</span> Basics</h3>
+<p>The basic RmD format is pretty boring. So if you go this route, it’s
+good to edit the YAML code to add in a few additional features. Here is
+some example YAML code that I often use as a baseline. CAREFULLY replace
+yours with this, paying attention to spacing.</p>
+<pre class="r"><code>---
+title: &quot;change to add your title&quot;
+author: &quot;hlg5155 or your email ID&quot;
+date: &quot;`r Sys.Date()`&quot;
+output: 
+  html_document:
+    number_sections: true
+    toc: true
+    toc_float: true
+    toc_depth: 3
+    theme: journal
+---  </code></pre>
+<p>There are many more details about different options on these
+websites:</p>
+<ul>
+<li><a href="https://bookdown.org/yihui/rmarkdown/html-document.html"
+class="uri">https://bookdown.org/yihui/rmarkdown/html-document.html</a></li>
+<li><a
+href="https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf"
+class="uri">https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf</a></li>
+<li>If you want to get really fancy, there is an interesting package to
+help you design YAML code here: <a
+href="https://education.rstudio.com/blog/2019/10/tools-for-teaching-yaml-with-ymlthis/"
+class="uri">https://education.rstudio.com/blog/2019/10/tools-for-teaching-yaml-with-ymlthis/</a></li>
+</ul>
+</div>
+<div id="themes" class="section level3" number="3.4.2">
+<h3><span class="header-section-number">3.4.2</span> Themes</h3>
+<p>There are about 10 built-in themes in R to quickly change the format
+of your documents. You view them here, alongside ways to further
+customize your document (for example to add a table of contents)</p>
+<ul>
+<li><a href="https://rpubs.com/ranydc/rmarkdown_themes"
+class="uri">https://rpubs.com/ranydc/rmarkdown_themes</a></li>
+</ul>
+<p>If you used a custom theme from rmdformats, check out their websites
+to see if there are additional options you wish to add in.</p>
+<div id="custom-r-markdown-templates-1" class="section level4"
+number="3.4.2.1">
+<h4><span class="header-section-number">3.4.2.1</span> Custom R-Markdown
+Templates</h4>
+<p>As I described in the previous section, you can also use other themes
+from packages like <code>rmdformats</code>, but rather than just
+changing the word “theme”, the entire YAML changes.</p>
+<p>So the easiest way to do this is to create a blank new file for the
+template you want, then copy/paste the entire YAML code across to your
+report.</p>
+<hr />
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="editing-markdown-text" class="section level2" number="3.5">
+<h2><span class="header-section-number">3.5</span> Editing markdown
+text</h2>
+
+<style>
+  header, .site-header, .footer, .site-footer {
+    display: none !important;
+  }
+</style>
+  
+<div id="visual-vs-source-mode" class="section level3" number="3.5.1">
+<h3><span class="header-section-number">3.5.1</span> Visual vs source
+mode</h3>
+<p>RStudio’s standard output is “<strong>source mode</strong>” where you
+see your text in a raw format.</p>
+<p>RStudio now provides a <strong>Visual Editor</strong> to simplify
+text formatting. When switched on, you see something similar to the
+final output format and get access to all the normal word processing
+buttons (e.g. bold/headings etc.). To switch between the two modes:</p>
+<ol style="list-style-type: decimal">
+<li><p>Click the <strong>Visual</strong> tab in the <code>.Rmd</code>
+editor.</p></li>
+<li><p>Use the toolbar to format text, add links, or insert
+images.</p></li>
+<li><p>Switch back to <strong>Source</strong> mode to view the
+underlying Markdown format.</p></li>
+</ol>
+<p><img src="index_images/im_04Markdown_Visual.png" /></p>
+<p>Visual mode is incredibly useful, because you don’t need to remember
+any of the keyboard commands for formatting text. But… it can be a pain
+when editing/deleting code-chunks. To do that, I often switch back to
+source mode.</p>
+<p><img
+src="https://posit.co/wp-content/themes/Posit/public/markdown-blogs/r-markdown-tips-tricks-1-rstudio-ide/img/img7.gif" /></p>
+</div>
+<div id="pictures-and-tables" class="section level3" number="3.5.2">
+<h3><span class="header-section-number">3.5.2</span> Pictures and
+tables</h3>
+<p>These are easy to add using <strong>visual mode</strong>. Just go to
+the text-editing menu at the top of the report.</p>
+</div>
+<div id="headings" class="section level3" number="3.5.3">
+<h3><span class="header-section-number">3.5.3</span> Headings</h3>
+<p>Please use these! They allow your table of contents to be created
+correctly which allows easy navigation in your reports. For example,
+Heading 1 = Chapter Title, Heading 2 = sub-title etc.</p>
+<p>In visual mode, click on the line you want then look at the text
+formatting menu. Click the arrow by “normal” and change to the heading
+you want.</p>
+</div>
+<div id="mathematical-equations" class="section level3" number="3.5.4">
+<h3><span class="header-section-number">3.5.4</span> Mathematical
+equations</h3>
+<p><strong>THESE GO INTO THE TEXT SECTION! NOT INTO A CODE
+CHUNK.</strong></p>
+<p>Although I have heard rumors you can copy/paste equations into R, the
+easiest way I have found is to:</p>
+<ol style="list-style-type: decimal">
+<li><p>First, get the equation you want in chatgpt or similar and ask it
+to output as LateX format</p></li>
+<li><p>Type $$ to tell R you are adding an equation, then paste the
+equation in a line of its own.</p></li>
+</ol>
+<p>e.g. If you type this into the TEXT (not a code chunk)</p>
+<pre asis="TRUE"><code>
+$$
+E_n = -\frac{m e^4}{2 \hbar^2} \frac{1}{n^2}
+$$</code></pre>
+<p>In visual mode, you should see get</p>
+<p><span class="math display">\[
+E_n = -\frac{m e^4}{2 \hbar^2} \frac{1}{n^2}
+\]</span></p>
+<p>If you want an equation on the same line, use single $ signs. E.g
+typing this into the TEXT</p>
+<pre asis="TRUE"><code>
+Hello! Here is an inline equation: $e^4$, that you can include mid-sentence</code></pre>
+<p>Will give you</p>
+<p>Hello! Here is an inline equation: <span
+class="math inline">\(e^4\)</span>, that you can include
+mid-sentence.</p>
+<hr />
+<p><br></p>
+</div>
+</div>
+<div id="editing-code" class="section level2" number="3.6">
+<h2><span class="header-section-number">3.6</span> Editing code</h2>
+
+<style>
+  header, .site-header, .footer, .site-footer {
+    display: none !important;
+  }
+</style>
+  
+<div id="adding-new-code-chunks" class="section level3" number="3.6.1">
+<h3><span class="header-section-number">3.6.1</span> Adding new code
+chunks</h3>
+<p>In visual mode, you can add code chunks by clicking on the little
+green button at the top right and choosing R.</p>
+<p><img src="index_images/im_T3_CodeChunkCreate.png"
+style="width:90.0%" /></p>
+<p>In source mode, you can add a code chunk by typing</p>
+<p><img src="index_images/im_T3_CodeChunkCreateB.png"
+style="width:49.0%" /></p>
+<p>Where the little symbols before the {R} are called BACK-TICKS. I
+often just copy/replace.</p>
+</div>
+<div id="running-code-chunks" class="section level3" number="3.6.2">
+<h3><span class="header-section-number">3.6.2</span> Running code
+chunks</h3>
+<p>There are several ways you can run the code in a code chunk. The
+easiest is to use the controls on each chunk.</p>
+<ul>
+<li><p><strong>To run that chunk</strong> → Click the <strong>green
+“Play” (▶) button</strong> in the top-right corner of the
+chunk.</p></li>
+<li><p><strong>To Run all chunks above</strong> → Click the small
+<strong>downwards arrow</strong> next to the left of the Play
+button.</p></li>
+</ul>
+<p>Or via the Run menu on the top right.</p>
+
+<style>
+  header, .site-header, .footer, .site-footer {
+    display: none !important;
+  }
+</style>
+  
+</div>
+<div id="code-chunk-options" class="section level3" number="3.6.3">
+<h3><span class="header-section-number">3.6.3</span> Code Chunk
+Options</h3>
+<div id="what-are-they" class="section level4" number="3.6.3.1">
+<h4><span class="header-section-number">3.6.3.1</span> What are
+they?</h4>
+<p>Code chunk options control how your code behaves when you knit the
+document. You can suppress messages, hide warnings, or customize the
+appearance of your output. Here are some common options you might
+use:</p>
+<ul>
+<li><code>message = TRUE/FALSE</code> — Show or hide R messages when
+knitting.</li>
+<li><code>warning = TRUE/FALSE</code> — Show or hide warnings. Errors
+will still be displayed.</li>
+<li><code>include = TRUE/FALSE</code> — Show or hide both the code and
+its output.</li>
+<li><code>echo = TRUE/FALSE</code> — Show or hide the code but still
+display its output.</li>
+<li><code>eval = TRUE/FALSE</code> — Show the code, but don’t actually
+run it. Useful if you can’t make it work, but want to still knit and
+submit.</li>
+</ul>
+</div>
+<div id="editing-options-in-source-mode" class="section level4"
+number="3.6.3.2">
+<h4><span class="header-section-number">3.6.3.2</span> Editing Options
+in Source Mode</h4>
+<ul>
+<li>Each code chunk starts and ends with three backticks. The
+<code>{r</code> inside the curly braces indicates it’s R code.</li>
+<li>After <code>{r</code>, you can add options to modify the behavior of
+the code when knitting. For example, use <code>message=FALSE</code> and
+<code>warning=FALSE</code> to suppress library loading messages and
+warnings.</li>
+</ul>
+<div style="text-align: center;">
+<p><img src="index_images/im_T3CodeChunkOptions.png"
+style="width:80.0%" /></p>
+</div>
+<p><br></p>
+</div>
+<div id="editing-options-in-view-mode" class="section level4"
+number="3.6.3.3">
+<h4><span class="header-section-number">3.6.3.3</span> Editing Options
+in View Mode</h4>
+<p>In View mode, click the small cogwheel next to the run triangle at
+the top of the code chunk to set these options without remembering
+commands.</p>
+<p><br></p>
+<div style="text-align: center;">
+<p><img src="index_images/im_T3CodeChunkOptionsView.png"
+style="width:80.0%" /></p>
+</div>
+</div>
+<div id="setting-default-options-for-the-whole-document"
+class="section level4" number="3.6.3.4">
+<h4><span class="header-section-number">3.6.3.4</span> Setting Default
+Options for the Whole Document</h4>
+<p>To apply settings to all code chunks, place this code chunk at the
+top of your document (below the YAML):</p>
+<pre><code>```{}
+knitr::opts_chunk$set(echo=TRUE, 
+                      warning=FALSE, 
+                      message=FALSE)
+```</code></pre>
+<p>Many templates include default settings, but you can easily customize
+them to fit your needs.</p>
+<hr />
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="knitting" class="section level2" number="3.7">
+<h2><span class="header-section-number">3.7</span> Knitting</h2>
+
+<style>
+  header, .site-header, .footer, .site-footer {
+    display: none !important;
+  }
+</style>
+  
+<div id="kniting-your-files" class="section level3" number="3.7.1">
+<h3><span class="header-section-number">3.7.1</span> Kniting your
+files</h3>
+<p>The file on your screen isn’t the finished article. To see how it
+will look as a final version, we need to “knit” it.</p>
+<p>Knitting an R Markdown document means <strong>converting it into a
+final output format</strong> (such as HTML, PDF, or Word). When you knit
+a document, RStudio executes the code chunks, formats the Markdown text,
+and generates a nicely formatted report.</p>
+<p>Go to the top of the .Rmd file, find the <code>knit</code> button.
+Press it (you might have to first save your script if you haven’t
+already, then press it again). This will only work if you have all the
+commands saved in your lab-script e.g. if you read in the data but
+didn’t write the command into your report, it will crash.</p>
+<p><img src="index_images/im_T3knit.png" /></p>
+<div id="if-you-get-a-knitting-error" class="section level4"
+number="3.7.1.1">
+<h4><span class="header-section-number">3.7.1.1</span> IF YOU GET A
+KNITTING ERROR</h4>
+<p>The terminal text will update you as your report turns into a
+website. If you get an error, then the exact line number with the
+problem and a description of the error will be printed on the console.
+For example, here I tried to print out a variable that didn’t exist.</p>
+<p><img src="index_images/im_T3knit_error.png"
+style="width:100.0%" /></p>
+<hr />
+</div>
+</div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

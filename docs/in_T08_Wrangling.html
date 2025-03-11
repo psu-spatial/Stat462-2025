@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>in_T08_Wrangling.knit</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Full Tutorial List</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    R-BASICS
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="CH1_BASICS.html#ch1">1 Installing/Accessing R</a>
+    </li>
+    <li>
+      <a href="CH1_BASICS.html#ch2">2 Changing Settings</a>
+    </li>
+    <li>
+      <a href="CH1_BASICS.html#ch3">3 Console/coding basics</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    STARTING EACH LAB
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="CH2_EACHLAB.html#ch4">4. Projects</a>
+    </li>
+    <li>
+      <a href="CH2_EACHLAB.html#ch5">5. Packages</a>
+    </li>
+    <li>
+      <a href="CH2_EACHLAB.html#ch6">6. R-Markdown</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    EXPLORING DATA
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="in_T07_ReadingInData.html">7. Reading in data</a>
+    </li>
+    <li>
+      <a href="in_T08_Wrangling.html">8. Summaries</a>
+    </li>
+    <li>
+      <a href="in_T08_Wrangling.html">9. Filtering</a>
+    </li>
+    <li>
+      <a href="in_T08_Wrangling.html">10. Missing data</a>
+    </li>
+    <li>
+      <a href="in_T11_Plots.html">11. Plots</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    STATISTICAL-ANALYSIS
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="in_T12_NormalDistributionsTTests.html">12. Normal/T-Dist/Tests</a>
+    </li>
+    <li>
+      <a href="in_T13_Correlation.html">13 Correlation</a>
+    </li>
+    <li>
+      <a href="in_T14_Regression.html">14. Simple Linear Regression</a>
+    </li>
+    <li>
+      <a href="in_T15_Diagnostics.html">15. Model Diagnostics</a>
+    </li>
+    <li>
+      <a href="in_T16_Outliers.html">16. Outliers</a>
+    </li>
+    <li>
+      <a href="in_T17_ConfPred.html">17. Confidence &amp; Prediction</a>
+    </li>
+    <li>
+      <a href="in_T18_Transformations.html">18. Transformations</a>
+    </li>
+    <li>
+      <a href="in_T19_MLR.html">19. Multiple Linear Regression</a>
+    </li>
+    <li>
+      <a href="in_T20_GLM.html">20. General Linear Regression</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="T9_wrangling" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Data Wrangling</h1>
+<div id="example-datasets" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Example datasets</h2>
+<p>Here I will show a few examples for the houses dataset we were using
+in lectures. I will also use a separate dataset on spring frost
+dates.</p>
+<p><br><br></p>
+</div>
+<div id="T9_basics" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> Looking at the data
+itself</h2>
+<p>To have a look at the data there are many options. You can:</p>
+<ul>
+<li><p>Click on its NAME in the environment tab (not the blue arrow)</p>
+<p><br></p></li>
+<li><p>Type its name into the console or into a code chunk</p>
+<ul>
+<li><p>(e.g. I would type, type <code>HousesNY</code> into the console
+or a code chunk)</p>
+<p><br></p></li>
+</ul></li>
+<li><p>Run the command <code>View(tablename)</code> IN THE CONSOLE</p>
+<ul>
+<li><p>(View is a command from the tidyverse package).<br></p></li>
+<li><p>This will open the data in a new tab.</p>
+<p><br></p></li>
+</ul></li>
+<li><p>Run the command <code>head(``tablename``)</code> to see the first
+6 lines or so (good for quick checks)</p>
+<p><br></p></li>
+<li><p>Run the command <code>glimpse(``tablename``)</code> to get a nice
+summary.</p>
+<p><br></p></li>
+<li><p>Run the command <code>names(``tablename``)</code> to get the
+column names.</p></li>
+</ul>
+<div id="example" class="section level3" number="1.2.1">
+<h3><span class="header-section-number">1.2.1</span> Example</h3>
+<pre class="r"><code># Note, there are sometimes more columns to the right, use the arrow to see
+head(HousesNY)</code></pre>
+<pre><code>##   Price Beds Baths  Size  Lot
+## 1  57.6    3     2 0.960 1.30
+## 2 120.0    6     2 2.786 0.23
+## 3 150.0    4     2 1.704 0.27
+## 4 143.0    3     2 1.200 0.80
+## 5  92.5    3     1 1.329 0.42
+## 6  50.0    2     1 0.974 0.34</code></pre>
+<p>To see what the column names are, you can use the
+<code>names(dataset)</code> command</p>
+<pre class="r"><code>names(HousesNY)</code></pre>
+<pre><code>## [1] &quot;Price&quot; &quot;Beds&quot;  &quot;Baths&quot; &quot;Size&quot;  &quot;Lot&quot;</code></pre>
+<p>Or the glimpse command:</p>
+<pre class="r"><code>glimpse(HousesNY)</code></pre>
+<pre><code>## Rows: 53
+## Columns: 5
+## $ Price &lt;dbl&gt; 57.6, 120.0, 150.0, 143.0, 92.5, 50.0, 89.0, 140.0, 197.5, 125.1…
+## $ Beds  &lt;int&gt; 3, 6, 4, 3, 3, 2, 2, 4, 4, 3, 3, 3, 3, 4, 3, 3, 4, 3, 4, 3, 4, 4…
+## $ Baths &lt;dbl&gt; 2.0, 2.0, 2.0, 2.0, 1.0, 1.0, 2.0, 3.0, 2.5, 2.0, 2.0, 1.0, 2.0,…
+## $ Size  &lt;dbl&gt; 0.960, 2.786, 1.704, 1.200, 1.329, 0.974, 1.029, 2.818, 2.268, 1…
+## $ Lot   &lt;dbl&gt; 1.30, 0.23, 0.27, 0.80, 0.42, 0.34, 0.29, 0.21, 1.00, 0.30, 1.30…</code></pre>
+<p>To see how many columns and rows there are, you can use the
+<code>nrow()</code> and <code>ncol()</code> commands</p>
+<pre class="r"><code>nrow(HousesNY)</code></pre>
+<pre><code>## [1] 53</code></pre>
+<pre class="r"><code>ncol(HousesNY)</code></pre>
+<pre><code>## [1] 5</code></pre>
+<hr />
+<p><br><br></p>
+</div>
+</div>
+<div id="summary-statistics" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> Summary
+statistics</h2>
+<p>To look at the summaries there are a load of options. Choose your
+favourites:</p>
+<ul>
+<li><code>summary(dataset)</code></li>
+<li><code>skim(dataset)</code> in the skimr package</li>
+<li><code>summarize(dataset)</code> in the papeR package. This looks
+pretty powerful, I’m just learning it</li>
+</ul>
+<p>None are better or worse than others - simply choose what works for
+you in the moment.</p>
+<pre class="r"><code>summary(HousesNY)</code></pre>
+<pre><code>##      Price            Beds           Baths            Size      
+##  Min.   : 38.5   Min.   :2.000   Min.   :1.000   Min.   :0.712  
+##  1st Qu.: 82.7   1st Qu.:3.000   1st Qu.:1.500   1st Qu.:1.296  
+##  Median :107.0   Median :3.000   Median :2.000   Median :1.528  
+##  Mean   :113.6   Mean   :3.396   Mean   :1.858   Mean   :1.678  
+##  3rd Qu.:141.0   3rd Qu.:4.000   3rd Qu.:2.000   3rd Qu.:2.060  
+##  Max.   :197.5   Max.   :6.000   Max.   :3.500   Max.   :3.100  
+##       Lot        
+##  Min.   :0.0000  
+##  1st Qu.:0.2700  
+##  Median :0.4200  
+##  Mean   :0.7985  
+##  3rd Qu.:1.1000  
+##  Max.   :3.5000</code></pre>
+<pre class="r"><code>library(skimr) # you would need to install this
+skim(HousesNY)</code></pre>
+<table>
+<caption>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td align="left">Name</td>
+<td align="left">HousesNY</td>
+</tr>
+<tr class="even">
+<td align="left">Number of rows</td>
+<td align="left">53</td>
+</tr>
+<tr class="odd">
+<td align="left">Number of columns</td>
+<td align="left">5</td>
+</tr>
+<tr class="even">
+<td align="left">_______________________</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Column type frequency:</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">numeric</td>
+<td align="left">5</td>
+</tr>
+<tr class="odd">
+<td align="left">________________________</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Group variables</td>
+<td align="left">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table style="width:100%;">
+<colgroup>
+<col width="15%" />
+<col width="11%" />
+<col width="15%" />
+<col width="7%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="7%" />
+<col width="7%" />
+<col width="6%" />
+<col width="6%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">p0</th>
+<th align="right">p25</th>
+<th align="right">p50</th>
+<th align="right">p75</th>
+<th align="right">p100</th>
+<th align="left">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Price</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">113.63</td>
+<td align="right">41.43</td>
+<td align="right">38.50</td>
+<td align="right">82.70</td>
+<td align="right">107.00</td>
+<td align="right">141.00</td>
+<td align="right">197.5</td>
+<td align="left">▃▇▅▃▃</td>
+</tr>
+<tr class="even">
+<td align="left">Beds</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">3.40</td>
+<td align="right">0.79</td>
+<td align="right">2.00</td>
+<td align="right">3.00</td>
+<td align="right">3.00</td>
+<td align="right">4.00</td>
+<td align="right">6.0</td>
+<td align="left">▂▇▆▁▁</td>
+</tr>
+<tr class="odd">
+<td align="left">Baths</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">1.86</td>
+<td align="right">0.65</td>
+<td align="right">1.00</td>
+<td align="right">1.50</td>
+<td align="right">2.00</td>
+<td align="right">2.00</td>
+<td align="right">3.5</td>
+<td align="left">▅▇▁▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">Size</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">1.68</td>
+<td align="right">0.60</td>
+<td align="right">0.71</td>
+<td align="right">1.30</td>
+<td align="right">1.53</td>
+<td align="right">2.06</td>
+<td align="right">3.1</td>
+<td align="left">▃▇▅▂▂</td>
+</tr>
+<tr class="odd">
+<td align="left">Lot</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0.80</td>
+<td align="right">0.76</td>
+<td align="right">0.00</td>
+<td align="right">0.27</td>
+<td align="right">0.42</td>
+<td align="right">1.10</td>
+<td align="right">3.5</td>
+<td align="left">▇▃▂▁▁</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>library(pillar) # you would need to install this
+glimpse(HousesNY)</code></pre>
+<pre><code>## Rows: 53
+## Columns: 5
+## $ Price &lt;dbl&gt; 57.6, 120.0, 150.0, 143.0, 92.5, 50.0, 89.0, 140.0, 197.5, 125.1…
+## $ Beds  &lt;int&gt; 3, 6, 4, 3, 3, 2, 2, 4, 4, 3, 3, 3, 3, 4, 3, 3, 4, 3, 4, 3, 4, 4…
+## $ Baths &lt;dbl&gt; 2.0, 2.0, 2.0, 2.0, 1.0, 1.0, 2.0, 3.0, 2.5, 2.0, 2.0, 1.0, 2.0,…
+## $ Size  &lt;dbl&gt; 0.960, 2.786, 1.704, 1.200, 1.329, 0.974, 1.029, 2.818, 2.268, 1…
+## $ Lot   &lt;dbl&gt; 1.30, 0.23, 0.27, 0.80, 0.42, 0.34, 0.29, 0.21, 1.00, 0.30, 1.30…</code></pre>
+<p>or</p>
+<pre class="r"><code>str(HousesNY)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    53 obs. of  5 variables:
+##  $ Price: num  57.6 120 150 143 92.5 ...
+##  $ Beds : int  3 6 4 3 3 2 2 4 4 3 ...
+##  $ Baths: num  2 2 2 2 1 1 2 3 2.5 2 ...
+##  $ Size : num  0.96 2.79 1.7 1.2 1.33 ...
+##  $ Lot  : num  1.3 0.23 0.27 0.8 0.42 0.34 0.29 0.21 1 0.3 ...</code></pre>
+<p>To see what the column names are, you can use the names(dataset)
+command</p>
+<pre class="r"><code>names(HousesNY)</code></pre>
+<pre><code>## [1] &quot;Price&quot; &quot;Beds&quot;  &quot;Baths&quot; &quot;Size&quot;  &quot;Lot&quot;</code></pre>
+<p>To print the first few rows</p>
+<pre class="r"><code>head(HousesNY)</code></pre>
+<pre><code>##   Price Beds Baths  Size  Lot
+## 1  57.6    3     2 0.960 1.30
+## 2 120.0    6     2 2.786 0.23
+## 3 150.0    4     2 1.704 0.27
+## 4 143.0    3     2 1.200 0.80
+## 5  92.5    3     1 1.329 0.42
+## 6  50.0    2     1 0.974 0.34</code></pre>
+<p>To find the number of rows and columns</p>
+<pre class="r"><code>nrow(HousesNY)</code></pre>
+<pre><code>## [1] 53</code></pre>
+<pre class="r"><code>ncol(HousesNY)</code></pre>
+<pre><code>## [1] 5</code></pre>
+<pre class="r"><code>#or both dimensions
+dim(HousesNY)</code></pre>
+<pre><code>## [1] 53  5</code></pre>
+<p>Or you can do things manually, using the $ symbol to choose a column.
+All of this is for the price column</p>
+<pre class="r"><code>mean(HousesNY$Price)</code></pre>
+<pre><code>## [1] 113.6321</code></pre>
+<pre class="r"><code>median(HousesNY$Price)</code></pre>
+<pre><code>## [1] 107</code></pre>
+<pre class="r"><code>mode(HousesNY$Price)</code></pre>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<pre class="r"><code>sd(HousesNY$Price)</code></pre>
+<pre><code>## [1] 41.43006</code></pre>
+<pre class="r"><code>var(HousesNY$Price)</code></pre>
+<pre><code>## [1] 1716.45</code></pre>
+<pre class="r"><code>IQR(HousesNY$Price)</code></pre>
+<pre><code>## [1] 58.3</code></pre>
+<pre class="r"><code>range(HousesNY$Price)</code></pre>
+<pre><code>## [1]  38.5 197.5</code></pre>
+<hr />
+<p><br><br></p>
+</div>
+<div id="Missing" class="section level2" number="1.4">
+<h2><span class="header-section-number">1.4</span> Removing missing
+values</h2>
+<div id="na.omit" class="section level3" number="1.4.1">
+<h3><span class="header-section-number">1.4.1</span> na.omit</h3>
+<p>The na.omit command will remove any row with ANY missing value.</p>
+<p>Note I’m overwriting my variable HousesNY with the new one. It’s up
+to you if you want to do this or make a new variable</p>
+<pre class="r"><code>HousesNY &lt;- na.omit(HousesNY)</code></pre>
+<p><br><br></p>
+</div>
+<div id="missing-values-in-single-columns-complete.cases"
+class="section level3" number="1.4.2">
+<h3><span class="header-section-number">1.4.2</span> Missing values in
+single columns, complete.cases</h3>
+<p>If you want to only remove rows with missing values in a single
+column, we can use the complete cases command</p>
+<pre class="r"><code>HousesNY &lt;- HousesNY[complete.cases(HousesNY$Price), ]</code></pre>
+<p>E.g. take the HousesNY table and ONLY include values where the price
+data is not missing. Note, this can be any column name at all.</p>
+<p><br><br></p>
+</div>
+<div id="turning-values-into-na" class="section level3" number="1.4.3">
+<h3><span class="header-section-number">1.4.3</span> Turning values into
+NA</h3>
+<p>Sometimes, you have -999 or something as your missing mark. R expects
+them to be NA.</p>
+<p>You can apply a RULE using the filter command below or like this to
+make them actually NAs</p>
+<pre class="r"><code>HousesNY$Price[HousesNY$Price &lt; 0]   &lt;- NA</code></pre>
+<p>E.g. here I select all the prices that are less than 0 (e.g
+impossible) and set them to NA.</p>
+<p><br></p>
+</div>
+</div>
+<div id="ignoring-missing-data-in-commands" class="section level2"
+number="1.5">
+<h2><span class="header-section-number">1.5</span> Ignoring missing data
+in commands</h2>
+<p>There are missing values in some datasets - and by default, R will
+set the answer to statistics to also be missing.</p>
+<pre class="r"><code># Create some test data
+test &lt;- data.frame(A=c(1,3,4),
+                   B=c(NA,3,1))
+print(test)</code></pre>
+<pre><code>##   A  B
+## 1 1 NA
+## 2 3  3
+## 3 4  1</code></pre>
+<pre class="r"><code># Take the mean of column B
+mean(test$B)</code></pre>
+<pre><code>## [1] NA</code></pre>
+<pre class="r"><code># Take the correlation between A and B
+cor(test$A,test$B)</code></pre>
+<pre><code>## [1] NA</code></pre>
+<p>To ignore them in a given command, try adding ,na.rm=TRUE to the
+command e.g.</p>
+<pre class="r"><code>mean(test$B, na.rm=TRUE)</code></pre>
+<pre><code>## [1] 2</code></pre>
+<p>or sometimes I look in the help file (or on google) for a slightly
+different terminology.</p>
+<pre class="r"><code>#the cor command doesn&#39;t follow the pattern.
+
+cor(test$A,test$B,use = &quot;complete.obs&quot;)</code></pre>
+<pre><code>## [1] -1</code></pre>
+</div>
+<div id="making-frequency-tables" class="section level2" number="1.6">
+<h2><span class="header-section-number">1.6</span> Making frequency
+tables</h2>
+<p>Sometimes we want to see how many rows there are in different
+categories. The easiest way to do this is using the table command. For
+example, in our New York data, we can see how many houses there are with
+each number of beds using</p>
+<pre class="r"><code>table(HousesNY$Beds)</code></pre>
+<pre><code>## 
+##  2  3  4  5  6 
+##  5 26 19  2  1</code></pre>
+<p>So there are 19 rows in our dataset where the Beds column says 4 (AKA
+19 houses in our sample with 4 beds). Or we can look at a 2 dimensional
+table</p>
+<pre class="r"><code>table(HousesNY$Beds, HousesNY$Baths)</code></pre>
+<pre><code>##    
+##      1 1.5  2 2.5  3 3.5
+##   2  2   0  3   0  0   0
+##   3  8   3 14   0  1   0
+##   4  3   1 10   1  3   1
+##   5  0   0  1   0  0   1
+##   6  0   0  1   0  0   0</code></pre>
+<p>So there are 10 houses with 4 beds and 2 baths</p>
+<p>To make these look more professional there are a number of packages
+you can install and use. For example, ztable will take the output of
+table and format it in a pretty way. This will look TERRIBLE when you
+run R as it’s making html code. But when you press knit it will look
+beautiful</p>
+<pre class="r"><code># don&#39;t include the install line in your code, run it in the console
+# install.package(&quot;ztable&quot;)
+
+library(ztable)
+library(magrittr)
+options(ztable.type=&quot;html&quot;)
+
+mytable &lt;- table(HousesNY$Beds, HousesNY$Baths)
+
+my_ztable =ztable(mytable) 
+print(my_ztable,caption=&quot;Table 1. Basic Table&quot;)</code></pre>
+<head>
+<style>
+        table {
+              font-family: times ;
+color:  black ;
+text-align: right;}
+        th {
+              padding: 1px 1px 5px 5px;
+            }
+        td {
+             padding: 1px 1px 5px 5px; }
+      </style>
+</head>
+<table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;">
+<caption style="text-align:center;">
+Table 1. Basic Table
+</caption>
+<tr>
+<th style="border-left: 0px solid black;background-color: #FFFFFF;border-top: 2px solid gray;border-bottom: 1px solid gray;">
+ 
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">1</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">1.5</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">2</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">2.5</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">3</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">3.5</th>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; ">
+2
+</td>
+<td align="right" style="border-left: 0px solid black;">
+2
+</td>
+<td align="right" style="border-left: 0px solid black;">
+0
+</td>
+<td align="right" style="border-left: 0px solid black;">
+3
+</td>
+<td align="right" style="border-left: 0px solid black;">
+0
+</td>
+<td align="right" style="border-left: 0px solid black;">
+0
+</td>
+<td align="right" style="border-left: 0px solid black;border-right:0px solid black;">
+0
+</td>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; border-top: hidden;">
+3
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+8
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+3
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+14
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+0
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+1
+</td>
+<td align="right" style="border-left: 0px solid black;border-right:0px solid black;border-top: hidden;">
+0
+</td>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; border-top: hidden;">
+4
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+3
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+1
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+10
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+1
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+3
+</td>
+<td align="right" style="border-left: 0px solid black;border-right:0px solid black;border-top: hidden;">
+1
+</td>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; border-top: hidden;">
+5
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+0
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+0
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+1
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+0
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+0
+</td>
+<td align="right" style="border-left: 0px solid black;border-right:0px solid black;border-top: hidden;">
+1
+</td>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; border-top: hidden;">
+6
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+0
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+0
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+1
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+0
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+0
+</td>
+<td align="right" style="border-left: 0px solid black;border-right:0px solid black;border-top: hidden;">
+0
+</td>
+</tr>
+<tr>
+<td colspan="7" align="left" style="font-size:9pt ;border-top: 1px solid black; border-bottom: hidden;">
+</td>
+</tr>
+</table>
+<p><br><br></p>
+</div>
+<div id="WrangleBasics" class="section level2" number="1.7">
+<h2><span class="header-section-number">1.7</span> Wrangling basics</h2>
+<div id="selecting-a-specific-column" class="section level3"
+number="1.7.1">
+<h3><span class="header-section-number">1.7.1</span> Selecting a
+specific column</h3>
+<p>Here I am using the NYHouses data as an example. Sometimes we want to
+deal with only one specific column in our spreadsheet/dataframe, for
+example applying the mean/standard deviation/inter-quartile range
+command to say just the Price column.</p>
+<p>To do this, we use the $ symbol. For example, here I’m simply
+selecting the data in the elevation column only and saving it to a new
+variable called elevationdata.</p>
+<pre class="r"><code>data(&quot;HousesNY&quot;)
+price &lt;- HousesNY$Price
+
+price</code></pre>
+<p>Try it yourself. You should have seen that as you typed the $, it
+gave you all the available column names to choose from.</p>
+<p>This means we can now easily summarise specific columns. For
+example:</p>
+<ul>
+<li><code>summary(HousesNY)</code> will create a summary of the whole
+spreadsheet,</li>
+<li><code>summary(HousesNY$Price)</code> will only summarise the Price
+column.<br />
+</li>
+<li><code>mean(HousesNY$Price)</code> will take the mean of the Price
+column in the HousesNY dataframe.</li>
+</ul>
+<p><br><br></p>
+</div>
+<div id="choosing-values-from-rows-and-columns" class="section level3"
+number="1.7.2">
+<h3><span class="header-section-number">1.7.2</span> Choosing values
+from rows and columns</h3>
+<p>Sometimes, we do not want to analyse at the entire data.frame.
+Instead, we would like to only look at one (or more) columns or
+rows.</p>
+<p>There are several ways we can select data.</p>
+<ul>
+<li><p>To choose a specific column, we can use the <code>$</code> symbol
+to select its name (as described above)</p></li>
+<li><p>If you know which number rows or columns you want, you can use
+<strong>square brackets</strong> to numerically select data.</p></li>
+</ul>
+<p>Essentially our data follows the format: tablename<span
+class="math display">\[ROWS,COLUMNS\]</span></p>
+<pre class="r"><code># reading in some new data
+frost    &lt;- readxl::read_excel(&quot;Data_frostdata.xlsx&quot;)</code></pre>
+<pre class="r"><code># This will select the data in the 5th row and 7th column
+frost[5,7]
+
+# This will select the 2nd row and ALL the columns 
+frost[2,]
+
+# This will select the 3rd column and ALL the rows
+frost[,3]
+# similar to using its name
+frost$Type_Fake
+
+# We can combine our commands, this will print the 13th row of the Longitude column 
+# (no comma as we&#39;re only looking at one column)
+frost$Longitude[13]
+
+# The : symbol lets you choose a sequence of numbers e.g. 1:5 is 1 2 3 4 5
+# So this prints out rows 11 to 15 and all the columns
+frost[11:15,]
+
+# The &quot;c&quot; command allows you to enter whatever numbers you like.  
+# So this will print out rows 4,3,7 and the &quot;Elevation&quot; and &quot;Dist_to_Coast&quot; columns
+frost[c(4,3,7), c(&quot;Elevation&quot;,&quot;Dist_to_Coast&quot;)]</code></pre>
+</div>
+<div id="deleting-rows" class="section level3" number="1.7.3">
+<h3><span class="header-section-number">1.7.3</span> Deleting rows</h3>
+<p>Or if you know the row number you can use the minus - sign to remove.
+Or just filter below.</p>
+<pre class="r"><code># remove row 6 and and overwrite
+frost &lt;- frost[-6 ,]
+
+# remove columns 4 and 2 and save result to newdata and overwrite
+newdata &lt;- frost[, - c(2,4) ]</code></pre>
+<p><br><br></p>
+</div>
+</div>
+<div id="WrangleFilter" class="section level2" number="1.8">
+<h2><span class="header-section-number">1.8</span> Filtering</h2>
+<div id="the-which-command-approach" class="section level3"
+number="1.8.1">
+<h3><span class="header-section-number">1.8.1</span> The which command
+approach</h3>
+<p>The which command essentially says “which numbers” meet a certain
+threshold</p>
+<p>e,g,</p>
+<pre class="r"><code>a &lt;- 100:110
+which(a &gt; 107)</code></pre>
+<p>Or which rows:</p>
+<pre class="r"><code>outlier_rows &lt;- which(frost$Dist_to_Coast &lt; 1.5)</code></pre>
+<p>So you can also add questions and commands inside the square
+brackets. For example here is the weather station with the lowest
+elevation. You can see my command chose BOTH rows where elevation =
+10.</p>
+<pre class="r"><code># which row has the lowest elevation
+# note the double == (more below)
+row_number &lt;- which(frost$Elevation == min(frost$Elevation))
+
+# choose that row
+loweststtation &lt;- frost[row_number ,  ]
+loweststtation</code></pre>
+<pre class="r"><code>seaside &lt;- frost[which(frost$Dist_to_Coast &lt; 10) ,  ]
+seaside</code></pre>
+</div>
+<div id="the-dplyr-filter-command-tidyverse" class="section level3"
+number="1.8.2">
+<h3><span class="header-section-number">1.8.2</span> The dplyr filter
+command (tidyverse)</h3>
+<p>Filtering means selecting rows/observations based on their values. To
+filter in R, use the command <code>filter()</code> from the dplyr
+package. I tend to write it as <code>dplyr:filter()</code> to force it
+to be correct.</p>
+<p>Here we can apply the filter command to choose specific rows that
+meet certain criteria</p>
+<pre class="r"><code>filter(frost, State == &quot;FL&quot;)</code></pre>
+<p>The double equal operator <code>==</code> means equal to. The command
+is telling R to keep the rows in <em>frost</em> where the <em>State</em>
+column equals “FL”.</p>
+<p>If you want a few categories, choose the %in% operator, using the
+<code>c()</code> command to stick together the categories you want. For
+example, here are states in Florida and Virginia.</p>
+<pre class="r"><code>filter(frost, State %in% c(&quot;FL&quot;,&quot;VA&quot;))</code></pre>
+<p>We can also explicitly exclude cases and keep everything else by
+using the not equal operator <code>!=</code>. The following code
+<em>excludes</em> airport stations.</p>
+<pre class="r"><code>filter(frost, Type_Fake != &quot;Airport&quot;)</code></pre>
+<p>What about filtering if a row has a value greater than a specified
+value? For example, Stations with an elevation greater than 500
+feet?</p>
+<pre class="r"><code>filter(frost, Elevation &gt; 500)</code></pre>
+<p>Or less-than-or-equal-to 200 feet.</p>
+<pre class="r"><code># or save the result to a new variable
+lowland_stations &lt;- filter(frost, Elevation &lt; 200)
+summary(lowland_stations)</code></pre>
+<p><br></p>
+<p>In addition to comparison operators, filtering may also utilize
+logical operators that make multiple selections. There are three basic
+logical operators: <code>&amp;</code> (and), <code>|</code> (or), and
+<code>!</code> (not). We can keep Stations with an <em>Elevation</em>
+greater than 300 <strong>and</strong> <em>State</em> in Alabama
+<code>&amp;</code>.</p>
+<pre class="r"><code>filter(frost, Elevation &gt; 300 &amp; State == &quot;AL&quot;)</code></pre>
+<p>Use <code>|</code> to keep Stations with a <em>Type_Fake</em> of
+“Airport” <strong>or</strong> a last spring frost date after April (~
+day 90 of the year).</p>
+<pre class="r"><code>filter(frost, Type_Fake == &quot;Airport&quot; | Avg_DOY_SpringFrost &gt; 90 )</code></pre>
+<p><br><br></p>
+</div>
+<div id="group_by-command-statistics-per-group" class="section level3"
+number="1.8.3">
+<h3><span class="header-section-number">1.8.3</span> “Group_by” command:
+statistics per group</h3>
+<p>What if we want to do more than just count the number of rows?</p>
+<p>Well, we can use the <code>group_by()</code> and
+<code>summarise()</code> commands and save our answers to a new
+variable.</p>
+<p>Here we are making use of the pipe symbol, %&gt;%, which takes the
+answer from group_by and sends it directly to the summarise command.</p>
+<p>Here is some data that we used earlier on frost dates at weather
+stations.</p>
+<pre class="r"><code>head(frost)</code></pre>
+<pre><code>## # A tibble: 6 × 8
+##   Station    State Type_Fake Avg_DOY_SpringFrost Latitude Longitude Elevation
+##   &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;                   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Valley     AL    City                    110.      34.6     -85.6      1020
+## 2 Union      AL    City                     82.3     32.0     -85.8       440
+## 3 Saint      AL    Airport                  99.8     34.2     -86.8       800
+## 4 Fernandina FL    City                     46.9     30.7     -81.5        13
+## 5 Lake       FL    City                     60.6     30.2     -82.6       195
+## 6 West       GA    City                     85.6     32.9     -85.2       575
+## # ℹ 1 more variable: Dist_to_Coast &lt;dbl&gt;</code></pre>
+<p>To summarise results by the type of weather station:</p>
+<pre class="r"><code>frost.summary.type &lt;- group_by(frost, by=Type_Fake) %&gt;%
+                          summarise(mean(Latitude),
+                                    max(Latitude),
+                                    min(Dist_to_Coast))
+frost.summary.type</code></pre>
+<pre><code>## # A tibble: 3 × 4
+##   by                       `mean(Latitude)` `max(Latitude)` `min(Dist_to_Coast)`
+##   &lt;chr&gt;                               &lt;dbl&gt;           &lt;dbl&gt;                &lt;dbl&gt;
+## 1 Agricultural_Research_S…             33.7            36.3                 4.95
+## 2 Airport                              34.4            37.3                45.4 
+## 3 City                                 33.7            36.5                 1.15</code></pre>
+<p>Here, my code is:</p>
+<ul>
+<li>Splitting up the frost data by the Type_Fake column<br>(e.g. one
+group for City, one for Airport and one for Agricultural Research)</li>
+<li>For the data rows in <em>each group</em>, calculating the mean
+latitude, the maximum latitude and the minimum distance to the
+coast</li>
+<li>Saving the result to a new variable called frost.summary.type.</li>
+<li>Printing the results on the screen e.g. the furthest North/maximum
+latitude of rows tagged Agricultural_Research_Station is 36.32
+degrees.</li>
+</ul>
+<p><br><br></p>
+</div>
+</div>
+<div id="sorting-data" class="section level2" number="1.9">
+<h2><span class="header-section-number">1.9</span> Sorting data</h2>
+<div id="the-dplyr-arrange-command-tidyverse" class="section level3"
+number="1.9.1">
+<h3><span class="header-section-number">1.9.1</span> The dplyr arrange
+command (tidyverse)</h3>
+<p>We use the <code>arrange()</code> function to sort a data frame by
+one or more variables. You might want to do this to get a sense of which
+cases have the highest or lowest values in your data set or sort
+counties by their name. For example, let’s sort in ascending order by
+elevation.</p>
+<pre class="r"><code>arrange(frost, Latitude)</code></pre>
+<pre><code>## # A tibble: 76 × 8
+##    Station     State Type_Fake  Avg_DOY_SpringFrost Latitude Longitude Elevation
+##    &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;                    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+##  1 Inverness   FL    City                      50.6     28.8     -82.3        40
+##  2 Ocala       FL    City                      52.7     29.2     -82.1        75
+##  3 Lake        FL    City                      60.6     30.2     -82.6       195
+##  4 Tallahassee FL    Agricultu…                75.8     30.4     -84.4        55
+##  5 Fernandina  FL    City                      46.9     30.7     -81.5        13
+##  6 De          FL    City                      71.3     30.7     -86.1       245
+##  7 Quitman     GA    City                      65.5     30.8     -83.6       185
+##  8 Brunswick   GA    Agricultu…                48.4     31.2     -81.5        13
+##  9 Waycross    GA    Agricultu…                75.9     31.2     -82.3       145
+## 10 Tifton      GA    City                      87.3     31.4     -83.5       380
+## # ℹ 66 more rows
+## # ℹ 1 more variable: Dist_to_Coast &lt;dbl&gt;</code></pre>
+<p>By default, <code>arrange()</code> sorts in ascending order. We can
+sort by a variable in descending order by using the <code>desc()</code>
+function on the variable we want to sort by. For example, to sort the
+dataframe by <em>Avg_DOY_SpringFrost</em> in descending order we use</p>
+<pre class="r"><code>arrange(frost, desc(Avg_DOY_SpringFrost))</code></pre>
+<pre><code>## # A tibble: 76 × 8
+##    Station      State Type_Fake Avg_DOY_SpringFrost Latitude Longitude Elevation
+##    &lt;chr&gt;        &lt;chr&gt; &lt;chr&gt;                   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+##  1 Marshall     NC    Airport                  118.     35.8     -82.7      2000
+##  2 Highlands    NC    Agricult…                118.     35.0     -83.2      3333
+##  3 Mt           NC    City                     113.     36.5     -80.6      1041
+##  4 Louisburg    NC    City                     113.     36.1     -78.3       260
+##  5 Rocky        VA    Airport                  111.     37.0     -79.9      1315
+##  6 Henderson    NC    Agricult…                111.     36.3     -78.4       512
+##  7 Farmville    VA    Airport                  111.     37.3     -78.4       450
+##  8 Statesville  NC    City                     110.     35.8     -80.9       951
+##  9 Valley       AL    City                     110.     34.6     -85.6      1020
+## 10 Hendersonvi… NC    Agricult…                110.     35.3     -82.4      2160
+## # ℹ 66 more rows
+## # ℹ 1 more variable: Dist_to_Coast &lt;dbl&gt;</code></pre>
+<p><br> <br></p>
+</div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
