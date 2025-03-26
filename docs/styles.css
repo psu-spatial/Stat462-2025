@@ -74,11 +74,11 @@ html,body {height:75%;}
 **************************/
 
 p {
-  margin-bottom: 25px; /* Space below paragraphs */
+  margin-bottom: 30px; /* Space below paragraphs */
 }
 
 ul li, ol li {
-  margin-bottom: 12px; /* Increase space between bullets */
+  margin-bottom: 20px; /* Increase space between bullets */
 }
 
 

@@ -369,13 +369,13 @@ div.tocify {
       <a href="in_T07_ReadingInData.html">7. Reading in data</a>
     </li>
     <li>
-      <a href="in_T08_Wrangling.html">8. Summaries</a>
+      <a href="CH3_EDA.html#ch8">8. Summary Statistics</a>
     </li>
     <li>
-      <a href="in_T08_Wrangling.html">9. Filtering</a>
+      <a href="CH3_EDA.html#ch9">9. Filtering/selecting</a>
     </li>
     <li>
-      <a href="in_T08_Wrangling.html">10. Missing data</a>
+      <a href="CH3_EDA.html#ch10">10. Missing Data</a>
     </li>
     <li>
       <a href="in_T11_Plots.html">11. Plots</a>
@@ -435,15 +435,27 @@ div.tocify {
 
 
 <div id="T10_diagnostics" class="section level1" number="1">
-<h1><span class="header-section-number">1</span> Assessing LINE</h1>
-<p>We know from the lectures that there are multiple assumptions
-underpinning whether a regression is a good model or not - especially
-LINE assumptions (as described in <a
-href="https://online.stat.psu.edu/stat501/lesson/4/">Online STAT-462 -
-Lesson 4</a>). Regression diagnostics are a set of tools we can use to
-assess these assumptions. All the example datasets are from the online
-textbook and can be downloaded there.</p>
-<p><br><br></p>
+<h1><span class="header-section-number">1</span> SLR Model Assumptions,
+LINE</h1>
+<p>From our lectures, we know that linear regression models rely on
+several key assumptions—commonly summarized by the LINE acronym:</p>
+<ul>
+<li><p><strong>L</strong>inearity</p></li>
+<li><p><strong>I</strong>ndependence of errors</p></li>
+<li><p><strong>N</strong>ormality of errors</p></li>
+<li><p><strong>E</strong>qual variance (homoscedasticity) of
+errors</p></li>
+</ul>
+<p>Regression diagnostics provide tools to evaluate whether these
+assumptions hold for a given model. Violations of these assumptions can
+undermine the validity of our inferences and predictions.</p>
+<div id="resources" class="section level3" number="1.0.1">
+<h3><span class="header-section-number">1.0.1</span> Resources</h3>
+<p>The examples in this tutorial use datasets from <a
+href="https://online.stat.psu.edu/stat501/lesson/4/">Penn State’s STAT
+501 Lesson 4: Regression Diagnostics</a>, which offers additional
+context and materials.</p>
+</div>
 <div id="T10_basics" class="section level2" number="1.1">
 <h2><span class="header-section-number">1.1</span> Basic code</h2>
 <p>It can be difficult looking at the raw data to assess whether many of

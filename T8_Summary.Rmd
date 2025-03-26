@@ -1,0 +1,281 @@
+---
+output:
+  html_document:
+    toc: yes
+    toc_depth: 3
+    number_sections: yes  
+    toc_float:
+      collapsed: no  # Ensure Level 1 & 2 remain expanded
+      smooth_scroll: yes
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,message=FALSE,warning=FALSE)
+```
+
+
+## Introduction
+
+Before analyzing a dataset, it's essential to understand its structure, size, and data types. It is then often useful to understand more about the data inside to help with quality control.
+
+
+#### Suggested libraries {-}
+
+```{r}
+library(dplyr)
+library(skimr)
+library(GGally)
+```
+
+The tutorial is based on a small test dataset with four columns:
+
+- `Make` (categorical)
+- `MPG` (numerical)
+- `Cylinders` (categorical)
+- `Transmission` (categorical)
+
+```{r}
+# Create a simple dataset with numerical and categorical variables
+test_data <- data.frame(
+  Make = factor(c("Toyota", "Ford", "Honda", "Chevy", "Nissan", "BMW")),
+  MPG = c(30, 25, 27, 22, 29, 24),
+  Cylinders = factor(c(4, 6, 4, 8, 4, 6)),
+  Transmission = factor(c("Auto", "Manual", "Auto", "Auto", "Manual", "Manual"))
+)
+```
+
+
+## Assessing data structure
+
+Before analyzing a dataset, it's essential to understand its structure, size, and data types. This tutorial will guide you through:
+
+1. Viewing the dataset.
+2. Checking its dimensions, column names, and structure.
+3. Understanding data types and modifying them if necessary.
+4. Preparing for summary statistics.
+
+<br>
+
+### Viewing Data
+
+To explore the dataset interactively, you can:
+
+- **Open it in the RStudio Data Viewer**:  
+  Run `View(test_data)` in the console.  
+  *Note: `View()` should not be placed inside a code chunk because it only works interactively in RStudio and does not produce console output. It often breaks the knitting process*
+
+- **See a tabular preview in the environment pane**:  
+  Click on `test_data` in the environment tab.
+
+- **Print the entire dataset** (not recommended for large datasets):  
+
+```{r}
+test_data
+```
+
+- **View only the first few rows**:
+
+```{r}
+head(test_data)
+```
+
+<br>
+
+
+### Column Names
+
+To see what columns exist:
+
+```{r}
+names(test_data)
+```
+
+### Number of Rows/Columns
+
+To find out how many rows and columns there are:
+
+```{r}
+nrow(test_data)  # Number of rows
+ncol(test_data)  # Number of columns
+dim(test_data)   # Dimensions (rows, columns)
+```
+
+### General Structure
+
+To get a compact summary of the dataset, `str()` provides an overview, including the number of observations, variables, and data types.
+
+```{r}
+str(test_data)
+```
+
+Another alternative is `glimpse()` (from `dplyr`):
+
+```{r}
+glimpse(test_data)
+```
+
+
+<br>
+
+### Data-type/Grouped Data
+
+Each column in a dataset has a specific data type (e.g., numeric, character, factor). "Factor" is the R jargon for variables that have a fixed number of unique values (e.g., categories/groups/families).
+
+We can check the data types using:
+
+```{r}
+sapply(test_data, class)
+```
+
+<br>
+
+If categorical variables are not stored as factors, we can explicitly define them:
+
+```{r}
+test_data$Cylinders <- factor(test_data$Cylinders, levels = c(4, 6, 8))
+test_data$Transmission <- factor(test_data$Transmission, levels = c("Auto", "Manual"))
+```
+
+This ensures:
+
+- Consistent ordering of categorical levels.
+- Avoiding unintended sorting in plots or models.
+
+Similarly, if data "should" be numeric, but isn't for some reason, we can convert it using as.numeric() etc.
+
+
+<br><br>
+
+## Summary Statistics
+
+Summary statistics are a way to summarize the main characteristics of the data inside a  dataset. They can be used to describe the central tendency, dispersion, and shape of a dataset's distribution.
+<br>
+
+### General summary functions
+
+We can use the `summary()` function to get a quick overview of numerical variables.
+
+```{r}
+summary(test_data)
+```
+
+Alternatively, we can calculate specific summary statistics manually using base R and `dplyr`.
+
+```{r}
+# Using base R
+mean(test_data$MPG)  # Mean MPG
+median(test_data$MPG) # Median MPG
+sd(test_data$MPG)     # Standard deviation
+range(test_data$MPG)  # Minimum and maximum
+
+# Using dplyr
+test_data %>%
+  summarise(
+    Mean_MPG = mean(MPG),
+    Median_MPG = median(MPG),
+    SD_MPG = sd(MPG),
+    Min_MPG = min(MPG),
+    Max_MPG = max(MPG)
+  )
+```
+
+There are also specific summary commands from a variety of packages including
+
+#### Enhanced Summaries with `skimr`
+
+The `skimr` package provides an easy and readable summary of the dataset.
+
+```{r}
+skim(test_data)
+```
+
+<br>
+
+
+#### Pairwise Relationships with `GGally`
+
+The `GGally` package provides useful visual summaries of numerical variables.
+
+```{r}
+if (!require(GGally)) install.packages("GGally", dependencies = TRUE)
+library(GGally)
+# Create pairwise scatter plots
+GGally::ggpairs(test_data, columns = c("MPG"))
+```
+
+
+### Frequency tables
+
+We can use `table()` or `dplyr::count()` to summarize categorical variables. e.g. count how many rows there are in different categories.  This is especially useful for categorical data. 
+
+The easiest way to do this is using the table command.  For example to see how many cars have each type of transmission:
+
+```{r}
+table(test_data$Transmission)
+```
+So there are three rows with automatic cars and three with manual, We can also make two way tables
+
+```{r}
+table(test_data$Transmission, test_data$Cylinders)
+```
+So there are 2 cars that are automatic with four cylinders. We can also use the count function in dplyr
+
+```{r}
+test_data %>% count(Transmission)
+```
+
+
+
+```{r, results='hide',eval=FALSE, include=FALSE}
+#### Pretty table output
+# don't include the install line in your code, run it in the console
+# install.package("ztable")
+
+library(ztable)
+library(magrittr)
+options(ztable.type="html")
+
+mytable <- table(HousesNY$Beds, HousesNY$Baths)
+
+my_ztable =ztable(mytable) 
+print(my_ztable,caption="Table 1. Basic Table")
+```
+
+<br><br>
+
+### Grouped Summary Statistics
+
+We can also compute statistics such as the mean, maximum, and minimum values for different groups.
+
+#### Tidyverse Approach {-}
+
+Using `group_by()` and `summarise()`, we can compute statistics for each species:
+
+
+```{r}
+test_data %>%
+  group_by(Transmission) %>%
+  summarise(
+    Mean_MPG = mean(MPG),
+    Median_MPG = median(MPG),
+    Count = n()
+  )
+```
+
+
+
+<br>
+
+#### Base R Approach {-}
+
+I admit, tidyverse is better in this case!
+
+```{r}
+aggregate(cbind(MPG, MPG) ~ Transmission, data = test_data, 
+          FUN = function(x) c(mean = mean(x, na.rm = TRUE), max = max(x, na.rm = TRUE)))
+```
+
+
+
+
+

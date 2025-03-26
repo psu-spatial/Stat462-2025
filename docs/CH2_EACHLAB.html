@@ -375,13 +375,13 @@ div.tocify {
       <a href="in_T07_ReadingInData.html">7. Reading in data</a>
     </li>
     <li>
-      <a href="in_T08_Wrangling.html">8. Summaries</a>
+      <a href="CH3_EDA.html#ch8">8. Summary Statistics</a>
     </li>
     <li>
-      <a href="in_T08_Wrangling.html">9. Filtering</a>
+      <a href="CH3_EDA.html#ch9">9. Filtering/selecting</a>
     </li>
     <li>
-      <a href="in_T08_Wrangling.html">10. Missing data</a>
+      <a href="CH3_EDA.html#ch10">10. Missing Data</a>
     </li>
     <li>
       <a href="in_T11_Plots.html">11. Plots</a>
@@ -753,9 +753,20 @@ Files</h2>
   }
 </style>
   
-<div id="basics" class="section level3" number="3.3.1">
-<h3><span class="header-section-number">3.3.1</span> Basics</h3>
-<p>To create a new R Markdown document in RStudio:</p>
+<p>R-Markdown is especially powerful because it is easy to convert your
+reports into many different templates. We do this via changing the YAML
+code at the top. Luckily, you do not have to remember all the YAML
+commands yourself.</p>
+<div id="creating-a-basic-r-markdown-document" class="section level3"
+number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Creating a basic
+R-Markdown document</h3>
+<p><br></p>
+<details>
+<summary>
+<u>Expand to show instructions</u>
+</summary>
+<p>To create a new R Markdown document</p>
 <p><img src="index_images/pg_Tut4_markdown_fig1.png" /></p>
 <ol style="list-style-type: decimal">
 <li><strong>Go to</strong> <code>File</code> → <code>New File</code> →
@@ -774,8 +785,21 @@ relevant INSIDE YOUR PROJECT FOLDER!</li>
 </ol>
 <p>RStudio will generate a default R Markdown file with an example of
 formatted text and an embedded code chunk.</p>
-<div id="important" class="section level4" number="3.3.1.1">
-<h4><span class="header-section-number">3.3.1.1</span>
+<p><br></p>
+<div id="further-editing-the-yaml-code" class="section level4"
+number="3.3.1.1">
+<h4><span class="header-section-number">3.3.1.1</span> Further editing
+the YAML code</h4>
+<p>There are many different options you can add to a basic RmD file, by
+changing the YAML code at the top. For example you can add a table of
+contents, make the auto-hide (code folding) or change the theme.</p>
+<p>Click here to see examples of how to do this: <a
+href="https://psu-spatial.github.io/Stat462-2025/CH2_EACHLAB.html#34_Editing_YAML"
+class="uri">https://psu-spatial.github.io/Stat462-2025/CH2_EACHLAB.html#34_Editing_YAML</a></p>
+<p><br></p>
+</div>
+<div id="important" class="section level4" number="3.3.1.2">
+<h4><span class="header-section-number">3.3.1.2</span>
 <strong>Important</strong></h4>
 <ul>
 <li><p>Before you continue, on your computer (outside R-Studio), go to
@@ -785,13 +809,20 @@ you didn’t accidentally create a load of sub-folders inside your lab. If
 so, delete/move things around until it looks like this.</p></li>
 </ul>
 <p><img src="index_images/pg_Tut4_markdown_fig2.png" /></p>
+<p><br></p>
+</details>
 <hr />
+<p><br></p>
 </div>
 </div>
-<div id="custom-r-markdown-templates" class="section level3"
-number="3.3.2">
-<h3><span class="header-section-number">3.3.2</span> Custom R-Markdown
-Templates</h3>
+<div id="using-a-custom-r-template-from-a-package"
+class="section level3" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> Using a custom R
+template from a package</h3>
+<details>
+<summary>
+<u>Expand to show instructions</u>
+</summary>
 <p>There are also now several package which contain professional
 markdown templates. Common examples include</p>
 <ul>
@@ -805,13 +836,13 @@ class="uri">https://prettydoc.statr.me/themes.html</a></li>
 <p>To use one of these packages:</p>
 <table>
 <colgroup>
-<col width="50%" />
-<col width="49%" />
+<col width="55%" />
+<col width="44%" />
 </colgroup>
 <tbody>
 <tr class="odd">
 <td><ol style="list-style-type: decimal">
-<li><p>Make sure the relevant package is installed (e.g. packages tab,
+<li><p>Make sure the relevant package is installed (e.g. packages tab,
 install button)</p></li>
 <li><p><strong>Go to</strong> <code>File</code> → <code>New File</code>
 → <code>R Markdown...</code></p></li>
@@ -829,8 +860,34 @@ from that theme.</p></td>
 </tbody>
 </table>
 <p><img src="index_images/im_T3RmdformatsPlus.png" /></p>
-<div id="important-1" class="section level4" number="3.3.2.1">
-<h4><span class="header-section-number">3.3.2.1</span>
+<p><br></p>
+<div id="further-editing-the-yaml-code-1" class="section level4"
+number="3.3.2.1">
+<h4><span class="header-section-number">3.3.2.1</span> Further editing
+the YAML code</h4>
+<p>There are many different options you can add to a basic RmD file, by
+changing the YAML code at the top. For example you can add a table of
+contents, make the auto-hide (code folding) or change the theme.</p>
+<p>The easiest way to see what is available for your particular theme is
+to go to the package website and take a look at the documentation
+(scroll down). For example</p>
+<ul>
+<li>The <code>rmdformats</code> package has various options for each
+theme <a href="https://github.com/juba/rmdformats"
+class="uri">https://github.com/juba/rmdformats</a></li>
+<li>Similarly the <code>prettydoc</code> package has more description
+here <a href="https://prettydoc.statr.me/themes.html"
+class="uri">https://prettydoc.statr.me/themes.html</a></li>
+</ul>
+<p>You can also just try and edit the YAML code, press knit and see if
+it works. Click here to see examples of how to do this: <a
+href="https://psu-spatial.github.io/Stat462-2025/CH2_EACHLAB.html#34_Editing_YAML"
+class="uri">https://psu-spatial.github.io/Stat462-2025/CH2_EACHLAB.html#34_Editing_YAML</a></p>
+<p>NOTE, PrettyDocs does NOT allow a floating table of contents.</p>
+<p><br></p>
+</div>
+<div id="important-1" class="section level4" number="3.3.2.2">
+<h4><span class="header-section-number">3.3.2.2</span>
 <strong>Important!</strong></h4>
 <p>Sometimes rmdformats makes an extra subfolder and puts your report in
 there.</p>
@@ -842,6 +899,10 @@ you didn’t accidentally create a load of sub-folders inside your lab. If
 so, delete/move things around until it looks like this.</p></li>
 </ul>
 <p><img src="index_images/pg_Tut4_markdown_fig2.png" /></p>
+<p><br></p>
+</details>
+<hr />
+<p><br></p>
 <hr />
 <p><br></p>
 </div>
@@ -856,7 +917,7 @@ so, delete/move things around until it looks like this.</p></li>
   }
 </style>
   
-<div id="basics-1" class="section level3" number="3.4.1">
+<div id="basics" class="section level3" number="3.4.1">
 <h3><span class="header-section-number">3.4.1</span> Basics</h3>
 <p>The basic RmD format is pretty boring. So if you go this route, it’s
 good to edit the YAML code to add in a few additional features. Here is
@@ -899,7 +960,7 @@ class="uri">https://rpubs.com/ranydc/rmarkdown_themes</a></li>
 </ul>
 <p>If you used a custom theme from rmdformats, check out their websites
 to see if there are additional options you wish to add in.</p>
-<div id="custom-r-markdown-templates-1" class="section level4"
+<div id="custom-r-markdown-templates" class="section level4"
 number="3.4.2.1">
 <h4><span class="header-section-number">3.4.2.1</span> Custom R-Markdown
 Templates</h4>

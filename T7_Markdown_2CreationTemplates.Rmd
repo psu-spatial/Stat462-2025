@@ -1,7 +1,15 @@
+R-Markdown is especially powerful because it is easy to convert your reports into many different templates. We do this
+via changing the YAML code at the top. Luckily, you do not have to remember all the YAML commands yourself.
 
-### Basics
+### Creating a basic R-Markdown document
 
-To create a new R Markdown document in RStudio:
+<br>
+
+<details>
+
+<summary>[Expand to show instructions]{.underline}</summary>
+
+To create a new R Markdown document
 
 ![](index_images/pg_Tut4_markdown_fig1.png)
 
@@ -9,10 +17,24 @@ To create a new R Markdown document in RStudio:
 2.  **Choose a document type** (HTML, PDF, or Word). For now, \| select `HTML`.
 3.  **Give your document a title** and specify the author as \| your Email ID e.g. hlg5155
 4.  **Click `OK`**
-5.  *If this is your first time ever doing this or you're running a new POSIT-Cloud project, then R-studio might ask to download some packages before it can do this this. Say yes.*
-6.  A new file should appear on your screen. At the top of that window (by the knit button, there is a save button. Save it as something relevant INSIDE YOUR PROJECT FOLDER!
+5.  *If this is your first time ever doing this or you're running a new POSIT-Cloud project, then R-studio might ask to
+    download some packages before it can do this this. Say yes.*
+6.  A new file should appear on your screen. At the top of that window (by the knit button, there is a save button. Save
+    it as something relevant INSIDE YOUR PROJECT FOLDER!
 
 RStudio will generate a default R Markdown file with an example of formatted text and an embedded code chunk.
+
+<br>
+
+#### Further editing the YAML code
+
+There are many different options you can add to a basic RmD file, by changing the YAML code at the top. For example you
+can add a table of contents, make the auto-hide (code folding) or change the theme.
+
+Click here to see examples of how to do this:
+<https://psu-spatial.github.io/Stat462-2025/CH2_EACHLAB.html#34_Editing_YAML>
+
+<br>
 
 #### **Important**
 
@@ -23,9 +45,19 @@ RStudio will generate a default R Markdown file with an example of formatted tex
 
 ![](index_images/pg_Tut4_markdown_fig2.png)
 
+<br>
+
+</details>
+
 ------------------------------------------------------------------------------------------------------------------------
 
-### Custom R-Markdown Templates
+<br>
+
+### Using a custom R template from a package
+
+<details>
+
+<summary>[Expand to show instructions]{.underline}</summary>
 
 There are also now several package which contain professional markdown templates. Common examples include
 
@@ -34,28 +66,47 @@ There are also now several package which contain professional markdown templates
 
 To use one of these packages:
 
-+-----------------------------------------------------------+----------------------------------------------------------+
-| 1.  Make sure the relevant package is installed (e.g.     | ![](index_images/im_05MarkdownScratchtemplate.png)       |
-|     packages tab, install button)                         |                                                          |
-|                                                           |                                                          |
-| 2.  **Go to** `File` → `New File` → `R Markdown...`       |                                                          |
-|                                                           |                                                          |
-| 3.  **Click the `Templates` button**                      |                                                          |
-|                                                           |                                                          |
-| 4.  **Select the template you want to use**.              |                                                          |
-|                                                           |                                                          |
-| 5.  **Click `OK`**.                                       |                                                          |
-|                                                           |                                                          |
-| 6.  A new file should appear on your screen. At the top   |                                                          |
-|     of that window (by the knit button, there is a save   |                                                          |
-|     button. Save it as something relevant INSIDE YOUR     |                                                          |
-|     PROJECT FOLDER!                                       |                                                          |
-|                                                           |                                                          |
-| Alternatively, you can replace your YAML code with the    |                                                          |
-| suggested code from that theme.                           |                                                          |
-+-----------------------------------------------------------+----------------------------------------------------------+
++----------------------------------------------------------------+----------------------------------------------------+
+| 1.  Make sure the relevant package is installed (e.g. packages | ![](index_images/im_05MarkdownScratchtemplate.png) |
+|     tab, install button)                                       |                                                    |
+|                                                                |                                                    |
+| 2.  **Go to** `File` → `New File` → `R Markdown...`            |                                                    |
+|                                                                |                                                    |
+| 3.  **Click the `Templates` button**                           |                                                    |
+|                                                                |                                                    |
+| 4.  **Select the template you want to use**.                   |                                                    |
+|                                                                |                                                    |
+| 5.  **Click `OK`**.                                            |                                                    |
+|                                                                |                                                    |
+| 6.  A new file should appear on your screen. At the top of     |                                                    |
+|     that window (by the knit button, there is a save button.   |                                                    |
+|     Save it as something relevant INSIDE YOUR PROJECT FOLDER!  |                                                    |
+|                                                                |                                                    |
+| Alternatively, you can replace your YAML code with the         |                                                    |
+| suggested code from that theme.                                |                                                    |
++----------------------------------------------------------------+----------------------------------------------------+
 
 ![](index_images/im_T3RmdformatsPlus.png)
+
+<br>
+
+#### Further editing the YAML code
+
+There are many different options you can add to a basic RmD file, by changing the YAML code at the top. For example you
+can add a table of contents, make the auto-hide (code folding) or change the theme.
+
+The easiest way to see what is available for your particular theme is to go to the package website and take a look at
+the documentation (scroll down). For example
+
+-   The `rmdformats` package has various options for each theme <https://github.com/juba/rmdformats>
+-   Similarly the `prettydoc` package has more description here <https://prettydoc.statr.me/themes.html>
+
+You can also just try and edit the YAML code, press knit and see if it works. Click here to see examples of how to do
+this: <https://psu-spatial.github.io/Stat462-2025/CH2_EACHLAB.html#34_Editing_YAML>
+
+NOTE, PrettyDocs does NOT allow a floating table of contents.
+
+<br>
 
 #### **Important!**
 
@@ -67,3 +118,11 @@ Sometimes rmdformats makes an extra subfolder and puts your report in there.
     sub-folders inside your lab. If so, delete/move things around until it looks like this.
 
 ![](index_images/pg_Tut4_markdown_fig2.png)
+
+<br>
+
+</details>
+
+------------------------------------------------------------------------------------------------------------------------
+
+<br>

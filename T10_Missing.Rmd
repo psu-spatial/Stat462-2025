@@ -1,0 +1,397 @@
+---
+output:
+  html_document:
+    toc: yes
+    toc_depth: 2
+    number_sections: yes  
+    toc_float:
+      collapsed: no  # Ensure Level 1 & 2 remain expanded
+      smooth_scroll: yes
+---
+
+## All the commands
+
+Before starting, ensure you have these packages installed and loaded:
+
+```{r,warning=FALSE,message=FALSE}
+library(skimr)   # For detailed data summaries
+library(dplyr)   # For data manipulation
+library(naniar)  # For missing data visualization
+library(tidyr)   # Lots of useful functions for data cleaning
+```
+
+<br>
+
+Here are the commands covered in this guide to make it easy to copy/paste. Remember to replace `testdata` with the name
+of your dataset - and keep reading for what each command does.
+
+```{r, collapse=TRUE, eval=FALSE}
+#-------------------------------------------
+# Visualizing Missing Data
+#-------------------------------------------
+summary(testdata)        # Summary statistics
+skim(testdata)           # Skim summary (detailed)
+colSums(is.na(testdata)) # Count NAs per column
+rowSums(is.na(testdata)) # Count NAs per row
+sum(is.na(testdata$x))   # Count NAs in column x
+gg_miss_var(testdata)    # naniar: Missing values per variable
+vis_miss(testdata)       # naniar: Heatmap of missing values
+
+#-------------------------------------------
+# Removing Rows with Missing Data
+#-------------------------------------------
+data_complete <- na.omit(testdata)
+data_filtered <- testdata %>% dplyr::filter(!is.na(x) & !is.na(z)) 
+
+# using tidyr
+testdata <- testdata %>% replace_na(list(x = 0, y = "Unknown"))
+testdata <- testdata %>% drop_na(x, y)  
+
+#-------------------------------------------
+# Replacing missing values. In this case
+# Replace NAs with 99
+#-------------------------------------------
+testdata$x <- ifelse(is.na(testdata$x), 99, testdata$x)  
+
+
+#-------------------------------------------
+# Handling NAs in Common Functions
+#-------------------------------------------
+meanx <- mean(testdata$x, na.rm=TRUE)   
+sdx <- sd(testdata$x, na.rm=TRUE)       
+table(testdata$y, useNA = "ifany")       
+cor(testdata, use = "pairwise.complete.obs")  
+lm(z ~ x, data = testdata, na.action = na.omit)    # Omitting NAs
+lm(z ~ x, data = testdata, na.action = na.exclude) # Keeping track of NAs, prefer
+
+```
+
+<br><br>
+
+## What is Missing Data
+
+Before making decisions about how to handle missing data, you need to identify where it's present. In R, `NA` represents
+missing values. You might also encounter `NaN` (Not a Number), which is another type of missing value.
+
+#### Many ways of writing 'missing' {.unnumbered}
+
+When reading in external datasets, missing values may be represented differently. Common placeholders include:
+
+-   `-1` (often used in government datasets)
+-   `99`, `-99`, `9999`, `999` (arbitrary placeholders for missing values)
+-   Blank cells in spreadsheets
+
+### There are different types of missing
+
+Understanding why data is missing is crucial before deciding how to handle it:
+
+1.  **Missing Completely at Random (MCAR)**
+    -   The probability of missingness is unrelated to any variable in the dataset.
+    -   Example: A sensor randomly fails.
+2.  **Missing at Random (MAR)**
+    -   Missingness is related to observed data but not the missing values themselves.
+    -   Example: Younger participants are less likely to report their income, but within each age group, missingness is
+        random.
+3.  **Missing Not at Random (MNAR)**
+    -   Missingness depends on the value of the missing data itself.
+    -   Example: People with higher incomes are less likely to report their income.
+
+**Key Takeaways:** - If data is **MCAR**, deleting missing cases is often unbiased. - If data is **MAR**, multiple
+imputation methods may help recover missing values. - If data is **MNAR**, the missingness mechanism itself needs to be
+modeled.
+
+<br><br>
+
+## Files with missing data
+
+If you know your dataset uses non-standard missing value indicators, you can explicitly define them when reading in the
+data. No matter what, check the data carefully to make sure you didn' make a mistake.
+
+#### CSV Files {.unnumbered}
+
+```{r, eval=FALSE}
+data <- read.csv("data.csv", na.strings = c("", "NA", "-1", "99", "9999"))
+```
+
+-   `na.strings` tells R which values should be treated as `NA`.
+
+-   This example converts empty strings (`""`), standard `NA`, `-1`, `99`, and `9999` into missing values.
+
+<br>
+
+#### Excel files {.unnumbered}
+
+```{r, eval=FALSE}
+library(readxl)
+data <- read_excel("data.xlsx", na = c("", "NA", "-1", "999"))
+```
+
+-   `na` defines missing values similarly to `na.strings` in `read.csv()`.
+
+<br>
+
+#### Reading Data with `tidyverse` (readr package) {.unnumbered}
+
+```{r, eval=FALSE}
+library(readr)
+data <- read_csv("data.csv", na = c("", "NA", "-1", "999"))
+```
+
+-   `read_csv()` is part of `tidyverse` and often preferred for faster performance and better defaults.
+
+<br><br>
+
+## Summarising Missing Data
+
+Before deciding how to handle missing data, it's crucial to first identify where it's present. Let's create a small
+dataset with missing values. The final column includes many empty values to mimic real-world data.
+
+```{r}
+testdata <- data.frame(
+  x = c(1, 2, 3, NA, 5),
+  y = c("A", "B", "C", "D", NA),
+  z = c(10, 15, NA, 20, 25),
+  randomnotes = c(NA, NA, NA, "hello", NA)
+)
+print(testdata)
+```
+
+along with example outputs. I apply everything to the basic test data above.
+
+<br>
+
+#### General Summaries {.unnumbered}
+
+Summary functions provide an overview of missing data:
+
+```{r}
+summary(testdata)  # Basic summary statistics
+skim(testdata)     # More detailed summary, including missing values
+```
+
+<br>
+
+#### Visualizing NA numbers (naniar package) {.unnumbered}
+
+The `naniar` package provides helpful visualizations. Install and load it before use.
+
+```{r}
+gg_miss_var(testdata)  # Missing values per variable
+vis_miss(testdata)     # Heatmap of missing values
+```
+
+<br>
+
+#### Counting NAs {.unnumbered}
+
+You can count missing values at different levels:
+
+```{r}
+colSums(is.na(testdata))            # Count NAs per column
+rowSums(is.na(testdata))            # Count NAs per row
+sum(is.na(testdata$x))              # Count NAs in a specific column
+
+# Frequency table including missing values
+table(testdata$y, useNA = "ifany")
+```
+
+<br><br>
+
+## Handling Missing Data
+
+Missing data can cause errors in analyses, so it is often necessary to handle it appropriately. Removing missing data is
+only advisable when the data is **Missing Completely at Random (MCAR)**.
+
+<br>
+
+### 1. Remove entire row if NA present {.unnumbered}
+
+**Listwise deletion**, or **Complete Case Analysis**, removes entire rows if any column contains missing data. This can
+significantly reduce your dataset, so use it with caution.
+
+```{r}
+data_complete <- na.omit(testdata)  # Remove rows with any NA
+
+# Check for potential bias introduced by removal:
+summary(data_complete)
+```
+
+**Warning:** If many columns have missing data (especially ones you don't care about, such as "notes"), then this method
+may remove too many observations. For example in this case, I removed most of my valuable information.
+
+<br>
+
+### 2. Removing Rows with NAs in Chosen Columns {.unnumbered}
+
+If you want to only remove rows with missing values in a single column, we can use the complete cases command. E.g. take
+the testdata table and ONLY include objects that are not missing their x-value. Note, this can be any column name at
+all.
+
+```{r}
+data_filtered <- testdata[complete.cases(testdata$x), ]
+```
+
+You can also do this manually using `filter` and the `is.na()` command
+
+```{r}
+# Tidyverse
+data_filtered <- testdata %>% 
+  dplyr::filter(!is.na(x) & !is.na(z))
+
+# BaseR
+data_filtered <- testdata[which(!is.na(testdata$x) & !is.na(testdata$z)), ]
+```
+
+<br>
+
+### 3. Turning values into NA
+
+Sometimes, you have -999 or something as your missing datacode and you missed it reading in the data. You can also use
+the filter command to force data to be NA.
+
+E.g. here I select all the prices in a house dataset that are less than 0 (e.g impossible) and set them to NA.
+
+```{r, eval=FALSE}
+HousesNY$Price[HousesNY$Price < 0]   <- NA
+```
+
+E.g. here I select all the prices that are less than 0 (e.g impossible) and set them to NA.
+
+<br>
+
+### 3. Replace NAs with data {.unnumbered}
+
+This is useful when you want to keep the row but replace the missing value with a specific number.
+
+```{r}
+testdata$x <- ifelse(is.na(testdata$x), 99, testdata$x)  # Replace NAs with 99
+```
+
+<br>
+
+### 4. Use the `tidyr` package {.unnumbered}
+
+The `tidyr` package provides a more elegant way to replace NAs. Remember to load/install it first!
+
+**Using `tidyr::replace_na()`**
+
+```{r}
+testdata <- testdata %>% replace_na(list(x = 0, y = "Unknown"))
+```
+
+**Filtering Out NAs Using `drop_na()` (tidyr)**
+
+```{r}
+testdata <- testdata %>% drop_na(x, y)  # Removes rows where x or y is NA
+```
+
+<br><br>
+
+## Common Functions & NAs
+
+You don't always have to remove missing data in advance. Many R functions allow you to handle missing values within the
+function itself, preventing unnecessary data loss. The best way to check if a function has an option for handling
+missing values is to look at its help file using `?function_name`.
+
+<br>
+
+### The na.rm() option in commands.
+
+If there is missing data, then by default, R will set the answer to any statistics to also be missing.
+
+Remember this is our test data
+
+```{r}
+print(testdata)
+```
+
+Taking the mean of z results in NA
+
+```{r}
+# Take the mean of column B
+mean(testdata$z)
+
+# Take the correlation between A and B
+cor(testdata$x,testdata$z)
+
+```
+
+But many commands include an option (often `na.rm=TRUE`) which you can add to ignore missing data
+
+```{r}
+# na.rm  e.g. remove NAs = TRUE
+mean(testdata$z, na.rm=TRUE)
+sd(testdata$z, na.rm=TRUE)
+```
+
+or sometimes I look in the help file (or on google) for the exact terminology that I need. For example, for correlation,
+there are several options including
+
+```{r}
+#the cor command doesn't follow the pattern.
+cor(testdata$x,testdata$z,use = "complete.obs")
+
+
+```
+
+### Tidyverse & Missing Data {.unnumbered}
+
+Tidyverse generally follows an **explicit missing data handling** approach. Instead of relying on `na.action`, most
+functions require you to handle missing values before applying them. For example:
+
+-   **dplyr** functions (`mutate()`, `summarize()`) require `na.rm = TRUE` explicitly.
+-   **tidyr** offers `drop_na()` and `replace_na()` for explicit handling.
+-   **ggplot2** ignores `NA` by default unless specified.
+
+<br>
+
+### Correlation matrices and missing data {.unnumbered}
+
+Instead of removing entire rows, **pairwise deletion** calculates correlations using all available data for each pair of
+variables.
+
+```{r,eval=FALSE}
+cor(testdata, use = "pairwise.complete.obs")  
+# Correlation matrix with pairwise deletion
+```
+
+**When to use this?**
+
+-   Useful when you want to retain as much data as possible.
+-   Assumes missingness is random across variables.
+-   Can lead to different sample sizes per correlation, which may impact interpretations.
+
+<br>
+
+### Regression Models & missing data {.unnumbered}
+
+\*\*I SUGGEST na.exclude UNLESS YOU HAVE A VERY GOOD REASON\*!\*\*
+
+Many modeling functions in R allow specifying how to handle missing data using `na.action`.
+
+```{r}
+# Default: Removes rows with missing values
+model1 <- lm(z ~ x, data = testdata, na.action = na.omit)
+
+# Keeps track of missing values and preserves original structure in predictions
+model2 <- lm(z ~ x, data = testdata, na.action = na.exclude)
+```
+
+<br>
+
+#### Omit vs. Exclude: When to Use Each?
+
+| Method | What It Does | When to Use |
+|-----------------------------|---------------------------------------|-----------------------------------------------------|
+| `na.omit` | Removes rows with missing data and drops them from predictions | When missing data is truly random and you don’t need predictions for those cases |
+| `na.exclude` | Removes rows with missing data but keeps `NA` in predictions | When you need predictions to include `NA` in the same rows as the original missing data |
+
+#### Example: How `na.exclude` Works in Predictions
+
+```{r}
+predict(model1)  # Predictions only for complete cases
+predict(model2)  # Predictions with missing values retained as NA
+```
+
+This keeps the structure of the dataset intact, which is important in time series or longitudinal analyses where the
+position of missing values matters.

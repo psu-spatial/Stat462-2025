@@ -1,0 +1,313 @@
+---
+output:
+  html_document:
+    toc: yes
+    toc_depth: 2
+    number_sections: yes  
+    toc_float:
+      collapsed: no  # Ensure Level 1 & 2 remain expanded
+      smooth_scroll: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
+```
+
+# Data Wrangling
+
+## Introduction & packages
+
+This tutorial explains how to filter, select, summarize, and wrangle data in R using both **Tidyverse** and **Base R** approaches. 
+
+Both approaches are valid, but they differ in syntax and philosophy. **Tidyverse** functions (from `dplyr`) use a  pipeline-based approach, whereas **Base R** relies on indexing and built-in functions. 
+
+
+```{r}
+# Load necessary packages
+library(tidyverse)  # Core data wrangling
+library(palmerpenguins) # Example dataset
+library(skimr)  # Quick summary stats
+library(GGally)  # Pair plots
+library(ggplot2) # Visualization
+```
+
+We will use the **penguins** dataset from the `palmerpenguins` package to demonstrate data wrangling techniques.
+
+```{r, warning=FALSE, message=FALSE}
+data("penguins")  # Load dataset
+```
+
+<br><br>
+
+## Selecting Data
+
+### Selecting a specific column using $
+
+Sometimes we want to deal with only one specific column in our dataset, for example applying the mean command to say just one column.
+
+To do this, we use the \$ symbol. For example, here I'm simply selecting the data in the elevation column only and saving it to a new variable called elevationdata.
+
+```{r, eval=FALSE}
+mean_mass <- penguins$body_mass_g 
+
+mean_mass
+```
+
+Try it yourself. You should have seen that as you typed the \$, it gave you all the available column names to choose from. This means we can now easily summarise specific columns. For example:
+
+-   `summary(penguins)` will create a summary of the whole spreadsheet,
+-   `summary(penguins$Price)` will only summarise the Price column.
+-   `mean(penguins$Price)` will take the mean of the Price column in the HousesNY dataframe.
+
+<br><br>
+
+### Selecting multiple columns
+
+Remember you have the names() command to help find these and that the names are CASE SENSITIVE. If we want to work with several specific columns (e.g., `species`, `bill_length_mm`, and `flipper_length_mm`), we can extract them like this:
+
+#### Tidyverse Approach {-}
+
+```{r}
+selected_data <- penguins %>% dplyr::select(species, bill_length_mm, flipper_length_mm)
+head(selected_data)
+```
+
+#### Base R Approach {-}
+
+```{r}
+selected_data <- penguins[, c("species", "bill_length_mm", "flipper_length_mm")]
+head(selected_data)
+```
+
+<br><br>
+
+
+
+### Selecting specific values 
+
+Sometimes, we do not want to analyse at the entire data.frame. Instead, we would like to only look at one (or more) columns or rows.
+
+There are several ways we can select data.
+
+-   To choose a specific column, we can use the `$` symbol to select its name (as described above)
+
+-   If you know which number rows or columns you want, you can use **square brackets** to numerically select data. Essentially our data follows the matrix format format: 
+
+$$ 
+tablename [ ROWS , COLUMNS ]
+$$
+<br>
+
+Some examples:
+
+```{r, eval=FALSE}
+# This will select the data in the 5th row and 7th column
+penguins[5,7]
+
+# This will select the 2nd row and ALL the columns 
+penguins[2,]
+
+# This will select the 3rd column and ALL the rows
+penguins[,3]
+# similar to using its name
+penguins$island
+
+# We can combine our commands, this will print the 13th row of the body mass column 
+# (no comma as we're only looking at one column)
+penguins$body_mass_g[13] 
+
+# The : symbol lets you choose a sequence of numbers e.g. 1:5 is 1 2 3 4 5
+# So this prints out rows 11 to 15 and all the columns
+penguins[11:15,]
+
+# The "c" command allows you to enter whatever numbers you like.  
+# So this will print out rows 4,3,7 and the "Elevation" and "Dist_to_Coast" columns
+penguins[c(4,3,7), c("island","body_mass_g")]
+```
+
+### Deleting data
+
+Or if you know the row or column number you can use the minus - sign to remove. Or use filter..
+
+```{r, eval=FALSE}
+# remove row 6 and and overwrite
+penguins <- penguins[-6 ,]
+
+# remove columns 4 and 2 and save result to newdata 
+newdata <- penguins[, - c(2,4) ]
+
+```
+
+
+<br><br>
+
+
+## Filtering rows
+
+Filtering means selecting only the rows that meet certain conditions.
+
+- `which()` helps find row numbers that match a condition.
+- `filter()` (from `dplyr` tidyverse) allows for clear, intuitive filtering of data.
+- Logical operators (`&`, `|`, `!=`, `%in%`) provide additional flexibility in specifying conditions.
+
+<br>
+
+### BaseR `which()` command
+
+The `which()` command helps us identify row indices that meet a condition.  
+
+For example, identifying numbers greater than 107 in a sequence:
+
+```{r, eval=FALSE}
+a <- 100:110
+which(a > 107)
+```
+
+I like it because you can read the command as a sentence e.g. which numbers in "a" are greater than 107, Or which penguins have a `body_mass_g` less than or equal to 3000g:
+
+```{r, eval=FALSE}
+outlier_rows <- which(penguins$body_mass_g <= 3000)
+```
+
+To find the row corresponding to the penguin with the smallest bill length:
+
+```{r, eval=FALSE}
+row_number <- which(penguins$bill_length_mm == min(penguins$bill_length_mm, na.rm = TRUE))
+smallest_bill <- penguins[row_number, ]
+smallest_bill
+```
+
+
+<br>
+
+### Tidyverse/dplyr filter command
+
+We can also use the tidyverse approach, the `dplyr::filter()` function.  All the condition symbols e.g. !=NOT etc also work for the which command,
+
+Selecting all `Adelie` penguins:
+
+```{r, eval=FALSE}
+filter(penguins, species == "Adelie")
+```
+
+Selecting multiple species using `%in%`:
+
+```{r, eval=FALSE}
+filter(penguins, species %in% c("Adelie", "Chinstrap"))
+```
+
+Excluding a species using `!=`:
+
+```{r, eval=FALSE}
+filter(penguins, species != "Gentoo")
+```
+
+Filtering penguins with a flipper length greater than 200 mm:
+
+```{r, eval=FALSE}
+filter(penguins, flipper_length_mm > 200)
+```
+
+Filtering penguins with a body mass less than or equal to 3000 g:
+
+```{r, eval=FALSE}
+light_penguins <- filter(penguins, body_mass_g <= 3000)
+summary(light_penguins)
+```
+
+Filtering with multiple conditions:
+
+```{r, eval=FALSE}
+filter(penguins, flipper_length_mm > 180 & species == "Adelie")
+```
+
+Using `|` (OR condition) to select penguins with either a `bill_depth_mm` greater than 18 or `flipper_length_mm` longer than 210 mm:
+
+```{r, eval=FALSE}
+filter(penguins, bill_depth_mm > 18 | flipper_length_mm > 210)
+```
+
+
+<br><br>
+
+
+## Saving data to new columns
+
+Lets say you wanted to find the ratio between two columns of data, then save your answer as a new column
+
+### Base R Approach {-}
+
+```{r, eval=FALSE}
+penguins$bill_ratio <- penguins$bill_length_mm / penguins$bill_depth_mm
+```
+
+
+### Tidyverse Approach {-}
+
+```{r, eval=FALSE}
+penguins <- penguins %>% mutate(bill_ratio = bill_length_mm / bill_depth_mm)
+```
+
+
+<br><br>
+
+## Sorting Data
+
+Sorting the data allows us to find the highest and lowest values in a dataset.
+
+Sort by body mass (ascending):
+
+### Tidyverse Approach {-}
+
+```{r, eval=FALSE}
+penguins <- arrange(penguins, body_mass_g)
+```
+
+Sort by descending order:
+
+```{r, eval=FALSE}
+penguins <- arrange(penguins, desc(flipper_length_mm))
+```
+
+<br>
+
+### Base R Approach {-}
+
+```{r, eval=FALSE}
+penguins <- penguins[order(penguins$body_mass_g), ]
+```
+
+```{r, eval=FALSE}
+
+penguins <- penguins[order(-penguins$flipper_length_mm), ]
+```
+
+<br><br>
+
+## Combining Everything
+
+We can combine multiple operations into a single pipeline. The tidyverse is designed for this.
+
+### Tidyverse Approach {-}
+
+```{r, eval=FALSE}
+final_result <- penguins %>%
+  filter(flipper_length_mm > 180) %>%
+  mutate(bill_ratio = bill_length_mm / bill_depth_mm) %>%
+  select(species, bill_length_mm, flipper_length_mm, bill_ratio) %>%
+  arrange(desc(bill_ratio))
+```
+
+<br>
+
+### Base R Approach {-}
+
+```{r,eval=FALSE}
+filtered <- penguins[penguins$flipper_length_mm > 180, ]
+filtered$bill_ratio <- filtered$bill_length_mm / filtered$bill_depth_mm
+
+filtered <- filtered[order(-filtered$bill_ratio),
+                     c("species", "bill_length_mm", 
+                       "flipper_length_mm", "bill_ratio")]
+head(filtered)
+```

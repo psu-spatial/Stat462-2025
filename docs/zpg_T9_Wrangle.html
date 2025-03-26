@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>zpg_T9_Wrangle.knit</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Full Tutorial List</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    R-BASICS
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="CH1_BASICS.html#ch1">1 Installing/Accessing R</a>
+    </li>
+    <li>
+      <a href="CH1_BASICS.html#ch2">2 Changing Settings</a>
+    </li>
+    <li>
+      <a href="CH1_BASICS.html#ch3">3 Console/coding basics</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    STARTING EACH LAB
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="CH2_EACHLAB.html#ch4">4. Projects</a>
+    </li>
+    <li>
+      <a href="CH2_EACHLAB.html#ch5">5. Packages</a>
+    </li>
+    <li>
+      <a href="CH2_EACHLAB.html#ch6">6. R-Markdown</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    EXPLORING DATA
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="in_T07_ReadingInData.html">7. Reading in data</a>
+    </li>
+    <li>
+      <a href="CH3_EDA.html#ch8">8. Summary Statistics</a>
+    </li>
+    <li>
+      <a href="CH3_EDA.html#ch9">9. Filtering/selecting</a>
+    </li>
+    <li>
+      <a href="CH3_EDA.html#ch10">10. Missing Data</a>
+    </li>
+    <li>
+      <a href="in_T11_Plots.html">11. Plots</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    STATISTICAL-ANALYSIS
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="in_T12_NormalDistributionsTTests.html">12. Normal/T-Dist/Tests</a>
+    </li>
+    <li>
+      <a href="in_T13_Correlation.html">13 Correlation</a>
+    </li>
+    <li>
+      <a href="in_T14_Regression.html">14. Simple Linear Regression</a>
+    </li>
+    <li>
+      <a href="in_T15_Diagnostics.html">15. Model Diagnostics</a>
+    </li>
+    <li>
+      <a href="in_T16_Outliers.html">16. Outliers</a>
+    </li>
+    <li>
+      <a href="in_T17_ConfPred.html">17. Confidence &amp; Prediction</a>
+    </li>
+    <li>
+      <a href="in_T18_Transformations.html">18. Transformations</a>
+    </li>
+    <li>
+      <a href="in_T19_MLR.html">19. Multiple Linear Regression</a>
+    </li>
+    <li>
+      <a href="in_T20_GLM.html">20. General Linear Regression</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+
+<style>
+  header, .site-header, .footer, .site-footer {
+    display: none !important;
+  }
+</style>
+  
+<div id="data-wrangling" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Data Wrangling</h1>
+<div id="introduction-packages" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Introduction &amp;
+packages</h2>
+<p>This tutorial explains how to filter, select, summarize, and wrangle
+data in R using both <strong>Tidyverse</strong> and <strong>Base
+R</strong> approaches.</p>
+<p>Both approaches are valid, but they differ in syntax and philosophy.
+<strong>Tidyverse</strong> functions (from <code>dplyr</code>) use a
+pipeline-based approach, whereas <strong>Base R</strong> relies on
+indexing and built-in functions.</p>
+<pre class="r"><code># Load necessary packages
+library(tidyverse)  # Core data wrangling
+library(palmerpenguins) # Example dataset
+library(skimr)  # Quick summary stats
+library(GGally)  # Pair plots
+library(ggplot2) # Visualization</code></pre>
+<p>We will use the <strong>penguins</strong> dataset from the
+<code>palmerpenguins</code> package to demonstrate data wrangling
+techniques.</p>
+<pre class="r"><code>data(&quot;penguins&quot;)  # Load dataset</code></pre>
+<p><br><br></p>
+</div>
+<div id="selecting-data" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> Selecting Data</h2>
+<div id="selecting-a-specific-column-using" class="section level3"
+number="1.2.1">
+<h3><span class="header-section-number">1.2.1</span> Selecting a
+specific column using $</h3>
+<p>Sometimes we want to deal with only one specific column in our
+dataset, for example applying the mean command to say just one
+column.</p>
+<p>To do this, we use the $ symbol. For example, here I’m simply
+selecting the data in the elevation column only and saving it to a new
+variable called elevationdata.</p>
+<pre class="r"><code>mean_mass &lt;- penguins$body_mass_g 
+
+mean_mass</code></pre>
+<p>Try it yourself. You should have seen that as you typed the $, it
+gave you all the available column names to choose from. This means we
+can now easily summarise specific columns. For example:</p>
+<ul>
+<li><code>summary(penguins)</code> will create a summary of the whole
+spreadsheet,</li>
+<li><code>summary(penguins$Price)</code> will only summarise the Price
+column.</li>
+<li><code>mean(penguins$Price)</code> will take the mean of the Price
+column in the HousesNY dataframe.</li>
+</ul>
+<p><br><br></p>
+</div>
+<div id="selecting-multiple-columns" class="section level3"
+number="1.2.2">
+<h3><span class="header-section-number">1.2.2</span> Selecting multiple
+columns</h3>
+<p>Remember you have the names() command to help find these and that the
+names are CASE SENSITIVE. If we want to work with several specific
+columns (e.g., <code>species</code>, <code>bill_length_mm</code>, and
+<code>flipper_length_mm</code>), we can extract them like this:</p>
+<div id="tidyverse-approach" class="section level4 unnumbered">
+<h4 class="unnumbered">Tidyverse Approach</h4>
+<pre class="r"><code>selected_data &lt;- penguins %&gt;% dplyr::select(species, bill_length_mm, flipper_length_mm)
+head(selected_data)</code></pre>
+<pre><code>## # A tibble: 6 × 3
+##   species bill_length_mm flipper_length_mm
+##   &lt;fct&gt;            &lt;dbl&gt;             &lt;int&gt;
+## 1 Adelie            39.1               181
+## 2 Adelie            39.5               186
+## 3 Adelie            40.3               195
+## 4 Adelie            NA                  NA
+## 5 Adelie            36.7               193
+## 6 Adelie            39.3               190</code></pre>
+</div>
+<div id="base-r-approach" class="section level4 unnumbered">
+<h4 class="unnumbered">Base R Approach</h4>
+<pre class="r"><code>selected_data &lt;- penguins[, c(&quot;species&quot;, &quot;bill_length_mm&quot;, &quot;flipper_length_mm&quot;)]
+head(selected_data)</code></pre>
+<pre><code>## # A tibble: 6 × 3
+##   species bill_length_mm flipper_length_mm
+##   &lt;fct&gt;            &lt;dbl&gt;             &lt;int&gt;
+## 1 Adelie            39.1               181
+## 2 Adelie            39.5               186
+## 3 Adelie            40.3               195
+## 4 Adelie            NA                  NA
+## 5 Adelie            36.7               193
+## 6 Adelie            39.3               190</code></pre>
+<p><br><br></p>
+</div>
+</div>
+<div id="selecting-specific-values" class="section level3"
+number="1.2.3">
+<h3><span class="header-section-number">1.2.3</span> Selecting specific
+values</h3>
+<p>Sometimes, we do not want to analyse at the entire data.frame.
+Instead, we would like to only look at one (or more) columns or
+rows.</p>
+<p>There are several ways we can select data.</p>
+<ul>
+<li><p>To choose a specific column, we can use the <code>$</code> symbol
+to select its name (as described above)</p></li>
+<li><p>If you know which number rows or columns you want, you can use
+<strong>square brackets</strong> to numerically select data. Essentially
+our data follows the matrix format format:</p></li>
+</ul>
+<p><span class="math display">\[
+tablename [ ROWS , COLUMNS ]
+\]</span> <br></p>
+<p>Some examples:</p>
+<pre class="r"><code># This will select the data in the 5th row and 7th column
+penguins[5,7]
+
+# This will select the 2nd row and ALL the columns 
+penguins[2,]
+
+# This will select the 3rd column and ALL the rows
+penguins[,3]
+# similar to using its name
+penguins$island
+
+# We can combine our commands, this will print the 13th row of the body mass column 
+# (no comma as we&#39;re only looking at one column)
+penguins$body_mass_g[13] 
+
+# The : symbol lets you choose a sequence of numbers e.g. 1:5 is 1 2 3 4 5
+# So this prints out rows 11 to 15 and all the columns
+penguins[11:15,]
+
+# The &quot;c&quot; command allows you to enter whatever numbers you like.  
+# So this will print out rows 4,3,7 and the &quot;Elevation&quot; and &quot;Dist_to_Coast&quot; columns
+penguins[c(4,3,7), c(&quot;island&quot;,&quot;body_mass_g&quot;)]</code></pre>
+</div>
+<div id="deleting-data" class="section level3" number="1.2.4">
+<h3><span class="header-section-number">1.2.4</span> Deleting data</h3>
+<p>Or if you know the row or column number you can use the minus - sign
+to remove. Or use filter..</p>
+<pre class="r"><code># remove row 6 and and overwrite
+penguins &lt;- penguins[-6 ,]
+
+# remove columns 4 and 2 and save result to newdata 
+newdata &lt;- penguins[, - c(2,4) ]</code></pre>
+<p><br><br></p>
+</div>
+</div>
+<div id="filtering-rows" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> Filtering rows</h2>
+<p>Filtering means selecting only the rows that meet certain
+conditions.</p>
+<ul>
+<li><code>which()</code> helps find row numbers that match a
+condition.</li>
+<li><code>filter()</code> (from <code>dplyr</code> tidyverse) allows for
+clear, intuitive filtering of data.</li>
+<li>Logical operators (<code>&amp;</code>, <code>|</code>,
+<code>!=</code>, <code>%in%</code>) provide additional flexibility in
+specifying conditions.</li>
+</ul>
+<p><br></p>
+<div id="baser-which-command" class="section level3" number="1.3.1">
+<h3><span class="header-section-number">1.3.1</span> BaseR
+<code>which()</code> command</h3>
+<p>The <code>which()</code> command helps us identify row indices that
+meet a condition.</p>
+<p>For example, identifying numbers greater than 107 in a sequence:</p>
+<pre class="r"><code>a &lt;- 100:110
+which(a &gt; 107)</code></pre>
+<p>I like it because you can read the command as a sentence e.g. which
+numbers in “a” are greater than 107, Or which penguins have a
+<code>body_mass_g</code> less than or equal to 3000g:</p>
+<pre class="r"><code>outlier_rows &lt;- which(penguins$body_mass_g &lt;= 3000)</code></pre>
+<p>To find the row corresponding to the penguin with the smallest bill
+length:</p>
+<pre class="r"><code>row_number &lt;- which(penguins$bill_length_mm == min(penguins$bill_length_mm, na.rm = TRUE))
+smallest_bill &lt;- penguins[row_number, ]
+smallest_bill</code></pre>
+<p><br></p>
+</div>
+<div id="tidyversedplyr-filter-command" class="section level3"
+number="1.3.2">
+<h3><span class="header-section-number">1.3.2</span> Tidyverse/dplyr
+filter command</h3>
+<p>We can also use the tidyverse approach, the
+<code>dplyr::filter()</code> function. All the condition symbols
+e.g. !=NOT etc also work for the which command,</p>
+<p>Selecting all <code>Adelie</code> penguins:</p>
+<pre class="r"><code>filter(penguins, species == &quot;Adelie&quot;)</code></pre>
+<p>Selecting multiple species using <code>%in%</code>:</p>
+<pre class="r"><code>filter(penguins, species %in% c(&quot;Adelie&quot;, &quot;Chinstrap&quot;))</code></pre>
+<p>Excluding a species using <code>!=</code>:</p>
+<pre class="r"><code>filter(penguins, species != &quot;Gentoo&quot;)</code></pre>
+<p>Filtering penguins with a flipper length greater than 200 mm:</p>
+<pre class="r"><code>filter(penguins, flipper_length_mm &gt; 200)</code></pre>
+<p>Filtering penguins with a body mass less than or equal to 3000 g:</p>
+<pre class="r"><code>light_penguins &lt;- filter(penguins, body_mass_g &lt;= 3000)
+summary(light_penguins)</code></pre>
+<p>Filtering with multiple conditions:</p>
+<pre class="r"><code>filter(penguins, flipper_length_mm &gt; 180 &amp; species == &quot;Adelie&quot;)</code></pre>
+<p>Using <code>|</code> (OR condition) to select penguins with either a
+<code>bill_depth_mm</code> greater than 18 or
+<code>flipper_length_mm</code> longer than 210 mm:</p>
+<pre class="r"><code>filter(penguins, bill_depth_mm &gt; 18 | flipper_length_mm &gt; 210)</code></pre>
+<p><br><br></p>
+</div>
+</div>
+<div id="saving-data-to-new-columns" class="section level2"
+number="1.4">
+<h2><span class="header-section-number">1.4</span> Saving data to new
+columns</h2>
+<p>Lets say you wanted to find the ratio between two columns of data,
+then save your answer as a new column</p>
+<div id="base-r-approach-1" class="section level3 unnumbered">
+<h3 class="unnumbered">Base R Approach</h3>
+<pre class="r"><code>penguins$bill_ratio &lt;- penguins$bill_length_mm / penguins$bill_depth_mm</code></pre>
+</div>
+<div id="tidyverse-approach-1" class="section level3 unnumbered">
+<h3 class="unnumbered">Tidyverse Approach</h3>
+<pre class="r"><code>penguins &lt;- penguins %&gt;% mutate(bill_ratio = bill_length_mm / bill_depth_mm)</code></pre>
+<p><br><br></p>
+</div>
+</div>
+<div id="sorting-data" class="section level2" number="1.5">
+<h2><span class="header-section-number">1.5</span> Sorting Data</h2>
+<p>Sorting the data allows us to find the highest and lowest values in a
+dataset.</p>
+<p>Sort by body mass (ascending):</p>
+<div id="tidyverse-approach-2" class="section level3 unnumbered">
+<h3 class="unnumbered">Tidyverse Approach</h3>
+<pre class="r"><code>penguins &lt;- arrange(penguins, body_mass_g)</code></pre>
+<p>Sort by descending order:</p>
+<pre class="r"><code>penguins &lt;- arrange(penguins, desc(flipper_length_mm))</code></pre>
+<p><br></p>
+</div>
+<div id="base-r-approach-2" class="section level3 unnumbered">
+<h3 class="unnumbered">Base R Approach</h3>
+<pre class="r"><code>penguins &lt;- penguins[order(penguins$body_mass_g), ]</code></pre>
+<pre class="r"><code>penguins &lt;- penguins[order(-penguins$flipper_length_mm), ]</code></pre>
+<p><br><br></p>
+</div>
+</div>
+<div id="combining-everything" class="section level2" number="1.6">
+<h2><span class="header-section-number">1.6</span> Combining
+Everything</h2>
+<p>We can combine multiple operations into a single pipeline. The
+tidyverse is designed for this.</p>
+<div id="tidyverse-approach-3" class="section level3 unnumbered">
+<h3 class="unnumbered">Tidyverse Approach</h3>
+<pre class="r"><code>final_result &lt;- penguins %&gt;%
+  filter(flipper_length_mm &gt; 180) %&gt;%
+  mutate(bill_ratio = bill_length_mm / bill_depth_mm) %&gt;%
+  select(species, bill_length_mm, flipper_length_mm, bill_ratio) %&gt;%
+  arrange(desc(bill_ratio))</code></pre>
+<p><br></p>
+</div>
+<div id="base-r-approach-3" class="section level3 unnumbered">
+<h3 class="unnumbered">Base R Approach</h3>
+<pre class="r"><code>filtered &lt;- penguins[penguins$flipper_length_mm &gt; 180, ]
+filtered$bill_ratio &lt;- filtered$bill_length_mm / filtered$bill_depth_mm
+
+filtered &lt;- filtered[order(-filtered$bill_ratio),
+                     c(&quot;species&quot;, &quot;bill_length_mm&quot;, 
+                       &quot;flipper_length_mm&quot;, &quot;bill_ratio&quot;)]
+head(filtered)</code></pre>
+</div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
