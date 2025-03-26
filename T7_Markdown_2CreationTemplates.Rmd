@@ -66,25 +66,26 @@ There are also now several package which contain professional markdown templates
 
 To use one of these packages:
 
-+----------------------------------------------------------------+----------------------------------------------------+
-| 1.  Make sure the relevant package is installed (e.g. packages | ![](index_images/im_05MarkdownScratchtemplate.png) |
-|     tab, install button)                                       |                                                    |
-|                                                                |                                                    |
-| 2.  **Go to** `File` → `New File` → `R Markdown...`            |                                                    |
-|                                                                |                                                    |
-| 3.  **Click the `Templates` button**                           |                                                    |
-|                                                                |                                                    |
-| 4.  **Select the template you want to use**.                   |                                                    |
-|                                                                |                                                    |
-| 5.  **Click `OK`**.                                            |                                                    |
-|                                                                |                                                    |
-| 6.  A new file should appear on your screen. At the top of     |                                                    |
-|     that window (by the knit button, there is a save button.   |                                                    |
-|     Save it as something relevant INSIDE YOUR PROJECT FOLDER!  |                                                    |
-|                                                                |                                                    |
-| Alternatively, you can replace your YAML code with the         |                                                    |
-| suggested code from that theme.                                |                                                    |
-+----------------------------------------------------------------+----------------------------------------------------+
++-----------------------------------------------------------+----------------------------------------------------------+
+| 1.  Make sure the relevant package is installed (e.g.     | ![](index_images/im_05MarkdownScratchtemplate.png)       |
+|     packages tab, install button)                         |                                                          |
+|                                                           |                                                          |
+| 2.  **Go to** `File` → `New File` → `R Markdown...`       |                                                          |
+|                                                           |                                                          |
+| 3.  **Click the `Templates` button**                      |                                                          |
+|                                                           |                                                          |
+| 4.  **Select the template you want to use**.              |                                                          |
+|                                                           |                                                          |
+| 5.  **Click `OK`**.                                       |                                                          |
+|                                                           |                                                          |
+| 6.  A new file should appear on your screen. At the top   |                                                          |
+|     of that window (by the knit button, there is a save   |                                                          |
+|     button. Save it as something relevant INSIDE YOUR     |                                                          |
+|     PROJECT FOLDER!                                       |                                                          |
+|                                                           |                                                          |
+| Alternatively, you can replace your YAML code with the    |                                                          |
+| suggested code from that theme.                           |                                                          |
++-----------------------------------------------------------+----------------------------------------------------------+
 
 ![](index_images/im_T3RmdformatsPlus.png)
 
@@ -125,4 +126,20 @@ Sometimes rmdformats makes an extra subfolder and puts your report in there.
 
 ------------------------------------------------------------------------------------------------------------------------
 
-<br>
+<br><br>
+
+### Using ChatGPT for custom templates
+
+Finally, we can now use ChatGPT to help make custom YAML code for whatever template you want or to help you fix broken
+themes/YAML code. It will almost certainly take interations - and look at github or google cool markdown formats for
+examples.
+
+For example,
+
+-   How to make a template that includes a logo/header, and a discussion about what styles.css is
+    <https://chatgpt.com/share/67e44d44-8254-800f-a2bf-b447464a4f4a>
+
+-   A silly template for a PI who likes penguins using a new google font
+    <https://chatgpt.com/share/67e44f17-a760-800f-850e-479c63776883>
+
+<br><br>
