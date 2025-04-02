@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>in_T20_GLM.knit</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Full Tutorial List</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    R-BASICS
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="CH1_BASICS.html#ch1">1 Installing/Accessing R</a>
+    </li>
+    <li>
+      <a href="CH1_BASICS.html#ch2">2 Changing Settings</a>
+    </li>
+    <li>
+      <a href="CH1_BASICS.html#ch3">3 Console/coding basics</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    STARTING EACH LAB
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="CH2_EACHLAB.html#ch4">4. Projects</a>
+    </li>
+    <li>
+      <a href="CH2_EACHLAB.html#ch5">5. Packages</a>
+    </li>
+    <li>
+      <a href="CH2_EACHLAB.html#ch6">6. R-Markdown</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    EXPLORING DATA
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="in_T07_ReadingInData.html">7. Reading in data</a>
+    </li>
+    <li>
+      <a href="CH3_EDA.html#ch8">8. Summary Statistics</a>
+    </li>
+    <li>
+      <a href="CH3_EDA.html#ch9">9. Filtering/selecting</a>
+    </li>
+    <li>
+      <a href="CH3_EDA.html#ch10">10. Missing Data</a>
+    </li>
+    <li>
+      <a href="in_T11_Plots.html">11. Plots</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    STATISTICAL-ANALYSIS
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="in_T12_NormalDistributionsTTests.html">12. Normal/T-Dist/Tests</a>
+    </li>
+    <li>
+      <a href="in_T13_Correlation.html">13 Correlation</a>
+    </li>
+    <li>
+      <a href="in_T14_Regression.html">14. Simple Linear Regression</a>
+    </li>
+    <li>
+      <a href="in_T15_Diagnostics.html">15. Model Diagnostics</a>
+    </li>
+    <li>
+      <a href="in_T16_Outliers.html">16. Outliers</a>
+    </li>
+    <li>
+      <a href="in_T17_ConfPred.html">17. Confidence &amp; Prediction</a>
+    </li>
+    <li>
+      <a href="in_T18_Transformations.html">18. Transformations</a>
+    </li>
+    <li>
+      <a href="in_T19_MLR.html">19. Multiple Linear Regression</a>
+    </li>
+    <li>
+      <a href="in_T20_GLM.html">20. General Linear Regression</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="S.Tutorial_GLM" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> GLM - Logistic
+Regression</h1>
+<p>Logistic regression is a method used when we’re dealing with
+categorical dependent variables. It’s particularly useful for predicting
+the probability of an event occurring, fitting data to a logistic curve.
+While simple linear regression predicts continuous outcomes, logistic
+regression focuses on probabilities between 0 and 1, making it perfect
+for scenarios like yes/no or true/false.</p>
+<p>Logistic regression is a Generalized Linear Model (GLM), which
+expands Simple Linear Regression to handle non-normally distributed
+response variables. GLMs accommodate various response distributions,
+like binomial (for logistic regression), Poisson, or gamma
+distributions, making them adaptable to different data types. Within the
+GLM framework, logistic regression models the relationship between
+categorical outcomes and predictors by connecting the linear combination
+of predictors to the log odds of the outcome.</p>
+<div id="great-r-tutorial" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Great R Tutorial</h2>
+<p><a
+href="https://bookdown.org/jefftemplewebb/IS-6489/logistic-regression.html"
+class="uri">https://bookdown.org/jefftemplewebb/IS-6489/logistic-regression.html</a></p>
+</div>
+<div id="setting-up-the-dataexample" class="section level2"
+number="1.2">
+<h2><span class="header-section-number">1.2</span> Setting up the
+data/example</h2>
+<div id="setting-up-categorical-columns" class="section level3"
+number="1.2.1">
+<h3><span class="header-section-number">1.2.1</span> Setting up
+categorical columns</h3>
+<p>For example, using the titanic dataset from the DALEX package, lets
+imagine I want to assess whether richer/poorer people were more likely
+to die on the ship Titanic:</p>
+<ul>
+<li><u><strong>Dataset</strong></u>: The titanic data is a complete list
+of passengers and crew members on the RMS Titanic. It includes a
+variable indicating whether a person did survive the sinking of the RMS
+Titanic on April 15, 1912.</li>
+<li><strong>Object of analysis</strong>: ADULT PASSENGERS person on the
+ship titanic - I need to filter the data to achieve this and remove
+staff and children.</li>
+<li><strong>Response variable:</strong> Survival (Yes/No)
+<ul>
+<li>To make sure that R understands that this is categorical data
+(rather than say names/random text), we use the <code>as.factor()</code>
+command to force R to see if as binary data.</li>
+</ul></li>
+<li><strong>Predictor:</strong> The fare paid to board the titanic.</li>
+</ul>
+<div id="data-summary" class="section level4" number="1.2.1.1">
+<h4><span class="header-section-number">1.2.1.1</span> Data summary</h4>
+<pre class="r"><code>data(&quot;titanic&quot;, package = &quot;DALEX&quot;)
+ship_survival &lt;- titanic
+   
+# I&#39;m going to force the response to be a factor
+ship_survival$survived &lt;- as.factor(titanic$survived)
+
+skim(ship_survival)</code></pre>
+<table>
+<caption>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td align="left">Name</td>
+<td align="left">ship_survival</td>
+</tr>
+<tr class="even">
+<td align="left">Number of rows</td>
+<td align="left">2207</td>
+</tr>
+<tr class="odd">
+<td align="left">Number of columns</td>
+<td align="left">9</td>
+</tr>
+<tr class="even">
+<td align="left">_______________________</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Column type frequency:</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">factor</td>
+<td align="left">5</td>
+</tr>
+<tr class="odd">
+<td align="left">numeric</td>
+<td align="left">4</td>
+</tr>
+<tr class="even">
+<td align="left">________________________</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Group variables</td>
+<td align="left">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: factor</strong></p>
+<table>
+<colgroup>
+<col width="14%" />
+<col width="10%" />
+<col width="14%" />
+<col width="8%" />
+<col width="9%" />
+<col width="42%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="left">ordered</th>
+<th align="right">n_unique</th>
+<th align="left">top_counts</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">gender</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="left">FALSE</td>
+<td align="right">2</td>
+<td align="left">mal: 1718, fem: 489</td>
+</tr>
+<tr class="even">
+<td align="left">class</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="left">FALSE</td>
+<td align="right">7</td>
+<td align="left">3rd: 709, vic: 431, 1st: 324, eng: 324</td>
+</tr>
+<tr class="odd">
+<td align="left">embarked</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="left">FALSE</td>
+<td align="right">4</td>
+<td align="left">Sou: 1616, Che: 271, Bel: 197, Que: 123</td>
+</tr>
+<tr class="even">
+<td align="left">country</td>
+<td align="right">81</td>
+<td align="right">0.96</td>
+<td align="left">FALSE</td>
+<td align="right">48</td>
+<td align="left">Eng: 1125, Uni: 264, Ire: 137, Swe: 105</td>
+</tr>
+<tr class="odd">
+<td align="left">survived</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="left">FALSE</td>
+<td align="right">2</td>
+<td align="left">no: 1496, yes: 711</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table style="width:100%;">
+<colgroup>
+<col width="16%" />
+<col width="11%" />
+<col width="16%" />
+<col width="7%" />
+<col width="7%" />
+<col width="5%" />
+<col width="4%" />
+<col width="7%" />
+<col width="7%" />
+<col width="8%" />
+<col width="7%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">p0</th>
+<th align="right">p25</th>
+<th align="right">p50</th>
+<th align="right">p75</th>
+<th align="right">p100</th>
+<th align="left">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">age</td>
+<td align="right">2</td>
+<td align="right">1.00</td>
+<td align="right">30.44</td>
+<td align="right">12.16</td>
+<td align="right">0.17</td>
+<td align="right">22</td>
+<td align="right">29.00</td>
+<td align="right">38.00</td>
+<td align="right">74.00</td>
+<td align="left">▁▇▆▂▁</td>
+</tr>
+<tr class="even">
+<td align="left">fare</td>
+<td align="right">26</td>
+<td align="right">0.99</td>
+<td align="right">19.77</td>
+<td align="right">43.40</td>
+<td align="right">0.00</td>
+<td align="right">0</td>
+<td align="right">7.15</td>
+<td align="right">20.11</td>
+<td align="right">512.06</td>
+<td align="left">▇▁▁▁▁</td>
+</tr>
+<tr class="odd">
+<td align="left">sibsp</td>
+<td align="right">10</td>
+<td align="right">1.00</td>
+<td align="right">0.30</td>
+<td align="right">0.84</td>
+<td align="right">0.00</td>
+<td align="right">0</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">8.00</td>
+<td align="left">▇▁▁▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">parch</td>
+<td align="right">10</td>
+<td align="right">1.00</td>
+<td align="right">0.23</td>
+<td align="right">0.69</td>
+<td align="right">0.00</td>
+<td align="right">0</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">9.00</td>
+<td align="left">▇▁▁▁▁</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="filtering-data-exploratory-plots" class="section level3"
+number="1.2.2">
+<h3><span class="header-section-number">1.2.2</span> Filtering data
+&amp; exploratory plots</h3>
+<p>I am first going to remove any children from the dataset and any
+staff (AKA fare = 0), along with the four millionaires that I feel are
+special cases (e.g. they paid over three times the amount everyone else
+did)</p>
+<pre class="r"><code>ship_survival &lt;- ship_survival[which(ship_survival$fare &gt; 0),]
+ship_survival &lt;- ship_survival[which(ship_survival$age &gt; 21),]
+ship_survival &lt;- ship_survival[which(ship_survival$fare &lt; 300),]</code></pre>
+<p>If we only have one predictor, we can use plots like this to get a
+sense of the impact on our binary response. I included “jittered” data
+AKA the points are scattered around a little to make them visible. This
+code comes from the ggplot2 package, so remember to put that in your
+library code chunk.</p>
+<pre class="r"><code>library(ggplot2)
+
+ggplot(ship_survival, aes(x = survived, y = fare)) + 
+  geom_boxplot(outlier.shape = NA) +
+  geom_jitter(size=.7,alpha=.5,color=&quot;blue&quot;) +
+  coord_flip()</code></pre>
+<p><img src="in_T20_GLM_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>Or similarly (but flipped). This code comes from the
+<strong>ggstatsplot</strong> library/package, so remember to load that
+first.</p>
+<pre class="r"><code>library(ggstatsplot)
+ggbetweenstats(ship_survival,y=fare,x=survived,results.subtitle=FALSE)</code></pre>
+<p><img src="in_T20_GLM_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+</div>
+<div id="fiting-a-logistic-model" class="section level3" number="1.2.3">
+<h3><span class="header-section-number">1.2.3</span> Fiting a logistic
+model</h3>
+<p>Fitting a model is easy - as it’s very similar to simple linear
+models:</p>
+<ul>
+<li>Instead of <code>lm</code> (linear model), we need the
+<code>glm</code> command</li>
+<li>We also need an extra part to tell R which type of linear model we
+want. In our case (for binary data), we need
+<code>family=binomial(link='logit')</code></li>
+</ul>
+<pre class="r"><code>model.logistic &lt;- glm(survived ~ fare, data=ship_survival, 
+                      family=binomial(link=&#39;logit&#39;))</code></pre>
+<p><br><br></p>
+</div>
+<div id="model-summary" class="section level3" number="1.2.4">
+<h3><span class="header-section-number">1.2.4</span> Model summary</h3>
+<p><strong>THE OLSRR PACKAGE WILL NO LONGER WORK (it’s only set up for
+lm).</strong> So we are back to the standard summary command.</p>
+<pre class="r"><code>summary(model.logistic)</code></pre>
+<pre><code>## 
+## Call:
+## glm(formula = survived ~ fare, family = binomial(link = &quot;logit&quot;), 
+##     data = ship_survival)
+## 
+## Coefficients:
+##             Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -0.92126    0.09134 -10.086  &lt; 2e-16 ***
+## fare         0.01311    0.00185   7.087 1.37e-12 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 1225.2  on 919  degrees of freedom
+## Residual deviance: 1157.4  on 918  degrees of freedom
+## AIC: 1161.4
+## 
+## Number of Fisher Scoring iterations: 4</code></pre>
+<ul>
+<li><p>In the output above, the top part is the call, this is R
+reminding us what the model we ran and the options we selected.</p></li>
+<li><p>The next part of the output shows the coefficients, their
+standard errors, the z-statistic (sometimes called a Wald z-statistic),
+and the associated p-values.</p></li>
+<li><p>Below the table of coefficients are fit indices, including the
+null and deviance residuals and the AIC. Later we show an example of how
+you can use these values to help assess model fit.</p></li>
+</ul>
+<p>The coefficients themselves are expressed in terms of LOG-ODDS
+(because this was the transformation we applied).</p>
+<pre class="r"><code># coefficient in terms of Log-odds
+cbind(Coefficient_logodds = coef(model.logistic), confint(model.logistic))</code></pre>
+<pre><code>##             Coefficient_logodds        2.5 %     97.5 %
+## (Intercept)         -0.92125477 -1.102666988 -0.7443837
+## fare                 0.01311288  0.009642147  0.0169076</code></pre>
+<p>You can also use the exponential command to interpret the output as
+ODDS-RATIOS, or as the percentage change in odds. We can combine this
+with confidence intervals and our coefficients using this code.</p>
+<pre class="r"><code># coefficient in terms of odds. Note the exp e.g. we are applying an exponential
+exp( cbind(Coefficient_Odds = coef(model.logistic), confint(model.logistic)))</code></pre>
+<pre><code>##             Coefficient_Odds     2.5 %   97.5 %
+## (Intercept)        0.3980193 0.3319845 0.475027
+## fare               1.0131992 1.0096888 1.017051</code></pre>
+<div id="interpretation-in-terms-of-log-odds." class="section level4"
+number="1.2.4.1">
+<h4><span class="header-section-number">1.2.4.1</span> Interpretation in
+terms of log odds.</h4>
+<p>To interpret, for every one pound increase in fare, the <em>log
+odds</em> of survival are likely to <strong>increase</strong> between
+0.0096421 and 0.0169076.</p>
+<p><br></p>
+</div>
+<div id="interpretation-in-terms-of-odds" class="section level4"
+number="1.2.4.2">
+<h4><span class="header-section-number">1.2.4.2</span> Interpretation in
+terms of odds:</h4>
+<p>We take the exponential of the log odds (see code above). In our new
+unit, the slope coefficient for fare is 1.0131992 in terms of ODDS.</p>
+<ul>
+<li>This means that for each unit increase in fare, the odds of survival
+are multiplied by approximately 1.0131992.</li>
+</ul>
+<p>In other words, for every one-year increase in fare, the odds of
+survival increase by a factor of approximately 1.0131992.</p>
+<p><br></p>
+</div>
+<div id="interpretation-in-terms-of-percentage-change"
+class="section level4" number="1.2.4.3">
+<h4><span class="header-section-number">1.2.4.3</span> Interpretation in
+terms of percentage change:</h4>
+<p>To express the coefficient in terms of percentage change, we subtract
+1 from the coefficient in odds, multiply by 100, and interpret the
+result as a percentage change in the odds:</p>
+<p>(Odds Ratio−1)×100=( 1.0131992 −1)×100= 1.3199234 %</p>
+<p>So, the coefficient for fare represents an increase in the ODDS of
+survival by approximately 1.32% for each one-pound increase in fare.</p>
+<p>To see more examples of this, see here:<br />
+<a
+href="https://stats.oarc.ucla.edu/other/mult-pkg/faq/general/faq-how-do-i-interpret-odds-ratios-in-logistic-regression/"
+class="uri">https://stats.oarc.ucla.edu/other/mult-pkg/faq/general/faq-how-do-i-interpret-odds-ratios-in-logistic-regression/</a></p>
+</div>
+</div>
+<div id="predicting-new-values-and-visualising-results"
+class="section level3" number="1.2.5">
+<h3><span class="header-section-number">1.2.5</span> Predicting new
+values and visualising results</h3>
+<p>For prediction, we can do exactly the same as with the lm case
+e.g. use predict and fitted.</p>
+<pre class="r"><code>ship_survival &lt;- ship_survival[is.na(ship_survival$fare)==FALSE,]
+
+ship_survival$modelled_probability &lt;- fitted(model.logistic,
+                                             newdata=ship_survival$fare)</code></pre>
+<p>and this code might help you visualise results (you need to run the
+prediction bit first.)</p>
+<pre class="r"><code>ship_survival$type_num &lt;- ifelse(ship_survival$survived == &quot;yes&quot;, 1, 0)
+
+ggplot(ship_survival, aes(fare,type_num)) +
+  geom_point(alpha=0.5,size=0.5) +
+  stat_smooth(aes(fare, modelled_probability), se = F,lwd=.5) +
+  labs(y = &quot;Probability of survival&quot;, 
+       title = &quot;Probability of surviving the titanic based on fare paid&quot;)</code></pre>
+<p><img src="in_T20_GLM_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>You can see that the line isn’t straight - there are fare brackets
+that really impact your survival rate, whereas people who paid fares
+greater 200 pounds saw the relationship level out (AKA they are already
+first class).</p>
+<p><br><br></p>
+</div>
+<div id="wald-test-for-significance" class="section level3"
+number="1.2.6">
+<h3><span class="header-section-number">1.2.6</span> Wald test for
+significance</h3>
+<p>You interpret the significance of the coefficients the same way as
+your T-test with lm. So we look at the p value in the coefficients
+table:</p>
+<pre class="r"><code>summary(model.logistic)</code></pre>
+<pre><code>## 
+## Call:
+## glm(formula = survived ~ fare, family = binomial(link = &quot;logit&quot;), 
+##     data = ship_survival)
+## 
+## Coefficients:
+##             Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -0.92126    0.09134 -10.086  &lt; 2e-16 ***
+## fare         0.01311    0.00185   7.087 1.37e-12 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 1225.2  on 919  degrees of freedom
+## Residual deviance: 1157.4  on 918  degrees of freedom
+## AIC: 1161.4
+## 
+## Number of Fisher Scoring iterations: 4</code></pre>
+<blockquote>
+<p><em>From the summary, you can see that if the true population had no
+link between fare and survival (our H0), then a tiny 1.37x10^-12
+proportion of randomly selected samples would have a slope as steep as
+our sample. So in this case, I think there is a lot of evidence to
+suggest that we can reject H0 and suggest that fare paid significantly
+impacted the survival rate of adult Titanic passengers.</em></p>
+</blockquote>
+<p><br><br></p>
+</div>
+<div id="goodness-of-fit" class="section level3" number="1.2.7">
+<h3><span class="header-section-number">1.2.7</span> Goodness of
+fit</h3>
+<p>For this, we can use the from the NEW blorr package (AKA you have to
+go to the app store and install it, then add library(blorr) to your
+library code chunk)</p>
+<pre class="r"><code>library(blorr)
+blr_test_hosmer_lemeshow(model.logistic)</code></pre>
+<pre><code>##            Partition for the Hosmer &amp; Lemeshow Test            
+## --------------------------------------------------------------
+##                         def = 1                 def = 0        
+## Group    Total    Observed    Expected    Observed    Expected 
+## --------------------------------------------------------------
+##   1       129        32        39.18         97        89.82   
+##   2       88         16        26.77         72        61.23   
+##   3       62         10        18.97         52        43.03   
+##   4       90         25        28.03         65        61.97   
+##   5       91         25        29.28         66        61.72   
+##   6       93         41        31.60         52        61.40   
+##   7       91         37        32.73         54        58.27   
+##   8       97         41        38.29         56        58.71   
+##   9       87         61        42.30         26        44.70   
+##  10       92         65        65.86         27        26.14   
+## --------------------------------------------------------------
+## 
+##      Goodness of Fit Test      
+## ------------------------------
+## Chi-Square    DF    Pr &gt; ChiSq 
+## ------------------------------
+##  37.1859      8       0.0000   
+## ------------------------------</code></pre>
+<p><br><br></p>
+</div>
+<div id="assessing-model-residuals" class="section level3"
+number="1.2.8">
+<h3><span class="header-section-number">1.2.8</span> Assessing model
+residuals</h3>
+<p>A binned residual plot, available in the arm package, is a good way
+to see the residuals - to use you will need to install/load the arm
+package From the documentation:</p>
+<blockquote>
+<p><em>“In logistic regression, as with linear regression, the residuals
+can be defined as observed minus expected values. The data are discrete
+and so are the residuals. As a result, plots of raw residuals from
+logistic regression are generally not useful. The binned residuals plot
+instead, after dividing the data into categories (bins) based on their
+fitted values, the average residual versus the average fitted value for
+each bin.”</em></p>
+</blockquote>
+<pre class="r"><code>library(arm)
+
+binnedplot(fitted(model.logistic), 
+           residuals(model.logistic, type = &quot;response&quot;), 
+           nclass = NULL, 
+           xlab = &quot;Expected Values&quot;, 
+           ylab = &quot;Average residual&quot;, 
+           main = &quot;Binned residual plot&quot;, 
+           cex.pts = 0.8, 
+           col.pts = 1, 
+           col.int = &quot;gray&quot;)</code></pre>
+<p><img src="in_T20_GLM_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<div id="alternative-plots" class="section level4" number="1.2.8.1">
+<h4><span class="header-section-number">1.2.8.1</span> Alternative
+plots</h4>
+<p>We can also use plots from the blorr package. These are harder to
+interpret and go a little beyond this course. I suggest this link for
+the code <a
+href="https://cran.r-project.org/web/packages/blorr/vignettes/introduction.html"
+class="uri">https://cran.r-project.org/web/packages/blorr/vignettes/introduction.html</a>
+and for the interpretation: <a
+href="https://bookdown.org/jefftemplewebb/IS-6489/logistic-regression.html"
+class="uri">https://bookdown.org/jefftemplewebb/IS-6489/logistic-regression.html</a></p>
+<pre class="r"><code>library(blorr)
+
+blr_plot_diag_influence(model.logistic)</code></pre>
+<p><img src="in_T20_GLM_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p>or simply</p>
+<pre class="r"><code>plot(model.logistic)</code></pre>
+<p><img src="in_T20_GLM_files/figure-html/unnamed-chunk-15-1.png" width="672" /><img src="in_T20_GLM_files/figure-html/unnamed-chunk-15-2.png" width="672" /><img src="in_T20_GLM_files/figure-html/unnamed-chunk-15-3.png" width="672" /><img src="in_T20_GLM_files/figure-html/unnamed-chunk-15-4.png" width="672" /></p>
+<p><br><br></p>
+</div>
+</div>
+<div id="interactions-with-other-predictors" class="section level3"
+number="1.2.9">
+<h3><span class="header-section-number">1.2.9</span> Interactions with
+other predictors</h3>
+<p>You can also use this plot to look at interactions and confounding
+variables with other predictors.Here’s a classic example on diabetes to
+give you a better sense of the plot, as discussed in <a
+href="https://bookdown.org/jefftemplewebb/IS-6489/logistic-regression.html#assessing-logistic-model-performance"
+class="uri">https://bookdown.org/jefftemplewebb/IS-6489/logistic-regression.html#assessing-logistic-model-performance</a></p>
+<p><img src="index_images/im_T14_LogisticInmteraction.png"
+style="width:80.0%" /></p>
+</div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
