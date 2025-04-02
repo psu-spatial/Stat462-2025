@@ -1,4 +1,3 @@
-
 ```{r, include=FALSE,message=FALSE,warning=FALSE}
 # OPTIONS -----------------------------------------------
 knitr::opts_chunk$set(echo = TRUE, 
@@ -38,7 +37,10 @@ HousesNY$Beds <- as.numeric(HousesNY$Beds)
 
 # Plots {#T6_plots}
 
-## Useful tutorials
+Plots allow us to **see patterns, outliers, and trends** in a dataset that may not be immediately obvious from the raw
+numbers. This tutorial showcases several commonly used methods. In terms of your reports, you need to think of 3 things:
+
+## Useful Tutorials
 
 Plots allow us to **see patterns, outliers, and trends** in a dataset that may not be immediately obvious from the raw
 numbers. This tutorial showcases several commonly used methods. In terms of your reports, you need to think of 3 things:
@@ -50,6 +52,9 @@ numbers. This tutorial showcases several commonly used methods. In terms of your
 -   What are your final requirements and personal style (colorblind friendly? You're drawn to a certain style?)
 
 Beyond the tutorials, here are a few high-quality external resources for inspiration and additional practice:
+
+-   [ggplot2 Tutorial in datacamp](https://www.datacamp.com/courses/introduction-to-data-visualization-with-ggplot2)
+    (free if you log into your PSU account from the class)
 
 -   [The R Graph Gallery](https://www.r-graph-gallery.com/)
 
@@ -68,7 +73,7 @@ If you're new to data visualization, start with these great explainers:
 
 <br>
 
-### Tutorial dataset
+## Example dataset
 
 Throughout this tutorial, we will the HousesNY dataset from the Stat2Data package. This has the columns:
 
@@ -93,9 +98,9 @@ HousesNY$Beds <- as.numeric(HousesNY$Beds)
 
 <br><br>
 
-## Histograms, Box & Violin Plots 
+# Histograms {#T_Histograms}
 
-### Histograms {T_Histograms}
+## Set-up
 
 You will need these library commands at the top of your script
 
@@ -121,7 +126,7 @@ And remember the column names of our tutorial data-set are:
 names(HousesNY)
 ```
 
-#### ggstatsplot 
+## ggstatsplot
 
 I love ggstatsplot - everything feels intuitive.
 
@@ -135,7 +140,7 @@ gghistostats( data = HousesNY,
   results.subtitle = FALSE)
 ```
 
-#### ggplot2 histograms
+## ggplot2 histograms
 
 Here's a minimal example using `geom_histogram`. We first load the data using ggplot2, then plot it as a geom_histogram
 with 20 bins. Each line is connected using a + sign.
@@ -182,9 +187,9 @@ ggarrange(plota, plotb, plotc, plotd, ncol = 2, nrow = 2)
 
 <br>
 
-### Ridgelines, Violins & boxplots {T_GroupedHist}
+# Ridgelines, Violins & boxplots {#T_GroupedHist}
 
-#### Setup
+## Setup
 
 You will need these library commands at the top of your script
 
@@ -226,7 +231,7 @@ HousesNY$Beds <- as.factor(HousesNY$Beds)
 
 <br>
 
-#### Ridgeline plots
+## Ridgeline plots (#T_Ridgeline)
 
 Ridgeline plots are a way of looking at histograms for different groups. They work especially when your grouping data is
 ORDINAL (has some inherent order). So bedrooms would be a good example
@@ -298,7 +303,7 @@ ggplot(HousesNY, aes(x = Price, y = Beds, fill = stat(quantile))) +
 
 <br>
 
-#### Violin plots
+## Violin plots
 
 We can also use violin plots to compare categories. Our houses data isn't really big enough to do this justice, so
 here's an example from another dataset on an old science experiment. We can customise it even more using this tutorial
@@ -322,7 +327,7 @@ ggbetweenstats(
 
 <br>
 
-#### Boxplots
+## Box-plots {T_boxplots}
 
 Boxplots have been around over 40 years! See their history and evolution here:
 <http://vita.had.co.nz/papers/boxplots.pdf>
@@ -375,12 +380,40 @@ ggbetweenstats(data = HousesNY,
 
 <br><br>
 
-## Scatterplots {T_Scatter}
+# Scatterplots {#T_Scatter}
 
-### Basic plot (no line of best fit)
+## Setup
 
-Again, I am using the HousesNY example dataset that I discussed earlier with the bed and price column names. You can see
-that each command is joined by a "+".
+You will need these library commands at the top of your script
+
+```{r, eval=FALSE}
+library(tidyverse)
+library(ggstatsplot)
+library(ggplot2)
+library(ggExtra)
+library(ggridges)
+library(ggpubr)
+library(hrbrthemes)
+library(ggthemes)
+library(viridis)
+library(RColorBrewer)
+library(plotly)
+
+
+```
+
+And remember the column names of our tutorial data-set are:
+
+```{r}
+names(HousesNY)
+```
+
+## Basics
+
+Here's how to make a basic scatterplot using the HousesNY example dataset that I discussed earlier with the bed and
+price column names.
+
+You can see that each command is joined by a "+".
 
 ```{r}
 ggplot(HousesNY, aes(x=Size, y=Price)) + 
@@ -389,6 +422,15 @@ ggplot(HousesNY, aes(x=Size, y=Price)) +
     xlab("Size (sq ft)") + ylab("Price (1000 USD)")
 
 ```
+
+<br>
+
+There are MANY different versions of this. Feel free to choose your favourite.
+
+a)  <https://www.datacamp.com/doc/r/scatterplot-in-r>
+b)  
+
+## Add regression line
 
 To add a line of best fit, we simply add a new command geom_smooth()
 
@@ -418,7 +460,47 @@ ggplot(HousesNY, aes(x=Size, y=Price)) +
 
 <br>
 
-### Plotly Interactive scatterplots! {#T6_ScatterPlotly}
+For a more fancy one, try ggscatterstats from ggstatsplot. Tutorial here:
+<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html>
+
+```{r}
+ggscatterstats(
+  data = HousesNY, 
+  x = Size, 
+  y = Price,
+  xlab = "Size (sq ft)", 
+  ylab = "Price (1000 USD)",
+  xsidehistogram.args = list(fill = "#CC79A7", color = "black", 
+                             na.rm = TRUE,bins=20),
+  ysidehistogram.args = list(fill = "#009E73", color = "black", 
+                             na.rm = TRUE,bins=20),
+  title = "Relationship between size houseprice",
+  caption = "Canton, NY",
+  results.subtitle=FALSE)
+```
+Or if your dataset has a descriptor column like name/city/object, then you can label points. For example, for the ggplot2 movies dataset:
+
+```{r}
+ggscatterstats(
+  data = movies_long, ## data frame from which variables are taken
+  x = budget, ## predictor/independent variable
+  y = rating, ## dependent variable
+  xlab = "Budget (in millions of US dollars)", ## label for the x-axis
+  ylab = "Rating on IMDB", ## label for the y-axis
+  label.var = title, ## variable to use for labeling data points
+  label.expression = rating < 5 & budget > 100, ## expression for deciding which points to label
+  point.label.args = list(alpha = 0.7, size = 3, color = "grey50"),
+  xsidehistogram.args = list(fill = "#CC79A7",color="black",bins=30),
+  ysidehistogram.args = list(fill = "#009E73",color="black",bins=30),
+  title = "Relationship between movie budget and IMDB rating",
+  caption = "Source: www.imdb.com"
+)
+```
+
+<br>
+
+
+## Interactive scatterplots! {#T6_Plotly}
 
 You can use the plotly library to make ANY ggplot2 plot interactive
 
@@ -450,10 +532,3 @@ Error in file(file, ifelse(append, "a", "w")) :
 Many more interactive options in this tutorial: <https://plotly.com/r/line-and-scatter/>
 
 ------------------------------------------------------------------------------------------------------------------------
-
-<br> <br>
-
-Or we can customise it even more using this tutorial to get results like this
-(<https://www.r-graph-gallery.com/web-violinplot-with-ggstatsplot.html>)
-
-<br> <br>
