@@ -444,60 +444,48 @@ div.tocify {
 
 <div id="T6_plots" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Plots</h1>
-<p>Plots are designed to do two things, allow you to see something in
-the data that you couldn’t see in the numbers, plus communicate output
-in a compelling way.</p>
-<p>Going beyond the basics or knowing the limitations of a plot will
-help you do this, so in these examples I have provided a range of
-complexity. You will see tutorials for all the plots I mention in this
-section. If in doubt, try the ggstatsplot versions.</p>
-<p><br></p>
-<div id="what-to-choose" class="section level3" number="1.0.1">
-<h3><span class="header-section-number">1.0.1</span> What to
-choose?</h3>
+<div id="useful-tutorials" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Useful tutorials</h2>
+<p>Plots allow us to <strong>see patterns, outliers, and trends</strong>
+in a dataset that may not be immediately obvious from the raw numbers.
+This tutorial showcases several commonly used methods. In terms of your
+reports, you need to think of 3 things:</p>
 <ul>
-<li><p>If you are looking at a single variable, try histograms, boxplots
-and violin plots</p></li>
-<li><p>If you think your histogram changes by some category, try grouped
-boxplots and grouped violin plots (easy violin plot here)</p></li>
-<li><p>If you think your histogram changes numerically, try ridgeline
-plots</p></li>
-<li><p>If you are comparing two variables, try scatterplots and
-correlation plots.</p></li>
+<li><p>Why you are making the plot (quick look vs publication worthy
+final graphic)</p></li>
+<li><p>What aspects of the data do you want to highlight (lots of data,
+comparing groups, weird distributions?.)</p></li>
+<li><p>What are your final requirements and personal style (colorblind
+friendly? You’re drawn to a certain style?)</p></li>
+</ul>
+<p>Beyond the tutorials, here are a few high-quality external resources
+for inspiration and additional practice:</p>
+<ul>
+<li><p><a href="https://www.r-graph-gallery.com/">The R Graph
+Gallery</a></p></li>
+<li><p><a
+href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot
+Gallery</a></p></li>
+<li><p><a
+href="https://r-charts.com/distribution/">R-Charts</a></p></li>
+<li><p><a href="https://flowingdata.com/">FlowingData</a></p></li>
+</ul>
+<p>If you’re new to data visualization, start with these great
+explainers:</p>
+<ul>
+<li><p><a
+href="https://flowingdata.com/2014/10/23/moving-past-default-charts/">Moving
+Past Default Charts</a></p></li>
+<li><p><a
+href="https://flowingdata.com/2012/05/15/how-to-visualize-and-compare-distributions/">How
+to Visualize and Compare Distributions</a></p></li>
 </ul>
 <p><br></p>
-</div>
-<div id="where-to-find-worked-examples" class="section level3"
-number="1.0.2">
-<h3><span class="header-section-number">1.0.2</span> Where to find
-worked examples</h3>
-<p>There are three places I visit constantly:</p>
-<ul>
-<li><a href="https://www.r-graph-gallery.com/"
-class="uri">https://www.r-graph-gallery.com/</a></li>
-<li><a href="https://indrajeetpatil.github.io/ggstatsplot/"
-class="uri">https://indrajeetpatil.github.io/ggstatsplot/</a></li>
-<li><a href="https://r-charts.com/distribution/"
-class="uri">https://r-charts.com/distribution/</a></li>
-<li><a href="https://flowingdata.com/"
-class="uri">https://flowingdata.com/</a></li>
-</ul>
-<p>If you are new to data visualisation, read these two articles</p>
-<ul>
-<li><a
-href="https://flowingdata.com/2014/10/23/moving-past-default-charts/"
-class="uri">https://flowingdata.com/2014/10/23/moving-past-default-charts/</a></li>
-<li><a
-href="https://flowingdata.com/2012/05/15/how-to-visualize-and-compare-distributions/"
-class="uri">https://flowingdata.com/2012/05/15/how-to-visualize-and-compare-distributions/</a></li>
-</ul>
-<hr />
-<p><br><br> {#T6_ExampleData}</p>
-</div>
-<div id="example-dataset" class="section level2" number="1.1">
-<h2><span class="header-section-number">1.1</span> Example dataset</h2>
-<p>Throughout this tutorial, I will use an example dataset on houses in
-New York. This has the columns:</p>
+<div id="tutorial-dataset" class="section level3" number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> Tutorial
+dataset</h3>
+<p>Throughout this tutorial, we will the HousesNY dataset from the
+Stat2Data package. This has the columns:</p>
 <ul>
 <li><code>Price</code>: Estimated price (in $1,000’s)</li>
 <li><code>Beds</code>: Number of bedrooms</li>
@@ -507,595 +495,180 @@ feet)</li>
 <li><code>Lot</code>: Size of the lot (in acres)</li>
 </ul>
 <pre class="r"><code>data(&quot;HousesNY&quot;, package = &quot;Stat2Data&quot;)
-
-head(HousesNY)</code></pre>
-<pre><code>##   Price Beds Baths  Size  Lot
-## 1  57.6    3     2 0.960 1.30
-## 2 120.0    6     2 2.786 0.23
-## 3 150.0    4     2 1.704 0.27
-## 4 143.0    3     2 1.200 0.80
-## 5  92.5    3     1 1.329 0.42
-## 6  50.0    2     1 0.974 0.34</code></pre>
+print(HousesNY)</code></pre>
+<pre><code>##    Price Beds Baths  Size  Lot
+## 1   57.6    3   2.0 0.960 1.30
+## 2  120.0    6   2.0 2.786 0.23
+## 3  150.0    4   2.0 1.704 0.27
+## 4  143.0    3   2.0 1.200 0.80
+## 5   92.5    3   1.0 1.329 0.42
+## 6   50.0    2   1.0 0.974 0.34
+## 7   89.0    2   2.0 1.029 0.29
+## 8  140.0    4   3.0 2.818 0.21
+## 9  197.5    4   2.5 2.268 1.00
+## 10 125.1    3   2.0 1.936 0.30
+## 11 175.0    3   2.0 1.528 1.30
+## 12  60.0    3   1.0 0.880 1.00
+## 13 138.5    3   2.0 1.416 0.70
+## 14 160.0    4   2.0 2.060 0.60
+## 15  63.5    3   2.0 1.781 0.20
+## 16 107.0    3   1.0 1.428 2.00
+## 17 185.0    4   3.5 2.220 0.12
+## 18  82.7    3   1.0 1.100 2.07
+## 19  75.0    4   2.0 1.400 0.15
+## 20 118.0    3   1.0 1.500 0.50
+## 21  87.5    4   2.0 2.464 0.33
+## 22  67.5    4   1.0 1.515 0.22
+## 23 105.0    5   2.0 2.732 0.37
+## 24 114.0    4   2.0 2.720 2.50
+## 25 100.5    3   2.0 1.608 0.58
+## 26  78.0    2   1.0 0.712 1.17
+## 27  99.0    3   1.0 0.864 1.66
+## 28 144.0    3   1.5 1.968 0.34
+## 29 179.0    4   2.0 3.100 0.28
+## 30 110.0    3   1.5 1.312 0.21
+## 31 175.0    3   2.0 2.127 1.80
+## 32 100.0    3   2.0 1.200 3.50
+## 33  53.0    3   1.0 1.321 0.25
+## 34  92.0    3   2.0 1.815 0.00
+## 35 127.0    3   2.0 1.184 0.34
+## 36 120.5    2   2.0 1.200 2.00
+## 37  72.0    3   2.0 1.442 0.22
+## 38  95.0    3   2.0 0.840 1.03
+## 39  38.5    3   1.0 1.296 1.42
+## 40 139.0    4   2.0 2.160 0.12
+## 41  75.0    2   2.0 0.780 0.15
+## 42 174.0    4   3.0 1.382 0.48
+## 43 119.0    4   2.0 2.375 0.34
+## 44  89.0    4   1.0 2.274 1.00
+## 45  75.1    4   2.0 1.540 0.35
+## 46  92.5    3   2.0 1.790 0.73
+## 47 141.0    4   1.0 1.620 0.28
+## 48  82.0    3   3.0 1.454 2.50
+## 49 162.0    4   1.5 2.044 0.85
+## 50 195.0    4   3.0 1.848 1.84
+## 51 190.0    5   3.5 2.794 0.31
+## 52 115.0    4   2.0 1.401 1.10
+## 53  87.0    3   1.5 1.740 0.25</code></pre>
+<p><br></p>
 <hr />
 <p><br><br></p>
 </div>
-<div id="T6_PlotsScatter" class="section level2" number="1.2">
-<h2><span class="header-section-number">1.2</span> Scatterplots</h2>
-<p><br></p>
-<div id="basic-plot-no-line-of-best-fit" class="section level3"
-number="1.2.1">
-<h3><span class="header-section-number">1.2.1</span> Basic plot (no line
-of best fit)</h3>
-<p>Here is the absolute basic scatterplot. This should not be the one
-you submit in your reports (e.g. either choose a more professional one
-or adjust the options below)</p>
-<pre class="r"><code># you can either do plot(x, y)
-# OR (recommended), use the ~ to say plot(y~x) 
-# e.g. y depends on x
-plot(HousesNY$Price ~ HousesNY$Beds,
-     xlab=&quot;Beds&quot;,ylab=&quot;Price (USD&quot;)</code></pre>
-<p><img src="in_T11_Plots_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<p>There are many things we can change, see the help file for the
-<code>par</code> command for more. For example, here is an ugly plot
-showing as many as I can think!</p>
-<pre class="r"><code>plot(HousesNY$Price ~ HousesNY$Beds,
-     xlim=c(0,7), #xlimits
-     ylim=c(40,220), #ylimits
-     xlab=list(&quot;Beds&quot;,cex=.8,col=&quot;red&quot;,font=2), # play with x-label
-     ylab=list(&quot;Price&quot;,cex=1.2,col=&quot;blue&quot;,font=3), # play with x-label
-     main=&quot;Ugly feature plot&quot;,
-     cex=1.2, #point size
-     pch=16, # symbol shape (try plot(1:24,1:24,pch=1:24 to see them all))
-     tcl=-.25, # smaller tick marks
-     mgp=c(1.75,.5,0)) # move the x/y labels around
-
-grid() #  add a grid
-
-# lines means &quot;add points on top&quot;
-lines(HousesNY$Price ~ HousesNY$Beds, 
-     type=&quot;p&quot;, # p for points, &quot;l&quot; for lines, &quot;o&quot; for both, &quot;h for bars
-     xlim=c(0,7), #xlimits
-     ylim=c(40,220), #ylimits
-     col=&quot;yellow&quot;,
-     cex=.5, #point size
-     pch=4) # move the x/y labels around</code></pre>
-<p><img src="in_T11_Plots_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-<p><br></p>
 </div>
-<div id="basic-plot-with-a-line-of-best-fit" class="section level3"
-number="1.2.2">
-<h3><span class="header-section-number">1.2.2</span> Basic plot WITH a
-line of best fit</h3>
-<p>To add a line, you can use the <code>abline</code> command IN THE
-SAME CODE CHUNK:</p>
-<pre class="r"><code># Create the plot
-plot(HousesNY$Price ~ HousesNY$Beds,
-     xlab=&quot;Beds&quot;, ylab=&quot;Price (1000 USD)&quot;, main=&quot;&quot;, 
-     cex=1.2, pch=16) 
-
-# add vertical line at 3.5
-# # add horizontal line at the mean of price
-abline(v=5.5,col=&quot;red&quot;)
-abline(h=mean(HousesNY$Price),col=&quot;blue&quot;,lty=&quot;dotted&quot;)
-
-# add line of best fit from a linear model
-mymodel &lt;- lm(Price ~ Beds, HousesNY)
-abline(mymodel,col=&quot;purple&quot;,lty=&quot;dotted&quot;,lwd=3) </code></pre>
-<p><img src="in_T11_Plots_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
-<p><br></p>
-</div>
-<div id="ggplot2-scatterplots" class="section level3" number="1.2.3">
-<h3><span class="header-section-number">1.2.3</span> GGplot2
-scatterplots</h3>
-<p>GGPlot2 also has basic and advanced options, but you need to
-install/run the ggplot2 package.</p>
-<p>Again, I am using the HousesNY example dataset that I discussed
-earlier with the bed and price column names. You can see that each
-command is joined by a “+”.</p>
-<pre class="r"><code># Normally this goes in your library code chunk
+<div id="histograms-box-violin-plots" class="section level2"
+number="1.2">
+<h2><span class="header-section-number">1.2</span> Histograms, Box &amp;
+Violin Plots</h2>
+<div id="histograms-t_histograms" class="section level3" number="1.2.1">
+<h3><span class="header-section-number">1.2.1</span> Histograms
+{T_Histograms}</h3>
+<p>You will need these library commands at the top of your script</p>
+<pre class="r"><code>library(tidyverse)
+library(ggstatsplot)
 library(ggplot2)
-
-# ggplot (TABLENAME, aes(x=XCOLUMN_NAME, y=YCOLUMN_NAME)
-ggplot(HousesNY, aes(x=Beds, y=Price)) + 
-    geom_point() + 
-    ggtitle(&quot;Price of New York Homes by bedroom size&quot;) +
-    xlab(&quot;Beds&quot;) + ylab(&quot;Price (1000 USD)&quot;)</code></pre>
+library(ggExtra)
+library(ggridges)
+library(ggpubr)
+library(hrbrthemes)
+library(ggthemes)
+library(viridis)
+library(RColorBrewer)
+library(plotly)</code></pre>
+<p>And remember the column names of our tutorial data-set are:</p>
+<pre class="r"><code>names(HousesNY)</code></pre>
+<pre><code>## [1] &quot;Price&quot; &quot;Beds&quot;  &quot;Baths&quot; &quot;Size&quot;  &quot;Lot&quot;</code></pre>
+<div id="ggstatsplot" class="section level4" number="1.2.1.1">
+<h4><span class="header-section-number">1.2.1.1</span> ggstatsplot</h4>
+<p>I love ggstatsplot - everything feels intuitive.</p>
+<pre class="r"><code>gghistostats( data = HousesNY, 
+  x        = Price, 
+  binwidth = 10,
+  xlab     = &quot;Price (USD)&quot;,
+  title    = &quot;Price of sampled houses in Canton NY&quot;, 
+  caption  = &quot;Source: Zillow&quot;,
+  results.subtitle = FALSE)</code></pre>
 <p><img src="in_T11_Plots_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
-<p>To more advanced:</p>
-<pre class="r"><code># Library. Put these at the top!
-library(ggplot2)
-library(hrbrthemes)
-
-ggplot(HousesNY, aes(x=Beds, y=Price)) + 
-    geom_point(
-        color=&quot;black&quot;,
-        fill=&quot;#69b3a2&quot;,
-        shape=22,
-        alpha=0.5,
-        size=6,
-        stroke = 1
-        ) +
-    theme_ipsum() +   
-   ggtitle(&quot;Price of New York Homes by bedroom size&quot;) +
-   xlab(&quot;Beds&quot;) + ylab(&quot;Price (1000 USD)&quot;)</code></pre>
+</div>
+<div id="ggplot2-histograms" class="section level4" number="1.2.1.2">
+<h4><span class="header-section-number">1.2.1.2</span> ggplot2
+histograms</h4>
+<p>Here’s a minimal example using <code>geom_histogram</code>. We first
+load the data using ggplot2, then plot it as a geom_histogram with 20
+bins. Each line is connected using a + sign.</p>
+<pre class="r"><code>ggplot(HousesNY, aes(x = Price)) +
+  geom_histogram(bins = 20) +
+  labs(x = &quot;House Price (USD)&quot;)</code></pre>
 <p><img src="in_T11_Plots_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
-<p><br><br></p>
-</div>
-<div id="T6_PlotGGPlot" class="section level3" number="1.2.4">
-<h3><span class="header-section-number">1.2.4</span> GGplot2 adding a
-line of best fit.</h3>
-<p>Adding a line of best fit is easy, but it takes a bit of getting used
-to. The ggplotly command makes it interactive</p>
-<pre class="r"><code># Library. Put these at the top if they&#39;re 
-# not already in your library code chunk
-library(ggplot2)
-library(hrbrthemes)
-library(plotly)
+<p>You can enhance the appearance using labels, dollar formatting, and
+color styling. There are MANY options.</p>
+<pre class="r"><code>ggplot(HousesNY, aes(x = Price)) +
+  geom_histogram(bins = 15, color=&quot;navy&quot;,fill  = &quot;steelblue&quot;) +
+  labs(x = &quot;House Price (USD)&quot;, 
+       y = &quot;Number of Houses&quot;,
+       title = &quot;Add your title&quot;, 
+       subtitle = &quot;And/or add your subtitle&quot;,) +
+  scale_x_continuous(labels = scales::dollar_format()) +
+  theme_light(base_size = 12)</code></pre>
+<p><img src="in_T11_Plots_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>There are also different themes inside the ggthemes package, which
+will change the look of your plot with a single click of a button. To do
+this easily, I can save the basic plot - then add the theme to it before
+printing it out on the screen.</p>
+<pre class="r"><code>myplot &lt;- ggplot(HousesNY, aes(x = Price)) +  
+  geom_histogram(binwidth = 10) +
+  labs(x = &quot;House Price (USD)&quot;, y = &quot;Count&quot;) # I could just add the theme here,
 
+plota &lt;- myplot + theme_few()
+plotb &lt;- myplot + theme_tufte()
+plotc &lt;- myplot + theme_ipsum()
+plotd &lt;- myplot + theme_wsj()
 
-# Add linear trend WITHOUT confidence intervals
-# HousesNY is the variable/table name.  
-# Beds and Price are the columns I want to plot
-
-myplot &lt;- ggplot(HousesNY, aes(x=Beds, y=Price)) + 
-    geom_point() + 
-    ggtitle(&quot;Price of New York Homes by bedroom size&quot;) +
-    xlab(&quot;Beds&quot;) + ylab(&quot;Price (1000 USD)&quot;)+
-    geom_smooth(method=lm , color=&quot;red&quot;, se=FALSE) +
-    theme_ipsum()
-
-# ggplotly makes it interactive, but you could just type myplot
-ggplotly(myplot)</code></pre>
-<div class="plotly html-widget html-fill-item" id="htmlwidget-b9ad0f3243187c696e0d" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-b9ad0f3243187c696e0d">{"x":{"data":[{"x":[3,6,4,3,3,2,2,4,4,3,3,3,3,4,3,3,4,3,4,3,4,4,5,4,3,2,3,3,4,3,3,3,3,3,3,2,3,3,3,4,2,4,4,4,4,3,4,3,4,4,5,4,3],"y":[57.600000000000001,120,150,143,92.5,50,89,140,197.5,125.09999999999999,175,60,138.5,160,63.5,107,185,82.700000000000003,75,118,87.5,67.5,105,114,100.5,78,99,144,179,110,175,100,53,92,127,120.5,72,95,38.5,139,75,174,119,89,75.099999999999994,92.5,141,82,162,195,190,115,87],"text":["Beds: 3<br />Price:  57.6","Beds: 6<br />Price: 120.0","Beds: 4<br />Price: 150.0","Beds: 3<br />Price: 143.0","Beds: 3<br />Price:  92.5","Beds: 2<br />Price:  50.0","Beds: 2<br />Price:  89.0","Beds: 4<br />Price: 140.0","Beds: 4<br />Price: 197.5","Beds: 3<br />Price: 125.1","Beds: 3<br />Price: 175.0","Beds: 3<br />Price:  60.0","Beds: 3<br />Price: 138.5","Beds: 4<br />Price: 160.0","Beds: 3<br />Price:  63.5","Beds: 3<br />Price: 107.0","Beds: 4<br />Price: 185.0","Beds: 3<br />Price:  82.7","Beds: 4<br />Price:  75.0","Beds: 3<br />Price: 118.0","Beds: 4<br />Price:  87.5","Beds: 4<br />Price:  67.5","Beds: 5<br />Price: 105.0","Beds: 4<br />Price: 114.0","Beds: 3<br />Price: 100.5","Beds: 2<br />Price:  78.0","Beds: 3<br />Price:  99.0","Beds: 3<br />Price: 144.0","Beds: 4<br />Price: 179.0","Beds: 3<br />Price: 110.0","Beds: 3<br />Price: 175.0","Beds: 3<br />Price: 100.0","Beds: 3<br />Price:  53.0","Beds: 3<br />Price:  92.0","Beds: 3<br />Price: 127.0","Beds: 2<br />Price: 120.5","Beds: 3<br />Price:  72.0","Beds: 3<br />Price:  95.0","Beds: 3<br />Price:  38.5","Beds: 4<br />Price: 139.0","Beds: 2<br />Price:  75.0","Beds: 4<br />Price: 174.0","Beds: 4<br />Price: 119.0","Beds: 4<br />Price:  89.0","Beds: 4<br />Price:  75.1","Beds: 3<br />Price:  92.5","Beds: 4<br />Price: 141.0","Beds: 3<br />Price:  82.0","Beds: 4<br />Price: 162.0","Beds: 4<br />Price: 195.0","Beds: 5<br />Price: 190.0","Beds: 4<br />Price: 115.0","Beds: 3<br />Price:  87.0"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,0,0,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)"}},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2,2.0506329113924049,2.1012658227848102,2.1518987341772151,2.2025316455696204,2.2531645569620253,2.3037974683544302,2.3544303797468356,2.4050632911392404,2.4556962025316453,2.5063291139240507,2.5569620253164556,2.6075949367088609,2.6582278481012658,2.7088607594936711,2.759493670886076,2.8101265822784809,2.8607594936708862,2.9113924050632911,2.962025316455696,3.0126582278481013,3.0632911392405062,3.1139240506329111,3.1645569620253164,3.2151898734177218,3.2658227848101267,3.3164556962025316,3.3670886075949369,3.4177215189873418,3.4683544303797467,3.518987341772152,3.5696202531645569,3.6202531645569618,3.6708860759493671,3.7215189873417724,3.7721518987341769,3.8227848101265822,3.8734177215189876,3.9240506329113924,3.9746835443037973,4.0253164556962027,4.075949367088608,4.1265822784810124,4.1772151898734178,4.2278481012658222,4.2784810126582276,4.3291139240506329,4.3797468354430382,4.4303797468354436,4.481012658227848,4.5316455696202533,4.5822784810126578,4.6329113924050631,4.6835443037974684,4.7341772151898738,4.7848101265822782,4.8354430379746836,4.886075949367088,4.9367088607594933,4.9873417721518987,5.037974683544304,5.0886075949367093,5.1392405063291138,5.1898734177215191,5.2405063291139236,5.2911392405063289,5.3417721518987342,5.3924050632911396,5.4430379746835449,5.4936708860759493,5.5443037974683538,5.5949367088607591,5.6455696202531644,5.6962025316455698,5.7468354430379751,5.7974683544303796,5.8481012658227849,5.8987341772151893,5.9493670886075947,6],"y":[83.048267898383415,84.157362528137554,85.266457157891722,86.375551787645861,87.4846464174,88.59374104715414,89.702835676908279,90.811930306662447,91.921024936416586,93.030119566170725,94.139214195924865,95.248308825679004,96.357403455433172,97.466498085187311,98.57559271494145,99.68468734469559,100.79378197444973,101.9028766042039,103.01197123395804,104.12106586371218,105.23016049346631,106.33925512322047,107.44834975297461,108.55744438272876,109.6665390124829,110.77563364223704,111.88472827199119,112.99382290174533,114.10291753149947,115.21201216125363,116.32110679100776,117.43020142076192,118.53929605051606,119.6483906802702,120.75748531002435,121.86657993977849,122.97567456953264,124.08476919928678,125.19386382904092,126.30295845879508,127.41205308854921,128.52114771830338,129.63024234805749,130.73933697781166,131.84843160756577,132.95752623731994,134.06662086707411,135.17571549682822,136.28481012658239,137.39390475633652,138.50299938609066,139.6120940158448,140.72118864559894,141.83028327535311,142.93937790510725,144.04847253486139,145.15756716461553,146.26666179436967,147.37575642412384,148.48485105387797,149.59394568363211,150.70304031338628,151.81213494314039,152.92122957289456,154.03032420264867,155.13941883240284,156.24851346215698,157.35760809191112,158.46670272166529,159.57579735141942,160.68489198117356,161.7939866109277,162.90308124068184,164.01217587043601,165.12127050019015,166.23036512994429,167.33945975969843,168.44855438945257,169.55764901920671,170.66674364896087],"text":["Beds: 2.000000<br />Price:  83.04827","Beds: 2.050633<br />Price:  84.15736","Beds: 2.101266<br />Price:  85.26646","Beds: 2.151899<br />Price:  86.37555","Beds: 2.202532<br />Price:  87.48465","Beds: 2.253165<br />Price:  88.59374","Beds: 2.303797<br />Price:  89.70284","Beds: 2.354430<br />Price:  90.81193","Beds: 2.405063<br />Price:  91.92102","Beds: 2.455696<br />Price:  93.03012","Beds: 2.506329<br />Price:  94.13921","Beds: 2.556962<br />Price:  95.24831","Beds: 2.607595<br />Price:  96.35740","Beds: 2.658228<br />Price:  97.46650","Beds: 2.708861<br />Price:  98.57559","Beds: 2.759494<br />Price:  99.68469","Beds: 2.810127<br />Price: 100.79378","Beds: 2.860759<br />Price: 101.90288","Beds: 2.911392<br />Price: 103.01197","Beds: 2.962025<br />Price: 104.12107","Beds: 3.012658<br />Price: 105.23016","Beds: 3.063291<br />Price: 106.33926","Beds: 3.113924<br />Price: 107.44835","Beds: 3.164557<br />Price: 108.55744","Beds: 3.215190<br />Price: 109.66654","Beds: 3.265823<br />Price: 110.77563","Beds: 3.316456<br />Price: 111.88473","Beds: 3.367089<br />Price: 112.99382","Beds: 3.417722<br />Price: 114.10292","Beds: 3.468354<br />Price: 115.21201","Beds: 3.518987<br />Price: 116.32111","Beds: 3.569620<br />Price: 117.43020","Beds: 3.620253<br />Price: 118.53930","Beds: 3.670886<br />Price: 119.64839","Beds: 3.721519<br />Price: 120.75749","Beds: 3.772152<br />Price: 121.86658","Beds: 3.822785<br />Price: 122.97567","Beds: 3.873418<br />Price: 124.08477","Beds: 3.924051<br />Price: 125.19386","Beds: 3.974684<br />Price: 126.30296","Beds: 4.025316<br />Price: 127.41205","Beds: 4.075949<br />Price: 128.52115","Beds: 4.126582<br />Price: 129.63024","Beds: 4.177215<br />Price: 130.73934","Beds: 4.227848<br />Price: 131.84843","Beds: 4.278481<br />Price: 132.95753","Beds: 4.329114<br />Price: 134.06662","Beds: 4.379747<br />Price: 135.17572","Beds: 4.430380<br />Price: 136.28481","Beds: 4.481013<br />Price: 137.39390","Beds: 4.531646<br />Price: 138.50300","Beds: 4.582278<br />Price: 139.61209","Beds: 4.632911<br />Price: 140.72119","Beds: 4.683544<br />Price: 141.83028","Beds: 4.734177<br />Price: 142.93938","Beds: 4.784810<br />Price: 144.04847","Beds: 4.835443<br />Price: 145.15757","Beds: 4.886076<br />Price: 146.26666","Beds: 4.936709<br />Price: 147.37576","Beds: 4.987342<br />Price: 148.48485","Beds: 5.037975<br />Price: 149.59395","Beds: 5.088608<br />Price: 150.70304","Beds: 5.139241<br />Price: 151.81213","Beds: 5.189873<br />Price: 152.92123","Beds: 5.240506<br />Price: 154.03032","Beds: 5.291139<br />Price: 155.13942","Beds: 5.341772<br />Price: 156.24851","Beds: 5.392405<br />Price: 157.35761","Beds: 5.443038<br />Price: 158.46670","Beds: 5.493671<br />Price: 159.57580","Beds: 5.544304<br />Price: 160.68489","Beds: 5.594937<br />Price: 161.79399","Beds: 5.645570<br />Price: 162.90308","Beds: 5.696203<br />Price: 164.01218","Beds: 5.746835<br />Price: 165.12127","Beds: 5.797468<br />Price: 166.23037","Beds: 5.848101<br />Price: 167.33946","Beds: 5.898734<br />Price: 168.44855","Beds: 5.949367<br />Price: 169.55765","Beds: 6.000000<br />Price: 170.66674"],"type":"scatter","mode":"lines","name":"fitted values","line":{"width":3.7795275590551185,"color":"rgba(255,0,0,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":95.701120797011214,"r":39.850560398505614,"b":86.841012868410147,"l":78.538812785388146},"font":{"color":"rgba(0,0,0,1)","family":"Arial Narrow","size":15.276048152760483},"title":{"text":"<b> Price of New York Homes by bedroom size <\/b>","font":{"color":"rgba(0,0,0,1)","family":"Arial Narrow","size":23.910336239103362},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[1.8,6.2000000000000002],"tickmode":"array","ticktext":["2","3","4","5","6"],"tickvals":[2,3,4,5,6],"categoryorder":"array","categoryarray":["2","3","4","5","6"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.8190120381901207,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"Arial Narrow","size":15.276048152760483},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(204,204,204,1)","gridwidth":0.26567040265670405,"zeroline":false,"anchor":"y","title":{"text":"Beds","font":{"color":"rgba(0,0,0,1)","family":"Arial Narrow","size":11.955168119551681}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[30.550000000000001,205.44999999999999],"tickmode":"array","ticktext":["50","100","150","200"],"tickvals":[50,100,150,200],"categoryorder":"array","categoryarray":["50","100","150","200"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.8190120381901207,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"Arial Narrow","size":15.276048152760483},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(204,204,204,1)","gridwidth":0.26567040265670405,"zeroline":false,"anchor":"x","title":{"text":"Price (1000 USD)","font":{"color":"rgba(0,0,0,1)","family":"Arial Narrow","size":11.955168119551681}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"Arial Narrow","size":12.220838522208387}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"61228701c0d":{"x":{},"y":{},"type":"scatter"},"612278419dce":{"x":{},"y":{}}},"cur_data":"61228701c0d","visdat":{"61228701c0d":["function (y) ","x"],"612278419dce":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
-</div>
-<div id="ggplot2-adding-a-line-of-best-fit-and-confidence-intervals"
-class="section level3" number="1.2.5">
-<h3><span class="header-section-number">1.2.5</span> GGplot2 adding a
-line of best fit and confidence intervals</h3>
-<p>We can also add confidence intervals on our line of best fit.</p>
-<pre class="r"><code># Add linear trend + confidence interval
-ggplot(HousesNY, aes(x=Beds, y=Price)) + 
-    geom_point() + 
-    ggtitle(&quot;Price of New York Homes by bedroom size&quot;) +
-    xlab(&quot;Beds&quot;) + ylab(&quot;Price (1000 USD)&quot;)+
-    geom_smooth(method=lm , color=&quot;blue&quot;, fill=&quot;#69b3a2&quot;, se=TRUE) +
-    theme_ipsum()</code></pre>
+# and I can use ggarrange to plot sub-plots
+ggarrange(plota, plotb, plotc, plotd, ncol = 2, nrow = 2)</code></pre>
 <p><img src="in_T11_Plots_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p><br></p>
 </div>
-<div id="T6_ScatterPlotly" class="section level3" number="1.2.6">
-<h3><span class="header-section-number">1.2.6</span> Plotly Interactive
-scatterplots!</h3>
-<p>You can use the plotly library to make ANY ggplot2 plot
-interactive</p>
-<p>This is really useful, try zooming in or clicking on a few points. If
-you don’t want the line of best fit, simply remove the geom_smooth
-line.</p>
-<pre class="r"><code># create the plot, save it as a variable rather than print immediately
-myplot &lt;-   ggplot(HousesNY, aes(x=Beds, y=Price)) + 
-               geom_point() + 
-               geom_smooth(method=lm , color=&quot;red&quot;, se=FALSE) +
-               ggtitle(&quot;Price of New York Homes by bedroom size&quot;) +
-               xlab(&quot;Beds&quot;) + ylab(&quot;Price (1000 USD)&quot;)
-            
-# and plot interactively
-ggplotly(myplot)</code></pre>
-<div class="plotly html-widget html-fill-item" id="htmlwidget-cdc9ac56f51aeb032891" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-cdc9ac56f51aeb032891">{"x":{"data":[{"x":[3,6,4,3,3,2,2,4,4,3,3,3,3,4,3,3,4,3,4,3,4,4,5,4,3,2,3,3,4,3,3,3,3,3,3,2,3,3,3,4,2,4,4,4,4,3,4,3,4,4,5,4,3],"y":[57.600000000000001,120,150,143,92.5,50,89,140,197.5,125.09999999999999,175,60,138.5,160,63.5,107,185,82.700000000000003,75,118,87.5,67.5,105,114,100.5,78,99,144,179,110,175,100,53,92,127,120.5,72,95,38.5,139,75,174,119,89,75.099999999999994,92.5,141,82,162,195,190,115,87],"text":["Beds: 3<br />Price:  57.6","Beds: 6<br />Price: 120.0","Beds: 4<br />Price: 150.0","Beds: 3<br />Price: 143.0","Beds: 3<br />Price:  92.5","Beds: 2<br />Price:  50.0","Beds: 2<br />Price:  89.0","Beds: 4<br />Price: 140.0","Beds: 4<br />Price: 197.5","Beds: 3<br />Price: 125.1","Beds: 3<br />Price: 175.0","Beds: 3<br />Price:  60.0","Beds: 3<br />Price: 138.5","Beds: 4<br />Price: 160.0","Beds: 3<br />Price:  63.5","Beds: 3<br />Price: 107.0","Beds: 4<br />Price: 185.0","Beds: 3<br />Price:  82.7","Beds: 4<br />Price:  75.0","Beds: 3<br />Price: 118.0","Beds: 4<br />Price:  87.5","Beds: 4<br />Price:  67.5","Beds: 5<br />Price: 105.0","Beds: 4<br />Price: 114.0","Beds: 3<br />Price: 100.5","Beds: 2<br />Price:  78.0","Beds: 3<br />Price:  99.0","Beds: 3<br />Price: 144.0","Beds: 4<br />Price: 179.0","Beds: 3<br />Price: 110.0","Beds: 3<br />Price: 175.0","Beds: 3<br />Price: 100.0","Beds: 3<br />Price:  53.0","Beds: 3<br />Price:  92.0","Beds: 3<br />Price: 127.0","Beds: 2<br />Price: 120.5","Beds: 3<br />Price:  72.0","Beds: 3<br />Price:  95.0","Beds: 3<br />Price:  38.5","Beds: 4<br />Price: 139.0","Beds: 2<br />Price:  75.0","Beds: 4<br />Price: 174.0","Beds: 4<br />Price: 119.0","Beds: 4<br />Price:  89.0","Beds: 4<br />Price:  75.1","Beds: 3<br />Price:  92.5","Beds: 4<br />Price: 141.0","Beds: 3<br />Price:  82.0","Beds: 4<br />Price: 162.0","Beds: 4<br />Price: 195.0","Beds: 5<br />Price: 190.0","Beds: 4<br />Price: 115.0","Beds: 3<br />Price:  87.0"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,0,0,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)"}},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2,2.0506329113924049,2.1012658227848102,2.1518987341772151,2.2025316455696204,2.2531645569620253,2.3037974683544302,2.3544303797468356,2.4050632911392404,2.4556962025316453,2.5063291139240507,2.5569620253164556,2.6075949367088609,2.6582278481012658,2.7088607594936711,2.759493670886076,2.8101265822784809,2.8607594936708862,2.9113924050632911,2.962025316455696,3.0126582278481013,3.0632911392405062,3.1139240506329111,3.1645569620253164,3.2151898734177218,3.2658227848101267,3.3164556962025316,3.3670886075949369,3.4177215189873418,3.4683544303797467,3.518987341772152,3.5696202531645569,3.6202531645569618,3.6708860759493671,3.7215189873417724,3.7721518987341769,3.8227848101265822,3.8734177215189876,3.9240506329113924,3.9746835443037973,4.0253164556962027,4.075949367088608,4.1265822784810124,4.1772151898734178,4.2278481012658222,4.2784810126582276,4.3291139240506329,4.3797468354430382,4.4303797468354436,4.481012658227848,4.5316455696202533,4.5822784810126578,4.6329113924050631,4.6835443037974684,4.7341772151898738,4.7848101265822782,4.8354430379746836,4.886075949367088,4.9367088607594933,4.9873417721518987,5.037974683544304,5.0886075949367093,5.1392405063291138,5.1898734177215191,5.2405063291139236,5.2911392405063289,5.3417721518987342,5.3924050632911396,5.4430379746835449,5.4936708860759493,5.5443037974683538,5.5949367088607591,5.6455696202531644,5.6962025316455698,5.7468354430379751,5.7974683544303796,5.8481012658227849,5.8987341772151893,5.9493670886075947,6],"y":[83.048267898383415,84.157362528137554,85.266457157891722,86.375551787645861,87.4846464174,88.59374104715414,89.702835676908279,90.811930306662447,91.921024936416586,93.030119566170725,94.139214195924865,95.248308825679004,96.357403455433172,97.466498085187311,98.57559271494145,99.68468734469559,100.79378197444973,101.9028766042039,103.01197123395804,104.12106586371218,105.23016049346631,106.33925512322047,107.44834975297461,108.55744438272876,109.6665390124829,110.77563364223704,111.88472827199119,112.99382290174533,114.10291753149947,115.21201216125363,116.32110679100776,117.43020142076192,118.53929605051606,119.6483906802702,120.75748531002435,121.86657993977849,122.97567456953264,124.08476919928678,125.19386382904092,126.30295845879508,127.41205308854921,128.52114771830338,129.63024234805749,130.73933697781166,131.84843160756577,132.95752623731994,134.06662086707411,135.17571549682822,136.28481012658239,137.39390475633652,138.50299938609066,139.6120940158448,140.72118864559894,141.83028327535311,142.93937790510725,144.04847253486139,145.15756716461553,146.26666179436967,147.37575642412384,148.48485105387797,149.59394568363211,150.70304031338628,151.81213494314039,152.92122957289456,154.03032420264867,155.13941883240284,156.24851346215698,157.35760809191112,158.46670272166529,159.57579735141942,160.68489198117356,161.7939866109277,162.90308124068184,164.01217587043601,165.12127050019015,166.23036512994429,167.33945975969843,168.44855438945257,169.55764901920671,170.66674364896087],"text":["Beds: 2.000000<br />Price:  83.04827","Beds: 2.050633<br />Price:  84.15736","Beds: 2.101266<br />Price:  85.26646","Beds: 2.151899<br />Price:  86.37555","Beds: 2.202532<br />Price:  87.48465","Beds: 2.253165<br />Price:  88.59374","Beds: 2.303797<br />Price:  89.70284","Beds: 2.354430<br />Price:  90.81193","Beds: 2.405063<br />Price:  91.92102","Beds: 2.455696<br />Price:  93.03012","Beds: 2.506329<br />Price:  94.13921","Beds: 2.556962<br />Price:  95.24831","Beds: 2.607595<br />Price:  96.35740","Beds: 2.658228<br />Price:  97.46650","Beds: 2.708861<br />Price:  98.57559","Beds: 2.759494<br />Price:  99.68469","Beds: 2.810127<br />Price: 100.79378","Beds: 2.860759<br />Price: 101.90288","Beds: 2.911392<br />Price: 103.01197","Beds: 2.962025<br />Price: 104.12107","Beds: 3.012658<br />Price: 105.23016","Beds: 3.063291<br />Price: 106.33926","Beds: 3.113924<br />Price: 107.44835","Beds: 3.164557<br />Price: 108.55744","Beds: 3.215190<br />Price: 109.66654","Beds: 3.265823<br />Price: 110.77563","Beds: 3.316456<br />Price: 111.88473","Beds: 3.367089<br />Price: 112.99382","Beds: 3.417722<br />Price: 114.10292","Beds: 3.468354<br />Price: 115.21201","Beds: 3.518987<br />Price: 116.32111","Beds: 3.569620<br />Price: 117.43020","Beds: 3.620253<br />Price: 118.53930","Beds: 3.670886<br />Price: 119.64839","Beds: 3.721519<br />Price: 120.75749","Beds: 3.772152<br />Price: 121.86658","Beds: 3.822785<br />Price: 122.97567","Beds: 3.873418<br />Price: 124.08477","Beds: 3.924051<br />Price: 125.19386","Beds: 3.974684<br />Price: 126.30296","Beds: 4.025316<br />Price: 127.41205","Beds: 4.075949<br />Price: 128.52115","Beds: 4.126582<br />Price: 129.63024","Beds: 4.177215<br />Price: 130.73934","Beds: 4.227848<br />Price: 131.84843","Beds: 4.278481<br />Price: 132.95753","Beds: 4.329114<br />Price: 134.06662","Beds: 4.379747<br />Price: 135.17572","Beds: 4.430380<br />Price: 136.28481","Beds: 4.481013<br />Price: 137.39390","Beds: 4.531646<br />Price: 138.50300","Beds: 4.582278<br />Price: 139.61209","Beds: 4.632911<br />Price: 140.72119","Beds: 4.683544<br />Price: 141.83028","Beds: 4.734177<br />Price: 142.93938","Beds: 4.784810<br />Price: 144.04847","Beds: 4.835443<br />Price: 145.15757","Beds: 4.886076<br />Price: 146.26666","Beds: 4.936709<br />Price: 147.37576","Beds: 4.987342<br />Price: 148.48485","Beds: 5.037975<br />Price: 149.59395","Beds: 5.088608<br />Price: 150.70304","Beds: 5.139241<br />Price: 151.81213","Beds: 5.189873<br />Price: 152.92123","Beds: 5.240506<br />Price: 154.03032","Beds: 5.291139<br />Price: 155.13942","Beds: 5.341772<br />Price: 156.24851","Beds: 5.392405<br />Price: 157.35761","Beds: 5.443038<br />Price: 158.46670","Beds: 5.493671<br />Price: 159.57580","Beds: 5.544304<br />Price: 160.68489","Beds: 5.594937<br />Price: 161.79399","Beds: 5.645570<br />Price: 162.90308","Beds: 5.696203<br />Price: 164.01218","Beds: 5.746835<br />Price: 165.12127","Beds: 5.797468<br />Price: 166.23037","Beds: 5.848101<br />Price: 167.33946","Beds: 5.898734<br />Price: 168.44855","Beds: 5.949367<br />Price: 169.55765","Beds: 6.000000<br />Price: 170.66674"],"type":"scatter","mode":"lines","name":"fitted values","line":{"width":3.7795275590551185,"color":"rgba(255,0,0,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":43.762557077625573,"r":7.3059360730593621,"b":40.182648401826498,"l":43.105022831050235},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"title":{"text":"Price of New York Homes by bedroom size","font":{"color":"rgba(0,0,0,1)","family":"","size":17.534246575342465},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[1.8,6.2000000000000002],"tickmode":"array","ticktext":["2","3","4","5","6"],"tickvals":[2,3,4,5,6],"categoryorder":"array","categoryarray":["2","3","4","5","6"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Beds","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[30.550000000000001,205.44999999999999],"tickmode":"array","ticktext":["50","100","150","200"],"tickvals":[50,100,150,200],"categoryorder":"array","categoryarray":["50","100","150","200"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"Price (1000 USD)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"61224e901532":{"x":{},"y":{},"type":"scatter"},"6122555fade9":{"x":{},"y":{}}},"cur_data":"61224e901532","visdat":{"61224e901532":["function (y) ","x"],"6122555fade9":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
-<p>It’s also very easy to add in color to see another variable. For
-example, here I also add in the lot size.</p>
-<pre class="r"><code># create the plot, save it as &quot;p&quot; rather than print immediately
-myplot2 &lt;-   ggplot(HousesNY, aes(x=Beds, y=Price,color=Lot)) + 
-               geom_point(alpha=.5) +
-               scale_color_gradient(low=&quot;blue&quot;, high=&quot;red&quot;)+
-               ggtitle(&quot;New York Homes price by bedrooms and lot size (acres)&quot;) +
-               xlab(&quot;Beds&quot;) + 
-               ylab(&quot;Price (1000 USD)&quot;)
-
-# and plot interactively
-ggplotly(myplot2)</code></pre>
-<p>If you get this error, go to the Session menu at the very top of the
-screen and click “Restart R and run all code chunks”.</p>
-<pre><code>Error in file(file, ifelse(append, &quot;a&quot;, &quot;w&quot;)) : 
-  cannot open the connection</code></pre>
-<p>Many more interactive options in this tutorial: <a
-href="https://plotly.com/r/line-and-scatter/"
-class="uri">https://plotly.com/r/line-and-scatter/</a></p>
-<hr />
-<p><br><br></p>
 </div>
-</div>
-<div id="histograms" class="section level2" number="1.3">
-<h2><span class="header-section-number">1.3</span> Histograms</h2>
-<p>Especially just looking at a single response variable, it’s useful to
-look immediately at the distribution itself. Histograms are great for
-this, although you must be careful that the bin size doesn’t impact your
-perception of results. Adding in a boxplot is often useful</p>
-<div id="basics" class="section level3" number="1.3.1">
-<h3><span class="header-section-number">1.3.1</span> Basics</h3>
-<p>Here is the absolute basic histogram, again on our HousesNY price
-data.</p>
-<pre class="r"><code>hist(HousesNY$Price, 
-     xlab=&quot;Price (USD)&quot;,main=&quot;&quot;)</code></pre>
-<p><img src="in_T11_Plots_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
-<p>Or changing the bin size. You can also specify exact bin sizes using
-br. - see ?hist</p>
-<pre class="r"><code>hist(HousesNY$Price,
-     br=40,
-     xlab=&quot;Price (USD)&quot;)</code></pre>
-<p><img src="in_T11_Plots_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
-</div>
-<div id="ggplot2-histograms" class="section level3" number="1.3.2">
-<h3><span class="header-section-number">1.3.2</span> ggplot2
-histograms</h3>
-<p>In GGPlot 2, it’s also easy. Remember to install the ggplot2 package.
-Check google for how to add your x label</p>
-<pre class="r"><code>ggplot(data=HousesNY, aes(x=Price)) + 
-  geom_histogram(bins=20) </code></pre>
-<p><img src="in_T11_Plots_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
-<div id="adding-a-boxplot-and-histogram" class="section level4"
-number="1.3.2.1">
-<h4><span class="header-section-number">1.3.2.1</span> Adding a boxplot
-and histogram</h4>
-<p>Often, a boxplot AND a histogram is useful as it allows you to see a
-sense of the data shape and its underlying symmetry. For example, in
-base R</p>
-<pre class="r"><code># Layout to split the screen
-graphics::layout(matrix(c(1,2),2,1, byrow=TRUE),  
-       height = c(2,7))
- 
-# Draw the boxplot and the histogram 
-par(mar=c(0, 3.1, .5, 2.1))
-
-data_to_plot &lt;- HousesNY$Price
-
-rangeplot &lt;- pretty(data_to_plot,10)
-
-boxplot(data_to_plot,col = &quot;light blue&quot;,
-        border = &quot;dark blue&quot;,xaxt=&quot;n&quot;,frame=FALSE,xlim=c(0.75,1.25),
-        horizontal = TRUE,notch = TRUE,ylim=c(min(rangeplot),max(rangeplot)))
-
-par(mar=c(3, 3.1, .5, 2.1))
-hist(data_to_plot , breaks=20 , 
-     col=grey(0.3) , border=F , 
-     tcl=-.25,mgp=c(1.75,.5,0),
-     main=&quot;&quot; , xlab=&quot;Price of houses in Canton NY&quot;, 
-     xlim=c(min(rangeplot),max(rangeplot)))
-box();grid();
-hist(data_to_plot , breaks=20 , add=TRUE,
-     col=grey(0.3) , border=F , axis=FALSE,
-     xlim=c(min(rangeplot),max(rangeplot)))</code></pre>
-<p><img src="in_T11_Plots_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
-<p>And the same with ggplot2:</p>
-<pre class="r"><code>library(ggExtra)
-
-p &lt;- ggplot(data=HousesNY, aes(x=Price)) + 
-  geom_point(aes(y = 0.01), alpha = 0) +
-  geom_histogram(bins=20) +
-  geom_density(na.rm=T)
-
-ggMarginal(p, type=&quot;boxplot&quot;, margins = &quot;x&quot;)</code></pre>
-<p><img src="in_T11_Plots_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
-</div>
-</div>
-<div id="ggstatsplot-histograms" class="section level3" number="1.3.3">
-<h3><span class="header-section-number">1.3.3</span> ggstatsplot
-histograms</h3>
-<p>I also love the ggstatplot version</p>
-<p>Or their version that includes a lot of associated statistics. You
-can turn many of these on and off</p>
-<pre class="r"><code>library(ggstatsplot)
-
-## plot
-gghistostats(
-  data       = HousesNY, 
-  x          = Price, 
-  title      = &quot;Price of sampled houses in Canton NY&quot;, 
-  caption    = &quot;Source: Zillow&quot;,
-  results.subtitle = FALSE,
-  xlab = &quot;Price (USD)&quot;)</code></pre>
-<p><img src="in_T11_Plots_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
-<div id="adding-a-density-function" class="section level4"
-number="1.3.3.1">
-<h4><span class="header-section-number">1.3.3.1</span> Adding a density
-function</h4>
-<p>Sometimes seeing a smoothed line helps draw the eye to
-distributions</p>
-<pre class="r"><code>hist(HousesNY$Price, prob = TRUE,
-     main = &quot;Canton Prices with density curve&quot;)
-lines(density(HousesNY$Price), col = 4, lwd = 2)
-box()</code></pre>
-<p><img src="in_T11_Plots_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
-</div>
-<div id="adding-a-distribution" class="section level4" number="1.3.3.2">
-<h4><span class="header-section-number">1.3.3.2</span> Adding a
-distribution</h4>
-<p>Let’s say you want to make plots similar to the ones in the lectures
-where there is your chosen distribution on top.</p>
-<p>If you know the distribution, you can simply add it on top as a
-line</p>
-<pre class="r"><code>mysample &lt;- HousesNY$Price
-
-plotmin &lt;- mean(mysample) - sd(mysample)*3
-plotmax &lt;-  mean(mysample) + sd(mysample)*3
-
-# Points for the normal equation line
-NormCurve_x &lt;- seq(plotmin,plotmax, length = 40)
-
-# Normal curve calculation for each point
-NormCurve_y &lt;- dnorm(NormCurve_x, mean = mean(mysample), sd = sd(mysample))
-
-# make sure this is density not raw frequency
-hist(mysample , breaks=20 , freq=FALSE,
-     col=grey(0.5) , border=F , 
-     xlim=c(plotmin,plotmax),
-     tcl=-.25,mgp=c(1.75,.5,0),
-     main=&quot;&quot; , xlab=&quot;Price of houses in Canton NY&quot;)
-# add the normal curve (THIS NEEDS TO BE IN THE SAME CODE CHUNK)
-lines(NormCurve_x, NormCurve_y, col = 2, lwd = 2)
-box()</code></pre>
-<p><img src="in_T11_Plots_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
-<p>We could plot any old curve this way, it doesn’t have to be “fit” to
-our data. For example here is a random gamma function</p>
-<pre class="r"><code>mysample &lt;- HousesNY$Price
-
-# Points for the normal equation line
-GammaCurve_x &lt;- seq(plotmin,plotmax, length = 60)
-GammaCurve_y &lt;- dgamma(GammaCurve_x,shape = 2)
-
-# make sure this is density not raw frequency
-hist(mysample , breaks=20 , freq=FALSE,
-     col=grey(0.5) , border=F , 
-     xlim=c(plotmin,plotmax),
-     tcl=-.25,mgp=c(1.75,.5,0),
-     main=&quot;&quot; , xlab=&quot;Price of houses in Canton NY&quot;)
-# add the normal curve (THIS NEEDS TO BE IN THE SAME CODE CHUNK)
-lines(GammaCurve_x, GammaCurve_y, col = 2, lwd = 2)
-box()</code></pre>
-<p><img src="in_T11_Plots_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
-</div>
-<div id="mulitple-histograms" class="section level4" number="1.3.3.3">
-<h4><span class="header-section-number">1.3.3.3</span> Mulitple
-histograms</h4>
-<p>Or you can easily compare two datasets, tutorial for this plot here:
-<a href="https://www.r-graph-gallery.com/histogram_several_group.html"
-class="uri">https://www.r-graph-gallery.com/histogram_several_group.html</a></p>
-<p>See also ridgeline plots below.</p>
-<p><br><br></p>
-</div>
-</div>
-</div>
-<div id="T6_boxplots" class="section level2" number="1.4">
-<h2><span class="header-section-number">1.4</span> Boxplots</h2>
-<p>Boxplots have been around over 40 years! See their history and
-evolution here: <a href="http://vita.had.co.nz/papers/boxplots.pdf"
-class="uri">http://vita.had.co.nz/papers/boxplots.pdf</a></p>
-<p>In terms of your reports, you need to think of 3 things: - Why you
-are making the plot (quick look vs publication worthy final graphic) -
-What aspects of the data do you want to highlight (lots of data,
-comparing groups, weird distributions..) - What are your final
-requirements and personal style (colorblind friendly, you’re drawn to a
-certain type of plot..)</p>
-<p>So for boxplots.. they are especially good at allowing you to compare
-different groups of things or to look for multiple groups in a single
-response variable. Here is a beautiful example made by Marcus Beckman on
-dissertation lengths.</p>
-<p><a
-href="https://beckmw.wordpress.com/2014/07/15/average-dissertation-and-thesis-length-take-two/%20and%20code%20here:%20https://github.com/fawda123/diss_proc">https://beckmw.wordpress.com/2014/07/15/average-dissertation-and-thesis-length-take-two/
-and code here: https://github.com/fawda123/diss_proc</a> )</p>
-<p>If there are only one or two variables, I often jump to the violin or
-histogram plots as they show more detail.</p>
-<p>So.. how to make these yourselves. You have a range of options!</p>
-<div id="basics-single-boxplot" class="section level3" number="1.4.1">
-<h3><span class="header-section-number">1.4.1</span> Basics (single
-boxplot)</h3>
-<p>Here is the most basic boxplot you can make. I often start with this
-for my own use when exploring the data, then later decide which plots to
-“make pretty”.</p>
-<pre class="r"><code>boxplot(HousesNY$Price)</code></pre>
-<p><img src="in_T11_Plots_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
-<p>We can make better boxplots in base R (e.g. using no special
-packages/libraries). See this tutorial for all the details: <a
-href="https://www.datamentor.io/r-programming/box-plot/"
-class="uri">https://www.datamentor.io/r-programming/box-plot/</a> which
-goes through exactly what each line means.</p>
-<pre class="r"><code># one big command on separate lines
-boxplot(HousesNY$Price,
-        main = &quot;House prices of Canton NY sample&quot;,
-        xlab = &quot;Price (Thousand USD)&quot;,
-        col = &quot;light blue&quot;,
-        border = &quot;dark blue&quot;,
-        horizontal = TRUE,
-        notch = TRUE)</code></pre>
-<p><img src="in_T11_Plots_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
-<p>There are specific plotting packages, the most famous being ggplot2
-(there are data camp courses on it). The absolute basics. Here x is
-blank because we just want to look at the price column alone.</p>
-<pre class="r"><code>library(ggplot2)
-
-ggplot(HousesNY, aes(x =&quot;&quot;, y = Price)) +    ## this loads the data
-   geom_boxplot()                            ## and we choose a boxplot</code></pre>
-<p><img src="in_T11_Plots_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
-<p>Note for now, think of the %&gt;% symbol and + symbol also as “one
-command on multiple lines..”. They allow you to build up layers of the
-plot. Data camp has more on this.</p>
-<p>But with these we can easily do more sophisticated things. For
-example, here’s how to see the underlying data, which allows us to see
-something of the background distribution</p>
-<p><a href="https://r-charts.com/distribution/box-plot-jitter-ggplot2/"
-class="uri">https://r-charts.com/distribution/box-plot-jitter-ggplot2/</a></p>
-<pre class="r"><code># Basic box plot
-ggplot(HousesNY, aes(x = &quot;&quot;, y = Price)) + 
-  geom_boxplot() +
-  geom_jitter()</code></pre>
-<p><img src="in_T11_Plots_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
-</div>
-<div id="comparing-groups" class="section level3" number="1.4.2">
-<h3><span class="header-section-number">1.4.2</span> Comparing
-groups</h3>
-<p>The basic code to see a boxplot split by group, in this case the
-price per number of beds:</p>
-<pre class="r"><code>boxplot(HousesNY$Price ~ HousesNY$Beds)</code></pre>
-<p><img src="in_T11_Plots_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
-<p>The advantage of this is that you can be sure that you really did
-plot your columns of choice (e.g. you didn’t mistakenly label anything).
-Note, if you use a comma, rather than the “~” symbol, you will make one
-for each column - which is normally not useful!</p>
-<pre class="r"><code>boxplot(HousesNY$Price,  HousesNY$Beds)</code></pre>
-<p><img src="in_T11_Plots_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
-<p><br></p>
-<p>In GGplot comparing different groups:</p>
-<pre class="r"><code># Libraries
-library(tidyverse)
-library(hrbrthemes)
-library(viridis)
-
-# tell R that the beds column is categorical
-HousesNY$Beds &lt;- factor(HousesNY$Beds,
-                     levels=c(min(HousesNY$Beds):max(HousesNY$Beds)))
-
-# Plot
-  ggplot(HousesNY, aes(x=Beds, y=Price)) +
-    geom_boxplot() </code></pre>
-<p><img src="in_T11_Plots_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
-<p>Or getting more complex</p>
-<pre class="r"><code># Libraries
-library(tidyverse)
-library(hrbrthemes)
-library(viridis)
-
-# tell R that the beds column is categorical
-# I already did this in the table section
-#HousesNY$Beds &lt;- as.factor(HousesNY$Beds)
-
-# Plot
-HousesNY %&gt;%
-  ggplot( aes(x=Beds, y=Price, fill=Beds) )+
-    geom_boxplot() +
-    scale_fill_viridis(discrete = TRUE, alpha=0.6) +
-    geom_jitter(color=&quot;black&quot;, size=0.5, alpha=0.8) +
-    ggtitle(&quot;&quot;) +
-    xlab(&quot;Beds&quot;)</code></pre>
-<p><img src="in_T11_Plots_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
-<p>or dotplots..</p>
-<pre class="r"><code>ggplot(HousesNY,  aes(x=Beds, y=Price, fill=Beds)) +
-  geom_boxplot() +
-  geom_dotplot(binaxis = &quot;y&quot;, stackdir = &quot;center&quot;, dotsize = 0.5,binwidth=7)</code></pre>
-<p><img src="in_T11_Plots_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
-<p>There are MANY more options, plus code here: <a
-href="https://www.r-graph-gallery.com/boxplot.html"
-class="uri">https://www.r-graph-gallery.com/boxplot.html</a></p>
-<p>and a delightful tutorial here: <a
-href="https://www.r-bloggers.com/2021/11/how-to-make-stunning-boxplots-in-r-a-complete-guide-with-ggplot2/"
-class="uri">https://www.r-bloggers.com/2021/11/how-to-make-stunning-boxplots-in-r-a-complete-guide-with-ggplot2/</a></p>
-</div>
-<div id="sophisticated" class="section level3" number="1.4.3">
-<h3><span class="header-section-number">1.4.3</span> Sophisticated</h3>
-<p>Finally, we <em>can</em> get super fancy in base R - it’s often a
-good way to learn how to code. I like this example because it shows many
-different aspects/useful commands in R programming. <a
-href="http://www.opiniomics.org/beautiful-boxplots-in-base-r/"
-class="uri">http://www.opiniomics.org/beautiful-boxplots-in-base-r/</a></p>
-<pre class="r"><code>library(RColorBrewer)
-
-# create colours and colour matrix (for points)
-m     &lt;- as.matrix(HousesNY$Price)
-
-col_main   &lt;- colorRampPalette(brewer.pal(12, &quot;Set3&quot;), alpha=TRUE)(ncol(m))
-col_transp &lt;- colorspace::adjust_transparency(col_main, alpha = .3)
-
-colsm   &lt;-matrix(rep(col_main, each=nrow(m)), ncol=ncol(m))
-colsm_tr &lt;-matrix(rep(col_transp, each=nrow(m)), ncol=ncol(m))
-
-
-# create some random data for jitter
-r &lt;-  (matrix(runif(nrow(m)*ncol(m)), nrow=nrow(m), ncol=ncol(m)) / 2) - 0.25
-
-# get the greys (stolen from https://github.com/zonination/perceptions/blob/master/percept.R)
-palette &lt;- brewer.pal(&quot;Greys&quot;, n=9)
-color.background = palette[2]
-color.grid.major = palette[5]
-
-# set graphical area
-par(bty=&quot;n&quot;, bg=palette[2], mar=c(5,8,3,1))
-
-# plot initial boxplot
-boxplot(m~col(m), horizontal=TRUE, outline=FALSE, lty=1, 
-        staplewex=0, boxwex=0.8, boxlwd=1, medlwd=1, 
-        col=colsm_tr, xaxt=&quot;n&quot;, yaxt=&quot;n&quot;,xlab=&quot;&quot;,ylab=&quot;&quot;)
-
-# plot gridlines
-for (i in pretty(m,10)) {
-    lines(c(i,i), c(0,20), col=palette[4])
-}
-
-# plot points
-points(m, col(m)+r, col=colsm, pch=16)
-
-# overlay boxplot
-boxplot(m~col(m), horizontal=TRUE, outline=FALSE, lty=1, 
-        staplewex=0, boxwex=0.8, boxlwd=1, medlwd=1, col=colsm_tr, 
-        add=TRUE, xaxt=&quot;n&quot;, yaxt=&quot;n&quot;)
-
-# add axes and title
-axis(side=1, at=pretty(m,10), col.axis=palette[7], 
-     cex.axis=0.8, lty=0, tick=NA, line=-1)
-axis(side=1, at=50, labels=&quot;Price (Thousand USD)&quot;, 
-     lty=0, tick=NA, col.axis=palette[7])
-axis(side=2, at=1, col.axis=palette[7], cex.axis=0.8, 
-     lty=0, tick=NA, labels=&quot;Sample 1&quot;, las=2)
-axis(side=2, at=17/2, labels=&quot;Phrase&quot;, col.axis=palette[7], 
-     lty=0, tick=NA, las=3, line=6)
-title(&quot;House Prices in Canton NY&quot;)</code></pre>
-<p><img src="in_T11_Plots_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
-<p>Or if you wish to do the rainbow many group boxplot at the beginning,
-the code is here : <a
-href="https://github.com/fawda123/diss_proc/blob/master/diss_plot.R"
-class="uri">https://github.com/fawda123/diss_proc/blob/master/diss_plot.R</a></p>
-<p><br> <br></p>
-</div>
-</div>
-<div id="violin-plots" class="section level2" number="1.5">
-<h2><span class="header-section-number">1.5</span> Violin plots</h2>
-<p>Violin plots combine the simplicity of a boxplot with a sense of the
-underlying distribution. This is useful when you want a sense of both
-the symmetry of the data and the underlying distribution. Highly
-recommended! For a single variable, consider a box-plot-with-histogram
-(see below).</p>
-<p>There are MANY on R graph gallery with code you can copy/edit: <a
-href="https://www.r-graph-gallery.com/violin.html"
-class="uri">https://www.r-graph-gallery.com/violin.html</a></p>
-<p>For example, for our data:</p>
-<pre class="r"><code># fill=name allow to automatically dedicate a color for each group
-ggplot(HousesNY, aes(x=Beds, y=Price, fill=Beds)) + 
-   geom_violin()</code></pre>
-<p><img src="in_T11_Plots_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
-<p>There’s also a <em>beautiful</em> package called
-<code>ggstatsplot</code> which allows a lot of detail (<a
-href="https://indrajeetpatil.github.io/ggstatsplot/"
-class="uri">https://indrajeetpatil.github.io/ggstatsplot/</a>)</p>
-<p>For example, I love the plot below because it shows how much data in
-each group.</p>
-<pre class="r"><code># you might need to first install this.
+<div id="ridgelines-violins-boxplots-t_groupedhist"
+class="section level3" number="1.2.2">
+<h3><span class="header-section-number">1.2.2</span> Ridgelines, Violins
+&amp; boxplots {T_GroupedHist}</h3>
+<div id="setup" class="section level4" number="1.2.2.1">
+<h4><span class="header-section-number">1.2.2.1</span> Setup</h4>
+<p>You will need these library commands at the top of your script</p>
+<pre class="r"><code>library(tidyverse)
 library(ggstatsplot)
-
-# i&#39;m changing the middle mean point to be dark blue
-
-ggbetweenstats(data = HousesNY,x = Beds,y = Price, 
-               centrality.point.args=list(color = &quot;darkblue&quot;))</code></pre>
-<p><img src="in_T11_Plots_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
-<p>Or we can customise it even more using this tutorial to get results
-like this (<a
-href="https://www.r-graph-gallery.com/web-violinplot-with-ggstatsplot.html"
-class="uri">https://www.r-graph-gallery.com/web-violinplot-with-ggstatsplot.html</a>)</p>
-<p><br> <br></p>
+library(ggplot2)
+library(ggExtra)
+library(ggridges)
+library(ggpubr)
+library(hrbrthemes)
+library(ggthemes)
+library(viridis)
+library(RColorBrewer)
+library(plotly)</code></pre>
+<p>And remember the column names of our tutorial data-set are:</p>
+<pre class="r"><code>names(HousesNY)</code></pre>
+<pre><code>## [1] &quot;Price&quot; &quot;Beds&quot;  &quot;Baths&quot; &quot;Size&quot;  &quot;Lot&quot;</code></pre>
+<p>Sometimes we want to compare <strong>different
+sub-populations</strong> within our data—for example, comparing house
+prices based on the number of bedrooms.</p>
+<p>To do this effectively, we need to make sure that the variable we’re
+using to define subgroups is treated as a <strong>categorical
+variable</strong> (called a <em>factor</em> in R). If it’s numeric, R
+will assume it’s continuous and won’t group the data properly.</p>
+<p>In the example below, we convert <code>Beds</code> into a factor so
+that we can compare price distributions <strong>by number of
+bedrooms</strong>:</p>
+<pre class="r"><code>HousesNY$Beds &lt;- as.factor(HousesNY$Beds)</code></pre>
+<p><br></p>
 </div>
-<div id="ridgeline-plots" class="section level2" number="1.6">
-<h2><span class="header-section-number">1.6</span> Ridgeline plots</h2>
-<p>These are another way of looking at histograms for different groups.
-They work especially when your grouping data is ORDINAL (has some
-inherent order). So bedrooms would be a good example</p>
+<div id="ridgeline-plots" class="section level4" number="1.2.2.2">
+<h4><span class="header-section-number">1.2.2.2</span> Ridgeline
+plots</h4>
+<p>Ridgeline plots are a way of looking at histograms for different
+groups. They work especially when your grouping data is ORDINAL (has
+some inherent order). So bedrooms would be a good example</p>
 <p>Two great pages here:</p>
 <ul>
 <li><p><a href="https://www.data-to-viz.com/graph/ridgeline.html"
@@ -1122,7 +695,7 @@ HousesNY %&gt;%
     ) +
     xlab(&quot;&quot;) +
     ylab(&quot;Number of Bedrooms&quot;)</code></pre>
-<p><img src="in_T11_Plots_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<p><img src="in_T11_Plots_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <p>All of these are from <a
 href="https://r-charts.com/distribution/ggridges/"
 class="uri">https://r-charts.com/distribution/ggridges/</a></p>
@@ -1134,7 +707,7 @@ ggplot(HousesNY, aes(x = Price, y = Beds, fill = stat(x))) +
   scale_fill_viridis_c(name = &quot;Depth&quot;, option = &quot;C&quot;) +
   coord_cartesian(clip = &quot;off&quot;) + # To avoid cut off
   theme_minimal()</code></pre>
-<p><img src="in_T11_Plots_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
+<p><img src="in_T11_Plots_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <p>We can also make the colours more meaningful, for example adding
 quantiles to show the median and interquartile range</p>
 <pre class="r"><code>ggplot(HousesNY, aes(x = Price, y = Beds, fill = stat(quantile))) +
@@ -1142,7 +715,7 @@ quantiles to show the median and interquartile range</p>
                       calc_ecdf = TRUE,
                       geom = &quot;density_ridges_gradient&quot;) +
   scale_fill_brewer(name = &quot;&quot;)</code></pre>
-<p><img src="in_T11_Plots_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
+<p><img src="in_T11_Plots_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <p>or highlighting tails</p>
 <pre class="r"><code>ggplot(HousesNY, aes(x = Price, y = Beds, fill = stat(quantile))) +
   stat_density_ridges(quantile_lines = TRUE,
@@ -1152,33 +725,151 @@ quantiles to show the median and interquartile range</p>
   scale_fill_manual(name = &quot;Proportion&quot;, 
                     values = c(&quot;#E2FFF2&quot;, &quot;white&quot;, &quot;#B0E0E6&quot;),
                     labels = c(&quot;(0, 5%]&quot;, &quot;(5%, 95%]&quot;, &quot;(95%, 1]&quot;))</code></pre>
-<p><img src="in_T11_Plots_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+<p><img src="in_T11_Plots_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p><br></p>
 </div>
-<div id="beeswarm-plots" class="section level2" number="1.7">
-<h2><span class="header-section-number">1.7</span> Beeswarm plots</h2>
-<p>These are cool. As described here:</p>
+<div id="violin-plots" class="section level4" number="1.2.2.3">
+<h4><span class="header-section-number">1.2.2.3</span> Violin plots</h4>
+<p>We can also use violin plots to compare categories. Our houses data
+isn’t really big enough to do this justice, so here’s an example from
+another dataset on an old science experiment. We can customise it even
+more using this tutorial (<a
+href="https://www.r-graph-gallery.com/web-violinplot-with-ggstatsplot.html"
+class="uri">https://www.r-graph-gallery.com/web-violinplot-with-ggstatsplot.html</a>)</p>
+<pre class="r"><code># modifying defaults
+ggbetweenstats(
+  morley,
+  x    = Expt,
+  y    = Speed,
+  xlab = &quot;Experiment number&quot;,
+  ylab = &quot;Speed-of-light measurement&quot;,
+  pairwise.display=&quot;significant&quot;,
+  results.subtitle=FALSE,
+  centrality.point.args = list(size = 3, color = &quot;darkblue&quot;),
+  bf.message = FALSE)</code></pre>
+<p><img src="in_T11_Plots_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p><br></p>
+</div>
+<div id="boxplots" class="section level4" number="1.2.2.4">
+<h4><span class="header-section-number">1.2.2.4</span> Boxplots</h4>
+<p>Boxplots have been around over 40 years! See their history and
+evolution here: <a href="http://vita.had.co.nz/papers/boxplots.pdf"
+class="uri">http://vita.had.co.nz/papers/boxplots.pdf</a></p>
+<p>Boxplots are especially good at allowing you to compare different
+groups of things or to look for multiple groups in a single response
+variable. Here is a beautiful example made by Marcus Beckman on
+dissertation lengths.</p>
 <p><a
-href="https://www.rhoworld.com/i-swarm-you-swarm-we-all-swarm-for-beeswarm-plots-0/#:~:text=What%20is%20a%20beeswarm%20plot%3F&amp;text=A%20beeswarm%20plot%20improves%20upon,bees%20buzzing%20about%20their%20hive">https://www.rhoworld.com/i-swarm-you-swarm-we-all-swarm-for-beeswarm-plots-0/#:~:text=What%20is%20a%20beeswarm%20plot%3F&amp;text=A%20beeswarm%20plot%20improves%20upon,bees%20buzzing%20about%20their%20hive.</a></p>
-<p>“But what is a beeswarm plot? … A beeswarm plot improves upon the
-random jittering approach to move data points the minimum distance away
-from one another to avoid overlays. The result is a plot where you can
-see each distinct data point, like so: It looks a bit like a friendly
-swarm of bees buzzing about their hive.”</p>
-<p>It’s often used for professional visualisation, see here for many
-examples: <a href="https://flowingdata.com/charttype/beeswarm"
-class="uri">https://flowingdata.com/charttype/beeswarm</a></p>
-<p>Especially for the first, you can see the distribution clearly, also
-with the amount of data. With the second, you can see the mitigating
-impact of a second variable.</p>
-<p>To make easy ones you can install a new packages “beeswarm”</p>
-<pre class="r"><code>library(&quot;beeswarm&quot;)
+href="https://beckmw.wordpress.com/2014/07/15/average-dissertation-and-thesis-length-take-two/%20and%20code%20here:%20https://github.com/fawda123/diss_proc">https://beckmw.wordpress.com/2014/07/15/average-dissertation-and-thesis-length-take-two/
+and code here: https://github.com/fawda123/diss_proc</a> )</p>
+<p>The absolute basics in ggplot2.</p>
+<pre class="r"><code>ggplot(HousesNY, aes(x =Beds, y = Price)) +    ## this loads the data
+   geom_boxplot()  +
+  theme_minimal() ## and we choose a boxplot</code></pre>
+<p><img src="in_T11_Plots_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p>We can easily do more sophisticated things. For example, here’s how
+to see the underlying data points, which allows us to see something of
+the background distribution</p>
+<p><a href="https://r-charts.com/distribution/box-plot-jitter-ggplot2/"
+class="uri">https://r-charts.com/distribution/box-plot-jitter-ggplot2/</a></p>
+<p>There are MANY more options, plus code here: <a
+href="https://www.r-graph-gallery.com/boxplot.html"
+class="uri">https://www.r-graph-gallery.com/boxplot.html</a></p>
+<p>and a delightful tutorial here: <a
+href="https://www.r-bloggers.com/2021/11/how-to-make-stunning-boxplots-in-r-a-complete-guide-with-ggplot2/"
+class="uri">https://www.r-bloggers.com/2021/11/how-to-make-stunning-boxplots-in-r-a-complete-guide-with-ggplot2/</a></p>
+<p>For example, here’s a version adding in the background data using
+ggstatsplot.</p>
+<pre class="r"><code>ggbetweenstats(data = HousesNY,
+               x    = Beds,
+               y    = Price,
+               xlab = &quot;Number of bedrooms&quot;,
+               ylab = &quot;House Price (USD)&quot;,
+               pairwise.display=&quot;significant&quot;,
+               results.subtitle=FALSE,
+               violin.args = list(width = 0, linewidth = 0),
+               centrality.plotting = FALSE,
+               bf.message = FALSE)</code></pre>
+<p><img src="in_T11_Plots_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p><br></p>
+<hr />
+<p><br><br></p>
+</div>
+</div>
+</div>
+<div id="scatterplots-t_scatter" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> Scatterplots
+{T_Scatter}</h2>
+<div id="basic-plot-no-line-of-best-fit" class="section level3"
+number="1.3.1">
+<h3><span class="header-section-number">1.3.1</span> Basic plot (no line
+of best fit)</h3>
+<p>Again, I am using the HousesNY example dataset that I discussed
+earlier with the bed and price column names. You can see that each
+command is joined by a “+”.</p>
+<pre class="r"><code>ggplot(HousesNY, aes(x=Size, y=Price)) + 
+    geom_point() + 
+    ggtitle(&quot;Size vs Price of New York Homes&quot;) +
+    xlab(&quot;Size (sq ft)&quot;) + ylab(&quot;Price (1000 USD)&quot;)</code></pre>
+<p><img src="in_T11_Plots_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p>To add a line of best fit, we simply add a new command
+geom_smooth()</p>
+<pre class="r"><code>ggplot(HousesNY, aes(x=Size, y=Price)) + 
+    geom_point() + 
+    geom_smooth(method=lm , color=&quot;red&quot;, se=FALSE) +
+    ggtitle(&quot;Size vs Price of New York Homes&quot;) +
+    xlab(&quot;Size (sq ft)&quot;) + ylab(&quot;Price (1000 USD)&quot;) +
+    theme_light() </code></pre>
+<p><img src="in_T11_Plots_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p>We can even add confidence intervals. Here we expect that the
+POPULATION regression line will fall within the gray cloud 95% of the
+time.</p>
+<pre class="r"><code>ggplot(HousesNY, aes(x=Size, y=Price)) + 
+    geom_point() + 
+    geom_smooth(method=lm , color=&quot;red&quot;, se=TRUE, level = 0.95) +
+    ggtitle(&quot;Size vs Price of New York Homes&quot;) +
+    xlab(&quot;Size (sq ft)&quot;) + ylab(&quot;Price (1000 USD)&quot;) +
+    theme_light() </code></pre>
+<p><img src="in_T11_Plots_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p><br></p>
+</div>
+<div id="T6_ScatterPlotly" class="section level3" number="1.3.2">
+<h3><span class="header-section-number">1.3.2</span> Plotly Interactive
+scatterplots!</h3>
+<p>You can use the plotly library to make ANY ggplot2 plot
+interactive</p>
+<p>This is really useful, try zooming in or clicking on a few points. If
+you don’t want the line of best fit, simply remove the geom_smooth line.
+It’s also very easy to add in color to see another variable. For
+example, here I also add in the house size. If you don’t want that, just
+remove the color=Size.</p>
+<pre class="r"><code># create the plot, save it as &quot;p&quot; rather than print immediately
+myplot &lt;-   ggplot(HousesNY, aes(x=Beds, y=Price,color=Size)) + 
+               geom_point() +
+               scale_color_gradient(low=&quot;blue&quot;, high=&quot;red&quot;)+
+               ggtitle(&quot;New York Homes price by bedrooms and lot size (acres)&quot;) +
+               xlab(&quot;Beds&quot;) + 
+               ylab(&quot;Price (1000 USD)&quot;)
 
-beeswarm(HousesNY$Price,
-         vertical = FALSE, method = &quot;hex&quot;)</code></pre>
-<p><img src="in_T11_Plots_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
-<p>This is a little boring for my 58 data points! (although perhaps it
-does show that 58 points is barely a big enough sample to know an
-underlying model..)</p>
+# and plot interactively
+ggplotly(myplot)</code></pre>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-9577880c912c11f89230" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-9577880c912c11f89230">{"x":{"data":[{"x":[2,5,3,2,2,1,1,3,3,2,2,2,2,3,2,2,3,2,3,2,3,3,4,3,2,1,2,2,3,2,2,2,2,2,2,1,2,2,2,3,1,3,3,3,3,2,3,2,3,3,4,3,2],"y":[57.600000000000001,120,150,143,92.5,50,89,140,197.5,125.09999999999999,175,60,138.5,160,63.5,107,185,82.700000000000003,75,118,87.5,67.5,105,114,100.5,78,99,144,179,110,175,100,53,92,127,120.5,72,95,38.5,139,75,174,119,89,75.099999999999994,92.5,141,82,162,195,190,115,87],"text":["Beds: 3<br />Price:  57.6<br />Size: 0.960","Beds: 6<br />Price: 120.0<br />Size: 2.786","Beds: 4<br />Price: 150.0<br />Size: 1.704","Beds: 3<br />Price: 143.0<br />Size: 1.200","Beds: 3<br />Price:  92.5<br />Size: 1.329","Beds: 2<br />Price:  50.0<br />Size: 0.974","Beds: 2<br />Price:  89.0<br />Size: 1.029","Beds: 4<br />Price: 140.0<br />Size: 2.818","Beds: 4<br />Price: 197.5<br />Size: 2.268","Beds: 3<br />Price: 125.1<br />Size: 1.936","Beds: 3<br />Price: 175.0<br />Size: 1.528","Beds: 3<br />Price:  60.0<br />Size: 0.880","Beds: 3<br />Price: 138.5<br />Size: 1.416","Beds: 4<br />Price: 160.0<br />Size: 2.060","Beds: 3<br />Price:  63.5<br />Size: 1.781","Beds: 3<br />Price: 107.0<br />Size: 1.428","Beds: 4<br />Price: 185.0<br />Size: 2.220","Beds: 3<br />Price:  82.7<br />Size: 1.100","Beds: 4<br />Price:  75.0<br />Size: 1.400","Beds: 3<br />Price: 118.0<br />Size: 1.500","Beds: 4<br />Price:  87.5<br />Size: 2.464","Beds: 4<br />Price:  67.5<br />Size: 1.515","Beds: 5<br />Price: 105.0<br />Size: 2.732","Beds: 4<br />Price: 114.0<br />Size: 2.720","Beds: 3<br />Price: 100.5<br />Size: 1.608","Beds: 2<br />Price:  78.0<br />Size: 0.712","Beds: 3<br />Price:  99.0<br />Size: 0.864","Beds: 3<br />Price: 144.0<br />Size: 1.968","Beds: 4<br />Price: 179.0<br />Size: 3.100","Beds: 3<br />Price: 110.0<br />Size: 1.312","Beds: 3<br />Price: 175.0<br />Size: 2.127","Beds: 3<br />Price: 100.0<br />Size: 1.200","Beds: 3<br />Price:  53.0<br />Size: 1.321","Beds: 3<br />Price:  92.0<br />Size: 1.815","Beds: 3<br />Price: 127.0<br />Size: 1.184","Beds: 2<br />Price: 120.5<br />Size: 1.200","Beds: 3<br />Price:  72.0<br />Size: 1.442","Beds: 3<br />Price:  95.0<br />Size: 0.840","Beds: 3<br />Price:  38.5<br />Size: 1.296","Beds: 4<br />Price: 139.0<br />Size: 2.160","Beds: 2<br />Price:  75.0<br />Size: 0.780","Beds: 4<br />Price: 174.0<br />Size: 1.382","Beds: 4<br />Price: 119.0<br />Size: 2.375","Beds: 4<br />Price:  89.0<br />Size: 2.274","Beds: 4<br />Price:  75.1<br />Size: 1.540","Beds: 3<br />Price:  92.5<br />Size: 1.790","Beds: 4<br />Price: 141.0<br />Size: 1.620","Beds: 3<br />Price:  82.0<br />Size: 1.454","Beds: 4<br />Price: 162.0<br />Size: 2.044","Beds: 4<br />Price: 195.0<br />Size: 1.848","Beds: 5<br />Price: 190.0<br />Size: 2.794","Beds: 4<br />Price: 115.0<br />Size: 1.401","Beds: 3<br />Price:  87.0<br />Size: 1.740"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":["rgba(106,0,230,1)","rgba(243,0,51,1)","rgba(188,0,156,1)","rgba(142,0,205,1)","rgba(156,0,193,1)","rgba(108,0,228,1)","rgba(118,0,223,1)","rgba(245,0,47,1)","rgba(221,0,102,1)","rgba(203,0,134,1)","rgba(175,0,173,1)","rgba(88,0,238,1)","rgba(165,0,184,1)","rgba(210,0,122,1)","rgba(194,0,148,1)","rgba(166,0,183,1)","rgba(219,0,107,1)","rgba(129,0,215,1)","rgba(163,0,186,1)","rgba(172,0,176,1)","rgba(230,0,83,1)","rgba(174,0,174,1)","rgba(241,0,57,1)","rgba(241,0,58,1)","rgba(181,0,165,1)","rgba(0,0,255,1)","rgba(84,0,239,1)","rgba(205,0,131,1)","rgba(255,0,0,1)","rgba(155,0,194,1)","rgba(214,0,115,1)","rgba(142,0,205,1)","rgba(156,0,193,1)","rgba(196,0,145,1)","rgba(140,0,207,1)","rgba(142,0,205,1)","rgba(167,0,181,1)","rgba(78,0,242,1)","rgba(153,0,196,1)","rgba(216,0,112,1)","rgba(57,0,248,1)","rgba(162,0,187,1)","rgba(226,0,92,1)","rgba(221,0,101,1)","rgba(176,0,172,1)","rgba(194,0,148,1)","rgba(182,0,164,1)","rgba(168,0,180,1)","rgba(210,0,123,1)","rgba(198,0,142,1)","rgba(244,0,50,1)","rgba(163,0,185,1)","rgba(191,0,152,1)"],"opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":["rgba(106,0,230,1)","rgba(243,0,51,1)","rgba(188,0,156,1)","rgba(142,0,205,1)","rgba(156,0,193,1)","rgba(108,0,228,1)","rgba(118,0,223,1)","rgba(245,0,47,1)","rgba(221,0,102,1)","rgba(203,0,134,1)","rgba(175,0,173,1)","rgba(88,0,238,1)","rgba(165,0,184,1)","rgba(210,0,122,1)","rgba(194,0,148,1)","rgba(166,0,183,1)","rgba(219,0,107,1)","rgba(129,0,215,1)","rgba(163,0,186,1)","rgba(172,0,176,1)","rgba(230,0,83,1)","rgba(174,0,174,1)","rgba(241,0,57,1)","rgba(241,0,58,1)","rgba(181,0,165,1)","rgba(0,0,255,1)","rgba(84,0,239,1)","rgba(205,0,131,1)","rgba(255,0,0,1)","rgba(155,0,194,1)","rgba(214,0,115,1)","rgba(142,0,205,1)","rgba(156,0,193,1)","rgba(196,0,145,1)","rgba(140,0,207,1)","rgba(142,0,205,1)","rgba(167,0,181,1)","rgba(78,0,242,1)","rgba(153,0,196,1)","rgba(216,0,112,1)","rgba(57,0,248,1)","rgba(162,0,187,1)","rgba(226,0,92,1)","rgba(221,0,101,1)","rgba(176,0,172,1)","rgba(194,0,148,1)","rgba(182,0,164,1)","rgba(168,0,180,1)","rgba(210,0,123,1)","rgba(198,0,142,1)","rgba(244,0,50,1)","rgba(163,0,185,1)","rgba(191,0,152,1)"]}},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1],"y":[50],"name":"d0d1194a8dd914a47440f39675b65f70","type":"scatter","mode":"markers","opacity":0,"hoverinfo":"skip","showlegend":false,"marker":{"color":[0,1],"colorscale":[[0,"#0000FF"],[0.003344481605351167,"#0F00FE"],[0.0066889632107023341,"#1900FD"],[0.010033444816053502,"#2000FD"],[0.013377926421404668,"#2600FC"],[0.016722408026755835,"#2B00FB"],[0.020066889632107003,"#2F00FA"],[0.023411371237458217,"#3300F9"],[0.026755852842809381,"#3700F8"],[0.03010033444816055,"#3A00F8"],[0.033444816053511718,"#3E00F7"],[0.036789297658862886,"#4100F6"],[0.040133779264214048,"#4400F5"],[0.043478260869565216,"#4600F4"],[0.046822742474916385,"#4900F3"],[0.050167224080267553,"#4B00F3"],[0.053511705685618721,"#4E00F2"],[0.056856187290969883,"#5000F1"],[0.0602006688963211,"#5200F0"],[0.063545150501672226,"#5400EF"],[0.066889632107023436,"#5600EF"],[0.070234113712374605,"#5800EE"],[0.073578595317725773,"#5A00ED"],[0.076923076923076927,"#5C00EC"],[0.080267558528428096,"#5E00EB"],[0.083612040133779264,"#6000EB"],[0.086956521739130432,"#6200EA"],[0.090301003344481601,"#6300E9"],[0.093645484949832769,"#6500E8"],[0.096989966555183937,"#6700E7"],[0.10033444816053511,"#6800E6"],[0.10367892976588632,"#6A00E6"],[0.10702341137123744,"#6B00E5"],[0.11036789297658865,"#6D00E4"],[0.11371237458193977,"#6E00E3"],[0.11705685618729099,"#7000E2"],[0.12040133779264216,"#7100E2"],[0.12374581939799331,"#7200E1"],[0.12709030100334454,"#7400E0"],[0.13043478260869565,"#7500DF"],[0.13377926421404676,"#7600DE"],[0.13712374581939799,"#7800DE"],[0.14046822742474921,"#7900DD"],[0.14381270903010032,"#7A00DC"],[0.14715719063545155,"#7B00DB"],[0.15050167224080266,"#7D00DA"],[0.15384615384615385,"#7E00DA"],[0.157190635451505,"#7F00D9"],[0.16053511705685619,"#8000D8"],[0.16387959866220733,"#8100D7"],[0.16722408026755853,"#8200D6"],[0.17056856187290975,"#8400D5"],[0.17391304347826086,"#8500D5"],[0.17725752508361198,"#8600D4"],[0.1806020066889632,"#8700D3"],[0.18394648829431443,"#8800D2"],[0.18729096989966554,"#8900D1"],[0.19063545150501676,"#8A00D1"],[0.19397993311036787,"#8B00D0"],[0.1973244147157191,"#8C00CF"],[0.20066889632107021,"#8D00CE"],[0.20401337792642141,"#8E00CD"],[0.20735785953177255,"#8F00CD"],[0.21070234113712374,"#9000CC"],[0.21404682274247497,"#9100CB"],[0.21739130434782608,"#9200CA"],[0.22073578595317719,"#9300CA"],[0.22408026755852842,"#9400C9"],[0.22742474916387964,"#9400C8"],[0.23076923076923075,"#9500C7"],[0.23411371237458187,"#9600C6"],[0.23745819397993309,"#9700C6"],[0.24080267558528431,"#9800C5"],[0.24414715719063551,"#9900C4"],[0.24749163879598662,"#9A00C3"],[0.25083612040133774,"#9B00C2"],[0.25418060200668896,"#9B00C2"],[0.25752508361204018,"#9C00C1"],[0.2608695652173913,"#9D00C0"],[0.26421404682274241,"#9E00BF"],[0.26755852842809363,"#9F00BE"],[0.27090301003344486,"#9F00BE"],[0.27424749163879597,"#A000BD"],[0.27759197324414708,"#A100BC"],[0.28093645484949831,"#A200BB"],[0.28428093645484953,"#A300BA"],[0.28762541806020075,"#A300BA"],[0.29096989966555187,"#A400B9"],[0.29431438127090298,"#A500B8"],[0.2976588628762542,"#A600B7"],[0.30100334448160543,"#A600B7"],[0.30434782608695654,"#A700B6"],[0.30769230769230765,"#A800B5"],[0.31103678929765888,"#A800B4"],[0.31438127090301005,"#A900B3"],[0.31772575250836121,"#AA00B3"],[0.32107023411371238,"#AB00B2"],[0.32441471571906355,"#AB00B1"],[0.32775919732441472,"#AC00B0"],[0.33110367892976594,"#AD00AF"],[0.33444816053511706,"#AD00AF"],[0.33779264214046817,"#AE00AE"],[0.34113712374581939,"#AF00AD"],[0.34448160535117062,"#AF00AC"],[0.34782608695652173,"#B000AC"],[0.35117056856187284,"#B100AB"],[0.35451505016722407,"#B100AA"],[0.35785953177257529,"#B200A9"],[0.3612040133779264,"#B300A8"],[0.36454849498327763,"#B300A8"],[0.36789297658862874,"#B400A7"],[0.37123745819397996,"#B400A6"],[0.37458193979933119,"#B500A5"],[0.3779264214046823,"#B600A5"],[0.38127090301003341,"#B600A4"],[0.38461538461538464,"#B700A3"],[0.38795986622073586,"#B700A2"],[0.39130434782608697,"#B800A1"],[0.39464882943143809,"#B900A1"],[0.39799331103678931,"#B900A0"],[0.40133779264214048,"#BA009F"],[0.40468227424749165,"#BA009E"],[0.40802675585284282,"#BB009E"],[0.41137123745819398,"#BC009D"],[0.41471571906354515,"#BC009C"],[0.41806020066889638,"#BD009B"],[0.42140468227424749,"#BD009B"],[0.4247491638795986,"#BE009A"],[0.42809364548494983,"#BE0099"],[0.43143812709030105,"#BF0098"],[0.43478260869565216,"#BF0097"],[0.43812709030100339,"#C00097"],[0.4414715719063545,"#C10096"],[0.44481605351170572,"#C10095"],[0.44816053511705684,"#C20094"],[0.45150501672240806,"#C20094"],[0.45484949832775917,"#C30093"],[0.4581939799331104,"#C30092"],[0.46153846153846151,"#C40091"],[0.46488294314381273,"#C40091"],[0.46822742474916385,"#C50090"],[0.47157190635451507,"#C5008F"],[0.47491638795986629,"#C6008E"],[0.47826086956521741,"#C6008D"],[0.48160535117056863,"#C7008D"],[0.48494983277591974,"#C7008C"],[0.48829431438127097,"#C8008B"],[0.49163879598662208,"#C8008A"],[0.49498327759197325,"#C9008A"],[0.49832775919732442,"#C90089"],[0.50167224080267558,"#CA0088"],[0.50501672240802675,"#CA0087"],[0.50836120401337792,"#CB0087"],[0.51170568561872909,"#CB0086"],[0.51505016722408026,"#CC0085"],[0.51839464882943154,"#CC0084"],[0.52173913043478259,"#CD0084"],[0.52508361204013387,"#CD0083"],[0.52842809364548493,"#CE0082"],[0.53177257525083621,"#CE0081"],[0.53511705685618727,"#CE0080"],[0.53846153846153844,"#CF0080"],[0.5418060200668896,"#CF007F"],[0.54515050167224077,"#D0007E"],[0.54849498327759183,"#D0007D"],[0.55183946488294322,"#D1007D"],[0.55518394648829428,"#D1007C"],[0.55852842809364545,"#D2007B"],[0.56187290969899673,"#D2007A"],[0.56521739130434778,"#D3007A"],[0.56856187290969917,"#D30079"],[0.57190635451505012,"#D30078"],[0.5752508361204014,"#D40077"],[0.57859531772575257,"#D40077"],[0.58193979933110362,"#D50076"],[0.58528428093645479,"#D50075"],[0.58862876254180607,"#D60074"],[0.59197324414715702,"#D60074"],[0.59531772575250852,"#D60073"],[0.59866220735785947,"#D70072"],[0.60200668896321075,"#D70071"],[0.60535117056856191,"#D80071"],[0.60869565217391297,"#D80070"],[0.61204013377926436,"#D8006F"],[0.61538461538461542,"#D9006E"],[0.61872909698996659,"#D9006E"],[0.62207357859531776,"#DA006D"],[0.62541806020066881,"#DA006C"],[0.62876254180602009,"#DA006B"],[0.63210702341137126,"#DB006A"],[0.63545150501672232,"#DB006A"],[0.63879598662207371,"#DC0069"],[0.64214046822742477,"#DC0068"],[0.64548494983277593,"#DC0067"],[0.6488294314381271,"#DD0067"],[0.65217391304347816,"#DD0066"],[0.65551839464882955,"#DE0065"],[0.65886287625418061,"#DE0064"],[0.66220735785953178,"#DE0064"],[0.66555183946488305,"#DF0063"],[0.668896321070234,"#DF0062"],[0.67224080267558528,"#E00061"],[0.67558528428093645,"#E00061"],[0.67892976588628751,"#E00060"],[0.6822742474916389,"#E1005F"],[0.68561872909698995,"#E1005E"],[0.68896321070234112,"#E1005E"],[0.6923076923076924,"#E2005D"],[0.69565217391304335,"#E2005C"],[0.69899665551839474,"#E3005B"],[0.7023411371237458,"#E3005B"],[0.70568561872909707,"#E3005A"],[0.70903010033444824,"#E40059"],[0.7123745819397993,"#E40058"],[0.71571906354515047,"#E40057"],[0.71906354515050175,"#E50057"],[0.72240802675585269,"#E50056"],[0.72575250836120409,"#E50055"],[0.72909698996655514,"#E60054"],[0.73244147157190631,"#E60054"],[0.73578595317725759,"#E60053"],[0.73913043478260865,"#E70052"],[0.74247491638796004,"#E70051"],[0.74581939799331098,"#E80050"],[0.74916387959866226,"#E80050"],[0.75250836120401343,"#E8004F"],[0.75585284280936449,"#E9004E"],[0.75919732441471566,"#E9004D"],[0.76254180602006694,"#E9004D"],[0.76588628762541799,"#EA004C"],[0.76923076923076938,"#EA004B"],[0.77257525083612033,"#EA004A"],[0.77591973244147161,"#EB0049"],[0.77926421404682278,"#EB0049"],[0.78260869565217384,"#EB0048"],[0.78595317725752523,"#EC0047"],[0.78929765886287628,"#EC0046"],[0.79264214046822745,"#EC0046"],[0.79598662207357862,"#ED0045"],[0.79933110367892968,"#ED0044"],[0.80267558528428096,"#ED0043"],[0.80602006688963213,"#EE0042"],[0.80936454849498318,"#EE0042"],[0.81270903010033457,"#EE0041"],[0.81605351170568563,"#EF0040"],[0.8193979933110368,"#EF003F"],[0.82274247491638797,"#EF003E"],[0.82608695652173902,"#F0003D"],[0.82943143812709041,"#F0003D"],[0.83277591973244147,"#F0003C"],[0.83612040133779264,"#F0003B"],[0.83946488294314403,"#F1003A"],[0.84280936454849498,"#F10039"],[0.84615384615384637,"#F10038"],[0.84949832775919742,"#F20038"],[0.85284280936454848,"#F20037"],[0.85618729096989987,"#F20036"],[0.85953177257525093,"#F30035"],[0.86287625418060232,"#F30034"],[0.86622073578595327,"#F30033"],[0.86956521739130432,"#F40032"],[0.87290969899665571,"#F40032"],[0.87625418060200677,"#F40031"],[0.87959866220735783,"#F50030"],[0.88294314381270922,"#F5002F"],[0.88628762541806028,"#F5002E"],[0.88963210702341167,"#F5002D"],[0.89297658862876261,"#F6002C"],[0.89632107023411367,"#F6002B"],[0.89966555183946506,"#F6002A"],[0.90301003344481612,"#F70029"],[0.90635451505016751,"#F70028"],[0.90969899665551857,"#F70027"],[0.91304347826086951,"#F80026"],[0.91638795986622101,"#F80025"],[0.91973244147157196,"#F80024"],[0.92307692307692302,"#F80023"],[0.92642140468227441,"#F90022"],[0.92976588628762546,"#F90021"],[0.93311036789297686,"#F90020"],[0.93645484949832791,"#FA001F"],[0.93979933110367886,"#FA001E"],[0.94314381270903025,"#FA001D"],[0.94648829431438131,"#FA001B"],[0.9498327759197327,"#FB001A"],[0.95317725752508375,"#FB0019"],[0.95652173913043481,"#FB0018"],[0.9598662207357862,"#FC0016"],[0.96321070234113726,"#FC0015"],[0.96655518394648821,"#FC0013"],[0.9698996655518396,"#FC0012"],[0.97324414715719065,"#FD0010"],[0.97658862876254204,"#FD000F"],[0.9799331103678931,"#FD000D"],[0.98327759197324416,"#FE000B"],[0.98662207357859555,"#FE0008"],[0.98996655518394649,"#FE0006"],[0.993311036789298,"#FE0004"],[0.99665551839464894,"#FF0002"],[1,"#FF0000"]],"colorbar":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"thickness":23.039999999999996,"title":"Size","titlefont":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"tickmode":"array","ticktext":["1.0","1.5","2.0","2.5","3.0"],"tickvals":[0.1218676716917923,0.33054997208263537,0.53923227247347849,0.74791457286432161,0.95659687325516474],"tickfont":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"ticklen":2,"len":0.5}},"xaxis":"x","yaxis":"y","frame":null}],"layout":{"margin":{"t":43.762557077625573,"r":7.3059360730593621,"b":40.182648401826498,"l":43.105022831050235},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"title":{"text":"New York Homes price by bedrooms and lot size (acres)","font":{"color":"rgba(0,0,0,1)","family":"","size":17.534246575342465},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,5.5999999999999996],"tickmode":"array","ticktext":["2","3","4","5","6"],"tickvals":[1,2,3,4,5],"categoryorder":"array","categoryarray":["2","3","4","5","6"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Beds","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[30.550000000000001,205.44999999999999],"tickmode":"array","ticktext":["50","100","150","200"],"tickvals":[50,100,150,200],"categoryorder":"array","categoryarray":["50","100","150","200"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"Price (1000 USD)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"Size","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"d5f81f8ca60f":{"x":{},"y":{},"colour":{},"type":"scatter"}},"cur_data":"d5f81f8ca60f","visdat":{"d5f81f8ca60f":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<p>If you get this error, go to the Session menu at the very top of the
+screen and click “Restart R and run all code chunks”.</p>
+<pre><code>Error in file(file, ifelse(append, &quot;a&quot;, &quot;w&quot;)) : 
+  cannot open the connection</code></pre>
+<p>Many more interactive options in this tutorial: <a
+href="https://plotly.com/r/line-and-scatter/"
+class="uri">https://plotly.com/r/line-and-scatter/</a></p>
+<hr />
+<p><br> <br></p>
+<p>Or we can customise it even more using this tutorial to get results
+like this (<a
+href="https://www.r-graph-gallery.com/web-violinplot-with-ggstatsplot.html"
+class="uri">https://www.r-graph-gallery.com/web-violinplot-with-ggstatsplot.html</a>)</p>
+<p><br> <br></p>
+</div>
 </div>
 </div>
 

@@ -1,1 +1,9 @@
 /.Rproj.user
+.DS_Store
+docs/.DS_Store
+docs/CH3_EDA_files/.DS_Store
+docs/in_T13_Correlation_files/.DS_Store
+docs/in_T15_Diagnostics_files/.DS_Store
+docs/in_T16_Outliers_files/.DS_Store
+docs/in_T20_GLM_files/.DS_Store
+docs/zpg_T10_Missing_files/.DS_Store
