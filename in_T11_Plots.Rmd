@@ -483,18 +483,23 @@ Or if your dataset has a descriptor column like name/city/object, then you can l
 ```{r}
 ggscatterstats(
   data = movies_long, ## data frame from which variables are taken
-  x = budget, ## predictor/independent variable
-  y = rating, ## dependent variable
-  xlab = "Budget (in millions of US dollars)", ## label for the x-axis
-  ylab = "Rating on IMDB", ## label for the y-axis
-  label.var = title, ## variable to use for labeling data points
-  label.expression = rating < 5 & budget > 100, ## expression for deciding which points to label
+  x = budget, 
+  y = rating, 
+  
+  xlab = "Budget (in millions of US dollars)", 
+  ylab = "Rating on IMDB", 
+  title = "Relationship between movie budget and IMDB rating",
+  caption = "Source: www.imdb.com", 
+  
+  label.var = title, ## column name to use for labeling data points
+  label.expression = rating < 5 & budget > 100, ## decide which which points to label
   point.label.args = list(alpha = 0.7, size = 3, color = "grey50"),
+  
   xsidehistogram.args = list(fill = "#CC79A7",color="black",bins=30),
   ysidehistogram.args = list(fill = "#009E73",color="black",bins=30),
-  title = "Relationship between movie budget and IMDB rating",
-  caption = "Source: www.imdb.com"
-)
+  results.subtitle=FALSE
+  )
+
 ```
 
 <br>
