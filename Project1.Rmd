@@ -1,0 +1,59 @@
+---
+title: "Accordion Example in Bookdown"
+output:
+  bookdown::html_document2
+---
+
+# Introduction
+
+This document includes a working accordion to hide/show content.
+
+## Accordion Section
+
+<button class="accordion">Click to expand</button>
+<div class="panel" style="display: none; margin-top: 10px;">
+  <p>This is the hidden content. You can include text, code, or even plots here.</p>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  document.querySelectorAll('.accordion').forEach(button => {
+    button.addEventListener('click', function() {
+      const panel = this.nextElementSibling;
+      if (panel.style.display === "none" || panel.style.display === "") {
+        panel.style.display = "block";
+      } else {
+        panel.style.display = "none";
+      }
+    });
+  });
+});
+</script>
+
+<style>
+.accordion {
+  background-color: #f2f2f2;
+  color: #333;
+  cursor: pointer;
+  padding: 10px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: background-color 0.3s ease;
+  font-size: 16px;
+  margin-bottom: 5px;
+  border-radius: 4px;
+}
+
+.accordion:hover {
+  background-color: #ddd;
+}
+
+.panel {
+  padding: 10px;
+  background-color: #fafafa;
+  border-left: 2px solid #ccc;
+  border-radius: 4px;
+}
+</style>

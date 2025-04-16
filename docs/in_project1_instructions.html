@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>in_project1_instructions.knit</title>
+
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Full Tutorial List</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    R-BASICS
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="CH1_BASICS.html#ch1">1 Installing/Accessing R</a>
+    </li>
+    <li>
+      <a href="CH1_BASICS.html#ch2">2 Changing Settings</a>
+    </li>
+    <li>
+      <a href="CH1_BASICS.html#ch3">3 Console/coding basics</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    STARTING EACH LAB
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="CH2_EACHLAB.html#ch4">4. Projects</a>
+    </li>
+    <li>
+      <a href="CH2_EACHLAB.html#ch5">5. Packages</a>
+    </li>
+    <li>
+      <a href="CH2_EACHLAB.html#ch6">6. R-Markdown</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    EXPLORING DATA
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="in_T07_ReadingInData.html">7. Reading in data</a>
+    </li>
+    <li>
+      <a href="CH3_EDA.html#ch8">8. Summary Statistics</a>
+    </li>
+    <li>
+      <a href="CH3_EDA.html#ch9">9. Filtering/selecting</a>
+    </li>
+    <li>
+      <a href="CH3_EDA.html#ch10">10. Missing Data</a>
+    </li>
+    <li>
+      <a href="in_T11_Plots.html">11. Plots</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    STATISTICAL-ANALYSIS
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="in_T12_NormalDistributionsTTests.html">12. Normal/T-Dist/Tests</a>
+    </li>
+    <li>
+      <a href="in_T13_Correlation.html">13 Correlation</a>
+    </li>
+    <li>
+      <a href="in_T14_Regression.html">14. Simple Linear Regression</a>
+    </li>
+    <li>
+      <a href="in_T15_Diagnostics.html">15. Model Diagnostics</a>
+    </li>
+    <li>
+      <a href="in_T16_Outliers.html">16. Outliers</a>
+    </li>
+    <li>
+      <a href="in_T17_ConfPred.html">17. Confidence &amp; Prediction</a>
+    </li>
+    <li>
+      <a href="in_T18_Transformations.html">18. Transformations</a>
+    </li>
+    <li>
+      <a href="in_T19_MLR.html">19. Multiple Linear Regression</a>
+    </li>
+    <li>
+      <a href="in_T20_GLM.html">20. General Linear Regression</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    PROJECT INSTRUCTIONS
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="in_project1_instructions.html">Project 1</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<style>
+h3 {
+  margin-top: 15px !important;
+  margin-bottom: 6px !important;
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  line-height: 1.2 !important;
+}
+</style>
+<div id="project-1---part-1." class="section level1 unnumbered">
+<h1>Project 1 - PART 1.</h1>
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>Guardian Health is a new start-up company who is preparing to enter the US health insurance market in 2026. They need to
+set competitive yet sustainable premiums for their plans and customers across the United States but because they are
+new, they lack historical claims data. Instead, they ave contracted our consulting firm, <em>462-Investigations</em> to use the
+Government’s MEPS longitudinal dataset (2022) to build a predictive model of total annual healthcare costs (TOTEXP22).</p>
+<p><strong>As a junior analyst in STAT462-Investigations, your role on our team is to</strong></p>
+<ol style="list-style-type: decimal">
+<li>Conduct the background research on the dataset and explore the data</li>
+<li>Use Simple Linear Regression to answer Guardian Health’s questions about the expected annual medical expenses for
+their customers</li>
+</ol>
+<p><strong>What will you submit?</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>You have already completed a quiz about Guardian health and the project (worth 20 points)</p></li>
+<li><p>By 23.59pm Sunday 20th April, I expect you to submit TWO reports to submit to Guardian Health. (Worth 180 points):</p>
+<p><strong>Final Report (Client-Facing Document)<br />
+</strong>This is a professionally formatted consulting report, ensuring that all results are interpreted and explained
+clearly for a non-statistical audience, including</p>
+<ul>
+<li><p>An introduction to the MEPS-2022 dataset, explaining its purpose, structure, and limitations.</p></li>
+<li><p>A summary of exploratory data analysis (EDA) and data quality checks.</p></li>
+<li><p>A full description of your Simple Linear Regression (SLR) models to answer the client questions, including
+rationale, key assumptions, and results.</p></li>
+<li><p>A conclusion discussing limitations and caveats, ensuring Guardian Health understands the scope and reliability
+of these predictions for the company’s launch in 2026.. <br><br><br />
+</p></li>
+</ul>
+<p><strong>Modelling Logs (Technical appendix/background workings)<br />
+</strong>This is a record of your entire workflow and decision-making process, so I can see everything you tried, but you
+can keep the final report neat.<br />
+The logs can be written in a more casual style (including non English languages if English is your second language)
+and is designed to include things like</p>
+<ul>
+<li><p>All your messy quality control and exploratory data analysis</p></li>
+<li><p>Trying a load of models, then choosing your favorite for the main report</p></li>
+<li><p>All your checking/double checking assumptions, fixing transformations etc</p></li>
+</ul></li>
+</ol>
+<p><br></p>
+<p><u><strong>All the instructions to create these reports are included below, and there is a detailed rubric at the
+end.</strong></u></p>
+<p><br></p>
+</div>
+<div id="task-1.-create-professional-documents" class="section level2 unnumbered">
+<h2>Task 1. Create professional documents</h2>
+<div id="create-your-project" class="section level3 unnumbered">
+<h3>1.1 Create your project</h3>
+<button class="accordion">
+<p>Expand Instructions</p>
+</button>
+<div class="panel" style="display: none; margin-top: 10px;">
+<p>First, create a project to store your data, analysis and reports. Read instructions on how to do this here</p>
+<ul>
+<li><a href="https://psu-spatial.github.io/Stat462-2025/CH2_EACHLAB.html#1_R-Projects" class="uri">https://psu-spatial.github.io/Stat462-2025/CH2_EACHLAB.html#1_R-Projects</a></li>
+</ul>
+</div>
+</div>
+<div id="create-your-lab-reports" class="section level3 unnumbered">
+<h3>1.2 Create your Lab reports</h3>
+<button class="accordion">
+<p>Expand Instructions</p>
+</button>
+<div class="panel" style="display: none; margin-top: 10px;">
+<p><strong>A. Create your main report</strong></p>
+<p>Create an Rmarkdown file for your final report and save to your project folder - NEW tutorial here:
+<a href="https://psu-spatial.github.io/Stat462-2025/CH2_EACHLAB.html#33_Creating_R-Markdown_Files" class="uri">https://psu-spatial.github.io/Stat462-2025/CH2_EACHLAB.html#33_Creating_R-Markdown_Files</a></p>
+<p>You can be as detailed as you like and use any template, but at minimum<br />
+- It should be clear that the report is written by you as part of STAT-462 Investigations - It should have a table of
+contents - Unneeded output like library loading text printouts should be suppressed. - It should be saved as a filename
+including your email id e.g. hlg5155 and the word REPORT</p>
+<p>This means it is sufficient for you to copy/paste an old lab template if you wish. But bonus marks for making something
+unique that you would be happy submitting to Guardian health in real life. Remember you have logo files etc if you wish
+to use them, or images online (if you cite their source)</p>
+<p><strong>B. Create your “background workings”/technical log report</strong></p>
+<p>As I described above, this is where you can do all the ‘messy’ R analysis e.g. checking datasets, trying a load of
+models.. etc. At minimum</p>
+<ul>
+<li>It should be clear that the report is written by you as part of STAT-462 Investigations</li>
+<li>It should have a table of contents</li>
+<li>Unneeded output like library loading text printouts should be suppressed.</li>
+<li>It should be saved as a filename including your email id e.g. hlg5155 and the word LOG</li>
+</ul>
+<p>You can either use the method above, or simply copy/paste/rename your main report.</p>
+</div>
+<p><br></p>
+</div>
+<div id="add-code-chunk-options" class="section level3 unnumbered">
+<h3>1.3 Add code-chunk options</h3>
+<button class="accordion">
+<p>Expand Instructions</p>
+</button>
+<div class="panel" style="display: none; margin-top: 10px;">
+<p>It’s useful to stop warnings and messages being displayed. Try putting a code chunk looking like this at the top of BOTH
+of your reports (below the YAML code at the top).</p>
+<pre class="markdown"><code>```{r, include=FALSE}
+ knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning=FALSE)
+```</code></pre>
+</div>
+<p><br></p>
+</div>
+<div id="add-libraries-to-both-reports" class="section level3 unnumbered">
+<h3>1.4 Add libraries to both reports</h3>
+<button class="accordion">
+<p>Expand Instructions</p>
+</button>
+<div class="panel" style="display: none; margin-top: 10px;">
+<p>You will need to load all the apps/libraries/packages you need (all different names for the same thing). I suggest
+putting a code chunk, below your YAML code but at the top of your script, containing all the libraries you need. Here
+are a few I suggest along with the associated code chunk options, but please add more as needed.</p>
+<pre class="markdown"><code>```{r, include=FALSE, message=FALSE, warning=FALSE}
+#-------------------------------------------------------------
+# Libraries
+#-------------------------------------------------------------
+ library(tidyverse)
+ library(remotes)
+ library(ggplot2)
+ library(ggstatsplot)
+ library(dplyr)
+ library(writexl)
+ library(olsrr)
+```</code></pre>
+<p>If you don’t have all these libraries on your computer, you might need to install them using the App-store accessed via
+the Package-Tab “Install” button.</p>
+</div>
+<p><br></p>
+</div>
+<div id="checklist" class="section level3 unnumbered">
+<h3>1.5 Checklist</h3>
+<p>By now, you should have</p>
+<ol style="list-style-type: decimal">
+<li>Made your project, and downloaded the data from canvas into the project folder - along with any logos etc as you
+wish.</li>
+<li>Created a nicely formatted main report file.</li>
+<li>Created a nicely formatting background workings log file.</li>
+<li>Added common libraries and code chunk options to both reports.</li>
+</ol>
+<p><br> <br></p>
+</div>
+</div>
+<div id="task-2.-learn-about-the-study" class="section level2 unnumbered">
+<h2>Task 2. Learn about the study</h2>
+<p>First, you need to learn more about our client and their needs. Read the text below and note what they want to achieve,
+their population of interest and any sub-populations they might care about.</p>
+<div id="learn-about-guardian-health" class="section level3 unnumbered">
+<h3>2.1 Learn about Guardian Health</h3>
+<button class="accordion">
+<p>Expand Instructions</p>
+</button>
+<div class="panel" style="display: none; margin-top: 10px;">
+<p><strong>Who are Guardian Health?</strong></p>
+<p>Guardian Health is a (fictional) new company preparing to enter the US health insurance market in 2026. They aim to
+redefine health insurance by offering transparent, data-driven, and customer-focused coverage. Their goal is to bridge
+the gap between affordability and quality care, ensuring that individuals and families receive the support they need
+without unnecessary financial burdens.</p>
+<p>Guardian Health are particularly focused on reaching younger demographics, such as university students, and communities
+that have traditionally faced barriers to affordable healthcare. To better serve these population, Guardian Health is
+also hoping to develop specialized policies tailored to their unique needs.</p>
+<p><strong>Innovation &amp; Data-Driven Approach</strong></p>
+<p>Guardian Health distinguishes itself by integrating machine learning and actuarial science to personalize insurance
+plans. Their proprietary algorithms analyze consumer health trends, regional cost variations, and economic factors to
+create fair and adaptable pricing structures. Additionally, they emphasize preventative care incentives, rewarding
+policyholders who engage in wellness programs and routine health screenings.</p>
+<p>Given the sensitivity of healthcare data, Guardian Health prioritizes ethical data use and privacy. They are committed
+to maintaining rigorous security standards and complying with HIPAA and other industry regulations. They are aiming to
+create their initial policies using the US Government MEPS dataset.</p>
+<p><strong>Future Goals</strong></p>
+<p>As a startup, Guardian Health need to set competitive yet sustainable premiums for their plans and customers across the
+United States while expanding their reach into underserved communities. By 2026, Guardian Health aims to establish
+itself as a reliable alternative to traditional insurers. Their roadmap includes:</p>
+<ul>
+<li>Launching pilot programs in select states to test model effectiveness</li>
+<li>Partnering with universities, community health organizations, and healthcare providers to expand coverage to
+students and low-income populations.</li>
+<li>Expanding coverage options based on real-world data feedback.</li>
+<li>Advocating for more transparent pricing in the insurance industry.</li>
+</ul>
+<p>As Guardian Health moves closer to its market debut, they continue to refine their models and develop consumer education
+initiatives to empower individuals in making informed healthcare choices.</p>
+</div>
+</div>
+<div id="learn-about-meps" class="section level3 unnumbered">
+<h3>2.2 Learn about MEPS</h3>
+<button class="accordion">
+<p>Expand Instructions</p>
+</button>
+<div class="panel" style="display: none; margin-top: 10px;">
+<p><strong>Introduction to MEPS</strong></p>
+<p>The Medical Expenditure Panel Survey (MEPS) is a national US survey on healthcare utilization, expenditures, sources of
+payment, and insurance coverage for the U.S. population.</p>
+<p>The MEPS includes multiple components, with the <strong>Full-Year Consolidated (FYC) file</strong> being the primary dataset for
+person-level analysis. We will be running some experiments using this file from data collected in 2022, which we can
+access using R.</p>
+<ul>
+<li><strong>Object</strong>: An individual person</li>
+<li><strong>Dataset/sample extent:</strong> People treated in 2022? Randomly surveyed on the street? You need to find out!</li>
+<li><strong>Sample Size:</strong> Approximately <strong>30,000 individuals</strong></li>
+<li><strong>Total Variables:</strong> Over <strong>1,500</strong> person-level variables</li>
+<li><strong>Population Represented:</strong> All U.S. civilian non-institutionalized population</li>
+</ul>
+<p><br></p>
+<p><strong>More reading</strong></p>
+<ul>
+<li><p>MEPS Homepage: <a href="https://meps.ahrq.gov/mepsweb/" class="uri">https://meps.ahrq.gov/mepsweb/</a></p></li>
+<li><p>Read about MEPS here - <a href="https://www.meps.ahrq.gov/mepsweb/about_meps/survey_back.jsp" class="uri">https://www.meps.ahrq.gov/mepsweb/about_meps/survey_back.jsp</a></p></li>
+<li><p>About the data: <a href="https://meps.ahrq.gov/data_stats/data_overview.jsp" class="uri">https://meps.ahrq.gov/data_stats/data_overview.jsp</a></p></li>
+<li><p>Data Collection Process: <a href="https://meps.ahrq.gov/survey_comp/hc_data_collection.jsp" class="uri">https://meps.ahrq.gov/survey_comp/hc_data_collection.jsp</a></p></li>
+<li><p>Importance and Uses:
+<a href="https://odphp.health.gov/healthypeople/objectives-and-data/data-sources-and-methods/data-sources/medical-expenditure-panel-meps" class="uri">https://odphp.health.gov/healthypeople/objectives-and-data/data-sources-and-methods/data-sources/medical-expenditure-panel-meps</a></p></li>
+</ul>
+<p><br></p>
+</div>
+</div>
+<div id="checklist-1" class="section level3 unnumbered">
+<h3>2.3 Checklist</h3>
+<p>By now, you should</p>
+<ul>
+<li>Understand more about our fictional client</li>
+<li>Understand more about MEPS,ready to write up in your report (task 4)</li>
+</ul>
+<p><br> <br></p>
+</div>
+</div>
+<div id="task-3.-access-your-dataset" class="section level2">
+<h2>Task 3. Access your dataset</h2>
+<p>Originally we had code to read in MEPS from scratch. It turns out that data had many complexities, so your senior
+analyst, Dr Greatrex, read in the data, did most of the quality control and saved it as an Excel file for you.</p>
+<div id="read-in-the-meps-data" class="section level3">
+<h3>3.1 Read in the MEPS data</h3>
+<button class="accordion">
+<p>Expand Instructions</p>
+</button>
+<div class="panel" style="display: none; margin-top: 10px;">
+<p>We can use the <code>readxl</code> package to read in the dataset. I would start by putting this in my log file, then when I’m
+happy, copying the code over to the main report.</p>
+<ol style="list-style-type: decimal">
+<li><p>Download the excel file from here: &lt;file click to download&gt;. PUT IT IN YOUR PROJECT FOLDER</p></li>
+<li><p>Make sure the <strong><code>readxl</code></strong> package is installed, that you have in your library code chunk (and that you have run
+it!)</p></li>
+<li><p>Create a new code chunk and use the <code>read_excel()</code> function to read in the excel file and save it as a variable
+called <code>health22</code>. Tutorial here:
+<a href="https://psu-spatial.github.io/Stat462-2025/in_T07_ReadingInData.html#14_Reading_in_excel_files" class="uri">https://psu-spatial.github.io/Stat462-2025/in_T07_ReadingInData.html#14_Reading_in_excel_files</a></p></li>
+<li><p>Once you have done that, <code>health22</code> should appear in your environment. You can check it has loaded by running
+<code>summary(health22)</code> or by clicking on its NAME in the Environment tab.</p></li>
+<li><p>Take a quick look at the summary to familiarise yourself with the data. You don’t need to write anything yet.<br />
+</p></li>
+</ol>
+</div>
+<p><br></p>
+</div>
+<div id="details-about-the-data" class="section level3">
+<h3>3.2 Details about the data</h3>
+<button class="accordion">
+<p>Expand Instructions</p>
+</button>
+<div class="panel" style="display: none; margin-top: 10px;">
+<p>There are over 1500 variables in MEPS! That’s far too much for a class project, so here is a subset, chosen for their
+general applicability and relevance to healthcare expenditures and insurance coverage. You can read more generally about
+MEPS here.</p>
+<p><strong>YOUR RESPONSE VARIABLE:</strong></p>
+<ul>
+<li><strong>TOTEXP22</strong>: Total healthcare expenditures in 2022 (USD)
+<ul>
+<li><a href="https://meps.ipums.org/meps-action/variables/TOTEXP22" class="uri">https://meps.ipums.org/meps-action/variables/TOTEXP22</a></li>
+</ul></li>
+</ul>
+<p><strong>POTENTIAL PREDICTOR VARIABLES:</strong></p>
+<ul>
+<li><strong>PID</strong>: Person ID. Unique identifier for each individual in the dataset
+<ul>
+<li><a href="https://meps.ipums.org/meps-action/variables/PID" class="uri">https://meps.ipums.org/meps-action/variables/PID</a></li>
+</ul></li>
+<li><strong>AGELAST</strong>: Age at the end of 2022
+<ul>
+<li><a href="https://meps.ipums.org/meps-action/variables/AGELAST" class="uri">https://meps.ipums.org/meps-action/variables/AGELAST</a></li>
+</ul></li>
+<li><strong>SEX</strong>: Gender (1 = Male, 2 = Female), no other options included in survey
+<ul>
+<li><a href="https://meps.ipums.org/meps-action/variables/SEX" class="uri">https://meps.ipums.org/meps-action/variables/SEX</a></li>
+</ul></li>
+<li><strong>EDUCYR</strong>: Years of education completed
+<ul>
+<li><a href="https://meps.ipums.org/meps-action/variables/EDUCYR" class="uri">https://meps.ipums.org/meps-action/variables/EDUCYR</a></li>
+</ul></li>
+<li><strong>FAMINC22</strong>: Total family income in 2022 (USD)
+<ul>
+<li><a href="https://meps.ipums.org/meps-action/variables/FAMINC22" class="uri">https://meps.ipums.org/meps-action/variables/FAMINC22</a></li>
+</ul></li>
+<li><strong>ADBMI42</strong>: Adult Body Mass Index (BMI), based on self-reported height and weight
+<ul>
+<li><a href="https://meps.ipums.org/meps-action/variables/ADBMI42" class="uri">https://meps.ipums.org/meps-action/variables/ADBMI42</a></li>
+</ul></li>
+<li><strong>OBTOTV22</strong>: Total number of office-based medical provider visits in 2022
+<ul>
+<li><a href="https://meps.ipums.org/meps-action/variables/OBTOTV22" class="uri">https://meps.ipums.org/meps-action/variables/OBTOTV22</a></li>
+</ul></li>
+<li><strong>VMCS42</strong>: Mental component summary score (VR-12) – a standardized score of mental health status
+<ul>
+<li><a href="https://meps.ipums.org/meps-action/variables/VMCS42" class="uri">https://meps.ipums.org/meps-action/variables/VMCS42</a></li>
+</ul></li>
+<li><strong>VPCS42</strong>: Physical component summary score (VR-12) – a standardized score of physical health status
+<ul>
+<li><a href="https://meps.ipums.org/meps-action/variables/VPCS42" class="uri">https://meps.ipums.org/meps-action/variables/VPCS42</a></li>
+</ul></li>
+<li><strong>UNINS22</strong>: Uninsured status in 2022 (1 = uninsured all year, 2 = any coverage)
+<ul>
+<li><a href="https://meps.ipums.org/meps-action/variables/UNINS22" class="uri">https://meps.ipums.org/meps-action/variables/UNINS22</a></li>
+</ul></li>
+</ul>
+<p>** DATA QUALITY FLAGS**</p>
+<p>All the columns show similar data quality flags. See section 2.2 pg 13 here - <a href="https://meps.ipums.org/meps/resources/h233doc.pdf" class="uri">https://meps.ipums.org/meps/resources/h233doc.pdf</a></p>
+<ul>
+<li>-1 Inapplicable (question not asked, due to skip pattern)</li>
+<li>-2 Don’t know</li>
+<li>-3 Invalid missing (e.g., multiple answers or problem in data collection)</li>
+<li>-7 Refused</li>
+<li>-8 Not ascertained (unable to obtain)</li>
+<li>-9 Not known – unspecified (used rarely)</li>
+<li>-15 Suppressed due to confidentiality (e.g., too few cases in a cell)</li>
+</ul>
+</div>
+<p><br></p>
+</div>
+<div id="finish-the-quality-control" class="section level3">
+<h3>3.3 Finish the quality control</h3>
+<p>I did most of the quality control, but there are a few things left for you to do.</p>
+<button class="accordion">
+<p>Expand Instructions</p>
+</button>
+<div class="panel" style="display: none; margin-top: 10px;">
+<p>Again, I would work out how to do this in my log/background file, then when I’m happy, copy the code over to the main
+report.</p>
+<p><strong>A. In your background workings, Create a section called quality control </strong></p>
+<p><br></p>
+<p><strong>B. Missing Data</strong></p>
+<p>For the sake of an undergrad project, I assumed that all quality control codes (see above) that were NOT -1 should be treated as missing data, NA. This means that R will ignore those values.</p>
+<p>Unfortunately I forgot to assign -8 to NA. This code will do this for you, so add this to your quality control section and see how it changes the summary of the data.</p>
+<pre class="r"><code> special_code &lt;- -8
+ 
+ health22 &lt;- health22 %&gt;% 
+               mutate(across(everything(), ~ replace(.x, .x %in% special_code, NA)))</code></pre>
+<p><br></p>
+<p><strong>C. Categorical data and Factors</strong></p>
+<p>Some of our data is grouped/categorical and we need to make sure R understands it as such.</p>
+<p>Include this code to make your uninsured data and sex columns categorical:</p>
+<pre class="r"><code># because it already has labels
+health22$UNINS22 &lt;- as.factor(health22$UNINS22)
+
+health22$SEX &lt;- factor(health22$SEX, levels = c(1,2), 
+                             labels=c(&quot;Male&quot;, &quot;Female&quot;))
+
+
+# set this to a descriptor
+health22$PID &lt;- as.character(health22$PID)</code></pre>
+<p><br></p>
+</div>
+<p><br></p>
+</div>
+<div id="exploratory-data-analysis" class="section level3">
+<h3>3.4 Exploratory data analysis</h3>
+<button class="accordion">
+<p>Expand Instructions</p>
+</button>
+<div class="panel" style="display: none; margin-top: 10px;">
+<p>Now focus on exploring the data in your log file, using commands like <code>summary(health22)</code> and other statistics.</p>
+<ul>
+<li>More commands here - <a href="https://psu-spatial.github.io/Stat462-2025/CH3_EDA.html#ch8" class="uri">https://psu-spatial.github.io/Stat462-2025/CH3_EDA.html#ch8</a></li>
+<li>Filtering/selecting commands here: <a href="https://psu-spatial.github.io/Stat462-2025/CH3_EDA.html#ch9" class="uri">https://psu-spatial.github.io/Stat462-2025/CH3_EDA.html#ch9</a></li>
+<li>Many plots here <a href="https://psu-spatial.github.io/Stat462-2025/in_T11_Plots.html" class="uri">https://psu-spatial.github.io/Stat462-2025/in_T11_Plots.html</a></li>
+</ul>
+<p>YOU DON’T NEED TO DO CORRELATIONS YET. (its fine if you have)</p>
+<p>Record notes in your logfile about what you have found.</p>
+</div>
+</div>
+<div id="checklist-2" class="section level3 unnumbered">
+<h3>3.4 Checklist</h3>
+<p>By now, you should</p>
+<ul>
+<li>Have read your data into your log report</li>
+<li>Finished some more data wrangling</li>
+<li>Explore the data a little</li>
+</ul>
+<p><br><br></p>
+</div>
+</div>
+<div id="task-4.-write-report-introduction" class="section level2 unnumbered">
+<h2>Task 4. Write report introduction</h2>
+<button class="accordion">
+<p>Expand Instructions</p>
+</button>
+<div class="panel" style="display: none; margin-top: 10px;">
+<p>In your main report, create a clearly labeled section called <strong>“Introduction”</strong> or <strong>“Background”</strong>.</p>
+<p><strong>Underneath, copy over a ‘tidy’ version of your logbook code.</strong><br />
+What do I mean by ‘tidy’? You need to read in the dataset and do all your quality control, but you don’t need to
+include every single printout. You can also use code chunk options like output=“hide” , include=FALSE or code
+folding to keep it neat</p>
+<p>Then, write an introduction for Guardian-Health, explaining in clear non-expert terms what they are trying to achieve.</p>
+<p>This section should be around 300–500 words (min) and written in a clear, professional style that someone at Guardian Health (your client) could understand and learn from. Please use formatting tools like headings/sub-headings/bullets etc to make your write up look professional. You are also allowed to use any images you wish</p>
+<p>Your goal is to give the reader a strong overview of the project before you dive into the data or analysis. Keep this
+section focused on the big picture. Don’t include specific numbers, variables, or plots yet — that comes in the next
+section where you explore the data.</p>
+</div>
+<div id="checklist-3" class="section level3 unnumbered">
+<h3>4.2 Checklist</h3>
+<p>Top introductions will:</p>
+<ul>
+<li>Describe the dataset background/sourcing, along with relevant meta-data, sourcing, structure etc</li>
+<li>Clearly identify the object-of-analysis, the dataset extent and key variables (you can copy/paste my list)</li>
+<li>Identify the population Guardian Health are hoping to extrapolate results to and note any initial limitations e.g. identify populations it may not generalize to (incarcerated people? all old people?)</li>
+<li>List all the things we did to perform quality control on the data<br />
+</li>
+<li>Showed some initial exploratory data summaries, especiall e.g. the summary of the data,</li>
+</ul>
+<p><br><br></p>
+</div>
+</div>
+<div id="task-5.-exploratory-data-analysis" class="section level2 unnumbered">
+<h2>Task 5. Exploratory Data Analysis</h2>
+<div id="analyse-totexp22" class="section level3 unnumbered">
+<h3>5.1 Analyse TOTEXP22</h3>
+<button class="accordion">
+<p>Expand Instructions</p>
+</button>
+<div class="panel" style="display: none; margin-top: 10px;">
+<p>The response variable that Guardian health care about is total health care expenses in 2022, the variable <code>TOTEXP22</code>.</p>
+<p>In your log files, look carefully at this variable. I have also included the natural log transformed version of the variable, <code>ln_TOTEXP22</code>. For example, look at the summary statistics in the context of what people spend, the histogram and anything else.</p>
+<p>Comment on what you find, how that results to real life and any issues you see regarding using this for Simple Linear Regression. When you are happy, create a new section in your main report and transfer over your neat code and write up your findings.</p>
+<div id="remove-missing-values-and-non-numeric-columns" class="section level3 unnumbered">
+<h3>5.2 Remove missing values and non-numeric columns</h3>
+<p>For the sake of ease, let’s remove all missing values and non-numeric columns.</p>
+<pre class="r"><code># remove all missing data
+  health22 &lt;- na.omit(health22)
+
+# remove all non-numeric data
+  health22 &lt;-  health22 %&gt;% select(where(is.numeric))</code></pre>
+</div>
+</div>
+<p><br></p>
+</div>
+<div id="look-at-correlations-with-totexp22" class="section level3 unnumbered">
+<h3>5.2 Look at correlations with TOTEXP22</h3>
+<button class="accordion">
+<p>Expand Instructions</p>
+</button>
+<div class="panel" style="display: none; margin-top: 10px;">
+<p>Now in your log file, explore the relationships between TOTEXP22 and different predictor variables. This code makes the core correlation matrix</p>
+<pre class="r"><code>cortable &lt;- cor(health22_numeric,use=&quot;pairwise.complete.obs&quot;)
+cortable</code></pre>
+<ul>
+<li>You could use correlation matrices: <a href="https://psu-spatial.github.io/Stat462-2025/in_T13_Correlation.html" class="uri">https://psu-spatial.github.io/Stat462-2025/in_T13_Correlation.html</a></li>
+<li>Or make individual scatterplots <a href="https://psu-spatial.github.io/Stat462-2025/in_T11_Plots.html#4_Scatterplots" class="uri">https://psu-spatial.github.io/Stat462-2025/in_T11_Plots.html#4_Scatterplots</a> (only have to be neat in your final report)</li>
+</ul>
+<p>If you want to see all the scatterplots in one place, you can use this code - where you change COLNAME to the name of the column you wish to explore e.g. TOTEXP22.</p>
+<pre class="r"><code># THIS TAKES A MINUTE TO RUN!
+
+# Rearrange the format
+ health22_longformat &lt;- health22 %&gt;%
+   pivot_longer(cols = -COLNAME,   #  KEEP THE -sign in front!  e.g. -TOTEXP22
+                names_to = &quot;predictor&quot;, 
+                values_to = &quot;value&quot;)
+ 
+ # then plot using ggplot
+ ggplot(health22_longformat, aes(x = value, y = COLNAME)) +
+   geom_point(alpha = 0.3,size=1) +
+   facet_wrap(~ predictor, scales = &quot;free_x&quot;) +
+   theme_minimal()</code></pre>
+</div>
+<p><br></p>
+</div>
+<div id="look-at-correlations-with-ln_totexp22" class="section level3 unnumbered">
+<h3>5.3 Look at correlations with ln_TOTEXP22</h3>
+<button class="accordion">
+<p>Expand Instructions</p>
+</button>
+<div class="panel" style="display: none; margin-top: 10px;">
+<p>Now in your log file, explore the relationships between TOTEXP22 and different predictor variables.</p>
+<ul>
+<li>You could use correlation matrices: <a href="https://psu-spatial.github.io/Stat462-2025/in_T13_Correlation.html" class="uri">https://psu-spatial.github.io/Stat462-2025/in_T13_Correlation.html</a></li>
+<li>Or make individual scatterplots <a href="https://psu-spatial.github.io/Stat462-2025/in_T11_Plots.html#4_Scatterplots" class="uri">https://psu-spatial.github.io/Stat462-2025/in_T11_Plots.html#4_Scatterplots</a> (only have to be neat in your final report)</li>
+<li>Or use the code from 5.3 to see all the scatterplots in one place,</li>
+</ul>
+</div>
+<p><br></p>
+</div>
+<div id="look-at-correlations-with-non-zero-health-costs" class="section level3 unnumbered">
+<h3>5.4 Look at correlations with non-zero health costs</h3>
+<button class="accordion">
+<p>Expand Instructions</p>
+</button>
+<div class="panel" style="display: none; margin-top: 10px;">
+<p>Finally, it appears that many people paid zero for their health costs (e.g. they were healthy??). This skews our histogram and its reasonable to assume that the predictors causing someone to be yes/no unhealthy are different to the predictors causing someone to pay more money if they are.</p>
+<p>This code will filter the data to ONLY positive healthcare costs.</p>
+<pre class="r"><code>  health22_TOTEXP22_gt0 &lt;-  health22[which(health22$TOTEXP22&gt; 0),]</code></pre>
+<p>get this code running and repeat your quality control. Remember you can copy/paste code.</p>
+</div>
+<p><br><br></p>
+</div>
+<div id="write-up-what-you-have-found-in-the-main-report" class="section level3">
+<h3>5.5 Write up what you have found in the main report</h3>
+<p>Include your results in the main report, explaing the difference to guardian health. Which ones do you consider using for your response variable and why?</p>
+<p><br><br></p>
+</div>
+</div>
+<div id="task-6-slr-question-1" class="section level2 unnumbered">
+<h2>Task 6 SLR question 1</h2>
+<div id="age-and-total-expenses" class="section level3 unnumbered">
+<h3>6.1 Age and total expenses</h3>
+<button class="accordion">
+<p>Expand Instructions</p>
+</button>
+<div class="panel" style="display: none; margin-top: 10px;">
+<p>Guardian health would like to know the impact of AGE (in 2022) on expenses paid. You can choose whatever variant of the response variable you wish, but you must justify your choice.</p>
+<ul>
+<li>You can find the code here for SLR <a href="https://psu-spatial.github.io/Stat462-2025/in_T14_Regression.html" class="uri">https://psu-spatial.github.io/Stat462-2025/in_T14_Regression.html</a></li>
+<li>You can find the code here for model diagnostics <a href="https://psu-spatial.github.io/Stat462-2025/in_T15_Diagnostics.html" class="uri">https://psu-spatial.github.io/Stat462-2025/in_T15_Diagnostics.html</a></li>
+<li>You can find the code here for prediction <a href="https://psu-spatial.github.io/Stat462-2025/in_T17_ConfPred.html" class="uri">https://psu-spatial.github.io/Stat462-2025/in_T17_ConfPred.html</a></li>
+</ul>
+<p>Specifically, please write up</p>
+<ol style="list-style-type: decimal">
+<li>The causal chain - why would age lead to differing healthcare costs?</li>
+<li>The model equation</li>
+<li>The slope and intercept in their real life meaning</li>
+<li>The effect size and significance of the slope.</li>
+<li>Whether the model meets the LINE assumptions and if not what you suggest (you dont have to do it)</li>
+<li>Any issues/outliers - what about very old people?</li>
+<li>Predict the 95% confidence interval on total healthcare costs for 40 year olds.</li>
+</ol>
+</div>
+<p><br></p>
+</div>
+<div id="best-model" class="section level3 unnumbered">
+<h3>6.2 “Best model”</h3>
+<button class="accordion">
+<p>Expand Instructions</p>
+</button>
+<div class="panel" style="display: none; margin-top: 10px;">
+<p>Guardian health would like to know the MOST IMPACTFUL predictor (in 2022) on expenses paid. You can choose whatever variant of the response variable you wish, but you must justify your choice.</p>
+<ul>
+<li>You can find the code here for SLR <a href="https://psu-spatial.github.io/Stat462-2025/in_T14_Regression.html" class="uri">https://psu-spatial.github.io/Stat462-2025/in_T14_Regression.html</a></li>
+<li>You can find the code here for model diagnostics <a href="https://psu-spatial.github.io/Stat462-2025/in_T15_Diagnostics.html" class="uri">https://psu-spatial.github.io/Stat462-2025/in_T15_Diagnostics.html</a></li>
+<li>You can find the code here for prediction <a href="https://psu-spatial.github.io/Stat462-2025/in_T17_ConfPred.html" class="uri">https://psu-spatial.github.io/Stat462-2025/in_T17_ConfPred.html</a></li>
+</ul>
+<p>Specifically, please write up why you chose that variable., Plus!</p>
+<ol style="list-style-type: decimal">
+<li>The causal chain - why would your chosen lead to differing healthcare costs?</li>
+<li>The model equation and why you chose it.</li>
+<li>The slope and intercept in their real life meaning</li>
+<li>The effect size and significance of the slope.</li>
+<li>Whether your model meets the LINE assumptions.</li>
+<li>Consider transformations on either/both the response and predictor if needed</li>
+<li>Any issues/outliers - what about very old people?</li>
+<li>Use AIC and R2 to compare your age model with this one.</li>
+</ol>
+</div>
+<p><br></p>
+</div>
+<div id="write-up-your-results" class="section level3 unnumbered">
+<h3>6.3 Write up your results</h3>
+<p>Write up a neat copy of your results in your main report</p>
+<p><br><br></p>
+</div>
+</div>
+<div id="conclusions" class="section level2">
+<h2>7. Conclusions</h2>
+<p>Finally, write a short summary/conclusion in your main report.</p>
+<p>If you could choose several predictors, state what you would choose and why</p>
+</div>
+</div>
+<div id="grading-rubric" class="section level1">
+<h1>Grading rubric</h1>
+<button class="accordion">
+<p>Expand Instructions</p>
+</button>
+<div class="panel" style="display: none; margin-top: 10px;">
+<p>Overall, here is what your lab should correspond to:</p>
+<table class=" lightable-classic-2 table table-striped table-hover table-responsive" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Grade
+</th>
+<th style="text-align:left;">
+Marks
+</th>
+<th style="text-align:left;">
+Rubric
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Clear, professional intro (300–500 words). Fully explains who the client is, their goals, and what they want to learn. Clearly identifies the statistical population and thoughtfully discusses its scope and limitations (e.g. who is or isn’t covered by MEPS). Strong link between client needs and the MEPS dataset.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+B
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Covers the main elements: client, goals, population, and dataset. Some discussion of the population, though may miss key nuances or assumptions. Writing is mostly clear and well structured.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+C
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Basic coverage of client and data. Mentions population but lacks depth or clarity. May not connect dataset to client needs clearly. Writing is understandable but may be vague or loosely organized.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+D
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+One or more key pieces are missing or unclear (e.g., no population mentioned, unclear who the client is, vague use of the dataset). Ideas may be underdeveloped or hard to follow. Effort recognized, but revision needed. Clear thinking is more important than polished grammar.
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  document.querySelectorAll('.accordion').forEach(button => {
+    button.addEventListener('click', function() {
+      const panel = this.nextElementSibling;
+      if (panel.style.display === "none" || panel.style.display === "") {
+        panel.style.display = "block";
+      } else {
+        panel.style.display = "none";
+      }
+    });
+  });
+});
+</script>
+<style>
+.accordion {
+  background-color: #f2f2f2;
+  color: #333;
+  cursor: pointer;
+  padding: 10px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: background-color 0.3s ease;
+  font-size: 16px;
+  margin-bottom: 2px;
+  border-radius: 4px;
+}
+
+.accordion:hover {
+  background-color: #ddd;
+}
+
+.panel {
+  padding: 10px;
+  background-color: #fafafa;
+  border-left: 2px solid #ccc;
+  border-radius: 4px;
+}
+</style>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

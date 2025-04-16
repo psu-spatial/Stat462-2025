@@ -52,6 +52,10 @@ navbar:
           href: in_T19_MLR.html         
         - text: "20. General Linear Regression"
           href: in_T20_GLM.html         
+    - text: "PROJECT INSTRUCTIONS"
+      menu:  
+        - text: "Project 1"
+          href: in_project1_instructions.html
 output:
   html_document:
     theme: flatly
