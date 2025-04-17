@@ -45,7 +45,9 @@ Government’s MEPS longitudinal dataset (2022) to build a predictive model of t
 
 1.  You have already completed a quiz about Guardian health and the project (worth 20 points)
 
-2.  By 23.59pm Sunday 20th April, I expect you to submit TWO reports to submit to Guardian Health. (Worth 180 points):
+2.  You get 30 bonus points (previously the peer review) for participating in this roller coaster of a project
+
+2.  By 23.59pm WEDNESDAY 23rd April, I expect you to submit TWO reports to submit to Guardian Health. (Worth 180 points):
 
     **Final Report (Client-Facing Document)\
     **This is a professionally formatted consulting report, ensuring that all results are interpreted and explained
@@ -82,11 +84,13 @@ end.**]{.underline}
 
 ## Task 1. Create professional documents {.unnumbered}
 
+THIS WOULD HAVE BEEN DONE AS PART OF YOUR WEEK 1&2 WORK
+
 ### 1.1 Create your project {.unnumbered}
 
 <button class="accordion">
 
-Expand Instructions
+Expand For Instructions
 
 </button>
 
@@ -100,7 +104,7 @@ First, create a project to store your data, analysis and reports. Read instructi
 
 <button class="accordion">
 
-Expand Instructions
+Expand For Instructions
 
 </button>
 
@@ -138,7 +142,7 @@ You can either use the method above, or simply copy/paste/rename your main repor
 
 <button class="accordion">
 
-Expand Instructions
+Expand For Instructions
 
 </button>
 
@@ -163,7 +167,7 @@ writeLines(c(
 
 <button class="accordion">
 
-Expand Instructions
+Expand For Instructions
 
 </button>
 
@@ -211,14 +215,16 @@ By now, you should have
 
 ## Task 2. Learn about the study {.unnumbered}
 
-First, you need to learn more about our client and their needs. Read the text below and note what they want to achieve,
-their population of interest and any sub-populations they might care about.
+THIS WOULD HAVE BEEN DONE AS PART OF YOUR WEEK 1&2 WORK
+
+First, you need to learn more about our client and their needs. Read the text below and note what they want to
+achieve,their population of interest and any sub-populations they might care about.
 
 ### 2.1 Learn about Guardian Health {.unnumbered}
 
 <button class="accordion">
 
-Expand Instructions
+Expand For Instructions
 
 </button>
 
@@ -265,7 +271,7 @@ initiatives to empower individuals in making informed healthcare choices.
 
 <button class="accordion">
 
-Expand Instructions
+Expand For Instructions
 
 </button>
 
@@ -314,6 +320,8 @@ By now, you should
 
 ## Task 3. Access your dataset
 
+THIS WOULD HAVE BEEN DONE AS PART OF YOUR WEEK 2 WORK
+
 Originally we had code to read in MEPS from scratch. It turns out that data had many complexities, so your senior
 analyst, Dr Greatrex, read in the data, did most of the quality control and saved it as an Excel file for you.
 
@@ -321,28 +329,32 @@ analyst, Dr Greatrex, read in the data, did most of the quality control and save
 
 <button class="accordion">
 
-Expand Instructions
+Expand For Instructions
 
 </button>
 
 ::: {.panel style="display: none; margin-top: 10px;"}
+
 We can use the `readxl` package to read in the dataset. I would start by putting this in my log file, then when I'm
 happy, copying the code over to the main report.
 
-1.  Download the excel file from here: \<file click to download\>. PUT IT IN YOUR PROJECT FOLDER
+1.  Download the excel file from Canvas - <https://psu.instructure.com/courses/2381686/assignments/17144942?module_item_id=44663028> . PUT IT IN YOUR PROJECT FOLDER <br>
 
 2.  Make sure the **`readxl`** package is installed, that you have in your library code chunk (and that you have run
-    it!)
+    it!) <br>
 
 3.  Create a new code chunk and use the `read_excel()` function to read in the excel file and save it as a variable
     called `health22`. Tutorial here:
-    <https://psu-spatial.github.io/Stat462-2025/in_T07_ReadingInData.html#14_Reading_in_excel_files>
+    <https://psu-spatial.github.io/Stat462-2025/in_T07_ReadingInData.html#14_Reading_in_excel_files> <br>
 
 4.  Once you have done that, `health22` should appear in your environment. You can check it has loaded by running
-    `summary(health22)` or by clicking on its NAME in the Environment tab.
-    
-5.  Take a quick look at the summary to familiarise yourself with the data. You don't need to write anything yet.    
+    `summary(health22)` or by clicking on its NAME in the Environment tab. <br>
+
+5.  Take a quick look at the summary to familiarise yourself with the data. You don't need to write anything yet.\
 :::
+
+
+
 
 <br>
 
@@ -350,7 +362,7 @@ happy, copying the code over to the main report.
 
 <button class="accordion">
 
-Expand Instructions
+Expand For Instructions
 
 </button>
 
@@ -366,7 +378,7 @@ MEPS here.
 
 **POTENTIAL PREDICTOR VARIABLES:**
 
--   **PID**: Person ID. Unique identifier for each individual in the dataset
+-   **PID**: Person ID. Unique identifier for each individual in the dataset. Or is it??
     -   <https://meps.ipums.org/meps-action/variables/PID>
 -   **AGELAST**: Age at the end of 2022
     -   <https://meps.ipums.org/meps-action/variables/AGELAST>
@@ -389,22 +401,19 @@ MEPS here.
 
 \*\* DATA QUALITY FLAGS\*\*
 
-All the columns show similar data quality flags. See section 2.2 pg 13 here - <https://meps.ipums.org/meps/resources/h233doc.pdf>
+All the columns show similar data quality flags. See section 2.2 pg 13 here -
+<https://meps.ipums.org/meps/resources/h233doc.pdf>
 
-
- -   -1 Inapplicable (question not asked, due to skip pattern)
- -   -2 Don't know
- -   -3 Invalid missing (e.g., multiple answers or problem in data collection)
- -   -7 Refused
- -   -8 Not ascertained (unable to obtain)
- -   -9 Not known – unspecified (used rarely)
- -   -15 Suppressed due to confidentiality (e.g., too few cases in a cell)
-
+-   -1 Inapplicable (question not asked, due to skip pattern)
+-   -2 Don't know
+-   -3 Invalid missing (e.g., multiple answers or problem in data collection)
+-   -7 Refused
+-   -8 Not ascertained (unable to obtain)
+-   -9 Not known – unspecified (used rarely)
+-   -15 Suppressed due to confidentiality (e.g., too few cases in a cell)
 :::
 
 <br>
-
-
 
 ### 3.3 Finish the quality control
 
@@ -412,26 +421,28 @@ I did most of the quality control, but there are a few things left for you to do
 
 <button class="accordion">
 
-Expand Instructions
+Expand For Instructions
 
 </button>
 
 ::: {.panel style="display: none; margin-top: 10px;"}
-
 Again, I would work out how to do this in my log/background file, then when I'm happy, copy the code over to the main
 report.
 
-**A. In your background workings, Create a section called quality control **
+**A. In your background workings, Create a section called quality control**
 
 <br>
 
 **B. Missing Data**
 
-For the sake of an undergrad project, I assumed that all quality control codes (see above) that were NOT -1 should be treated as missing data, NA.  This means that R will ignore those values. 
+For the sake of an undergrad project, I assumed that all quality control codes (see above) that were NOT -1 should be
+treated as missing data, NA. This means that R will ignore those values.
 
-Unfortunately I forgot to assign -8 to NA.  This code will do this for you, so add this to your quality control section and see how it changes the summary of the data.
+Unfortunately I forgot to assign -8 to NA. This code will do this for you, so add this to your quality control section
+and see how it changes the summary of the data.
 
 ```{r, eval=FALSE}
+
 
  special_code <- -8
  
@@ -460,34 +471,30 @@ health22$SEX <- factor(health22$SEX, levels = c(1,2),
 health22$PID <- as.character(health22$PID)
 
 ```
+
 <br>
 :::
+
 <br>
-
-
 
 ### 3.4 Exploratory data analysis
 
 <button class="accordion">
 
-Expand Instructions
+Expand For Instructions
 
 </button>
 
 ::: {.panel style="display: none; margin-top: 10px;"}
+Now focus on exploring the data in your log file, using commands like `summary(health22)` and other statistics.
 
-Now focus on exploring the data in your log file, using commands like `summary(health22)` and other statistics. 
+-   More commands here - <https://psu-spatial.github.io/Stat462-2025/CH3_EDA.html#ch8>
+-   Filtering/selecting commands here: <https://psu-spatial.github.io/Stat462-2025/CH3_EDA.html#ch9>
+-   Many plots here <https://psu-spatial.github.io/Stat462-2025/in_T11_Plots.html>
 
- - More commands here - <https://psu-spatial.github.io/Stat462-2025/CH3_EDA.html#ch8>
- - Filtering/selecting commands here: <https://psu-spatial.github.io/Stat462-2025/CH3_EDA.html#ch9>
- - Many plots here <https://psu-spatial.github.io/Stat462-2025/in_T11_Plots.html>
- 
- 
- YOU DON'T NEED TO DO CORRELATIONS YET. (its fine if you have)
- 
- Record notes in your logfile about what you have found. 
+YOU DON'T NEED TO DO CORRELATIONS YET. (its fine if you have)
 
-
+Record notes in your logfile about what you have found.
 :::
 
 ### 3.4 Checklist {.unnumbered}
@@ -500,73 +507,100 @@ By now, you should
 
 <br><br>
 
-
-
-
 ## Task 4. Write report introduction {.unnumbered}
+
+THIS WOULD HAVE BEEN DONE AS PART OF YOUR WEEK 2 WORK
 
 <button class="accordion">
 
-Expand Instructions
+Expand For Instructions
 
 </button>
 
 ::: {.panel style="display: none; margin-top: 10px;"}
-
-In your main report, create a clearly labeled section called **“Introduction”** or **“Background”**. 
+In your main report, create a clearly labeled section called **“Introduction”** or **“Background”**.
 
 **Underneath, copy over a 'tidy' version of your logbook code.**\
-    What do I mean by 'tidy'? You need to read in the dataset and do all your quality control, but you don't need to
-    include every single printout. You can also use code chunk options like output="hide" , include=FALSE or code
-    folding to keep it neat
-    
-Then, write an introduction for Guardian-Health, explaining in clear non-expert terms what they are trying to achieve. 
+What do I mean by 'tidy'? You need to read in the dataset and do all your quality control, but you don't need to include
+every single printout. You can also use code chunk options like output="hide" , include=FALSE or code folding to keep it
+neat
 
-This section should be around 300–500 words (min) and written in a clear, professional style that someone at Guardian Health (your client) could understand and learn from. Please use formatting tools  like headings/sub-headings/bullets etc to make your write up look professional. You are also allowed to use any images you wish 
-    
+Then, write an introduction for Guardian-Health, explaining in clear non-expert terms what they are trying to achieve.
+
+This section should be around 300–500 words (min) and written in a clear, professional style that someone at Guardian
+Health (your client) could understand and learn from. Please use formatting tools like headings/sub-headings/bullets etc
+to make your write up look professional. You are also allowed to use any images you wish
+
 Your goal is to give the reader a strong overview of the project before you dive into the data or analysis. Keep this
 section focused on the big picture. Don’t include specific numbers, variables, or plots yet — that comes in the next
 section where you explore the data.
-
 :::
 
-### 4.2 Checklist {.unnumbered}
+### 4.2 Checklist & rubric {.unnumbered}
+
+**If you did ANYTHING Guardian Health or I might find interesting on this dataset, then please keep it in your reports
+You don't have to delete any old analysis - and I regularly award bonus points for interesting things you have found out
+about the data.**
 
 Top introductions will:
 
- - Describe the dataset background/sourcing, along with relevant meta-data, sourcing, structure etc 
- - Clearly identify the object-of-analysis, the dataset extent and key variables (you can copy/paste my list)
- - Identify the population Guardian Health are hoping to extrapolate results to and note any initial limitations e.g. identify populations it may not generalize to (incarcerated people? all old people?) 
- - List all the things we did to perform quality control on the data  
- - Showed some initial exploratory data summaries, especiall e.g. the summary of the data, 
+1.  Clearly introduce the background for Guardian health. Identify the population Guardian Health are hoping to
+    extrapolate their results to. (All humans who ever existed?)
+
+2.  Describe MEPS, its background and how it's created - along with any relevant/interesting information.
+
+3.  Describe the actual excel dataset e.g. the
+
+    -   the object-of-analysis,
+    -   the dataset extent
+    -   and key variables (you can copy/paste my list from above)
+    -   explain if it's a sample or a census and why.
+
+4.  Note any initial limitations e.g. does MEPS generalise to all populations? Do you have issues with individual
+    variables/subpopulations?
+
+5.  Make sure the code runs in the main report to read in and quality control the data, then discuss any initial thoughts or potential limitations. Do you have issues with individual variables/subpopulations? Will our results help Guardian health with all their populations? If not, why not.
+
+Here's how I am grading this section. Importantly, I am grading based on content, not on grammar/English skills.
+
+```{r, echo=FALSE}
+rubric <- readxl::read_excel("Table_ProjectRubric.xlsx")
+knitr::kable(rubric) %>%   
+  kable_classic_2() %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive"))
 
 
-
+```
 
 <br><br>
 
-
 ## Task 5. Exploratory Data Analysis {.unnumbered}
+
+THIS WOULD HAVE BEEN DONE AS PART OF YOUR WEEK 2 WORK
+
 
 ### 5.1 Analyse TOTEXP22 {.unnumbered}
 
 <button class="accordion">
 
-Expand Instructions
+Expand For Instructions
 
 </button>
 
 ::: {.panel style="display: none; margin-top: 10px;"}
+The response variable that Guardian health care about is total health care expenses in 2022, the variable `TOTEXP22`.
 
-The response variable that Guardian health care about is total health care expenses in 2022, the variable `TOTEXP22`. 
+In your log files, look carefully at this variable. I have also included the natural log transformed version of the
+variable, `ln_TOTEXP22`. For example, look at the summary statistics in the context of what people spend, the histogram
+and anything else.
 
-In your log files, look carefully at this variable.  I have also included the natural log transformed version of the variable, `ln_TOTEXP22`.  For example, look at the summary statistics in the context of what people spend, the histogram and anything else.
-
-Comment on what you find, how that results to real life and any issues you see regarding using this for Simple Linear Regression.  When you are happy, create a new section in your main report and transfer over your neat code and write up your findings. 
+Comment on what you find, how that results to real life and any issues you see regarding using this for Simple Linear
+Regression. When you are happy, create a new section in your main report and transfer over your neat code and write up
+your findings.
 
 ### 5.2 Remove missing values and non-numeric columns {.unnumbered}
 
-For the sake of ease, let's remove all missing values and non-numeric columns.
+For the sake of undergraduate project easiness, let's remove all missing values and non-numeric columns.
 
 ```{r,eval=FALSE}
 # remove all missing data
@@ -577,8 +611,6 @@ For the sake of ease, let's remove all missing values and non-numeric columns.
 
 
 ```
-
-
 :::
 
 <br>
@@ -587,24 +619,25 @@ For the sake of ease, let's remove all missing values and non-numeric columns.
 
 <button class="accordion">
 
-Expand Instructions
+Expand For Instructions
 
 </button>
 
 ::: {.panel style="display: none; margin-top: 10px;"}
-
-Now in your log file, explore the relationships between TOTEXP22 and different predictor variables.   This code makes the core correlation matrix
+Now in your log file, explore the relationships between TOTEXP22 and different predictor variables. This code makes the core correlation matrix
 
 ```{r,eval=FALSE}
 cortable <- cor(health22_numeric,use="pairwise.complete.obs")
 cortable
 ```
 
- - You could use correlation matrices:  https://psu-spatial.github.io/Stat462-2025/in_T13_Correlation.html 
- - Or make individual scatterplots https://psu-spatial.github.io/Stat462-2025/in_T11_Plots.html#4_Scatterplots (only have to be neat in your final report)
- 
-If you want to see all the scatterplots in one place, you can use this code - where you change COLNAME to the name of the column you wish to explore e.g. TOTEXP22.  
-   
+-   You could use correlation matrices: <https://psu-spatial.github.io/Stat462-2025/in_T13_Correlation.html>
+-   Or make individual scatterplots <https://psu-spatial.github.io/Stat462-2025/in_T11_Plots.html#4_Scatterplots> (only
+    have to be neat in your final report)
+
+If you want to see all the scatterplots in one place, you can use this code - where you change COLNAME to the name of
+the column you wish to explore e.g. TOTEXP22.  Or you  could just copy/paste the scatterplot code or change the variable name to take a look at them.
+
 ```{r, eval=FALSE}
 
 # THIS TAKES A MINUTE TO RUN!
@@ -622,8 +655,6 @@ If you want to see all the scatterplots in one place, you can use this code - wh
    theme_minimal()
 
 ```
-
-
 :::
 
 <br>
@@ -632,21 +663,18 @@ If you want to see all the scatterplots in one place, you can use this code - wh
 
 <button class="accordion">
 
-Expand Instructions
+Expand For Instructions
 
 </button>
 
 ::: {.panel style="display: none; margin-top: 10px;"}
+Now in your log file, explore the relationships between TOTEXP22 and different predictor variables.
 
-Now in your log file, explore the relationships between TOTEXP22 and different predictor variables.  
-
- - You could use correlation matrices:  https://psu-spatial.github.io/Stat462-2025/in_T13_Correlation.html 
- - Or make individual scatterplots https://psu-spatial.github.io/Stat462-2025/in_T11_Plots.html#4_Scatterplots (only have to be neat in your final report)
- - Or use the code from 5.3 to see all the scatterplots in one place, 
- 
- 
+-   You could use correlation matrices: <https://psu-spatial.github.io/Stat462-2025/in_T13_Correlation.html>
+-   Or make individual scatterplots <https://psu-spatial.github.io/Stat462-2025/in_T11_Plots.html#4_Scatterplots> (only
+    have to be neat in your final report)
+-   Or use the code from 5.3 to see all the scatterplots in one place,
 :::
-
 
 <br>
 
@@ -654,13 +682,14 @@ Now in your log file, explore the relationships between TOTEXP22 and different p
 
 <button class="accordion">
 
-Expand Instructions
+Expand For Instructions
 
 </button>
 
 ::: {.panel style="display: none; margin-top: 10px;"}
-
-Finally, it appears that many people paid zero for their health costs (e.g. they were healthy??).  This skews our histogram and its reasonable to assume that the predictors causing someone to be yes/no unhealthy are different to the predictors causing someone to pay more money if they are.
+Finally, it appears that many people paid zero for their health costs (e.g. they were healthy??). This skews our
+histogram and its reasonable to assume that the predictors causing someone to be yes/no unhealthy are different to the
+predictors causing someone to pay more money if they are.
 
 This code will filter the data to ONLY positive healthcare costs.
 
@@ -670,15 +699,65 @@ This code will filter the data to ONLY positive healthcare costs.
 ```
 
 get this code running and repeat your quality control. Remember you can copy/paste code.
-
- 
 :::
 
 <br><br>
 
-### 5.5 Write up what you have found in the main report
 
-Include your results in the main report, explaing the difference to guardian health.  Which ones do you consider using for your response variable and why? 
+### 5.5 Write up what you have found in the main report {.unnumbered}
+
+
+Create a new section in your main report called `Quality Control and EDA` (or similar). This is where you’ll present the final version of your exploratory data analysis and quality control steps. 
+
+**Style**
+ - Use clear subheadings, bullets, and brief comments so your client (Guardian Health) can follow along.
+ - Only include plots/tables that help tell a clear story. You can always refer clients back to your log files.
+
+#### Code to include: {.unnumbered}
+
+ - Code to read in the dataset (if not already in your main report)
+ - Code for any quality control/cleaning steps (e.g. removing missing data or non-numeric columns)
+ - Code for summary statistics and distributions for TOTEXP22 and key variables
+ - Code for correlations and/or scatterplots with TOTEXP22 and ln_TOTEXP22
+ - Code for your exploration of cases with TOTEXP22 > 0
+
+#### What to write:  {.unnumbered}
+
+1. Explain what you did for quality control and why. 
+2. Explain what you did for exploratory data analysis.
+3. Highlight any key insights or limitations (e.g. missing data, skewed variables, zero costs, strange variables). 
+4. Reflects on what this means for future modeling and Guardian Health's goals
+
+You don’t need to include everything — focus on what’s useful and interesting.
+
+
+
+:::
+
+### 5.6 Checklist & rubric {.unnumbered}
+
+Top write-ups will:
+
+ - Clearly explain QC and EDA steps taken
+
+ - Include relevant summaries or visualizations
+
+ - Note any data issues or surprises
+
+ - Use neat, well-organized code
+
+ - Reflect on what this means for the analysis and the client
+
+Here's how I am grading this section. Importantly, I am grading based on content, not on grammar/English skills.
+
+```{r, eval=FALSE}
+rubric <- readxl::read_excel("Table_ProjectRubric.xlsx")
+knitr::kable(rubric) %>%   
+  kable_classic_2() %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive"))
+
+
+```
 
 <br><br>
 
@@ -688,75 +767,109 @@ Include your results in the main report, explaing the difference to guardian hea
 
 <button class="accordion">
 
-Expand Instructions
+Expand For Instructions
 
 </button>
 
 ::: {.panel style="display: none; margin-top: 10px;"}
+Guardian health would like to know the impact of AGE (in 2022) on expenses paid. You can choose whatever variant of the
+response variable you wish, but you must justify your choice.
 
-Guardian health would like to know the impact of AGE (in 2022) on expenses paid.  You can choose whatever variant of the response variable you wish, but you must justify your choice.
+-   You can find the code here for SLR <https://psu-spatial.github.io/Stat462-2025/in_T14_Regression.html>
+-   You can find the code here for model diagnostics
+    <https://psu-spatial.github.io/Stat462-2025/in_T15_Diagnostics.html>
+-   You can find the code here for prediction <https://psu-spatial.github.io/Stat462-2025/in_T17_ConfPred.html>
 
- - You can find the code here for SLR https://psu-spatial.github.io/Stat462-2025/in_T14_Regression.html
- - You can find the code here for model diagnostics https://psu-spatial.github.io/Stat462-2025/in_T15_Diagnostics.html 
- - You can find the code here for prediction https://psu-spatial.github.io/Stat462-2025/in_T17_ConfPred.html 
+HINT, I first suggest taking a look at AGELAST if you haven't already and putting your findings in your exploratory data analysis 
+
+*Advanced - We talked for a long while in week 2 lab about some of the features of this data).  If you decide to filter the dataset, you can do it the same way we removed zeros above or see the tutorial on filtering and selecting.*
+
 
 
 Specifically, please write up
 
-1. The causal chain - why would age lead to differing healthcare costs?
-2. The model equation
-3. The slope and intercept in their real life meaning
-4. The effect size and significance of the slope.
-5. Whether the model meets the LINE assumptions and if not what you suggest (you dont have to do it)
-6. Any issues/outliers - what about very old people?
-7. Predict the 95% confidence interval on total healthcare costs for 40 year olds.
-
-
+1.  The causal chain - why would age lead to differing healthcare costs?
+2.  *Advanced - Any quality control/filtering you performed on the AGELAST data, why and what it means for your study* 
+2.  The model equation
+3.  The slope and intercept in their real life meaning
+4.  The effect size and significance of the slope.
+5.  Whether the model meets the LINE assumptions and if not what you suggest (you dont have to do it)
+6.  Any issues/outliers - what about very old people?
+7.  Predict the 95% confidence interval on total healthcare costs for 40 year olds.
 :::
 
 <br>
 
 ### 6.2 "Best model" {.unnumbered}
 
+If you want to compete.. here is the best R2, RMSE that I found a single predictor so far.
+
+
+
 <button class="accordion">
 
-Expand Instructions
+Expand for Instructions
 
 </button>
 
 ::: {.panel style="display: none; margin-top: 10px;"}
 
-Guardian health would like to know the MOST IMPACTFUL predictor (in 2022) on expenses paid.  You can choose whatever variant of the response variable you wish, but you must justify your choice.
+Guardian health would like to know the MOST IMPACTFUL predictor (in 2022) on expenses paid. You can choose whatever
+variant of the response variable you wish, but you must justify your choice.
 
- - You can find the code here for SLR https://psu-spatial.github.io/Stat462-2025/in_T14_Regression.html
- - You can find the code here for model diagnostics https://psu-spatial.github.io/Stat462-2025/in_T15_Diagnostics.html 
- - You can find the code here for prediction https://psu-spatial.github.io/Stat462-2025/in_T17_ConfPred.html 
-
+-   You can find the code here for SLR <https://psu-spatial.github.io/Stat462-2025/in_T14_Regression.html>
+-   You can find the code here for model diagnostics
+    <https://psu-spatial.github.io/Stat462-2025/in_T15_Diagnostics.html>
+-   You can find the code here for prediction <https://psu-spatial.github.io/Stat462-2025/in_T17_ConfPred.html>
 
 Specifically, please write up why you chose that variable., Plus!
 
+1.  The causal chain - why would your chosen predictor lead to differing healthcare costs?
+2.  The model equation and why you chose it.
+3.  The slope and intercept in their real life meaning
+4.  The effect size and significance of the slope.
+5.  Whether your model meets the LINE assumptions.
+6.  Feel free to use transformations on either/both the response and predictor if needed
+7.  Any issues/outliers - what about very old people?
+8.  Use AIC and R2 to compare your age model with this one. (optional, predicted R2 from HW8)
 
-1. The causal chain - why would your chosen lead to differing healthcare costs?
-2. The model equation and why you chose it.
-3. The slope and intercept in their real life meaning
-4. The effect size and significance of the slope.
-5. Whether your model meets the LINE assumptions.
-6. Consider transformations on either/both the response and predictor if needed
-7. Any issues/outliers - what about very old people?
-8. Use AIC and R2 to compare your age model with this one.
 
 :::
 
 <br>
 
-
 ### 6.3 Write up your results {.unnumbered}
 
-Write up a neat copy of your results in your main report
+In your main report, create a clearly labeled section called “Simple Linear Regression” or “SLR Models”. Underneath, copy over your neat code and write-up for the two models.  Just like before, keep things tidy and only include plots and outputs that help tell your story.  
+
+Optional, try playing with code chunk options to show/hide code.
+
+For each model, write clearly and professionally so someone at Guardian Health could understand your choices and results.  
+
+#### For AGE - your write-up should include:  {.unnumbered}
+
+ - A brief causal explanation (why the predictor might affect total annual expenses)
+
+ - The regression equation, written out using variable names your client will recognize, making it clear if this is the sample regression or population regression line - and which variant of the response variable you chose.
+
+ - Real-life meaning of the slope and intercept
+
+ - Effect size (the real life impact of the slope, see Lab 3) vs and statistical significance of the slope (e.g. confidence intervals/T-tests), 
+
+ - A check of model assumptions (LINE) and whether they hold alongside any strategies if they don't.
+
+ - A prediction (with confidence interval) for a specific example (e.g. a 40-year-old)
+ 
+ <br>
+
+#### For your best model - your write-up should include:  {.unnumbered}
+
+
+
+
 
 
 <br><br>
-
 
 ## 7. Conclusions
 
@@ -767,11 +880,24 @@ If you could choose several predictors, state what you would choose and why
 
 
 
+### BONUS questions for an A**
+
+You don't need to answer these for an A, but you do for a top 100% score
+
+ - Its often said that BMI (body mass index) will impact how healthy someone is. Do you see evidence to support this on total healthcare costs? 
+ 
+ - Does mental health or physical health have more of an impact on total healthcare costs? 
+ 
+ - What do you think the influence of COVID is on these results and Guardian health's ambitions?
+ 
+ - 
+ 
+
 # Grading rubric
 
 <button class="accordion">
 
-Expand Instructions
+Expand For Instructions
 
 </button>
 
