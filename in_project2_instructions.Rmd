@@ -1,0 +1,233 @@
+---
+title: "Project 2: A regression teaching guide"
+output:
+  html_document:
+    css: projectlab.css
+    highlight: pygments
+    theme: cerulean
+    toc: true
+    toc_float: true
+editor_options: 
+  markdown: 
+    wrap: sentence
+---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(eval = TRUE, 
+                      results = FALSE, 
+                      fig.show = "hide", 
+                      message = FALSE, 
+                      warning = FALSE)
+
+library(openintro)
+library(tidyverse)
+library(broom)
+library(AER)
+```
+
+# Overview
+
+**It's said that the best way to learn a topic is to teach it!**
+
+In this project, you are explaining logistic regression to medical professionals.
+I will guide you through this!
+Throughout, you will focus on a specific case study to understand what causes low baby birth weights.
+
+**Style**
+
+Your style should be clear, understandable, explaining any jargon as simply as you can.
+You are also welcome to include in hand-drawn sketches, or CITED diagrams from the internet.
+<br><br>
+
+**What to submit**
+
+You will your main report (RmD and Html).
+You are optionally also allowed to submit a second report containing background workings etc.\
+
+------------------------------------------------------------------------
+
+# Details about your case study
+
+Your project will be based on the following case study.
+It's simulated data but I think it closely reflects actual studies.
+
+**Your task is to write an article explaining the analysis of this data-set, in the style of a science magazine or say "Nurses Weekly", following my regression prompts.**
+
+**Download the data from canvas here: <https://psu.instructure.com/courses/2381686/assignments/17157475>**
+
+<div>
+
+Fictional overview
+
+***"Understanding birth weight: A Study at Hereford Hospital (1980–1984)"***
+
+Between **1980 and 1984**, staff at **Hereford Hospital**, a single mid-sized regional hospital in the west of England, conducted a study to explore why some babies are born with **low birthweight** — defined as less than 2,500 grams.
+Low birthweight is an important public health concern, as it increases the risk of infant illness, developmental problems, and early death.
+
+The hospital’s maternity unit recorded detailed information about **189 full-term births** during this period.
+The study focused on **mothers' health, age, habits, and access to prenatal care**, to understand which factors might be linked to low birth-weight.
+Hospital staff collected data directly from patient records, birth registries, and prenatal visit notes.
+The goal was to inform better care guidelines and identify patients who might benefit from more targeted support during pregnancy.
+
+-   `Birth_weight` - birth weight in grams.
+
+-   `LowBW` - Indicator of birth weight less than 2.5 kg.
+    (0 = normal, 1 = low birthweight)
+
+-   `Age` - mother's age in years.
+
+-   `Weight` - mother's weight (lb)
+
+-   `Smoke` - smoking status during pregnancy (TRUE or FALSE)
+
+-   `Prev_labor` - number of previous premature labors.
+
+-   `Heart` - history of hypertension, or heart issues (0 = no, 1=yes)
+
+-   `Num_DrVisits` - number of doctors visits during the first trimester.
+
+</div>
+
+------------------------------------------------------------------------
+
+# Getting Started
+
+This part is almost identical to project 1, but there are a few more libraries.
+
+1.  Create a new project for Project 2, in order to store your data, analysis & reports. <br> Instructions here <https://psu-spatial.github.io/Stat462-2025/CH2_EACHLAB.html#1_R-Projects>
+
+<br>
+
+2.  Create your main report RmD. <br> Instructions here: <https://psu-spatial.github.io/Stat462-2025/CH2_EACHLAB.html#33_Creating_R-Markdown_Files><br>
+
+-   This is where you will write up your tutorial about regression.
+    You want it to be easy to read, engaging and with all code/statistics/concepts explained.
+    At minimum:
+
+    -   It should be clear that the report is written by you - give it a good title!
+
+    -   It should have a table of contents and use any theme
+
+    -   It should look professional, with no unneeded text (like the "welcome to R" text)
+
+    -   Unneeded output like library loading, or long data printouts should be suppressed.
+
+    -   You should use headings and sub-headings to guide the reader through the document
+
+    -   It should be saved as a filename including your email id e.g. hlg5155 and the word REPORT\\
+
+<br>
+
+3.  Optional! Create an RmD for your background workings. <br> Instructions here: <https://psu-spatial.github.io/Stat462-2025/CH2_EACHLAB.html#33_Creating_R-Markdown_Files><br>
+
+-   Like project 1, it can be easier to work out your code and what to do, then write it up neatly in a main report.
+    So you are welcome to create/use a background workings report if you choose to.
+
+    -   This is your background work, it doesn't need to be neat or in English
+
+    -   Unneeded code output like library loading text printouts should be suppressed.
+
+    -   It should be saved as a filename including your email id e.g. hlg5155 and the word WORKINGS\\
+
+<br>
+
+4.  Load packages <br> Instructions here: <https://psu-spatial.github.io/Stat462-2025/CH2_EACHLAB.html#2_Packages>
+
+-   Somewhere near the top of each of your RmD files make a code chunk and load the following packages.
+    If you don't have them on your computer, you can load them using the app store.
+    Remember to suppress the code chunk output.
+    If you don't remember how to do this, see previous lab reports and the instructions above.
+
+    -   `tidyverse`
+
+    -   `ggstatsplot`
+
+    -   `ggplot2`
+
+    -   `olsrr`
+
+    -   `openintro`
+
+    -   `statsr`
+
+    -   `broom`
+
+    -   `blorr`
+
+<br>
+
+5.  Understand the study.
+    <br>
+
+    If it's useful, read in the data first and come back to this
+
+-   In your report first describe why medical professionals might be concerned about low birth weights (you can google this!) alongside.
+
+    -   The background of the dataset, how it was collected (and why)
+    -   The object-of-analysis, dataset extent, each variable & units.
+    -   The larger population our sample is reasonably representative of in time & space. Does the dataset reflect broader populations, or only a specific group? Remember you can google Hereford's demographics!
+    -   Note down any potential limitations/fallacies/issues with the data.
+
+<br>
+
+------------------------------------------------------------------------
+
+# Basic data analysis
+
+We are going to start by loading in your data, playing with it, getting everything working and making sure you understand everything.
+
+6.  Read in your data
+
+-   Download your data from canvas and put it in your project folder <https://psu.instructure.com/courses/2381686/assignments/17157475>
+
+-   Use the `read_excel()` command to get it into R.
+
+<br>
+
+7.  Quality control/explore the data
+
+-   Now look at summaries, make sure that categorical data is correct, look for strange output, missing values.
+    Basically, get the data neat and tidy, explaining any R output in the report.
+
+    -   Look at the summary statistics of your dataset
+
+    -   Look for strange values (-99) that could be mistakes, or need to be assigned as missing
+
+    -   Make sure that all categorical variables have been turned into factors,
+
+    -   Explore the data
+
+    -   Write up what you did.
+
+<br>
+
+8.  Consider causal chains
+
+-   For each variable
+
+    -   Explain why might each variable lead to differing birth rates.
+        Refer to plots/tables/exploratory analysis to assess if you think you see this output in your data.
+
+    -   Predict which variable that you think will have the largest impact on low birth-weight
+
+<br>
+
+------------------------------------------------------------------------
+
+# Logistic regression vs mother's weight
+
+I would like you to use logistic regression and a logit transform to examine whether MOTHER'S WEIGHT is likely to lead to low birthweight babies
+
+9.  Fit the glm model
+
+-   Use the `glm()` command to fit a logistic regression model to assess whether mother's weight causes low baby birthweights.
+
+-   to be updated ASAP.
+
+------------------------------------------------------------------------
+
+# Logistic regression vs Age
+
+I would like you to use logistic regression and a logit transform to examine whether MOTHER'S AGE is likely to lead to low birthweight babies.
+
+------------------------------------------------------------------------
