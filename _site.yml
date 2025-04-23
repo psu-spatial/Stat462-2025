@@ -56,6 +56,10 @@ navbar:
       menu:  
         - text: "Project 1"
           href: in_project1_instructions.html
+    - text: "PROJECT INSTRUCTIONS"
+      menu:  
+        - text: "Project 2"
+          href: in_project2_instructions.html          
 output:
   html_document:
     theme: flatly
