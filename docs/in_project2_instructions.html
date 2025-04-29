@@ -33,6 +33,8 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -402,13 +404,13 @@ div.tocify {
       <a href="in_T19_MLR.html">19. Multiple Linear Regression</a>
     </li>
     <li>
-      <a href="in_T20_GLM.html">20. General Linear Regression</a>
+      <a href="in_T20_Logistic.html">20. Logistic regression</a>
     </li>
   </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    PROJECT INSTRUCTIONS
+    PROJECT 1
      
     <span class="caret"></span>
   </a>
@@ -420,7 +422,7 @@ div.tocify {
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    PROJECT INSTRUCTIONS
+    PROJECT 2
      
     <span class="caret"></span>
   </a>
@@ -450,11 +452,9 @@ div.tocify {
 <div id="overview" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Overview</h1>
 <p><strong>It’s said that the best way to learn a topic is to teach
-it!</strong></p>
-<p>In this project, you are explaining logistic regression to medical
-professionals. I will guide you through this! Throughout, you will focus
-on a specific case study to understand what causes low baby birth
-weights.</p>
+it…</strong> so in this project, you are explaining logistic regression
+to medical professionals, focusing on a case study to understand what
+causes low baby birth weights.</p>
 <p><strong>Style</strong></p>
 <p>Your style should be clear, understandable, explaining any jargon as
 simply as you can. You are also welcome to include in hand-drawn
@@ -464,6 +464,7 @@ sketches, or CITED diagrams from the internet. <br><br></p>
 allowed to submit a second report containing background workings
 etc.<br />
 </p>
+<p><br></p>
 <hr />
 </div>
 <div id="details-about-your-case-study" class="section level1"
@@ -478,10 +479,10 @@ Weekly”, following my regression prompts.</strong></p>
 <p><strong>Download the data from canvas here: <a
 href="https://psu.instructure.com/courses/2381686/assignments/17157475"
 class="uri">https://psu.instructure.com/courses/2381686/assignments/17157475</a></strong></p>
-<div>
-<p>Fictional overview</p>
-<p><strong><em>“Understanding birth weight: A Study at Hereford Hospital
-(1980–1984)”</em></strong></p>
+<p><br></p>
+<div id="boxedtext">
+<p><strong>“Understanding birth weight: A Study at Hereford Hospital
+(1980–1984)”</strong></p>
 <p>Between <strong>1980 and 1984</strong>, staff at <strong>Hereford
 Hospital</strong>, a single mid-sized regional hospital in the west of
 England, conducted a study to explore why some babies are born with
@@ -513,6 +514,7 @@ first trimester.</p></li>
 </ul>
 </div>
 <hr />
+<p><br></p>
 </div>
 <div id="getting-started" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> Getting Started</h1>
@@ -612,6 +614,7 @@ data.</li>
 </ul>
 <p><br></p>
 <hr />
+<p><br></p>
 </div>
 <div id="basic-data-analysis" class="section level1" number="4">
 <h1><span class="header-section-number">4</span> Basic data
@@ -664,32 +667,274 @@ impact on low birth-weight</p></li>
 </ul>
 <p><br></p>
 <hr />
+<p><br></p>
 </div>
 <div id="logistic-regression-vs-mothers-weight" class="section level1"
 number="5">
 <h1><span class="header-section-number">5</span> Logistic regression vs
 mother’s weight</h1>
-<p>I would like you to use logistic regression and a logit transform to
-examine whether MOTHER’S WEIGHT is likely to lead to low birthweight
-babies</p>
 <ol start="9" style="list-style-type: decimal">
-<li>Fit the glm model</li>
+<li>Use logistic regression and a logit transform to examine whether
+MOTHER’S WEIGHT is likely to lead to low birth-weight babies</li>
 </ol>
+<p>All the steps needed are explained in the Titanic Logistic tutorial
+and in the class notes (and online) <a
+href="https://psu-spatial.github.io/Stat462-2025/in_T20_GLM.html"
+class="uri">https://psu-spatial.github.io/Stat462-2025/in_T20_GLM.html</a></p>
 <ul>
-<li><p>Use the <code>glm()</code> command to fit a logistic regression
-model to assess whether mother’s weight causes low baby
-birthweights.</p></li>
-<li><p>to be updated ASAP.</p></li>
+<li><strong>1. Fit a logistic regression model</strong>
+<ul>
+<li>Use the <code>glm()</code> function with
+<code>family = binomial(link = "logit")</code>.</li>
+<li>Specify your dataset in the <code>data = ...</code> argument.</li>
+</ul></li>
 </ul>
+<p><br></p>
+<ul>
+<li><strong>2. Write down the model equation using symbols</strong>
+<ul>
+<li>Express the model using notation like <span
+class="math inline">\(\beta_1\)</span>, <span
+class="math inline">\(b_1\)</span> etc.</li>
+<li>Clearly state whether you are describing a sample model (using <span
+class="math inline">\(b_0\)</span>, <span
+class="math inline">\(b_1\)</span>..) or the full population model
+(using <span class="math inline">\(\beta_0\)</span> , <span
+class="math inline">\(\beta_1\)</span>).</li>
+</ul></li>
+</ul>
+<p><br></p>
+<ul>
+<li><strong>3. Rewrite the model using your fitted coefficients</strong>
+<ul>
+<li>Replace the symbols with the numerical estimates from your model
+output.</li>
+</ul></li>
+</ul>
+<p><br></p>
+<ul>
+<li><strong>4. Interpret the intercept and slope</strong>
+<ul>
+<li>Interpret the intercept and slope in terms of both
+<strong>Log-odds</strong> and <strong>Odds</strong>
+<ul>
+<li>Include 99% confidence intervals for each coefficient</li>
+<li>Discuss the Wald test from the summary output</li>
+<li>Make sure to explain everything above in terms of mothers/babies
+etc.</li>
+</ul></li>
+</ul></li>
+</ul>
+<p><br></p>
+<ul>
+<li><strong>5. Calculate a probability change</strong>
+<ul>
+<li>Calculate the change in probability of having a low-weight baby for
+a mother who is 100lb compared to a mother who is 110lb.</li>
+</ul></li>
+</ul>
+<p><br></p>
+<ul>
+<li><strong>6. Evaluate model fit</strong>
+<ul>
+<li>Choose EITHER ONE of the following:
+<ul>
+<li>Perform a <strong>Hosmer-Lemeshow test</strong>, or</li>
+<li>Report a <strong>Pseudo R²</strong> value.</li>
+</ul></li>
+<li>In a few sentences, explain what this statistic tells you in
+general, AND what the output says about the fit of this specific model
+(e.g. a good fit?). Explain your reasoning.</li>
+</ul></li>
+</ul>
+<p><em>Note, these are only selected aspects of logistic regression to
+keep the project short. Also, remember the class R notes where I explain
+many of these things in detail.</em></p>
+<p><br></p>
 <hr />
 </div>
 <div id="logistic-regression-vs-age" class="section level1" number="6">
 <h1><span class="header-section-number">6</span> Logistic regression vs
 Age</h1>
-<p>I would like you to use logistic regression and a logit transform to
-examine whether MOTHER’S AGE is likely to lead to low birthweight
-babies.</p>
+<ol start="10" style="list-style-type: decimal">
+<li>Now use logistic regression and a logit transform to examine whether
+MOTHER’S AGE is likely to lead to low birth-weight babies and look at
+the summary</li>
+</ol>
+<ul>
+<li><p><strong>You do not need to look write out all the steps above
+unless it’s useful</strong> E.g. you can just fit the model using the
+glm command and look at the summary. Then explain to the reader…</p>
+<ul>
+<li><p>Out of the two models, explain whether age or weight has the
+larger <strong>effect size</strong>.</p></li>
+<li><p>Out of the two models, explain whether age or weight is more
+likely to have a statistically significant and reproducible effect at
+the 5% level?</p></li>
+<li><p>Compare the AIC values across the two models (you can
+read/compare them directly from the model summaries) and explain which
+is ‘best’.</p></li>
+<li><p>Given everything above, which model would you personally
+recommend and why?</p></li>
+</ul></li>
+</ul>
+<p><br></p>
 <hr />
+</div>
+<div id="reflection" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> Reflection</h1>
+<p>Think back to the goals of this project: to explain a statistical
+concept clearly to a non-statistical audience. In 3–5 sentences, respond
+to one or more of the following prompts:</p>
+<ul>
+<li><p>What was the most challenging part of this project for you — and
+how did you work through it?</p></li>
+<li><p>If you had more time or more data, what would be the next
+question you’d want to explore?</p></li>
+</ul>
+<p><br></p>
+</div>
+<div id="final-50-point-quiz" class="section level1" number="8">
+<h1><span class="header-section-number">8</span> Final 50 point
+quiz?</h1>
+<p>Originally, this was either going to be peer reviewed or supported
+via a quiz.</p>
+<p>However the length of time we spent on Project 1 meant that I had to
+cut this project short, so instead of the quiz, I am again awarding 50
+points for participation. e.g. you are being graded out of 180 for this
+project (as promised) - and I will give you 50 points for free</p>
+<p><br></p>
+</div>
+<div id="grading-rubric" class="section level1" number="9">
+<h1><span class="header-section-number">9</span> Grading rubric</h1>
+<p>Overall, here is what your lab should correspond to:</p>
+<table class=" lightable-classic-2 table table-striped table-hover table-responsive" style='font-family: "Arial Narrow", "Source Sans Pro", sans-serif; margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;'>
+<thead>
+<tr>
+<th style="text-align:left;">
+Topic
+</th>
+<th style="text-align:left;">
+Points
+</th>
+<th style="text-align:left;">
+Explanation
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Clarity and Communication
+</td>
+<td style="text-align:left;">
+30
+</td>
+<td style="text-align:left;">
+Clear, engaging explanations suitable for a medical/professional
+audience. Avoids jargon or explains it well. Organized with headings,
+good writing style.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Code Quality &amp; Reproducibility
+</td>
+<td style="text-align:left;">
+25
+</td>
+<td style="text-align:left;">
+Well-organized, commented code with suppressed unnecessary output.
+Report knits successfully.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Exploratory Data Analysis
+</td>
+<td style="text-align:left;">
+40
+</td>
+<td style="text-align:left;">
+Correct use of summary statistics, data cleaning, and visualization.
+Demonstrates understanding of variable types and dataset limitations.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Modeling &amp; Interpretation: Weight
+</td>
+<td style="text-align:left;">
+40
+</td>
+<td style="text-align:left;">
+Correct logistic model setup; thoughtful interpretation of log-odds,
+odds, and predicted probabilities. Uses confidence intervals and fit
+measures appropriately.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Modeling &amp; Comparison: Age vs Weight
+</td>
+<td style="text-align:left;">
+30
+</td>
+<td style="text-align:left;">
+Accurate comparison of model outputs (effect size, p-values, AIC). Clear
+explanation of which model is better and why.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Reflection
+</td>
+<td style="text-align:left;">
+15
+</td>
+<td style="text-align:left;">
+Thoughtful and honest reflection on the project process and learning.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<ul>
+<li></td>
+<td style="text-align:left;">
+<ul>
+<li></td>
+<td style="text-align:left;">
+<ul>
+<li></td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PLUS 50 POINTS PARTICIPATION
+</td>
+<td style="text-align:left;">
+50
+</td>
+<td style="text-align:left;">
+For getting this far
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TOTAL
+</td>
+<td style="text-align:left;">
+230
+</td>
+<td style="text-align:left;">
+<ul>
+<li></td>
+</tr>
+</tbody>
+</table></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
 </div>
 
 

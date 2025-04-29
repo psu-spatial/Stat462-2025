@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>in_T20_Logistic.knit</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Full Tutorial List</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    R-BASICS
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="CH1_BASICS.html#ch1">1 Installing/Accessing R</a>
+    </li>
+    <li>
+      <a href="CH1_BASICS.html#ch2">2 Changing Settings</a>
+    </li>
+    <li>
+      <a href="CH1_BASICS.html#ch3">3 Console/coding basics</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    STARTING EACH LAB
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="CH2_EACHLAB.html#ch4">4. Projects</a>
+    </li>
+    <li>
+      <a href="CH2_EACHLAB.html#ch5">5. Packages</a>
+    </li>
+    <li>
+      <a href="CH2_EACHLAB.html#ch6">6. R-Markdown</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    EXPLORING DATA
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="in_T07_ReadingInData.html">7. Reading in data</a>
+    </li>
+    <li>
+      <a href="CH3_EDA.html#ch8">8. Summary Statistics</a>
+    </li>
+    <li>
+      <a href="CH3_EDA.html#ch9">9. Filtering/selecting</a>
+    </li>
+    <li>
+      <a href="CH3_EDA.html#ch10">10. Missing Data</a>
+    </li>
+    <li>
+      <a href="in_T11_Plots.html">11. Plots</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    STATISTICAL-ANALYSIS
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="in_T12_NormalDistributionsTTests.html">12. Normal/T-Dist/Tests</a>
+    </li>
+    <li>
+      <a href="in_T13_Correlation.html">13 Correlation</a>
+    </li>
+    <li>
+      <a href="in_T14_Regression.html">14. Simple Linear Regression</a>
+    </li>
+    <li>
+      <a href="in_T15_Diagnostics.html">15. Model Diagnostics</a>
+    </li>
+    <li>
+      <a href="in_T16_Outliers.html">16. Outliers</a>
+    </li>
+    <li>
+      <a href="in_T17_ConfPred.html">17. Confidence &amp; Prediction</a>
+    </li>
+    <li>
+      <a href="in_T18_Transformations.html">18. Transformations</a>
+    </li>
+    <li>
+      <a href="in_T19_MLR.html">19. Multiple Linear Regression</a>
+    </li>
+    <li>
+      <a href="in_T20_Logistic.html">20. Logistic regression</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    PROJECT 1
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="in_project1_instructions.html">Project 1</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    PROJECT 2
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="in_project2_instructions.html">Project 2</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="logistic-regression-and-glms"
+class="section level1 unnumbered">
+<h1 class="unnumbered">Logistic Regression and GLMs</h1>
+<p>This tutorial covers: - How to load and prepare your data - How to
+fit a logistic model (<code>glm</code>) - How to understand the output
+(log-odds, odds, probability) - How to assess if your model is a good
+fit - How to visualize results - Where to find extra resources if you
+want to go further</p>
+<p>I first summarise all the code in a cheat-sheet, then go onto explain
+the output and interpretation in more detail for an example on the
+Titanic</p>
+<div id="suggested-packages" class="section level2 unnumbered">
+<h2 class="unnumbered">Suggested packages</h2>
+<pre class="r"><code># PACKAGES-----------------------------------------------
+library(DALEX) # for the Titanic data
+
+library(ggplot2)
+library(blorr)
+library(arm)
+library(ggstatsplot)</code></pre>
+</div>
+<div id="cheat-sheet" class="section level2 unnumbered">
+<h2 class="unnumbered">Cheat sheet</h2>
+<div id="quick-reminders" class="section level3 unnumbered">
+<h3 class="unnumbered">Quick Reminders</h3>
+<ul>
+<li><strong>Link function:</strong> Logistic regression uses <span
+class="math inline">\(\text{logit}(p) = \log \left( \frac{p}{1-p}
+\right)\)</span>.</li>
+<li><strong>Inverse logit:</strong> To get probability back: <span
+class="math inline">\(p = \frac{e^x}{1+e^x}\)</span></li>
+<li><strong>Interpret Coefficients:</strong>
+<ul>
+<li>Positive = Higher probability of event.</li>
+<li>Odds ratio = exp(coef).</li>
+<li>Percentage change = <span class="math inline">\((\text{Odds Ratio} -
+1) \times 100\)</span>%.</li>
+</ul></li>
+<li><strong>Common Error:</strong> Linear regression is
+<strong>not</strong> for binary outcomes — it can predict impossible
+probabilities.</li>
+<li><strong>Good fit:</strong> Look for Hosmer-Lemeshow p-value &gt;
+0.05 and reasonable Pseudo R2.</li>
+</ul>
+</div>
+<div id="code-summary" class="section level3 unnumbered">
+<h3 class="unnumbered">Code summary</h3>
+<pre class="r"><code># 1. Load Data
+data(&quot;titanic&quot;, package = &quot;DALEX&quot;)
+ship_survival &lt;- subset(titanic, fare &gt; 0 &amp; age &gt; 21 &amp; fare &lt; 300)
+ship_survival$survived &lt;- as.factor(ship_survival$survived)
+
+# 2. Explore Data
+library(ggplot2)
+ggplot(ship_survival, aes(x = survived, y = fare)) + 
+  geom_boxplot(outlier.shape = NA) +
+  geom_jitter(size = 0.7, alpha = 0.5, color = &quot;blue&quot;) +
+  coord_flip()
+
+# 3. Fit Model
+model_logit &lt;- glm(survived ~ fare, family = binomial(link = &quot;logit&quot;), data = ship_survival)
+
+# 4. Model Summary
+summary(model_logit)
+
+# 5. Interpret Coefficients
+cbind(Coefficient_logodds = coef(model_logit), confint(model_logit))
+exp(cbind(Coefficient_Odds = coef(model_logit), confint(model_logit)))
+round((exp(coef(model_logit)[2]) - 1) * 100, 2)
+
+# 6. Predict Probabilities
+ship_survival$modelled_probability &lt;- predict(model_logit, type = &quot;response&quot;)
+
+# 7. Visualize
+ship_survival$type_num &lt;- ifelse(ship_survival$survived == &quot;yes&quot;, 1, 0)
+
+ggplot(ship_survival, aes(fare, type_num)) +
+  geom_point(alpha = 0.5, size = 0.5) +
+  stat_smooth(aes(y = modelled_probability), se = FALSE, lwd = 0.5) +
+  labs(y = &quot;Probability of survival&quot;, title = &quot;Probability of surviving Titanic based on fare paid&quot;)
+
+# 8. Goodness of Fit
+library(blorr)
+blr_test_hosmer_lemeshow(model_logit)
+blr_model_fit_stats(model_logit)
+
+# 9. Optional Residual Check
+library(arm)
+binnedplot(fitted(model_logit), residuals(model_logit, type = &quot;response&quot;))</code></pre>
+</div>
+</div>
+<div id="what-are-glms" class="section level2 unnumbered">
+<h2 class="unnumbered">What are GLMs?</h2>
+<p>Logistic regression is a method used when we’re dealing with
+categorical dependent variables. It’s particularly useful for predicting
+the probability of an event occurring, fitting data to a logistic curve.
+While simple linear regression predicts continuous outcomes, logistic
+regression focuses on probabilities between 0 and 1, making it perfect
+for scenarios like yes/no or true/false.</p>
+<p>Logistic regression is a Generalized Linear Model (GLM), which
+expands simple linear regression to handle non-normally distributed
+response variables. GLMs accommodate various response distributions,
+like binomial (for logistic regression), Poisson, or gamma
+distributions, making them adaptable to different data types. Within the
+GLM framework, logistic regression models the relationship between
+categorical outcomes and predictors by connecting the linear combination
+of predictors to the expected value of a transformation of the outcome
+(via the link function).</p>
+</div>
+<div id="fitting-a-glm-in-general" class="section level2 unnumbered">
+<h2 class="unnumbered">Fitting a GLM in general</h2>
+<p>Fitting a logistic regression model is very similar to fitting a
+simple linear regression.</p>
+<p>Instead of using <code>lm()</code> (for linear models), we use
+<code>glm()</code> (for <strong>generalized linear models</strong>, or
+<strong>GLMs</strong>).</p>
+<p>The <code>glm()</code> command requires you to specify a
+<strong>family</strong> (the type of outcome, like binary or counts).
+The <strong>link function</strong> (how predictors relate to the
+expected outcome) is usually set automatically but can be specified
+manually.</p>
+<div id="logistic-regression-using-a-logit-link-the-default-choice"
+class="section level3 unnumbered">
+<h3 class="unnumbered">Logistic Regression (using a logit link — the
+default choice)</h3>
+<p>To fit a logistic regression model, use:</p>
+<pre class="r"><code>glm(outcome ~ predictors, family = binomial(link = &quot;logit&quot;), data = yourdata)</code></pre>
+<p>The <strong>link function</strong> for logistic regression is the
+<strong>logit</strong>. It transforms the probability <span
+class="math inline">\(p\)</span> into the <strong>log-odds</strong>:</p>
+<p><span class="math display">\[
+\text{logit}(p) = \log\left(\frac{p}{1-p}\right)
+\]</span></p>
+<p><strong>Why use logit?</strong> - It stretches out extreme
+probabilities (close to 0 or 1). - Coefficients are easy to interpret in
+terms of odds ratios.</p>
+</div>
+<div id="probit-regression-an-alternative-for-binary-data"
+class="section level3 unnumbered">
+<h3 class="unnumbered">Probit Regression (an alternative for binary
+data)</h3>
+<p>Sometimes, we use a <strong>probit link</strong> instead:</p>
+<pre class="r"><code>glm(outcome ~ predictors, family = binomial(link = &quot;probit&quot;), data = yourdata)</code></pre>
+<p>The <strong>probit link</strong> transforms <span
+class="math inline">\(p\)</span> using the inverse cumulative
+distribution function (CDF) of the standard normal distribution:</p>
+<p><span class="math display">\[
+\text{probit}(p) = \Phi^{-1}(p) = \text{qnorm}(p)
+\]</span></p>
+<p>This looks complicated, but it’s just the familiar idea of converting
+a probability to a <strong>z-score</strong> (a position on the normal
+curve).</p>
+<p><strong>Why use probit?</strong> - It assumes the underlying tendency
+follows a <strong>normal (bell-shaped)</strong> process. - It handles
+extreme probabilities <strong>more gently</strong> than the logit. - It
+is often used in <strong>economics</strong> and models of <strong>latent
+(hidden) decision processes</strong>.</p>
+<blockquote>
+<p><strong>Quick rule of thumb:</strong> Use logit unless you have a
+strong reason to expect a normally distributed latent process.</p>
+</blockquote>
+</div>
+<div id="visual-logit-vs-probit-link-functions"
+class="section level3 unnumbered">
+<h3 class="unnumbered">Visual: Logit vs Probit Link Functions</h3>
+<p><strong>Interpretation:</strong> - Both transformations behave
+similarly around probabilities near 0.5. - <strong>Logit</strong>
+stretches extreme probabilities (near 0 or 1) more strongly. -
+<strong>Probit</strong> gives a slightly more gentle curve at the
+extremes.</p>
+<hr />
+<ul>
+<li>Use <strong>logit</strong> unless you have a strong reason to prefer
+probit.</li>
+<li>Remember: <strong>Logit = odds interpretation</strong>,
+<strong>Probit = z-score interpretation</strong>.</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="titanic-example" class="section level2 unnumbered">
+<h2 class="unnumbered">Titanic Example</h2>
+<p>Using the Titanic dataset from the DALEX package, let’s imagine we
+want to assess whether wealthier people were more likely to survive the
+sinking of the Titanic.</p>
+<ul>
+<li><strong>Dataset:</strong> The Titanic data is a complete list of
+passengers and crew members on the RMS Titanic. It includes a variable
+indicating whether a person survived the sinking of the RMS Titanic on
+April 15, 1912.</li>
+<li><strong>Object of analysis:</strong> Adult passengers (excluding
+staff and children).</li>
+<li><strong>Response variable:</strong> Survival (Yes/No)</li>
+<li><strong>Predictor:</strong> Fare paid to board the Titanic.</li>
+</ul>
+<p>First, let’s load and prepare the data:</p>
+<pre class="r"><code># Load data
+library(DALEX)
+data(&quot;titanic&quot;, package = &quot;DALEX&quot;)
+ship_survival &lt;- subset(titanic, fare &gt; 0 &amp; age &gt; 21 &amp; fare &lt; 300)
+ship_survival$survived &lt;- as.factor(ship_survival$survived)
+
+# Quick look at the data
+summary(ship_survival)</code></pre>
+<pre><code>##     gender         age                     class            embarked  
+##  female:319   Min.   :22.00   1st             :282   Belfast    :  0  
+##  male  :601   1st Qu.:26.00   2nd             :207   Cherbourg  :195  
+##               Median :32.00   3rd             :431   Queenstown : 79  
+##               Mean   :35.46   deck crew       :  0   Southampton:646  
+##               3rd Qu.:42.00   engineering crew:  0                    
+##               Max.   :74.00   restaurant staff:  0                    
+##                               victualling crew:  0                    
+##           country         fare             sibsp            parch       
+##  England      :233   Min.   :  5.000   Min.   :0.0000   Min.   :0.0000  
+##  United States:216   1st Qu.:  7.181   1st Qu.:0.0000   1st Qu.:0.0000  
+##  Ireland      : 77   Median : 15.015   Median :0.0000   Median :0.0000  
+##  Sweden       : 65   Mean   : 34.444   Mean   :0.3293   Mean   :0.3065  
+##  Finland      : 31   3rd Qu.: 34.018   3rd Qu.:1.0000   3rd Qu.:0.0000  
+##  (Other)      :243   Max.   :263.000   Max.   :4.0000   Max.   :9.0000  
+##  NA&#39;s         : 55                                                      
+##  survived 
+##  no :567  
+##  yes:353  
+##           
+##           
+##           
+##           
+## </code></pre>
+<blockquote>
+<p><strong>Tip:</strong> Always inspect your data after cleaning. Look
+for unexpected missing values or strange distributions.</p>
+<p><strong>Reminder:</strong> Logistic models require the outcome
+variable to be a <strong>factor</strong>. If it’s not, R will treat it
+incorrectly.</p>
+</blockquote>
+</div>
+<div id="data-summary-eda" class="section level2 unnumbered">
+<h2 class="unnumbered">2. Data Summary / EDA</h2>
+<p>Before jumping into modeling, it’s good practice to visualize your
+data. Let’s see how fare differs by survival.</p>
+<blockquote>
+<p><strong>Jittering Tip:</strong> Jittering moves points slightly to
+avoid overplotting when multiple observations have the same value.</p>
+</blockquote>
+<pre class="r"><code># Boxplot with jittered points
+ggplot(ship_survival, aes(x = survived, y = fare)) + 
+  geom_boxplot(outlier.shape = NA) +
+  geom_jitter(size = 0.5, alpha = 0.5, color = &quot;blue&quot;) +
+  coord_flip()</code></pre>
+<p><img src="in_T20_Logistic_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>Alternatively, use <code>ggstatsplot</code> to add automatic
+statistical summaries to your plot:</p>
+<pre class="r"><code>library(ggstatsplot)
+
+ggbetweenstats(data = ship_survival, y = fare, x = survived, 
+               results.subtitle = FALSE, centrality.plotting = FALSE,
+               point.args = list(size = 2))</code></pre>
+<p><img src="in_T20_Logistic_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<blockquote>
+<p><strong>Interpretation Box:</strong> Passengers who paid higher fares
+appear more likely to survive, though variability is high.</p>
+</blockquote>
+<hr />
+</div>
+<div id="fitting-the-logistic-model" class="section level2 unnumbered">
+<h2 class="unnumbered">3. Fitting the Logistic Model</h2>
+<p>Now, let’s fit our logistic regression model to see if fare predicts
+survival.</p>
+<pre class="r"><code>model_logit &lt;- glm(survived ~ fare, 
+                   family = binomial(link = &quot;logit&quot;), 
+                   data = ship_survival)</code></pre>
+<blockquote>
+<p><strong>Tip:</strong> <code>family = binomial(link = "logit")</code>
+tells R we’re doing logistic regression.</p>
+</blockquote>
+</div>
+<div id="model-summary-and-output" class="section level2 unnumbered">
+<h2 class="unnumbered">4. Model Summary and Output</h2>
+<p>The easiest way to see the model output is via the standard summary
+command.</p>
+<pre class="r"><code>summary(model_logit)</code></pre>
+<pre><code>## 
+## Call:
+## glm(formula = survived ~ fare, family = binomial(link = &quot;logit&quot;), 
+##     data = ship_survival)
+## 
+## Coefficients:
+##             Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -0.92126    0.09134 -10.086  &lt; 2e-16 ***
+## fare         0.01311    0.00185   7.087 1.37e-12 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 1225.2  on 919  degrees of freedom
+## Residual deviance: 1157.4  on 918  degrees of freedom
+## AIC: 1161.4
+## 
+## Number of Fisher Scoring iterations: 4</code></pre>
+<div id="reading-the-output" class="section level3 unnumbered">
+<h3 class="unnumbered">Reading the output</h3>
+<ul>
+<li><strong>Call:</strong> Reminds us of the model we ran.</li>
+<li><strong>Coefficients table:</strong>
+<ul>
+<li><strong>Estimate:</strong> Effect on log-odds.</li>
+<li><strong>Standard Error:</strong> Variability of the estimate.</li>
+<li><strong>z value:</strong> (Estimate divided by Std. Error).</li>
+<li><strong>Pr(&gt;|z|):</strong> p-value testing if coefficient =
+0.</li>
+</ul></li>
+<li><strong>Model fit indices:</strong>
+<ul>
+<li>Null deviance (no predictors)</li>
+<li>Residual deviance (with predictors)</li>
+<li>AIC (lower is better)</li>
+</ul></li>
+</ul>
+<blockquote>
+<p><strong>Interpretation Box:</strong> A small p-value suggests that
+fare has a significant relationship with survival!</p>
+</blockquote>
+<blockquote>
+<p><strong>p-value Tip:</strong> A very small p-value (e.g., &lt; 0.001)
+means it’s extremely unlikely that the true relationship is zero.</p>
+</blockquote>
+</div>
+</div>
+<div id="interpreting-coefficients" class="section level2 unnumbered">
+<h2 class="unnumbered">5. Interpreting Coefficients</h2>
+<p>Understanding the model output is critical. Let’s break the meaning
+of the intercept and slope down in terms of log-odds, odds and
+probability.</p>
+<div id="meaning-in-log-odds" class="section level3 unnumbered">
+<h3 class="unnumbered">Meaning in log-odds</h3>
+<pre class="r"><code>cbind(Coefficient_logodds = coef(model_logit), confint(model_logit, level = 0.95))</code></pre>
+<pre><code>##             Coefficient_logodds        2.5 %     97.5 %
+## (Intercept)         -0.92125477 -1.102666988 -0.7443837
+## fare                 0.01311288  0.009642147  0.0169076</code></pre>
+<blockquote>
+<p><strong>Log-odds Tip:</strong> A positive coefficient means higher
+fare increases the log-odds of survival.</p>
+</blockquote>
+</div>
+<div id="meaning-in-odds" class="section level3 unnumbered">
+<h3 class="unnumbered">Meaning in odds</h3>
+<pre class="r"><code>cbind(Coefficient_Odds = exp(coef(model_logit)), exp(confint(model_logit)))</code></pre>
+<pre><code>##             Coefficient_Odds     2.5 %   97.5 %
+## (Intercept)        0.3980193 0.3319845 0.475027
+## fare               1.0131992 1.0096888 1.017051</code></pre>
+<blockquote>
+<p><strong>Odds Tip:</strong> The odds of survival multiply by this
+factor for every extra pound paid.</p>
+</blockquote>
+</div>
+<div id="percentage-change-in-odds" class="section level3 unnumbered">
+<h3 class="unnumbered">Percentage change in odds</h3>
+<pre class="r"><code>round((exp(coef(model_logit)[2]) - 1) * 100, 2)</code></pre>
+<pre><code>## fare 
+## 1.32</code></pre>
+<blockquote>
+<p><strong>Interpretation Box:</strong> Every additional pound increases
+the ODDS of survival by about 32% (fill in from result).</p>
+</blockquote>
+</div>
+<div id="meaning-in-probability" class="section level3 unnumbered">
+<h3 class="unnumbered">Meaning in probability</h3>
+<p>Let’s predict the probability of survival for someone who paid 50
+pounds. If this seems like predicting a random number, this is because
+the probability changes non-linearly with x, so the exact value will
+depend on the value of x you choose.</p>
+<pre class="r"><code>predict(model_logit, 
+        newdata = data.frame(fare = 50), 
+        type = &quot;response&quot;)</code></pre>
+<pre><code>##        1 
+## 0.433985</code></pre>
+<blockquote>
+<p><strong>Formula Reminder:</strong> To convert odds back to
+probability:<br />
+<span class="math display">\[
+p = \frac{\text{odds}}{1 + \text{odds}}
+\]</span></p>
+</blockquote>
+</div>
+</div>
+<div id="predicting-and-visualizing-model-behavior"
+class="section level2 unnumbered">
+<h2 class="unnumbered">6. Predicting and Visualizing Model Behavior</h2>
+<p>Now let’s see how well our model predicts survival.</p>
+<div id="predicting-individual-values"
+class="section level3 unnumbered">
+<h3 class="unnumbered">Predicting individual values</h3>
+<p>You can predict things either in log-odds or in probabilities.</p>
+<p>The average <em>log-odds</em> that someone survived who paid 50
+pounds is:</p>
+<pre class="r"><code>predict(model_logit, 
+        newdata = data.frame(fare = 50), 
+        type = &quot;link&quot;)</code></pre>
+<pre><code>##          1 
+## -0.2656106</code></pre>
+<p>The average <em>odds</em> that someone survived who paid 50 pounds
+is:</p>
+<pre class="r"><code>exp(predict(model_logit, 
+            newdata = data.frame(fare = 50), 
+            type = &quot;link&quot;))</code></pre>
+<pre><code>##         1 
+## 0.7667376</code></pre>
+<p>The <em>probability</em> that someone survived who paid 50 pounds
+is:</p>
+<pre class="r"><code>predict(model_logit, 
+        newdata = data.frame(fare = 50), 
+        type = &quot;response&quot;)</code></pre>
+<pre><code>##        1 
+## 0.433985</code></pre>
+</div>
+<div id="plotting-probability-vs-predictor"
+class="section level3 unnumbered">
+<h3 class="unnumbered">Plotting probability vs predictor</h3>
+<p>We can also predict this for each person in our sample:</p>
+<pre class="r"><code>ship_survival$modelled_logodds    &lt;- predict(model_logit, type = &quot;link&quot;)
+ship_survival$modelled_odds       &lt;- exp(predict(model_logit, type = &quot;link&quot;))
+ship_survival$modelled_probability &lt;- predict(model_logit, type = &quot;response&quot;)</code></pre>
+<p>and plot the output</p>
+<pre class="r"><code>ggplot(ship_survival, aes(x = fare, y = as.numeric(survived == &quot;yes&quot;))) +
+  geom_point(aes(color = survived), alpha = 0.5) +
+  geom_smooth(method = &quot;glm&quot;, method.args = list(family = &quot;binomial&quot;), 
+              se = FALSE, color = &quot;blue&quot;) +
+  labs(y = &quot;Probability of survival&quot;, 
+       title = &quot;Probability of surviving Titanic based on fare paid&quot;,
+       color = &quot;Survived&quot;) +
+  theme_minimal()</code></pre>
+<p><img src="in_T20_Logistic_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<blockquote>
+<p><strong>Plot Tip:</strong> The line shows how probability increases
+with fare, but it flattens for very expensive tickets.</p>
+</blockquote>
+</div>
+</div>
+<div id="checking-model-assumptions" class="section level2 unnumbered">
+<h2 class="unnumbered">7. Checking Model Assumptions</h2>
+<p>Make sure logistic regression assumptions hold: - Outcome must be
+binary (✔) - Observations must be independent (✔) - Log-odds should vary
+approximately linearly with continuous predictors (assumed OK here) - No
+extreme influential outliers (advanced check possible)</p>
+<blockquote>
+<p><strong>Reminder:</strong> Logistic regression is very robust, but
+always sanity-check your assumptions.</p>
+<p><strong>Note:</strong> These differ slightly from linear regression
+assumptions, particularly regarding residuals.</p>
+</blockquote>
+</div>
+<div id="goodness-of-fit" class="section level2 unnumbered">
+<h2 class="unnumbered">8. Goodness of Fit</h2>
+<p>Now let’s check if the model fits well overall.</p>
+<p>Assessing goodness of fit helps you determine how well your logistic
+model describes the observed data. There are several different
+approaches because logistic regression doesn’t have a simple R² value
+like linear regression.</p>
+<div id="hosmer-lemeshow-test" class="section level3 unnumbered">
+<h3 class="unnumbered">Hosmer-Lemeshow Test</h3>
+<p>The Hosmer-Lemeshow test checks whether the observed event rates
+match the predicted probabilities across groups of observations. It can
+be found in the blorr library, and there’s a more detailed explanation
+in the lecture notes.</p>
+<pre class="r"><code>blr_test_hosmer_lemeshow(model_logit)</code></pre>
+<pre><code>##            Partition for the Hosmer &amp; Lemeshow Test            
+## --------------------------------------------------------------
+##                         def = 1                 def = 0        
+## Group    Total    Observed    Expected    Observed    Expected 
+## --------------------------------------------------------------
+##   1       129        32        39.18         97        89.82   
+##   2       88         16        26.77         72        61.23   
+##   3       62         10        18.97         52        43.03   
+##   4       90         25        28.03         65        61.97   
+##   5       91         25        29.28         66        61.72   
+##   6       93         41        31.60         52        61.40   
+##   7       91         37        32.73         54        58.27   
+##   8       97         41        38.29         56        58.71   
+##   9       87         61        42.30         26        44.70   
+##  10       92         65        65.86         27        26.14   
+## --------------------------------------------------------------
+## 
+##      Goodness of Fit Test      
+## ------------------------------
+## Chi-Square    DF    Pr &gt; ChiSq 
+## ------------------------------
+##  37.1859      8       0.0000   
+## ------------------------------</code></pre>
+<blockquote>
+<p><strong>Interpretation Box:</strong> A p-value &gt; 0.05 suggests
+that there is no evidence of poor fit — the model is fitting the data
+reasonably well. If the p-value is small (e.g., &lt; 0.05), it indicates
+a lack of fit and you may need a more complex model.</p>
+</blockquote>
+</div>
+<div id="pseudo-r2" class="section level3 unnumbered">
+<h3 class="unnumbered">Pseudo R2</h3>
+<p>Pseudo R² measures, such as McFadden’s R², provide a rough sense of
+model quality. They are not interpreted the same way as R² in linear
+regression but can be helpful for comparing models. See the class
+lecture notes for more.</p>
+<pre class="r"><code># you can see there are also more advanced ones
+blr_model_fit_stats(model_logit)</code></pre>
+<pre><code>##                                Model Fit Statistics                                
+## ----------------------------------------------------------------------------------
+## Log-Lik Intercept Only:      -612.577    Log-Lik Full Model:              -578.716 
+## Deviance(918):               1157.432    LR(1):                             67.722 
+##                                          Prob &gt; LR:                          0.000 
+## MCFadden&#39;s R2                   0.055    McFadden&#39;s Adj R2:                  0.052 
+## ML (Cox-Snell) R2:              0.071    Cragg-Uhler(Nagelkerke) R2:         0.096 
+## McKelvey &amp; Zavoina&#39;s R2:        0.105    Efron&#39;s R2:                         0.081 
+## Count R2:                       0.667    Adj Count R2:                       0.133 
+## BIC:                         1171.081    AIC:                             1161.432 
+## ----------------------------------------------------------------------------------</code></pre>
+<blockquote>
+<p><strong>Pseudo R² Tip:</strong> Higher values generally suggest a
+better model, but even good logistic models often have Pseudo R² values
+well below 0.5. Always use these measures alongside other checks.</p>
+</blockquote>
+</div>
+<div id="deviance-and-aic-comparisons"
+class="section level3 unnumbered">
+<h3 class="unnumbered">Deviance and AIC comparisons</h3>
+<p>Deviance is similar to the sum of squared errors in linear
+regression. Comparing deviances lets you check whether adding predictors
+significantly improves model fit. AIC (Akaike Information Criterion) is
+another tool — lower AIC values mean a better balance of goodness-of-fit
+and simplicity.</p>
+<pre class="r"><code># Another model (hypothetical)
+# model_logit2 &lt;- glm(survived ~ fare + sex, family = binomial(link = &quot;logit&quot;), data = ship_survival)
+
+# Compare AIC
+# AIC(model_logit, model_logit2)
+
+# Compare Deviance
+# anova(model_logit, model_logit2, test = &quot;Chisq&quot;)</code></pre>
+<blockquote>
+<p><strong>Model Comparison Tip:</strong> Lower AIC values or a
+significant chi-square test when comparing deviances suggest that the
+more complex model is better. Always weigh improved fit against added
+model complexity.</p>
+</blockquote>
+</div>
+</div>
+<div id="going-further-checking-residuals-beyond-this-course"
+class="section level2 unnumbered">
+<h2 class="unnumbered">9. Going Further: Checking Residuals (Beyond this
+course)</h2>
+<p>If you’re curious, we can use a binned residual plot to check model
+fit.</p>
+<p>Because in logistic regression the residuals are discrete (only a few
+possible values), we “bin” them into groups of fitted values and average
+them. This helps to visualize whether the model systematically over- or
+under-predicts in certain ranges.</p>
+<pre class="r"><code>library(arm)
+
+binnedplot(fitted(model_logit), 
+           residuals(model_logit, type = &quot;response&quot;), 
+           xlab = &quot;Expected Values&quot;, 
+           ylab = &quot;Average residual&quot;, 
+           main = &quot;Binned residual plot&quot;)</code></pre>
+<p><img src="in_T20_Logistic_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<blockquote>
+<p><strong>Advanced Tip:</strong> Ideally, the binned residuals should
+hover around zero without clear patterns. Curvature or systematic
+deviation can suggest a mis-specified model. This is an advanced
+diagnostic and usually becomes more important in more complex
+modeling.</p>
+</blockquote>
+<p>And..finished!</p>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

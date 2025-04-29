@@ -50,13 +50,13 @@ navbar:
           href: in_T18_Transformations.html     
         - text: "19. Multiple Linear Regression"
           href: in_T19_MLR.html         
-        - text: "20. General Linear Regression"
-          href: in_T20_GLM.html         
-    - text: "PROJECT INSTRUCTIONS"
+        - text: "20. Logistic regression"
+          href: in_T20_Logistic.html         
+    - text: "PROJECT 1"
       menu:  
         - text: "Project 1"
           href: in_project1_instructions.html
-    - text: "PROJECT INSTRUCTIONS"
+    - text: "PROJECT 2"
       menu:  
         - text: "Project 2"
           href: in_project2_instructions.html          
