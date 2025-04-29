@@ -293,7 +293,7 @@ All the steps needed are explained in the Titanic Logistic tutorial and in the c
 
 # Reflection
 
-Think back to the goals of this project: to explain a statistical concept clearly to a non-statistical audience. In 3–5 sentences, respond to one or more of the following prompts:
+11. Think back to the goals of this project: to explain a statistical concept clearly to a non-statistical audience. In 3–5 sentences, respond to one or more of the following prompts:
 
  - What was the most challenging part of this project for you — and how did you work through it?
 
@@ -301,7 +301,19 @@ Think back to the goals of this project: to explain a statistical concept clearl
 
 <br>
 
-# Final 50 point quiz?
+
+------------------------------------------------------------------------
+
+# What to submit?
+
+Congratulations! Finished!
+
+ - Knit your final report and submit the html and the rmd file.
+ - see below for the rubric
+
+<br>
+
+## Final 50 point quiz?
 
 Originally, this was either going to be peer reviewed or supported via a quiz. 
 
@@ -309,7 +321,7 @@ However the length of time we spent on Project 1 meant that I had to cut this pr
 
 <br>
 
-# Grading rubric
+## Grading rubric
 
 Overall, here is what your lab should correspond to:
 
@@ -322,6 +334,7 @@ knitr::kable(rubric) %>%
 ```
 
 
+And.. finished!
 
 
 
