@@ -225,7 +225,7 @@ We are going to start by loading in your data, playing with it, getting everythi
 9.  Use logistic regression and a logit transform to examine whether MOTHER'S WEIGHT is likely to lead to low birth-weight babies
 
 All the steps needed are explained in the Titanic Logistic tutorial and in the class notes (and online)
-<https://psu-spatial.github.io/Stat462-2025/in_T20_GLM.html>
+<https://psu-spatial.github.io/Stat462-2025/in_T20_Logistic.html> or even better, the sleep one here on canvas <https://psu.instructure.com/courses/2381686/files/177167369?module_item_id=44758669>
 
 
 - **1. Fit a logistic regression model**
