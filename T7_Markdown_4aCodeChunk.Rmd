@@ -17,6 +17,10 @@ There are several ways you can run the code in a code chunk. The easiest is to u
 
 -   **To run that chunk** → Click the **green "Play" (▶) button** in the top-right corner of the chunk.
 
--   **To Run all chunks above** → Click the small **downwards arrow** next to the left of the Play button.
+-   **To Run all chunks above** → Click the small **downwards arrow with line under it** just to the left of the Play button.
+
+
+![](index_images/im_02_codechunk.png)
+
 
 Or via the Run menu on the top right.
