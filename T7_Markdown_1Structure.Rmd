@@ -1,4 +1,3 @@
-### Markdown file structure
 
 ![](index_images/pg_Tut4_markdown_fig4.png){width="100%"}
 

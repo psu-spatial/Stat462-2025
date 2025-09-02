@@ -81,7 +81,7 @@ There are also many more hints and tips here <https://posit.co/blog/r-markdown-t
 <br>
 
 
-## R-Markdown Structure
+### R-Markdown Structure
 
 
 ```{r child="zpg_T7_Markdown_1Structure.Rmd"}
