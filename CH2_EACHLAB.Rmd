@@ -64,14 +64,14 @@ to do is to move the folder and everything will just work. It also means you hav
 
 <br><br>
 
-# R-Markdown {#ch6}
+# R-Markdown Basics {#ch6}
 
 R Markdown is a powerful tool that allows you to combine text, code, and outputs in a single document. This tutorial will guide you through creating an R Markdown document, using templates, understanding its components, and working with key features like visual mode, code chunks, and knitting.
 
 There are also many more hints and tips here <https://posit.co/blog/r-markdown-tips-tricks-1-rstudio-ide/>.
 
 
-## R-Markdown Introduction
+## Introduction
 
 ```{r child="zpg_T7_Markdown_0Intro.Rmd"}
 ```
@@ -91,7 +91,7 @@ There are also many more hints and tips here <https://posit.co/blog/r-markdown-t
 
 <br>
 
-## Creating R-Markdown Files
+## Creating Markdown Files
 
 ```{r child="zpg_T7_Markdown_2CreationTemplates.Rmd"}
 ```

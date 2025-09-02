@@ -1,5 +1,9 @@
 
+
 ### Basics
+
+R-Markdown is especially powerful because it is easy to convert your reports into many different templates. We do this
+via changing the YAML code at the top. Luckily, you do not have to remember all the YAML commands yourself.
 
 The basic RmD format is pretty boring. So if you go this route, it's good to edit the YAML code to add in a few additional features. Here is some example YAML code that I often use as a baseline. CAREFULLY replace yours with this, paying attention to spacing.
 

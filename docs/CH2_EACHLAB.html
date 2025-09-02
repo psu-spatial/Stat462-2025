@@ -665,7 +665,7 @@ dplyr package version of filter.</p>
 </div>
 </div>
 <div id="ch6" class="section level1" number="3">
-<h1><span class="header-section-number">3</span> R-Markdown</h1>
+<h1><span class="header-section-number">3</span> R-Markdown Basics</h1>
 <p>R Markdown is a powerful tool that allows you to combine text, code,
 and outputs in a single document. This tutorial will guide you through
 creating an R Markdown document, using templates, understanding its
@@ -674,9 +674,8 @@ and knitting.</p>
 <p>There are also many more hints and tips here <a
 href="https://posit.co/blog/r-markdown-tips-tricks-1-rstudio-ide/"
 class="uri">https://posit.co/blog/r-markdown-tips-tricks-1-rstudio-ide/</a>.</p>
-<div id="r-markdown-introduction" class="section level2" number="3.1">
-<h2><span class="header-section-number">3.1</span> R-Markdown
-Introduction</h2>
+<div id="introduction" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Introduction</h2>
 
 <style>
   header, .site-header, .footer, .site-footer {
@@ -767,8 +766,8 @@ output underneath the code chunk, integrating it into your report. See
 <p><br></p>
 </div>
 </div>
-<div id="creating-r-markdown-files" class="section level2" number="3.3">
-<h2><span class="header-section-number">3.3</span> Creating R-Markdown
+<div id="creating-markdown-files" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Creating Markdown
 Files</h2>
 
 <style>
@@ -777,19 +776,11 @@ Files</h2>
   }
 </style>
   
-<p>R-Markdown is especially powerful because it is easy to convert your
-reports into many different templates. We do this via changing the YAML
-code at the top. Luckily, you do not have to remember all the YAML
-commands yourself.</p>
 <div id="creating-a-basic-r-markdown-document" class="section level3"
 number="3.3.1">
 <h3><span class="header-section-number">3.3.1</span> Creating a basic
 R-Markdown document</h3>
 <p><br></p>
-<details>
-<summary>
-<u>Expand to show instructions</u>
-</summary>
 <p>To create a new R Markdown document</p>
 <p><img src="index_images/pg_Tut4_markdown_fig1.png" /></p>
 <ol style="list-style-type: decimal">
@@ -834,7 +825,6 @@ so, delete/move things around until it looks like this.</p></li>
 </ul>
 <p><img src="index_images/pg_Tut4_markdown_fig2.png" /></p>
 <p><br></p>
-</details>
 <hr />
 <p><br></p>
 </div>
@@ -843,10 +833,6 @@ so, delete/move things around until it looks like this.</p></li>
 class="section level3" number="3.3.2">
 <h3><span class="header-section-number">3.3.2</span> Using a custom R
 template from a package</h3>
-<details>
-<summary>
-<u>Expand to show instructions</u>
-</summary>
 <p>There are also now several package which contain professional
 markdown templates. Common examples include</p>
 <ul>
@@ -924,9 +910,8 @@ so, delete/move things around until it looks like this.</p></li>
 </ul>
 <p><img src="index_images/pg_Tut4_markdown_fig2.png" /></p>
 <p><br></p>
-</details>
 <hr />
-<p><br><br></p>
+<p><br></p>
 </div>
 </div>
 <div id="using-chatgpt-for-custom-templates" class="section level3"
@@ -948,7 +933,8 @@ font <a
 href="https://chatgpt.com/share/67e44f17-a760-800f-850e-479c63776883"
 class="uri">https://chatgpt.com/share/67e44f17-a760-800f-850e-479c63776883</a></p></li>
 </ul>
-<p><br><br></p>
+<p><br></p>
+<hr />
 <hr />
 <p><br></p>
 </div>
@@ -964,6 +950,10 @@ class="uri">https://chatgpt.com/share/67e44f17-a760-800f-850e-479c63776883</a></
   
 <div id="basics" class="section level3" number="3.4.1">
 <h3><span class="header-section-number">3.4.1</span> Basics</h3>
+<p>R-Markdown is especially powerful because it is easy to convert your
+reports into many different templates. We do this via changing the YAML
+code at the top. Luckily, you do not have to remember all the YAML
+commands yourself.</p>
 <p>The basic RmD format is pretty boring. So if you go this route, it’s
 good to edit the YAML code to add in a few additional features. Here is
 some example YAML code that I often use as a baseline. CAREFULLY replace

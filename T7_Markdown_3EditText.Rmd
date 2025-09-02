@@ -1,3 +1,5 @@
+
+
 ### Visual vs source mode
 
 RStudio's standard output is "**source mode**" where you see your text in a raw format.

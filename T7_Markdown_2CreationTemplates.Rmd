@@ -1,13 +1,7 @@
-R-Markdown is especially powerful because it is easy to convert your reports into many different templates. We do this
-via changing the YAML code at the top. Luckily, you do not have to remember all the YAML commands yourself.
 
 ### Creating a basic R-Markdown document
 
 <br>
-
-<details>
-
-<summary>[Expand to show instructions]{.underline}</summary>
 
 To create a new R Markdown document
 
@@ -47,7 +41,6 @@ Click here to see examples of how to do this:
 
 <br>
 
-</details>
 
 ------------------------------------------------------------------------------------------------------------------------
 
@@ -55,9 +48,6 @@ Click here to see examples of how to do this:
 
 ### Using a custom R template from a package
 
-<details>
-
-<summary>[Expand to show instructions]{.underline}</summary>
 
 There are also now several package which contain professional markdown templates. Common examples include
 
@@ -122,11 +112,9 @@ Sometimes rmdformats makes an extra subfolder and puts your report in there.
 
 <br>
 
-</details>
-
 ------------------------------------------------------------------------------------------------------------------------
 
-<br><br>
+<br>
 
 ### Using ChatGPT for custom templates
 
@@ -142,4 +130,8 @@ For example,
 -   A silly template for a PI who likes penguins using a new google font
     <https://chatgpt.com/share/67e44f17-a760-800f-850e-479c63776883>
 
-<br><br>
+<br>
+
+
+------------------------------------------------------------------------------------------------------------------------
+
