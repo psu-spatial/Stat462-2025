@@ -16,7 +16,13 @@ Now, following the image below:
 
  - **UNCLICK** “Restore previously open source documents on startup”
 
-You can also click the appearances tab to change how the screen looks. This is why some people have fun colored screens.
-
 ![](index_images/im_02Setup_11Settings.png)
 
+
+### Changing how R-studio looks
+
+You can also change how R Studio looks! Simply click on the appearances button in the settings menu on the left. 
+
+Go here and click the animation button to see a live example
+
+https://oakleyj.github.io/ShortRIntro/r-and-rstudio.html#get-comfortable
