@@ -1,5 +1,15 @@
-   
-## What version should I be using?
+---
+title: "Installing R and R-Studio"
+author: "Greatrex"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# What versions should I be using?
    
 What version of R and R studio should you be using?
 
@@ -10,7 +20,7 @@ To update R and R studio, it's easiest to just reinstall.  You will not lose you
 
 ------------------------------------------------------------------------------------------------------------------------
 
-## How to Install R
+# How to Install R
 
 [**STEP 1**]{.underline} <br> Go to <https://posit.co/download/rstudio-desktop/#download>. <br>Scroll down and you
 should see something like this.<br>
@@ -59,7 +69,7 @@ Mac:
 
 <br>
 
-## Installing R-Studio
+# How to install R-Studio
 
 [**STEP 4**]{.underline} <br> Go back to <https://posit.co/download/rstudio-desktop/#download>. <br>Now click the other
 button. It should automatically download a file onto your computer<br>
@@ -76,3 +86,29 @@ button. It should automatically download a file onto your computer<br>
     -   *(If you have an old mac this might be where it breaks, let Dr G know)*
 
 ![](Index_Images/06_RstudioMac.png){fig-align="right" width="90%"}
+
+------------------------------------------------------------------------------------------------------------------------
+
+<br>
+
+# Welcome to R
+
+Now everything is installed, open R-studio (NOT R!). Or open a new workspace in Posit-Cloud
+
+![](index_images/pg_Tut2_startup_fig1.png)
+
+You will be greeted by three panels:
+
+-   The interactive R console (entire left)
+-   Environment/History (tabbed in upper right)
+-   Files/Plots/Packages/Help/Viewer (tabbed in lower right)
+
+![](index_images/pg_Tut2_startup_fig2.png)
+
+If you wish to learn more about what these windows do, have a look at this resource, from the Pirates Guide to R:
+<https://bookdown.org/ndphillips/YaRrr/the-four-rstudio-windows.html>.\
+
+<p class="comment">If you have used R before, you might see that there are variables and plots etc already loaded\*\*. It is always good to
+clear these before you start a new analysis. To do this, click the little broom symbol in your environment tab</p>
+
+

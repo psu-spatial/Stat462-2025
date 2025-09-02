@@ -496,41 +496,21 @@ free account. We will come back to this later</li>
 </style>
   
 </div>
-<div id="installing-on-your-laptop" class="section level2" number="1.2">
-<h2><span class="header-section-number">1.2</span> Installing on your
-laptop</h2>
-<p><strong>You can also use your own laptop to run R-code, but it’s
-ESSENTIAL that you update it, or install both R and
-R-studio.</strong></p>
-<p>You need TWO pieces of software to run your labs.</p>
+<div id="what-version-should-i-be-using" class="section level2"
+number="1.2">
+<h2><span class="header-section-number">1.2</span> What version should I
+be using?</h2>
+<p>What version of R and R studio should you be using?</p>
 <ul>
-<li><p>The “R” Software teaches your computer to ‘speak’ R. This is why
-the R version is so important. Using an early version is like teaching
-your computer to speak Shakespearean English! The R-Studio software is
-like a programming version of Microsoft Word. It lets you work using the
-R language and has many nice features.</p></li>
-<li><p>The “R_Studio” part is the program you actually use when
-completing your labs.</p></li>
+<li>R: R version 4.5.1 (2025-06-13) – “Great Square Root”</li>
+<li>R-Studio: “Mariposa Orchid”</li>
 </ul>
-<p><br></p>
-<p><strong>QU. I already have R &amp; R-Studio! Do I need to complete
-this section?</strong></p>
-<ul>
-<li>YES! Both R and R-Studio change regularly, so I want everyone to be
-running the most up-to-date version and you will be graded on this in
-HW1. This should not hurt any of your other work. To update, follow the
-instructions below.</li>
-</ul>
-<p><strong>QU. I have a very old computer, will this work?</strong></p>
-<ul>
-<li>If you have a very old computer, this might not work. In that case,
-it’s OK! You can use the Posit Cloud website. You’re welcome to try the
-install and I’m happy to support you.</li>
-</ul>
-<p><br><br></p>
-<div id="first-install-r" class="section level3" number="1.2.1">
-<h3><span class="header-section-number">1.2.1</span> First install
-R</h3>
+<p>To update R and R studio, it’s easiest to just reinstall. You will
+not lose your work! It just updates the underlying software</p>
+<hr />
+</div>
+<div id="how-to-install-r" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> How to Install R</h2>
 <p><u><strong>STEP 1</strong></u> <br> Go to <a
 href="https://posit.co/download/rstudio-desktop/#download"
 class="uri">https://posit.co/download/rstudio-desktop/#download</a>.
@@ -546,10 +526,8 @@ src="index_images/02_CranR.png" style="width:95.0%"
 fig-align="right" /></a></p>
 <p><u><strong>STEP 3</strong></u> <br>The setup looks a little different
 depending on whether you are on a Windows Machine or a Mac:</p>
-<details>
-<summary>
-<u>WINDOWS people</u>, Click the arrow to show your instructions
-</summary>
+<div id="windows-people" class="section level3" number="1.3.1">
+<h3><span class="header-section-number">1.3.1</span> WINDOWS people</h3>
 <p><img src="index_images/03_WindowsCran.png" style="width:95.0%"
 fig-align="right" /></p>
 <ul>
@@ -559,11 +537,9 @@ R-STUDIO</p></li>
 need a shortcut on your desktop (because we will use R studio to access
 it)</p></li>
 </ul>
-</details>
-<details>
-<summary>
-<u>MAC people</u>, Click the arrow to show your instructions
-</summary>
+</div>
+<div id="mac-people" class="section level3" number="1.3.2">
+<h3><span class="header-section-number">1.3.2</span> MAC people</h3>
 <p><img src="index_images/04_CRANR_Mac.png" style="width:95.0%"
 fig-align="right" /></p>
 <ul>
@@ -581,13 +557,13 @@ concerns. If that’s the case, click the magnifying-glass on the top
 right of your screen, search for settings, click on the security tab and
 click that it’s OK to open it. Then try again.</p></li>
 </ul>
-</details>
 <hr />
 <p><br></p>
 </div>
-<div id="then-install-r-studio" class="section level3" number="1.2.2">
-<h3><span class="header-section-number">1.2.2</span> Then install
-R-studio</h3>
+</div>
+<div id="installing-r-studio" class="section level2" number="1.4">
+<h2><span class="header-section-number">1.4</span> Installing
+R-Studio</h2>
 <p><u><strong>STEP 4</strong></u> <br> Go back to <a
 href="https://posit.co/download/rstudio-desktop/#download"
 class="uri">https://posit.co/download/rstudio-desktop/#download</a>.
@@ -612,7 +588,6 @@ G know)</em></p></li>
 fig-align="right" /></p>
 <hr />
 <p><br></p>
-</div>
 </div>
 </div>
 <div id="ch2" class="section level1" number="2">
@@ -679,18 +654,23 @@ settings</h2>
 you were in a project when you log back in. This can get confusing, so
 we are going to turn this off.</p>
 <ul>
-<li><p><strong>ON A MAC:</strong> Click on the R-studio menu button on
-the top left of the screen, then click Preferences.</p></li>
-<li><p><strong>ON A PC/R-Studio Cloud:</strong> Click on Tools-&gt;
-Global Options -&gt; Preferences</p></li>
+<li>Go to the menus at the VERY TOP OF THE SCREEN.</li>
+<li>Click on Tools-&gt; Global Options</li>
 </ul>
-<p>Now:</p>
+<p>Now, following the image below:</p>
 <ul>
-<li>UNCLICK “Restore most recently opened project at startup”</li>
-<li>Set “Save workspace to .RData on” exit to Never</li>
-<li>You can also click the appearances tab to change how the screen
-looks.</li>
+<li><p><strong>UNCLICK</strong> “Restore most recently opened project at
+startup”</p></li>
+<li><p><strong>UNCLICK</strong> “Restore .RData into workspace on
+startup”</p></li>
+<li><p>Set “Save workspace to .RData on” exit to
+<strong>Never</strong></p></li>
+<li><p><strong>UNCLICK</strong> “Restore previously open source
+documents on startup”</p></li>
 </ul>
+<p>You can also click the appearances tab to change how the screen
+looks. This is why some people have fun colored screens.</p>
+<p><img src="index_images/im_02Setup_11Settings.png" /></p>
 <p><br></p>
 </div>
 </div>

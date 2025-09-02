@@ -2,13 +2,21 @@
 
 R-studio wants to be helpful and will try to re-load exactly where you were in a project when you log back in.  This can get confusing, so we are going to turn this off.
 
- - **ON A MAC:** Click on the R-studio menu button on the top left of the screen, then click Preferences. 
+  - Go to the menus at the VERY TOP OF THE SCREEN.
+  - Click on Tools-> Global Options
+  
 
- - **ON A PC/R-Studio Cloud:** Click on Tools-> Global Options -> Preferences
+Now, following the image below:
 
-Now:
+ - **UNCLICK** “Restore most recently opened project at startup”
 
- - UNCLICK "Restore most recently opened project at startup"
- - Set "Save workspace to .RData on" exit to Never
- - You can also click the appearances tab to change how the screen looks.
+ - **UNCLICK** “Restore .RData into workspace on startup”
+
+ - Set “Save workspace to .RData on” exit to **Never**
+
+ - **UNCLICK** “Restore previously open source documents on startup”
+
+You can also click the appearances tab to change how the screen looks. This is why some people have fun colored screens.
+
+![](index_images/im_02Setup_11Settings.png)
 
