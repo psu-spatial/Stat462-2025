@@ -1,17 +1,19 @@
 
-### Adding new code chunks
+### Adding new code chunks {#MakeCodeChunk}
 
 In visual mode, you can add code chunks by clicking on the little green button at the top right and choosing R.
 
 ![](index_images/im_T3_CodeChunkCreate.png){width="90%"}
 
-In source mode, you can add a code chunk by typing
+In source mode, you can add a code chunk by typing this
 
-![](index_images/im_T3_CodeChunkCreateB.png){width="49%"}
+![](index_images/im_T3_CodeChunkCreateB.png){width="60%"}
 
 Where the little symbols before the {R} are called BACK-TICKS. I often just copy/replace.
 
-### Running code chunks
+<br>
+
+### Running code chunks {#RunCodeChunk}
 
 There are several ways you can run the code in a code chunk. The easiest is to use the controls on each chunk.
 
