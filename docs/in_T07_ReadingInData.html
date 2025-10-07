@@ -616,18 +616,15 @@ with WKT geometry.</p>
 <p>If the coordinate reference system (CRS) is specified in the file, it
 will be loaded automatically with the data.</p>
 <ul>
-<li><strong>First, make sure your spatial file (often .gpkg) is saved in
-your lab folder and you are running your lab project.</strong></li>
-</ul>
-<p><br></p>
-<ul>
-<li>Now go to the top of your script, add <code>library(sf)</code> to
+<li><p><strong>First, make sure your spatial file (often .gpkg) is saved
+in your lab folder and you are running your lab
+project.</strong></p></li>
+<li><p>Now go to the top of your script, add <code>library(sf)</code> to
 your library code chunk and run it. If there is an error, go to the
 packages tab and install the <strong>sf</strong> package by clicking on
-the Install button. Then try again.</li>
+the Install button. Then try again.</p></li>
 </ul>
 <pre class="r"><code>library(sf)</code></pre>
-<p><br></p>
 <ul>
 <li>Scroll back down to the place you want to read in your spatial file.
 You can read geospatial files using this command:</li>
@@ -644,11 +641,6 @@ choose anything helpful—for example, <code>counties</code> if the file
 contains county boundaries.</li>
 </ul></li>
 </ul>
-<p><br></p>
-<p>You can see the help file by typing <code>?st_read</code> in the
-console. This shows extra options like filtering by layer or bounding
-box.</p>
-<p><br></p>
 <p>For example, this will read in your Lab 4 mystery data and save it as
 a variable called <code>mystery1</code>:</p>
 <pre class="r"><code>mystery1 &lt;- st_read(&quot;Lab04_MysteryData1.gpkg&quot;)</code></pre>
@@ -662,12 +654,10 @@ a variable called <code>mystery1</code>:</p>
 ## Geodetic CRS:  WGS 84</code></pre>
 <ul>
 <li><p>You can view a summary of the data by typing its name. This
-includes:</p>
-<ul>
-<li>the geometry type (e.g., POINT, LINESTRING, POLYGON)</li>
-<li>the coordinate reference system (e.g., WGS84, EPSG:4326)</li>
-<li>the bounding box (spatial extent)</li>
-</ul></li>
+includes:</p></li>
+<li><p>the geometry type (e.g., POINT, LINESTRING, POLYGON)</p></li>
+<li><p>the coordinate reference system (e.g., WGS84, EPSG:4326)</p></li>
+<li><p>the bounding box (spatial extent)</p></li>
 </ul>
 <pre class="r"><code>mystery1</code></pre>
 <pre><code>## Simple feature collection with 28 features and 0 fields
@@ -687,9 +677,12 @@ includes:</p>
 ## 8  POINT (3.054251 39.41818)
 ## 9  POINT (3.136457 39.40375)
 ## 10 POINT (2.389429 39.58377)</code></pre>
-<div id="if-you-get-an-error" class="section level3" number="1.6.1">
-<h3><span class="header-section-number">1.6.1</span> If you get an
-error:</h3>
+<p><br></p>
+<p><strong>Getting Help</strong></p>
+<p>You can see the help file by typing <code>?st_read</code> in the
+console. This shows extra options like filtering by layer or bounding
+box.</p>
+<p>If you get an error:</p>
 <ul>
 <li><p>Check that you typed the filename correctly, including
 <code>.gpkg</code></p></li>
@@ -719,9 +712,8 @@ system (long/lat WGS84 - CRS 4236), and its bounding box.</p></li>
 ## 8  POINT (3.054251 39.41818)
 ## 9  POINT (3.136457 39.40375)
 ## 10 POINT (2.389429 39.58377)</code></pre>
-</div>
-<div id="if-you-get-an-error-1" class="section level3" number="1.6.2">
-<h3><span class="header-section-number">1.6.2</span> If you get an
+<div id="if-you-get-an-error" class="section level3" number="1.6.1">
+<h3><span class="header-section-number">1.6.1</span> If you get an
 error:</h3>
 <ul>
 <li>Check that you typed the filename correctly, including
