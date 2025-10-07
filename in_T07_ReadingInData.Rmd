@@ -18,6 +18,7 @@ library(biscale)
 library(tidycensus)
 library(cowplot)
 library(units)
+library(sf)
 
 
 ```
@@ -135,3 +136,96 @@ library(palmerpenguins) #normally this would be at the top of the code chunk
 data("penguins")
 glimpse(penguins)
 ```
+
+<br><br>
+
+------------------------------------------------------------------------
+
+## Loading spatial data with st_read {#T4_stread}
+
+<br>
+
+Geospatial files like GeoPackages are easily read using the `st_read()` command from the **sf** package.
+
+`st_read()` makes it easy to read spatial data. It automatically detects the file type and returns a spatial object. You can use it to read many kinds of vector data, including Shapefiles (.shp), GeoJSON (.geojson), GeoPackage (.gpkg), KML/KMZ files, and CSVs with WKT geometry.
+
+If the coordinate reference system (CRS) is specified in the file, it will be loaded automatically with the data.
+
+* **First, make sure your spatial file (often .gpkg) is saved in your lab folder and you are running your lab project.**
+
+<br>
+
+* Now go to the top of your script, add `library(sf)` to your library code chunk and run it. If there is an error, go to the packages tab and install the **sf** package by clicking on the Install button. Then try again.
+
+```{r, eval=FALSE}
+library(sf)
+```
+
+<br>
+
+* Scroll back down to the place you want to read in your spatial file. You can read geospatial files using this command:
+
+```{r, eval=FALSE}
+mydata <- st_read("FILENAME.gpkg")
+```
+
+* To understand what you did:
+
+  * `st_read()` is the command
+  * "FILENAME.gpkg" is your actual file name. Include the extension and match the name exactly (case sensitive).
+  * `mydata` is the variable name you want to use. You can choose anything helpful—for example, `counties` if the file contains county boundaries.
+
+<br>
+
+You can see the help file by typing `?st_read` in the console. This shows extra options like filtering by layer or bounding box.
+
+<br>
+
+For example, this will read in your Lab 4 mystery data and save it as a variable called `mystery1`:
+
+```{r}
+mystery1 <- st_read("Lab04_MysteryData1.gpkg")
+```
+
+* You can view a summary of the data by typing its name. This includes:
+
+  * the geometry type (e.g., POINT, LINESTRING, POLYGON)
+  * the coordinate reference system (e.g., WGS84, EPSG:4326)
+  * the bounding box (spatial extent)
+
+```{r}
+mystery1
+```
+
+### If you get an error:
+
+* Check that you typed the filename correctly, including `.gpkg`
+* Make sure the file is in the same folder as your `.Rproj`
+* Confirm that you're running your project—otherwise R may not know where to look
+
+
+
+
+
+
+
+
+
+ - You can  see the summary of the data by typing its name. 
+This will include its spatial representation (points),  its coordinate reference system (long/lat WGS84 - CRS 4236), and its bounding box.
+
+
+```{r}
+mystery1
+```
+
+
+### If you get an error:
+
+* Check that you typed the filename correctly, including `.gpkg`
+* Make sure the file is in the same folder as your `.Rproj`
+* Confirm that you're running your project – otherwise R may not know where to look.
+
+You can see the help file by typing `?st_read` into the console, you can see other options like filtering by layer, bounding box, etc.
+
+

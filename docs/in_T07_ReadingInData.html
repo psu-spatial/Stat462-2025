@@ -599,6 +599,142 @@ glimpse(penguins)</code></pre>
 ## $ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …
 ## $ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…
 ## $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…</code></pre>
+<p><br><br></p>
+<hr />
+</div>
+<div id="T4_stread" class="section level2" number="1.6">
+<h2><span class="header-section-number">1.6</span> Loading spatial data
+with st_read</h2>
+<p><br></p>
+<p>Geospatial files like GeoPackages are easily read using the
+<code>st_read()</code> command from the <strong>sf</strong> package.</p>
+<p><code>st_read()</code> makes it easy to read spatial data. It
+automatically detects the file type and returns a spatial object. You
+can use it to read many kinds of vector data, including Shapefiles
+(.shp), GeoJSON (.geojson), GeoPackage (.gpkg), KML/KMZ files, and CSVs
+with WKT geometry.</p>
+<p>If the coordinate reference system (CRS) is specified in the file, it
+will be loaded automatically with the data.</p>
+<ul>
+<li><strong>First, make sure your spatial file (often .gpkg) is saved in
+your lab folder and you are running your lab project.</strong></li>
+</ul>
+<p><br></p>
+<ul>
+<li>Now go to the top of your script, add <code>library(sf)</code> to
+your library code chunk and run it. If there is an error, go to the
+packages tab and install the <strong>sf</strong> package by clicking on
+the Install button. Then try again.</li>
+</ul>
+<pre class="r"><code>library(sf)</code></pre>
+<p><br></p>
+<ul>
+<li>Scroll back down to the place you want to read in your spatial file.
+You can read geospatial files using this command:</li>
+</ul>
+<pre class="r"><code>mydata &lt;- st_read(&quot;FILENAME.gpkg&quot;)</code></pre>
+<ul>
+<li><p>To understand what you did:</p>
+<ul>
+<li><code>st_read()</code> is the command</li>
+<li>“FILENAME.gpkg” is your actual file name. Include the extension and
+match the name exactly (case sensitive).</li>
+<li><code>mydata</code> is the variable name you want to use. You can
+choose anything helpful—for example, <code>counties</code> if the file
+contains county boundaries.</li>
+</ul></li>
+</ul>
+<p><br></p>
+<p>You can see the help file by typing <code>?st_read</code> in the
+console. This shows extra options like filtering by layer or bounding
+box.</p>
+<p><br></p>
+<p>For example, this will read in your Lab 4 mystery data and save it as
+a variable called <code>mystery1</code>:</p>
+<pre class="r"><code>mystery1 &lt;- st_read(&quot;Lab04_MysteryData1.gpkg&quot;)</code></pre>
+<pre><code>## Reading layer `GEOG364_Lab4_MysteryData1&#39; from data source 
+##   `/Users/hgreatrex/Documents/GitHub/Teaching/STAT-462/Stat462-2025/Lab04_MysteryData1.gpkg&#39; 
+##   using driver `GPKG&#39;
+## Simple feature collection with 28 features and 0 fields
+## Geometry type: POINT
+## Dimension:     XY
+## Bounding box:  xmin: 1.381952 ymin: 38.66057 xmax: 4.23568 ymax: 40.01613
+## Geodetic CRS:  WGS 84</code></pre>
+<ul>
+<li><p>You can view a summary of the data by typing its name. This
+includes:</p>
+<ul>
+<li>the geometry type (e.g., POINT, LINESTRING, POLYGON)</li>
+<li>the coordinate reference system (e.g., WGS84, EPSG:4326)</li>
+<li>the bounding box (spatial extent)</li>
+</ul></li>
+</ul>
+<pre class="r"><code>mystery1</code></pre>
+<pre><code>## Simple feature collection with 28 features and 0 fields
+## Geometry type: POINT
+## Dimension:     XY
+## Bounding box:  xmin: 1.381952 ymin: 38.66057 xmax: 4.23568 ymax: 40.01613
+## Geodetic CRS:  WGS 84
+## First 10 features:
+##                         geom
+## 1  POINT (1.395875 38.68629)
+## 2   POINT (1.56276 38.66057)
+## 3  POINT (1.394164 38.87473)
+## 4  POINT (1.381952 38.96174)
+## 5    POINT (1.4977 38.99677)
+## 6  POINT (3.023175 39.31032)
+## 7  POINT (2.866836 39.44245)
+## 8  POINT (3.054251 39.41818)
+## 9  POINT (3.136457 39.40375)
+## 10 POINT (2.389429 39.58377)</code></pre>
+<div id="if-you-get-an-error" class="section level3" number="1.6.1">
+<h3><span class="header-section-number">1.6.1</span> If you get an
+error:</h3>
+<ul>
+<li><p>Check that you typed the filename correctly, including
+<code>.gpkg</code></p></li>
+<li><p>Make sure the file is in the same folder as your
+<code>.Rproj</code></p></li>
+<li><p>Confirm that you’re running your project—otherwise R may not know
+where to look</p></li>
+<li><p>You can see the summary of the data by typing its name. This will
+include its spatial representation (points), its coordinate reference
+system (long/lat WGS84 - CRS 4236), and its bounding box.</p></li>
+</ul>
+<pre class="r"><code>mystery1</code></pre>
+<pre><code>## Simple feature collection with 28 features and 0 fields
+## Geometry type: POINT
+## Dimension:     XY
+## Bounding box:  xmin: 1.381952 ymin: 38.66057 xmax: 4.23568 ymax: 40.01613
+## Geodetic CRS:  WGS 84
+## First 10 features:
+##                         geom
+## 1  POINT (1.395875 38.68629)
+## 2   POINT (1.56276 38.66057)
+## 3  POINT (1.394164 38.87473)
+## 4  POINT (1.381952 38.96174)
+## 5    POINT (1.4977 38.99677)
+## 6  POINT (3.023175 39.31032)
+## 7  POINT (2.866836 39.44245)
+## 8  POINT (3.054251 39.41818)
+## 9  POINT (3.136457 39.40375)
+## 10 POINT (2.389429 39.58377)</code></pre>
+</div>
+<div id="if-you-get-an-error-1" class="section level3" number="1.6.2">
+<h3><span class="header-section-number">1.6.2</span> If you get an
+error:</h3>
+<ul>
+<li>Check that you typed the filename correctly, including
+<code>.gpkg</code></li>
+<li>Make sure the file is in the same folder as your
+<code>.Rproj</code></li>
+<li>Confirm that you’re running your project – otherwise R may not know
+where to look.</li>
+</ul>
+<p>You can see the help file by typing <code>?st_read</code> into the
+console, you can see other options like filtering by layer, bounding
+box, etc.</p>
+</div>
 </div>
 </div>
 
